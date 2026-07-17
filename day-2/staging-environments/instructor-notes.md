@@ -2,17 +2,25 @@
 
 ## Timing
 
-- <rozpis bloku>
+- 40 min výklad + 60 min lab.
 
 ## Go/no-go — KLÍČOVÉ, otestovat před během
 
-- <TODO: ověřit, že per-student DEV/TEST/PROD sandbox weby existují a mají očekávaný rozdíl (naplánovaný drift pro cvičení)>
+- Ověřit, že `New-CourseStudentSites.ps1` vytvořil per-student DEV/TEST/PROD sandboxy a že
+  úmyslný drift (naplánovaný rozdíl pro cvičení) je skutečně přítomný ve všech studentských
+  webech, ne jen v jednom testovacím.
+- Zkontrolovat aktuální limit 100 site scriptů/site designů na tenant — po opakovaných bězích
+  kurzu se mohou hromadit nepoužité artefakty z minulých kohort.
 
 ## Tripwires
 
-- <TODO>
+- Studenti si pletou "diff mezi dvěma prostředími" s "diff proti baseline" — u prvního nejde o
+  správnost, jen o rozdíl; u druhého je baseline autoritativní zdroj pravdy.
+- Nenechat lab sklouznout k psaní obecného "site cloner" nástroje — cíl je detekce a report
+  driftu, ne automatická synchronizace/oprava (to přijde v `lifecycle-compliance`, M3.3).
 
 ## Vazby
 
-- Dopředu: baseline/diff koncept se používá v `lifecycle-compliance` (M3.3, compliance drift).
-- Zpět: navazuje na Graph read/ingest z M2.1.
+- Dopředu: baseline/diff koncept se rozšiřuje o compliance pravidla v `lifecycle-compliance`
+  (M3.3).
+- Zpět: navazuje na stránkování/ingest vzory z M2.1 (čtení stavu webu ve velkém).

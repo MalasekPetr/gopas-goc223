@@ -2,17 +2,26 @@
 
 ## Timing
 
-- <rozpis bloku>
+- 45 min výklad + 75 min lab (nejnáročnější lab dne — throttling se ne vždy podaří vyvolat
+  na první pokus, počítat s rezervou).
 
 ## Go/no-go — KLÍČOVÉ, otestovat před během
 
-- <TODO: ověřit, že kurzový tenant má dostatek dat pro reálné vyvolání stránkování/throttlingu>
+- Ověřit, že kurzový tenant má dostatek objektů (uživatelé/weby), aby dotaz bez `$top`
+  omezení reálně vyžadoval víc než jednu stránku — pokud ne, doplnit demo data předem.
+- Zkusit den předem vyvolat 429 stejným postupem jako v labu — throttling limity se mění,
+  ověřit, že postup pořád reálně throttling spustí.
 
 ## Tripwires
 
-- <TODO: nenechat studenty implementovat pevný `Start-Sleep` misto respektování `Retry-After`>
+- Studenti často implementují pevný `Start-Sleep -Seconds N` místo čtení `Retry-After` z
+  odpovědi — v ověření labu explicitně kontrolovat, že čtou hlavičku, ne hardcoded konstantu.
+- Nezaměňovat batch-level HTTP 200 s úspěchem všech dílčích requestů — připravit demo, kde
+  batch vrátí 200, ale jeden dílčí request je 429.
+- Nechodit do hloubky change notifications (push model) — to je M4.1, zde jen zmínit rozdíl.
 
 ## Vazby
 
-- Dopředu: retry/throttle vzory se znovupoužívají v `migration-patterns` (M2.3) a `siem-blob-integration` (M4.2).
-- Zpět: navazuje na connect wrapper z M1.3.
+- Dopředu: retry/throttle klasifikace se přímo používá v `migration-patterns` (M2.3, throttle-aware
+  wave exekuce) a `siem-blob-integration` (M4.2, spolehlivost pipeline).
+- Zpět: navazuje na `Connect-CourseTarget` wrapper a auth módy z M1.3.

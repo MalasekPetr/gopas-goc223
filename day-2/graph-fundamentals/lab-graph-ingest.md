@@ -1,25 +1,34 @@
 # Lab · Resilientní ingest & stránkování Graph
 
-> Modul: M2.1 · Odhad: <min> · Režim: simulace | živý tenant
+> Modul: M2.1 · Odhad: 75 min · Režim: živý tenant
 
 ## Cíl
 
-<co si student odnese>
+Student má PowerShell/Graph skript, který korektně stránkuje výsledky, respektuje throttling
+(`Retry-After`) a rozlišuje transientní chyby (retry) od permanentních (fail-fast).
 
 ## Předpoklady
 
-- <connect wrapper z M1.3, app registrace s Graph read permissions>
+- `Connect-CourseTarget` wrapper z M1.3, app registrace s `Sites.Read.All` (Graph, delegated).
+- Kurzový tenant obsahuje dostatek uživatelů/webů, aby dotaz reálně vyžadoval stránkování.
 
 ## Kroky
 
-1. <ingest dat s korektním stránkováním přes `@odata.nextLink`>
-2. <implementace retry s klasifikací chyb (429/5xx/permanentní)>
-3. <ověření na velkém datasetu, kde stránkování/throttling reálně nastane>
+1. Napsat funkci `Get-AllGraphResults`, která projde `@odata.nextLink` až do konce a vrátí
+   kompletní kolekci (žádná tichá ztráta dat po první stránce).
+2. Přidat klasifikaci chyb: 429 → počkat `Retry-After`, pak retry; 5xx → exponenciální
+   backoff (max. N pokusů); jiné 4xx → vyhodit chybu okamžitě, bez retry.
+3. Uměle vyvolat throttling (vysoký počet rychlých requestů) a ověřit, že skript korektně čeká.
+4. Zalogovat každý pokus strukturovaně (viz logging scaffolding z M1.3) včetně `client-request-id`.
 
 ## Ověření
 
-- [ ] <očekávaný výsledek>
+- [ ] Skript vrátí kompletní dataset i při datasetu větším než jedna stránka Graph odpovědi.
+- [ ] Při vyvolaném 429 skript počká přesně dobu z `Retry-After`, ne pevnou hodnotu.
+- [ ] Log obsahuje rozlišení retry (429/5xx) vs fail-fast (jiné 4xx) pro každý pokus.
 
 ## Fallback
 
-<co dělat, když čas/tenant nevyjde>
+Pokud se throttling v kurzovém tenantu nepodaří spolehlivě vyvolat (nedostatek dat/rychlosti),
+instruktor poskytne nahraný ukázkový response log s 429 odpovědí a student implementuje a
+testuje retry logiku nad tímto simulovaným vstupem.

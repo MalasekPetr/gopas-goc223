@@ -3,36 +3,62 @@
 > Typ: povinný · Den: 2 · Odhad: <min>
 
 ## Cíle
-- <Předmigrační kontroly a plánování>
-- <Paralelizace, wave planning, cutover taktiky>
-- <Velké seznamy, verze, throttling, zpoždění vyhledávání>
+- Předmigrační kontroly a plánování.
+- Paralelizace, wave planning, cutover taktiky.
+- Velké seznamy, verze, throttling, zpoždění vyhledávání.
 
 ## Výklad
 
-<TODO: předmigrační kontroly — co ověřit před spuštěním migrace (viz GLOSSARY.md limity)>
+### Předmigrační kontroly a plánování
+Microsoft doporučuje migrační fáze: plán → assess & remediate → příprava cílového prostředí →
+migrace → onboarding uživatelů. Assessment nástroje (např. SharePoint Migration Assessment
+Tool pro on-prem zdroje) skenují zdrojová data a hledají problémy dřív, než začne samotný
+přesun — chybějící metadata, nepodporované typy sloupců, příliš hluboké struktury složek.
 
-<TODO: wave planning — rozdělení do vln dle rizika/velikosti/závislostí, ne abecedně>
+### Wave planning a cutover taktiky
+Rozdělení migrace do vln podle rizika/velikosti/závislostí, ne abecedně nebo podle toho, co je
+"po ruce". Pilotní vlna (malý, nízkorizikový vzorek) ověří proces, hlavní vlny migrují většinu
+obsahu, kritická vlna (nejdůležitější/nejsledovanější weby) jde poslední s největším bufferem
+na rollback. Cutover = okamžik přepnutí uživatelů na nové umístění — plánovat mimo špičku,
+s jasným komunikačním plánem a definovaným rollback krokem.
 
-<TODO: paralelizace a throttle-aware exekuce, cutover taktiky>
-
-<TODO: limity velkých seznamů, verze souborů, search crawl delay po migraci>
+### Velké seznamy, verze, throttling
+**List view threshold** je defaultně 5000 položek v SharePoint Online a **nejde změnit** —
+ale to neznamená limit velikosti listu (list může mít až 30 milionů položek), jen limit na
+počet položek vrácených v jednom dotazu/view bez indexovaného sloupce. Migrační skripty musí
+stránkovat/filtrovat přes indexované sloupce, ne spoléhat na plný `Get-*` bez limitu.
+**Verze souborů** — výchozí limit je 500 verzí na soubor (lze zvýšit až na 50 000, snížit na
+100, nebo přepnout na automatické ořezávání dle stáří) na úrovni organizace/webu/knihovny;
+při aktivní retention policy nebo eDiscovery holdu SharePoint verze **nemůže** ořezat, i když
+je nastaven nižší limit — to přímo násobí objem migrovaných dat, pokud se neřeší předem.
+**Search crawl delay** — obsah po migraci není okamžitě vyhledatelný, cutover plán musí počítat
+s rezervou na re-index, jinak uživatelé po přepnutí nenajdou nedávno přesunutý obsah.
 
 ```mermaid
-%% TODO: diagram — wave plan: pilot vlna -> hlavní vlny -> kritická vlna s bufferem
 flowchart LR
-  A[placeholder] --> B[placeholder]
+  A[Pilotní vlna] --> B[Hlavní vlny]
+  B --> C[Kritická vlna s větším bufferem]
+  C --> D[Cutover]
+  D --> E[Re-index / search delay buffer]
 ```
 
 ## Klíčové rozlišení
-- <migrace obsahu vs migrace metadat/verzí>
-- <throttling limit vs tvrdý strop velikosti>
+- **List view threshold (limit na dotaz/view, obchází se indexací/filtrem) vs celková
+  kapacita listu (30 milionů položek, netýká se threshold)**.
+- **Ořezávání verzí podle limitu vs retention/eDiscovery hold** — hold má vždy přednost, verze
+  se neořežou bez ohledu na nastavený limit.
+- **Migrace obsahu vs migrace metadat/verzí** — druhé výrazně zvyšuje objem přenášených dat a
+  je snadné ho v odhadu opomenout.
 
 ## Lab
 Viz [`lab-wave-plan.md`](lab-wave-plan.md).
 
 ## Zdroje (Microsoft)
-- <TODO: SharePoint Online limits dokumentace>
-- <TODO: migrační nástroje — přehled dokumentace>
+- [Migration planning for SharePoint and OneDrive rollout](https://learn.microsoft.com/en-us/sharepoint/plan-rollout-migration)
+- [The number of items in this list exceeds the list view threshold](https://learn.microsoft.com/en-us/troubleshoot/sharepoint/lists-and-libraries/items-exceeds-list-view-threshold)
+- [Version history limits for document library and OneDrive overview](https://learn.microsoft.com/en-us/sharepoint/document-library-version-history-limits)
 
 ## Stav produktu / delta
-- <TODO: ověřit aktuální list view threshold a throttling limity k datu běhu>
+- Ověřit k datu běhu — výchozí a maximální hodnoty limitu verzí (500 default / 50 000 max) a
+  chování automatického ořezávání se v poslední době měnily; ověřit aktuální hodnoty na
+  [Version history limits](https://learn.microsoft.com/en-us/sharepoint/document-library-version-history-limits) před přípravou čísel do slidů.

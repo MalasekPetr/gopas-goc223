@@ -1,25 +1,33 @@
 # Lab · Diff & baseline report skript
 
-> Modul: M2.2 · Odhad: <min> · Režim: simulace | živý tenant
+> Modul: M2.2 · Odhad: 60 min · Režim: simulace | živý tenant
 
 ## Cíl
 
-<co si student odnese>
+Student má skript, který porovná aktuální stav webu proti deklarativní baseline (site script
+JSON) a vypíše strukturovaný report driftu (přidáno/chybí/změněno).
 
 ## Předpoklady
 
-- <přístup do dvou/tří simulovaných prostředí (DEV/TEST/PROD sandboxy)>
+- Přístup do per-student DEV/TEST/PROD sandbox webů (viz `environment.md`).
+- `Get-AllGraphResults`/connect wrapper z M2.1 a M1.3.
 
 ## Kroky
 
-1. <definice baseline (očekávaný stav webu/listu)>
-2. <skript pro diff mezi aktuálním stavem a baseline>
-3. <report driftu>
+1. Definovat jednoduchou baseline (JSON: očekávané sloupce v konkrétním listu, očekávaný theme).
+2. Načíst aktuální stav DEV webu (sloupce, theme) přes PnP/Graph.
+3. Porovnat a vypsat strukturovaný diff (přidáno oproti baseline / chybí oproti baseline /
+   změněný typ sloupce).
+4. Spustit stejný skript i proti TEST/PROD sandboxu a porovnat výstupy.
 
 ## Ověření
 
-- [ ] <očekávaný výsledek>
+- [ ] Report jasně rozlišuje tři kategorie odchylky (přidáno/chybí/změněno), ne jen "liší se".
+- [ ] Skript korektně nahlásí nulový drift, když je stav shodný s baseline (žádné falešné pozitivy).
+- [ ] Skript odhalí úmyslně vložený rozdíl v TEST/PROD sandboxu.
 
 ## Fallback
 
-<co dělat, když čas/tenant nevyjde>
+Pokud per-student sandbox weby nejsou dostupné (provisioning selhal), instruktor poskytne
+export baseline i aktuálního stavu jako statické JSON soubory a lab pokračuje nad těmito
+soubory bez nutnosti živého připojení.
