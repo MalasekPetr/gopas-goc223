@@ -2,18 +2,28 @@
 
 ## Timing
 
-- <rozpis bloku>
+- 45 min výklad + 60 min lab. Instalace GitHub Copilot licence pro studenty musí proběhnout
+  před kurzem (viz `environment.md`) — neřešit na místě, žere čas celé skupiny.
 
 ## Go/no-go — KLÍČOVÉ, otestovat před během
 
-- <TODO: ověřit GitHub Copilot licence pro všechny studenty před D1>
-- <TODO: ověřit verzi VS Code a extension pack>
+- Ověřit, že všichni studenti mají aktivní GitHub Copilot licenci a Copilot extension se
+  úspěšně přihlásí ve VS Code (test alespoň 3 dny předem, ne den před kurzem).
+- Ověřit dostupnost PowerShell Gallery / npm registry z učebny (firewall) — PSScriptAnalyzer/Pester
+  instalace vyžaduje síť.
 
 ## Tripwires
 
-- <TODO>
+- Studenti mají tendenci akceptovat první Copilot návrh bez čtení — trvat na nahlas vysloveném
+  review před `git commit`.
+- Nenechat diskuzi o Copilotu sklouznout k obecné debatě "nahradí nás AI" — cíl bloku je
+  konkrétní pracovní návyk (prompt s kritérii → review → test), ne filozofie.
+- Git branch/PR hygiena je pro część skupiny nová látka — nepředpokládat znalost `rebase`/`merge`
+  rozdílu, mít připravené jednořádkové vysvětlení.
 
 ## Vazby
 
-- Dopředu: <app registration/identity strategie v M1.2 navazuje na Git/PR workflow>
+- Dopředu: repo hygiena a review disciplína z tohoto bloku se vyžaduje po celý zbytek týdne
+  (všechny laby produkují kód do stejného repozitáře). App registration strategie v M1.2 na
+  toto přímo navazuje.
 - Zpět: —

@@ -1,24 +1,38 @@
 # Lab · Unified connect wrapper & logging scaffolding
 
-> Modul: M1.3 · Odhad: <min> · Režim: simulace | živý tenant
+> Modul: M1.3 · Odhad: 60 min · Režim: simulace | živý tenant
 
 ## Cíl
 
-<co si student odnese>
+Student má PowerShell funkci, která sjednotí připojení napříč PnP.PowerShell, Microsoft.Graph
+a SPO Management Shell pod jedním rozhraním s volitelným auth módem a strukturovaným logováním.
 
 ## Předpoklady
 
-- <app registrace z M1.2, PnP.PowerShell/Microsoft.Graph/SPO modul nainstalované>
+- App registrace z M1.2 (`ClientId`).
+- Nainstalované moduly: `PnP.PowerShell`, `Microsoft.Graph.Authentication`,
+  `Microsoft.Online.SharePoint.PowerShell`.
 
 ## Kroky
 
-1. <napsat wrapper funkci, která sjednotí připojení napříč třemi moduly a auth módy>
-2. <přidat logging scaffolding (strukturovaný log, ne jen Write-Host)>
+1. Napsat funkci `Connect-CourseTarget` s parametry `-Module (PnP|Graph|SPO)`,
+   `-AuthMode (Interactive|DeviceCode|Certificate)`, `-ClientId`, volitelně
+   `-CertificateThumbprint`/`-TenantId`.
+2. Uvnitř funkce mapovat kombinaci `-Module`/`-AuthMode` na správný `Connect-*` cmdlet a jeho
+   parametry (např. PnP interactive → `Connect-PnPOnline -Interactive -ClientId`).
+3. Přidat logging scaffolding — strukturovaný log (objekt/JSON řádek s timestamp, modul,
+   auth mode, výsledek), ne jen `Write-Host`.
+4. Otestovat funkci se dvěma různými kombinacemi modul/auth mode.
 
 ## Ověření
 
-- [ ] <očekávaný výsledek>
+- [ ] `Connect-CourseTarget -Module PnP -AuthMode Interactive -ClientId <id>` úspěšně připojí.
+- [ ] Log obsahuje strukturovaný záznam s výsledkem připojení (úspěch/chyba), ne jen text na
+      konzoli.
+- [ ] Funkce nemá žádný natvrdo zapsaný identifikátor (tenant ID, ClientId) v těle skriptu.
 
 ## Fallback
 
-<co dělat, když čas/tenant nevyjde>
+Pokud device code / certificate flow nelze v učebně otestovat živě (chybí druhé zařízení,
+cert nestihl vygenerovat), student implementuje a manuálně prochází logiku (dry-run bez
+reálného volání `Connect-*`), instruktor demonstruje živé připojení na projektoru.
