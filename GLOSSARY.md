@@ -74,7 +74,7 @@ Bezplatný web analytics nástroj (heatmapy, session recordings). V SPO kontextu
 | **Trust** | Solution musí být v App Catalog označen jako „make this solution available to all sites" nebo přidán explicitně per-site |
 
 > [!WARNING] Ověřit k datu běhu — stav k 2026-07.
-> Ověřit, zda aktuální `@microsoft/generator-sharepoint` scaffolduje build přes `gulp`, nebo už přešel na Heft-based toolchain (SPFx generátor prošel touto migrací u některých verzí) — ovlivňuje přesné příkazy v M5.1 (`gulp serve`/`gulp bundle` vs `heft start`/`heft build`).
+> Vyřešeno k datu psaní: od SPFx v1.22 generátor defaultně scaffolduje **Heft-based toolchain** (`heft start`/`heft build`), Gulp je dostupný jen přes `--use-gulp` pro starší projekty. Microsoft plánuje vynucený konec podpory Gulp toolchainu kolem SPFx 1.24 (cca září 2026) — ověřit před každým během, zda se harmonogram nezměnil a zda kurzový baseline (SPFx 1.21.1+ / Node 22 LTS) stále odpovídá aktuální doporučené kombinaci.
 
 ## Provisioning & Orchestry
 
