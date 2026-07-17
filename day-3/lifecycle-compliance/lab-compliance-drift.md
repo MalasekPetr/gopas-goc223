@@ -1,25 +1,34 @@
 # Lab · Compliance drift report + remediation
 
-> Modul: M3.3 · Odhad: <min> · Režim: simulace | živý tenant
+> Modul: M3.3 · Odhad: 60 min · Režim: simulace | živý tenant
 
 ## Cíl
 
-<co si student odnese>
+Student rozšíří diff/baseline skript z M2.2 o kontrolu sharing policy driftu a napíše
+report rozlišující report-only nález od navrhované (ne automaticky provedené) remediation akce.
 
 ## Předpoklady
 
-- <diff/baseline skript z M2.2 jako výchozí bod>
+- Diff/baseline skript z M2.2.
+- Sandbox web s úmyslně nastaveným sharing driftem (web-level volnější než org policy by měl
+  dovolit, nebo naopak zbytečně restriktivní oproti očekávání).
 
 ## Kroky
 
-1. <rozšířit baseline o retention/sensitivity/sharing policy pravidla>
-2. <vygenerovat compliance drift report>
-3. <navrhnout/implementovat remediation krok pro jeden typ driftu>
+1. Rozšířit baseline z M2.2 o očekávanou hodnotu external sharing pro daný web.
+2. Načíst aktuální sharing nastavení webu a porovnat s baseline i s org-level policy.
+3. Report jasně rozlišuje: web odpovídá baseline / web je restriktivnější (OK, jen info) /
+   web je otevřenější než dovoluje org policy (violation, nutná akce).
+4. Navrhnout (ne provést) remediation krok pro nalezenou violaci — psaný jako by-schválení
+   akce, ne automatické provedení.
 
 ## Ověření
 
-- [ ] <očekávaný výsledek>
+- [ ] Report rozlišuje tři stavy (odpovídá / restriktivnější OK / porušuje org policy),
+      ne jen ano/ne.
+- [ ] Remediation krok je navržený ke schválení, skript ho neprovede automaticky bez potvrzení.
 
 ## Fallback
 
-<co dělat, když čas/tenant nevyjde>
+Pokud sandbox web s driftem není dostupný, instruktor poskytne statický export dvou
+konfigurací (baseline JSON + "aktuální stav" JSON) a lab pokračuje nad těmito soubory.

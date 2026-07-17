@@ -2,17 +2,27 @@
 
 ## Timing
 
-- <rozpis bloku>
+- 40 min výklad + 60 min lab.
 
 ## Go/no-go — KLÍČOVÉ, otestovat před během
 
-- <TODO>
+- `Invoke-PnPTenantTemplate` vyžaduje Global Administrator roli — rozhodnout předem, jak toto
+  v kurzovém tenantu vyřešit: (a) dočasná role per student jen na dobu labu (riziko: Global
+  Admin je nejvyšší role v tenantu, odebrat hned po labu), nebo (b) instruktor aplikuje šablony
+  na projektoru pod jednou instruktorskou identitou, studenti jen sestavují a validují šablonu.
+  Doporučení: (b) je bezpečnější výchozí volba pro skupinu, kterou neznáte.
+- Připravit "zlatý" vzorový web s reprezentativní konfigurací předem, ne nechat studenty
+  budovat vzor od nuly — cíl labu je práce se šablonou, ne návrh webu.
 
 ## Tripwires
 
-- <TODO>
+- Zdůraznit napětí Global Admin požadavku vs. least-privilege téma z M1.2/M5.2 — je to
+  záměrný teaching point, ne opomenutí kurikula.
+- `-Handlers All` aplikuje kompletně vše ze šablony včetně věcí, co student nechtěl — trvat na
+  explicitním omezení rozsahu.
 
 ## Vazby
 
-- Dopředu: navazuje `orchestry-integration` (M3.2) jako alternativní/doplňkový přístup.
-- Zpět: navazuje na staging/baseline koncepty z D2.
+- Dopředu: navazuje `orchestry-integration` (M3.2) jako alternativní/doplňkový přístup ke
+  stejnému problému (žádanky, metadata, governance).
+- Zpět: baseline/diff koncept z M2.2 se zde používá jako zdroj šablony i jako ověření výsledku.
