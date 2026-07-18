@@ -6,6 +6,8 @@
 - Předmigrační kontroly a plánování.
 - Paralelizace, wave planning, cutover taktiky.
 - Velké seznamy, verze, throttling, zpoždění vyhledávání.
+- Nástrojová mapa migrace: SPMT (+ PS modul), Migration Manager, 3rd-party (ShareGate a spol.)
+  — viz [`explainer-migration-tools.md`](explainer-migration-tools.md).
 
 ## Výklad
 
@@ -14,6 +16,9 @@ Microsoft doporučuje migrační fáze: plán → assess & remediate → přípr
 migrace → onboarding uživatelů. Assessment nástroje (např. SharePoint Migration Assessment
 Tool pro on-prem zdroje) skenují zdrojová data a hledají problémy dřív, než začne samotný
 přesun — chybějící metadata, nepodporované typy sloupců, příliš hluboké struktury složek.
+Exekuci pak dělá konkrétní nástroj — SPMT (vč. skriptovatelného PS modulu), Migration
+Manager, nebo komerční 3rd-party (ShareGate, AvePoint, Quest); rozhodovací osa a cmdlet
+pipeline v [`explainer-migration-tools.md`](explainer-migration-tools.md).
 
 ### Wave planning a cutover taktiky
 Rozdělení migrace do vln podle rizika/velikosti/závislostí, ne abecedně nebo podle toho, co je
@@ -55,6 +60,8 @@ Viz [`lab-wave-plan.md`](lab-wave-plan.md).
 
 ## Zdroje (Microsoft)
 - [Migration planning for SharePoint and OneDrive rollout](https://learn.microsoft.com/en-us/sharepoint/plan-rollout-migration)
+- [Overview of the SharePoint Migration Tool (SPMT)](https://learn.microsoft.com/en-us/sharepointmigration/introducing-the-sharepoint-migration-tool)
+- [Migrate to SharePoint and OneDrive using PowerShell cmdlets](https://learn.microsoft.com/en-us/sharepointmigration/overview-spmt-ps-cmdlets)
 - [The number of items in this list exceeds the list view threshold](https://learn.microsoft.com/en-us/troubleshoot/sharepoint/lists-and-libraries/items-exceeds-list-view-threshold)
 - [Version history limits for document library and OneDrive overview](https://learn.microsoft.com/en-us/sharepoint/document-library-version-history-limits)
 

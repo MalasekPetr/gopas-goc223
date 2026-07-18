@@ -114,6 +114,17 @@ Bezplatný web analytics nástroj (heatmapy, session recordings). V SPO kontextu
 
 V kurzu se Orchestry probírá jako **simulace/koncept** (bez živé licence) — hooky a integrační body se navrhují na papíře/pseudokódu proti PnP.PowerShell/Graph rozhraní, ne proti reálnému Orchestry tenantu.
 
+## Migrační nástroje
+
+| Nástroj | Kategorie | Poznámka |
+|---|---|---|
+| **SPMT** (SharePoint Migration Tool) | Microsoft, zdarma, desktop | SP Server 2010-2019 + file shares → SPO/OneDrive/Teams; PS modul `Microsoft.SharePoint.MigrationTool.PowerShell` (`Register-SPMTMigration` → `Add-SPMTTask` → `Start-SPMTMigration`) se instaluje s klientem, **jen Windows PowerShell 5.x** |
+| **Migration Manager** | Microsoft, zdarma, cloud (SharePoint admin centrum) | agent-based škálování pro file shares + cloud zdroje (Box, Dropbox, Google Workspace); **ne** pro on-prem SP weby |
+| **SMAT** (SharePoint Migration Assessment Tool) | Microsoft, zdarma, CLI | pre-migrační scan on-prem farmy (assess & remediate) |
+| **ShareGate / AvePoint Fly / Quest Content Matrix** | 3rd-party, komerční | kupují fidelitu (verze/permissions), tenant-to-tenant a reporting; ShareGate má vlastní PS modul (`Copy-Content`, také jen Windows PowerShell) |
+
+Detail a rozhodovací osa: [`day-2/migration-patterns/explainer-migration-tools.md`](day-2/migration-patterns/explainer-migration-tools.md).
+
 ## Migrace — klíčové limity
 
 > [!WARNING] Ověřit k datu běhu — stav k 2026-07.

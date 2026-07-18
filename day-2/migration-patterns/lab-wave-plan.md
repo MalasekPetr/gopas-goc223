@@ -21,12 +21,19 @@ implementuje throttle-aware exekuci jedné vlny s korektním zpracováním 429/5
 3. Implementovat throttle-aware exekuci migrace jedné vlny — paralelní zpracování více webů
    s respektováním throttling limitů z [`../graph-fundamentals/`](../graph-fundamentals/) (ne fire-and-forget bez kontroly chyb).
 4. Zdůvodnit pořadí vln v krátkém textovém shrnutí (proč tento web až v poslední vlně).
+5. *(Volitelně, dle času a připravenosti strojů)* Exekuovat jednu položku vlny reálně přes
+   SPMT PS modul: file share z učebního stroje → vlastní web (`/sites/<jmeno-prijmeni>-dev`)
+   pipeline `Register-SPMTMigration` → `Add-SPMTTask` → `Start-SPMTMigration` →
+   `Get-SPMTMigration`. **Pozor: Windows PowerShell 5.x, ne PS7** — viz
+   [`explainer-migration-tools.md`](explainer-migration-tools.md).
 
 ## Ověření
 
 - [ ] Wave plán řadí weby podle rizika/velikosti/závislostí, ne abecedně.
 - [ ] Kritická vlna má definovaný rollback krok.
 - [ ] Exekuce jedné vlny korektně zpracuje throttling (429) bez pádu celého běhu.
+- [ ] *(Volitelný krok 5)* `Get-SPMTMigration` hlásí dokončený task a obsah je viditelný
+      na cílovém webu.
 
 ## Fallback
 

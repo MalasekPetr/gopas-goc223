@@ -10,6 +10,10 @@
   velikostí/rizikem, aby wave plánování mělo reálný smysl (ne 15 identických webů).
 - Připravit alespoň jeden web s dostatkem položek, aby demonstrace list view threshold
   (5000) byla reálně viditelná.
+- Pro volitelný SPMT krok: **nainstalovat desktop SPMT na učební stroje předem** (PS modul
+  se instaluje s klientem, není v PowerShell Gallery) a ověřit, že Windows PowerShell 5.1
+  je na strojích dostupný vedle PS7. Připravit malý lokální file share (pár složek/souborů)
+  jako zdroj.
 
 ## Tripwires
 
@@ -19,6 +23,9 @@
   miliony položek) — časté nepochopení, které vede ke špatným doporučením pro zákazníky.
 - Připomenout retention/eDiscovery hold jako důvod, proč se verze nemusí ořezat bez ohledu na
   nastavený limit — týmy na toto často zapomínají při odhadu objemu migrace.
+- SPMT krok spouštět z Windows PowerShell 5.x — studenti ho reflexivně pustí v PS7 a modul
+  se nenačte; mít na slidu vedle příkazů. U 3rd-party nástrojů (ShareGate a spol.) neuvádět
+  konkrétní rychlosti/ceny z paměti — marketingová čísla, viz currency marker v explaineru.
 
 ## Vazby
 
