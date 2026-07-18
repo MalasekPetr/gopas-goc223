@@ -18,6 +18,22 @@ jednodušší remediace). Klíčové technické omezení: **PowerShell neběží
 App** — potřebuje-li workflow spustit PowerShell, musí zavolat Function nebo Automation
 Runbook jako druhý krok.
 
+### Plánované běhy: on-premise vs Azure — a auth bez člověka
+Čtvrtá varianta vedle Azure trojice je klasický **on-premise server s Task Schedulerem** —
+pořád legitimní tam, kde skript potřebuje dosáhnout na on-prem zdroje nebo kde Azure
+subscription není k dispozici. Rozhodovací tabulka včetně autentizace (žádný scénář
+plánovaného běhu nesmí spoléhat na interaktivní přihlášení):
+
+| Kde běží | Plánovač | Auth | Secret management |
+|---|---|---|---|
+| On-premise server | Task Scheduler | certifikát (app-only) | **machine** certificate store — ne user store, task běží pod servisním účtem; nikdy secret v definici tasku |
+| Azure | Automation Runbook / Function (timer trigger) | **managed identity** | žádný spravovaný secret — identita vázaná na resource |
+| CI/CD pipeline | pipeline scheduler | certifikát / federated credentials | pipeline secret store (Key Vault-backed), nikdy repo |
+
+Vazba na auth módy z [`../../day-1/powershell-deep-dive/`](../../day-1/powershell-deep-dive/)
+a runtime prostředí z [`../../day-1/vscode-copilot-env/explainer-runtime-environments.md`](../../day-1/vscode-copilot-env/explainer-runtime-environments.md);
+rotaci certifikátů řeší [`../../day-5/security-hardening/`](../../day-5/security-hardening/).
+
 ### Graph change notifications — subscription lifecycle
 Subscription má omezenou životnost, kterou je nutné před vypršením obnovit (`PATCH` s novým
 `expirationDateTime`), jinak zanikne a je nutné vytvořit novou. Maximální životnost se **liší

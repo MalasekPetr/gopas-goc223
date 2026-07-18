@@ -5,6 +5,8 @@
 ## Cíle
 - Moduly: PnP.PowerShell, Microsoft.Graph, SPO Management Shell — rozdíly a použití.
 - Autentizace: interaktivní, device code, certifikát, managed identity.
+- Správa modulů v čase: scopes, version pinning, PSResourceGet — viz
+  [`explainer-module-management.md`](explainer-module-management.md).
 
 ## Výklad
 

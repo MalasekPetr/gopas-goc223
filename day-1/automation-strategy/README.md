@@ -16,6 +16,15 @@ není "PowerShell nebo REST", ale "wrapper, nebo přímé volání": moduly šet
 (auth, paging, serializace), přímé REST volání dává plnou kontrolu tam, kde modul nemá cmdlet
 pro potřebnou operaci nebo kde je nutná jemná kontrola nad chybovými stavy (viz [`../../day-2/graph-fundamentals/`](../../day-2/graph-fundamentals/)).
 
+Vedle PowerShell trojice mapa obsahuje dva doplňky s úzkou rolí: **CLI for Microsoft 365**
+(npm/Node, bez PowerShell závislosti) pro CI/CD pipeline a SPFx tooling — ne jako obecnou
+alternativu PnP pro administraci; a **TypeScript/Node cestu** (Graph JS SDK + PnPjs) pro
+vývojářské týmy — detail v [`explainer-typescript-graph.md`](explainer-typescript-graph.md).
+Širší mapa modulů mimo fokus kurzu (Exchange, Teams, Entra, Power Platform) a jejich
+evoluce je v [`../../GLOSSARY.md`](../../GLOSSARY.md) — klíčová pointa: **moduly umírají
+(MSOnline, AzureAD), REST API zůstává** — proto se kurz učí principy nad Graph/REST, ne
+jen cmdlety.
+
 ### App registration & identity strategie
 Každá automatizace potřebuje identitu, pod kterou běží. Rozhodnutí padá na dvou osách:
 delegated (uživatel je přítomen, přihlašuje se) vs application (běží bez přihlášeného uživatele,

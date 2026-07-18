@@ -6,6 +6,8 @@
 - Ovládat VS Code jako pracovní prostředí pro automatizační skripty (workspace, `tasks.json`, formátování, ladění).
 - Dodržovat základní hygienu repozitáře — branch strategie, commit zprávy, PR a code review.
 - Používat GitHub Copilot zodpovědně — s explicitním promptingem, bezpečnostními mantinely a akceptačními kritérii, ne slepým přijímáním návrhů.
+- Rozumět třem runtime prostředím automatizace (DEV stanice, kontejner/CI, server) — viz
+  [`explainer-runtime-environments.md`](explainer-runtime-environments.md).
 
 ## Výklad
 

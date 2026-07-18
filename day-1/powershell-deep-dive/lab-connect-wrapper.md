@@ -23,6 +23,9 @@ a SPO Management Shell pod jedním rozhraním s volitelným auth módem a strukt
 3. Přidat logging scaffolding — strukturovaný log (objekt/JSON řádek s timestamp, modul,
    auth mode, výsledek), ne jen `Write-Host`.
 4. Otestovat funkci se dvěma různými kombinacemi modul/auth mode.
+5. Zapinovat verze všech tří modulů: nainstalovat přes `Install-PSResource -Version <x.y.z>`
+   a v wrapperu vynutit `Import-Module -RequiredVersion` (viz
+   [`explainer-module-management.md`](explainer-module-management.md)).
 
 ## Ověření
 
@@ -30,6 +33,7 @@ a SPO Management Shell pod jedním rozhraním s volitelným auth módem a strukt
 - [ ] Log obsahuje strukturovaný záznam s výsledkem připojení (úspěch/chyba), ne jen text na
       konzoli.
 - [ ] Funkce nemá žádný natvrdo zapsaný identifikátor (tenant ID, ClientId) v těle skriptu.
+- [ ] Import modulů jde přes `-RequiredVersion` s verzí, kterou student umí zdůvodnit.
 
 ## Fallback
 

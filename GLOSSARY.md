@@ -18,6 +18,35 @@ Kurz na rozdíl od administrátorských kurzů pokrývá všechny tři paraleln�
 > [!IMPORTANT] Překryv
 > PnP.PowerShell a SPO Management Shell se v site-admin oblasti překrývají. Preferovat PnP pro čitelnost a širší funkčnost, SPO modul jen tam, kde PnP ekvivalent chybí (typicky nejnovější tenant-wide preview nastavení — ta často přistanou v SPO modulu dřív).
 
+## Evoluce modulů: legacy → současnost → budoucnost
+
+Nosná pointa pro [`day-1/automation-strategy/`](day-1/automation-strategy/): **moduly umírají, REST API zůstává** — proto kurz učí principy nad Graph/REST, ne jen konkrétní cmdlety.
+
+| Generace | Moduly | Stav |
+|---|---|---|
+| **Mrtvé (retired)** | MSOnline (`Connect-MsolService`), AzureAD/AzureADPreview | Deprecated 2024-03, nefunkční od poloviny 2025. U zákazníků se stále potkávají ve starých skriptech — umět je poznat a migrovat. Pozor: license assignment, filtering a "get all" dotazy nejde přepsat 1:1 |
+| **Současnost** | Microsoft.Graph SDK, PnP.PowerShell, SPO Management Shell, ExchangeOnlineManagement (V3, REST-backed), MicrosoftTeams | Aktivně vyvíjené; PnP od 2024-09 vyžaduje vlastní app registraci (`-ClientId`) i pro interaktivní login |
+| **Nastupující** | Microsoft Entra PowerShell (`Microsoft.Entra`) — přátelštější vrstva nad Graph SDK, ~98% pokrytí starých AzureAD/MSOnline cmdletů, `Enable-EntraAzureADAlias` pro rychlou migraci | Sledovat; pro identity skripty pravděpodobný budoucí default |
+
+> [!WARNING] Ověřit k datu běhu — stav k 2026-07.
+> Verze a stav modulů se mění po měsících (např. ExchangeOnlineManagement 3.10.0 nově vyžaduje PowerShell 7.6+). Před během projet aktuální verze všech modulů použitých v demích.
+
+## Širší mapa modulů (mimo fokus kurzu)
+
+Kurz jde do hloubky u trojice PnP/Graph/SPO (fokus = SharePoint Online). Zbytek M365 ekosystému jen jako mapa — studenti mají vědět, že existují, ne je ovládat:
+
+| Modul/nástroj | Workload | Poznámka |
+|---|---|---|
+| **ExchangeOnlineManagement** (EXO V3) | Exchange Online + Security & Compliance (`Connect-IPPSSession`) | REST-backed, cert-based app-only podporováno |
+| **MicrosoftTeams** | Teams admin (týmy, policies, telefonie) | |
+| **Microsoft.PowerApps.Administration.PowerShell** | Power Platform admin (environments, DLP) | service principal nutný při MFA |
+| **Az PowerShell** | Azure resources | používá se v D4 (Functions, Blob) — ne M365 samotné |
+| **CLI for Microsoft 365** (`@pnp/cli-microsoft365`) | cross-workload, npm/Node | **úzká role v kurzu: CI/CD pipeline a SPFx tooling** (`spfx doctor`, project upgrade) — ne obecná alternativa PnP.PowerShell pro administraci; překryv s PnP je u SPO ~80 % a učit oba na stejný problém nedává smysl |
+
+## TypeScript/Node cesta
+
+Alternativa k PowerShellu pro vývojářské týmy: **Graph JS SDK** (`@microsoft/microsoft-graph-client` + `@microsoft/microsoft-graph-types`) s `@azure/identity` credentials (stejná auth matice jako PowerShell — device code / certificate / managed identity) a **PnPjs** (`@pnp/sp`) pro SPO-native volání. Detail: [`day-1/automation-strategy/explainer-typescript-graph.md`](day-1/automation-strategy/explainer-typescript-graph.md).
+
 ## Autentizační strategie (app registration)
 
 | Režim | Kdy | Poznámka |
