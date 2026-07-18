@@ -11,8 +11,9 @@ app-only identitou, ne pod osobním Global Admin účtem.
 ## Předpoklady
 
 - Web sloužící jako "zlatý" vzor (baseline) — může být sandbox z [`../../day-2/staging-environments/`](../../day-2/staging-environments/).
-- App registrace s dočasně přiřazenou rolí nutnou pro `Invoke-PnPTenantTemplate` (viz
-  `instructor-notes.md` — řešit stejně jako go/no-go v [`../../day-1/automation-strategy/`](../../day-1/automation-strategy/)).
+- Vlastní účet (Global administrator, viz [`../../environment.md`](../../environment.md)) —
+  `Invoke-PnPTenantTemplate` tuto roli vyžaduje; aplikovat výhradně na vlastní web dle
+  naming konvence.
 
 ## Kroky
 
@@ -30,6 +31,6 @@ app-only identitou, ne pod osobním Global Admin účtem.
 
 ## Fallback
 
-Pokud role pro `Invoke-PnPTenantTemplate` není v kurzovém tenantu dostupná ani dočasně,
-student šablonu sestaví a ověří syntakticky (`Test-PnPTenantTemplate`, pokud dostupné) bez
-reálné aplikace; instruktor aplikaci demonstruje na projektoru pod instruktorskou identitou.
+Pokud aplikace šablony selhává (verze PnP.PowerShell, throttling při 25 souběžných bězích),
+student šablonu sestaví a ověří bez reálné aplikace; instruktor aplikaci demonstruje na
+projektoru a studenti spouští postupně po menších skupinách místo všichni najednou.

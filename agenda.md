@@ -2,17 +2,19 @@
 
 Jediný zdroj pravdy o pořadí modulů. Složky jsou slugy; pořadí drží tato tabulka.
 
-**5 dní · 3 bloky/den.** P = povinný, V = volitelný.
+**5 dní · 3–5 bloků/den.** P = povinný, V = volitelný.
 
-## Den 1 — Inženýrské prostředí a strategie automatizace
+## Den 1 — Onboarding, inženýrské prostředí a strategie automatizace
 
 | # | Blok | Slug | Typ |
 |---|---|---|---|
-| 1 | Inženýrské prostředí, VS Code a Copilot | `day-1/vscode-copilot-env` | P |
-| 2 | Strategie automatizace & nástrojová mapa | `day-1/automation-strategy` | P |
-| 3 | PowerShell do hloubky | `day-1/powershell-deep-dive` | P |
+| 1 | Onboarding & pravidla práce | `day-1/onboarding` | P |
+| 2 | Architektonický přehled: Azure, Entra ID, M365, Graph, SPO REST | `day-1/opt-architecture-overview` | V |
+| 3 | Inženýrské prostředí, VS Code a Copilot | `day-1/vscode-copilot-env` | P |
+| 4 | Strategie automatizace & nástrojová mapa | `day-1/automation-strategy` | P |
+| 5 | PowerShell do hloubky | `day-1/powershell-deep-dive` | P |
 
-> [!NOTE] Den 1 buduje inženýrské základy: prostředí a návyky (VS Code, Git, Copilot), rozhodovací rámec „který nástroj kdy" a hloubkový PowerShell — vše, na čem stojí zbytek týdne.
+> [!NOTE] Den 1 otvírá onboarding do sdíleného GA tenantu (`cloudedu.cz`, viz `environment.md`) a pravidla práce, volitelně architektonická mapa platformy, pak inženýrské základy: prostředí a návyky (VS Code, Git, Copilot), rozhodovací rámec „který nástroj kdy" a hloubkový PowerShell — vše, na čem stojí zbytek týdne. Nejhustší den kurzu; volitelný blok 2 se spouští jen, když MFA registrace nesežere rezervu.
 
 ## Den 2 — Graph engineering, staging & migrace
 

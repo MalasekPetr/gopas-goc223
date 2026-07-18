@@ -33,6 +33,7 @@ zabalený jako `.sppkg`, nahraný a nasazený přes App Catalog a přidaný na m
 
 ## Fallback
 
-Pokud studenti nemají oprávnění k App Catalogu, instruktor předem povolí Site Collection
-App Catalog na sandbox webu každého studenta (delegovaná správa) — kroky 4-6 pak probíhají
-bez nutnosti tenant-wide admin zásahu za běhu labu.
+Primární cesta je **site collection app catalog na vlastním webu** (izolace ve sdíleném
+tenantu — viz `instructor-notes.md`); pokud jeho aktivace na některém webu selže, student
+nahraje `.sppkg` do tenant App Catalogu s názvem řešení dle naming konvence
+(`<jmeno-prijmeni>-helloworld`) a po ověření ho zase odebere.

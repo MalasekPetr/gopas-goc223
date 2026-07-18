@@ -9,12 +9,14 @@ pro zbytek týdne, umí zdůvodnit každé přiřazené permission a rozumí roz
 
 ## Předpoklady
 
-- Přístup do Entra ID kurzového tenantu s právem registrovat aplikace (Application Developer role
-  nebo dočasně přidělená vyšší role — viz `instructor-notes.md`).
+- Účet z onboardingu ([`../onboarding/`](../onboarding/)) — role Global administrator,
+  takže registrace i admin consent probíhají pod vlastním účtem.
+- Naming konvence z [`../onboarding/ways-of-working.md`](../onboarding/ways-of-working.md).
 
 ## Kroky
 
-1. Zaregistrovat novou aplikaci v Entra ID (App registrations → New registration).
+1. Zaregistrovat novou aplikaci v Entra ID (App registrations → New registration) —
+   pojmenovanou dle konvence `<jmeno.prijmeni>-course-app`.
 2. Zvolit typ klienta podle plánovaného použití v [`../powershell-deep-dive/`](../powershell-deep-dive/) (public client pro interactive/device
    code, případně přidat certificate credential pro app-only scénář).
 3. Přidat baseline API permissions: `Sites.Read.All` (Graph, delegated) pro čtecí operace nad
@@ -32,6 +34,5 @@ pro zbytek týdne, umí zdůvodnit každé přiřazené permission a rozumí roz
 
 ## Fallback
 
-Pokud studenti nemají v kurzovém tenantu právo registrovat aplikace, instruktor předem
-zaregistruje jednu sdílenou aplikaci pro celou skupinu (dočasně, smazat po kurzu) a lab
-pokračuje od kroku 3 nad sdíleným ClientId.
+Pokud studentovi nefunguje vlastní účet (MFA/licence nedořešené z onboardingu), pracuje ve
+dvojici se sousedem nad jeho app registrací a vlastní si založí po vyřešení účtu o přestávce.

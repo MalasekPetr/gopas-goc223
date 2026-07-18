@@ -32,6 +32,8 @@ projde nasazení Clarity App Customizeru přes Tenant Wide Extensions list v kur
 
 ## Fallback
 
-Pokud studenti nemají oprávnění k App Catalogu (typicky vyžaduje SharePoint/Global Admin),
-instruktor provede kroky 2-4 na projektoru a studenti připraví jen rollout plán (krok 1) a
-opt-out zdokumentování (krok 5) samostatně.
+Kroky 2-4 jsou v sdíleném tenantu **kolektivní** (jeden App Catalog, jeden Tenant Wide
+Extensions záznam) — provádí je instruktor nebo jeden vybraný student na projektoru, jednou.
+Ostatní připraví rollout plán (krok 1) a opt-out zdokumentování (krok 5) samostatně; pokud
+aktivace nestihne doběhnout do konce bloku, ověření tracking skriptu se přesune na začátek
+dalšího bloku.

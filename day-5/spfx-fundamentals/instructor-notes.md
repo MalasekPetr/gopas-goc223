@@ -12,8 +12,10 @@
 - Rozhodnout: nový Heft toolchain (default od SPFx 1.22), nebo `--use-gulp` kvůli konzistenci
   s jiným materiálem/staršími zvyklostmi skupiny — sladit slidy a přesné příkazy předem,
   neimprovizovat mezi `heft`/`gulp` příkazy za běhu výkladu.
-- Předem povolit Site Collection App Catalog na sandbox webech, pokud studenti nemají
-  tenant-wide admin oprávnění (viz Fallback v labu).
+- Předem povolit Site Collection App Catalog na sandbox webech studentů — ne kvůli
+  oprávněním (všichni jsou GA), ale kvůli **izolaci**: 25 studentů nahrávajících HelloWorld
+  do jednoho sdíleného Tenant App Catalogu = kolize názvů a vzájemné přepisování verzí.
+  Každý student deployuje do site collection app catalogu vlastního webu.
 
 ## Tripwires
 

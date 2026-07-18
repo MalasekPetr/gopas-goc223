@@ -6,11 +6,11 @@
 
 ## Go/no-go — KLÍČOVÉ, otestovat před během
 
-- `Invoke-PnPTenantTemplate` vyžaduje Global Administrator roli — rozhodnout předem, jak toto
-  v kurzovém tenantu vyřešit: (a) dočasná role per student jen na dobu labu (riziko: Global
-  Admin je nejvyšší role v tenantu, odebrat hned po labu), nebo (b) instruktor aplikuje šablony
-  na projektoru pod jednou instruktorskou identitou, studenti jen sestavují a validují šablonu.
-  Doporučení: (b) je bezpečnější výchozí volba pro skupinu, kterou neznáte.
+- `Invoke-PnPTenantTemplate` vyžaduje Global Administrator roli — v tomto kurzu ji studenti
+  **mají** (viz `environment.md`), takže aplikují šablony sami pod vlastním účtem. O to víc
+  hlídat rozsah: šablona se aplikuje výhradně na vlastní web dle naming konvence
+  ([`../../day-1/onboarding/ways-of-working.md`](../../day-1/onboarding/ways-of-working.md)),
+  nikdy na cizí nebo tenant-wide.
 - Připravit "zlatý" vzorový web s reprezentativní konfigurací předem, ne nechat studenty
   budovat vzor od nuly — cíl labu je práce se šablonou, ne návrh webu.
 

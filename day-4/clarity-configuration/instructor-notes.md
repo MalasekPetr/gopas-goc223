@@ -6,9 +6,10 @@
 
 ## Go/no-go — KLÍČOVÉ, otestovat před během
 
-- Ověřit, zda studenti (nebo instruktor) mají v kurzovém tenantu oprávnění k App Catalogu —
-  typicky vyžaduje SharePoint Administrator/Global Admin, stejné rozhodnutí jako u jiných
-  admin-scope labů v týdnu (viz [`../../day-3/provisioning-patterns/`](../../day-3/provisioning-patterns/) go/no-go).
+- Oprávnění nejsou překážka (všichni studenti GA) — ale **App Catalog i Tenant Wide
+  Extensions list je v tenantu jen jeden**: instalace Clarity je kolektivní krok, který
+  provede instruktor (nebo jeden vybraný student na projektoru) **jednou**, ne 25× paralelně.
+  Studenti individuálně dělají rollout plán a opt-out návrh, technickou aktivaci sledují.
 - Připravit vlastní/testovací Clarity projekt s Project ID předem, ne zakládat na místě.
 - Ověřit aktuální dobu aktivace (dokumentovaných "až 20 minut") — pokud je delší, naplánovat
   aktivaci na začátek bloku a ověřovat výsledek až ke konci.

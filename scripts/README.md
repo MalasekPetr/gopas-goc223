@@ -15,18 +15,27 @@ Všechny skripty budou idempotentní (bezpečné spustit opakovaně) a podporova
 
 ## Životní cyklus kurzu (plán)
 
+Cílový tenant: M365 Developer tenant `cloudedu.cz` (viz [`../environment.md`](../environment.md)).
+Účty `jmeno.prijmeni@cloudedu.cz` (bez diakritiky, max. 25), licence E5 Developer, role
+Global administrator. Jmenný seznam účastníků se skriptům předává jako CSV parametr
+z instruktorského kanálu — nikdy není součástí repa.
+
 | Fáze | Skript | API | Váže se k |
 |---|---|---|---|
-| 1. Účty studentů (vytvoření/reaktivace, licence, skupina) | `New-CourseStudents.ps1` `[PLÁNOVANÉ]` | Graph | D1 onboarding |
-| 2. App registrace pro laby (interactive + app-only cert) | `New-CourseAppRegistrations.ps1` `[PLÁNOVANÉ]` | Graph | `day-1/automation-strategy` |
-| 3. Studentské weby / staging sandboxy (DEV/TEST/PROD simulace) | `New-CourseStudentSites.ps1` `[PLÁNOVANÉ]` | PnP | `day-2/staging-environments` |
-| 4. Demo migrační zdrojová data (velké listy, verze, metadata) | `New-MigrationSeedData.ps1` `[PLÁNOVANÉ]` | PnP | `day-2/migration-patterns` |
-| 5. Azure prostředky per student (Storage/Blob, Function App, Event Grid) | `New-CourseStudentAzureResources.ps1` `[PLÁNOVANÉ]` | Az/ARM | `day-4/siem-blob-integration` |
-| 6. Offboarding — smazání obsahu a artefaktů studentů | `Remove-CourseStudentData.ps1` `[PLÁNOVANÉ]` | Graph + PnP | — |
-| 7. Offboarding — Azure resource group cleanup | `Remove-CourseStudentAzureResources.ps1` `[PLÁNOVANÉ]` | Az/ARM | — |
-| 8. Offboarding — disable sign-in + uvolnění licencí | `Disable-CourseStudents.ps1` `[PLÁNOVANÉ]` | Graph | — |
+| 1. Účty studentů (vytvoření/reaktivace, E5 licence, role GA) | `New-CourseStudents.ps1` `[PLÁNOVANÉ]` | Graph | `day-1/onboarding` |
+| 2. Studentské weby / staging sandboxy (DEV/TEST/PROD simulace) | `New-CourseStudentSites.ps1` `[PLÁNOVANÉ]` | PnP | `day-2/staging-environments` |
+| 3. Demo migrační zdrojová data (velké listy, verze, metadata) | `New-MigrationSeedData.ps1` `[PLÁNOVANÉ]` | PnP | `day-2/migration-patterns` |
+| 4. Azure prostředky per student (Storage/Blob, Function App, Event Grid) | `New-CourseStudentAzureResources.ps1` `[PLÁNOVANÉ]` | Az/ARM | `day-4/siem-blob-integration` |
+| 5. Offboarding — smazání obsahu a artefaktů studentů (weby, app registrace, Tenant Wide Extensions záznamy) | `Remove-CourseStudentData.ps1` `[PLÁNOVANÉ]` | Graph + PnP | — |
+| 6. Offboarding — Azure resource group cleanup | `Remove-CourseStudentAzureResources.ps1` `[PLÁNOVANÉ]` | Az/ARM | — |
+| 7. Offboarding — disable sign-in + uvolnění licencí | `Disable-CourseStudents.ps1` `[PLÁNOVANÉ]` | Graph | — |
 
-Pořadí offboardingu: **nejdřív 6, pak 7, pak 8** — mazání obsahu vyžaduje ještě licencované
+> [!NOTE] App registrace pro laby si studenti zakládají sami (všichni jsou Global
+> administrator — lab v `day-1/automation-strategy`), samostatný provisioning skript pro ně
+> není potřeba. O to důležitější je offboarding fáze 5: posbírat a smazat vše, co studenti
+> pod GA rolí vytvořili (dle naming konvence z `day-1/onboarding/ways-of-working.md`).
+
+Pořadí offboardingu: **nejdřív 5, pak 6, pak 7** — mazání obsahu vyžaduje ještě licencované
 účty a existující resource groups.
 
 ## Přihlašování — tři režimy (všechny skripty)
