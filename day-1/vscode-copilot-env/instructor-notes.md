@@ -18,8 +18,11 @@
   review před `git commit`.
 - Nenechat diskuzi o Copilotu sklouznout k obecné debatě "nahradí nás AI" — cíl bloku je
   konkrétní pracovní návyk (prompt s kritérii → review → test), ne filozofie.
-- Git branch/PR hygiena je pro część skupiny nová látka — nepředpokládat znalost `rebase`/`merge`
+- Git branch/PR hygiena je pro část skupiny nová látka — nepředpokládat znalost `rebase`/`merge`
   rozdílu, mít připravené jednořádkové vysvětlení.
+- Část skupiny (SPO admini) bude zvyklá na ISE — ukázat "PowerShell: Enable ISE Mode" jako
+  můstek, ale netrávit v něm zbytek týdne; laby počítají s plným VS Code workflow (tasks,
+  debugger). Argument pro přechod: ISE neumí PowerShell 7, kterým kurz jede.
 
 ## Vazby
 
