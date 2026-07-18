@@ -1,4 +1,4 @@
-# M4.2 · SIEM integrace přes Azure Blob
+# SIEM integrace přes Azure Blob
 
 > Typ: povinný · Den: 4 · Odhad: <min>
 
@@ -14,7 +14,7 @@
 Strukturované (JSON) logy s konzistentním schématem — usnadňuje pozdější KQL dotazy i
 transformace. PII (UPN, e-maily, jména) minimalizovat na zdroji, ne až v SIEM — hash nebo
 pseudonymizovat identifikátory tam, kde plná hodnota není nutná k analýze. Retence logů se
-řeší nezávisle na retenci zdrojových dat (viz M3.3) — jiné compliance požadavky.
+řeší nezávisle na retenci zdrojových dat (viz [`../../day-3/lifecycle-compliance/`](../../day-3/lifecycle-compliance/)) — jiné compliance požadavky.
 
 ### Pipeline: aplikace → Blob → Event Grid → Function → SIEM
 Novější verze Blob Storage rozšíření pro Azure Functions (5.x+) používají **Event Grid event
@@ -33,7 +33,7 @@ ne až dodatečně v dotazech.
 Workspace se zapnutým Sentinelem **není** předmětem Azure Monitor ingestion filtering
 poplatku bez ohledu na to, kolik dat transformace odfiltruje — cenová výhoda oproti čistému
 Log Analytics workspace. Spolehlivost pipeline: batching (méně Function invocations za
-stejný objem dat), retry s exponenciálním backoffem (viz M2.1 klasifikace chyb), dead-letter
+stejný objem dat), retry s exponenciálním backoffem (viz [`../../day-2/graph-fundamentals/`](../../day-2/graph-fundamentals/) klasifikace chyb), dead-letter
 queue pro zprávy, které trvale selhávají — nezacyklit retry donekonečna.
 
 ### KQL základy
@@ -56,7 +56,7 @@ flowchart LR
   Consumption plán vyžaduje druhou variantu.
 - **Transformace v DCR (před uložením, KQL) vs transformace až v dotazu** — první šetří
   úložný prostor a skrývá PII už při zápisu.
-- **Retry (transientní selhání, viz M2.1) vs dead-letter (trvalé selhání, needs review)**.
+- **Retry (transientní selhání, viz [`../../day-2/graph-fundamentals/`](../../day-2/graph-fundamentals/)) vs dead-letter (trvalé selhání, needs review)**.
 
 ## Lab
 Viz [`lab-siem-ingest-blueprint.md`](lab-siem-ingest-blueprint.md).

@@ -1,4 +1,4 @@
-# M3.3 · Lifecycle & compliance enforcement
+# Lifecycle & compliance enforcement
 
 > Typ: povinný · Den: 3 · Odhad: <min>
 
@@ -31,7 +31,7 @@ Site Attestation posílá vlastníkům webu pravidelné (měsíční) actionable
 potvrzení údajů o webu (nutnost, vlastníci, sdílení). Web bez potvrzení po **třech** po sobě
 jdoucích měsíčních výzvách spadá do "unattested" stavu, na který lze navázat vynucenou akci
 (např. omezení přístupu) — přímý nativní ekvivalent k "attestaci vlastníků" z Orchestry
-simulace v M3.2, tentokrát jako standardní Microsoft funkce bez 3rd-party licence.
+simulace v [`../orchestry-integration/`](../orchestry-integration/), tentokrát jako standardní Microsoft funkce bez 3rd-party licence.
 
 ```mermaid
 flowchart LR

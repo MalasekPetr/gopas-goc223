@@ -23,5 +23,5 @@
 
 ## Vazby
 
-- Dopředu: logging/retry vzory se shrnují v `performance-cost-capstone` (M5.3).
-- Zpět: navazuje na Function skeleton z M4.1 a retry/error klasifikaci z M2.1.
+- Dopředu: logging/retry vzory se shrnují v `performance-cost-capstone`.
+- Zpět: navazuje na Function skeleton z [`../azure-integration-patterns/`](../azure-integration-patterns/) a retry/error klasifikaci z [`../../day-2/graph-fundamentals/`](../../day-2/graph-fundamentals/).

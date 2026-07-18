@@ -9,5 +9,5 @@ a skladba migrace jako inženýrská disciplína (ne jednorázový skript).
 | 2 | Staging prostředí: DEV, TEST, PROD | [`staging-environments`](staging-environments/) | P |
 | 3 | Skladba migrací | [`migration-patterns`](migration-patterns/) | P |
 
-> [!NOTE] Graph batching/retry z modulu 1 je přímý vstup do throttle-aware exekuce
-> migračních vln v modulu 3.
+> [!NOTE] Graph batching/retry z [`graph-fundamentals`](graph-fundamentals/) je přímý vstup
+> do throttle-aware exekuce migračních vln v [`migration-patterns`](migration-patterns/).

@@ -18,10 +18,10 @@
   odpovědi — v ověření labu explicitně kontrolovat, že čtou hlavičku, ne hardcoded konstantu.
 - Nezaměňovat batch-level HTTP 200 s úspěchem všech dílčích requestů — připravit demo, kde
   batch vrátí 200, ale jeden dílčí request je 429.
-- Nechodit do hloubky change notifications (push model) — to je M4.1, zde jen zmínit rozdíl.
+- Nechodit do hloubky change notifications (push model) — to je [`../../day-4/azure-integration-patterns/`](../../day-4/azure-integration-patterns/), zde jen zmínit rozdíl.
 
 ## Vazby
 
-- Dopředu: retry/throttle klasifikace se přímo používá v `migration-patterns` (M2.3, throttle-aware
-  wave exekuce) a `siem-blob-integration` (M4.2, spolehlivost pipeline).
-- Zpět: navazuje na `Connect-CourseTarget` wrapper a auth módy z M1.3.
+- Dopředu: retry/throttle klasifikace se přímo používá v `migration-patterns` (throttle-aware
+  wave exekuce) a `siem-blob-integration` (spolehlivost pipeline).
+- Zpět: navazuje na `Connect-CourseTarget` wrapper a auth módy z [`../../day-1/powershell-deep-dive/`](../../day-1/powershell-deep-dive/).

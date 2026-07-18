@@ -24,6 +24,6 @@
 ## Vazby
 
 - Dopředu: repo hygiena a review disciplína z tohoto bloku se vyžaduje po celý zbytek týdne
-  (všechny laby produkují kód do stejného repozitáře). App registration strategie v M1.2 na
+  (všechny laby produkují kód do stejného repozitáře). App registration strategie v [`../automation-strategy/`](../automation-strategy/) na
   toto přímo navazuje.
 - Zpět: —

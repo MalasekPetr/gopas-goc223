@@ -7,7 +7,7 @@
 
 ## Go/no-go — KLÍČOVÉ, otestovat před během
 
-- Ověřit, že app registrace z M1.2 má `-ClientId` funkční pro PnP interaktivní přihlášení —
+- Ověřit, že app registrace z [`../automation-strategy/`](../automation-strategy/) má `-ClientId` funkční pro PnP interaktivní přihlášení —
   od 9. 9. 2024 PnP.PowerShell vyžaduje vlastní ClientId, sdílené výchozí už nefunguje.
 - Připravit jeden certifikát (self-signed stačí) předem pro demonstraci certificate auth flow —
   generování na místě zabírá čas a je zdroj chyb.
@@ -25,4 +25,4 @@
 
 - Dopředu: `Connect-CourseTarget` wrapper z tohoto labu se znovupoužívá po celý zbytek kurzu
   (D2 Graph ingest, D3 provisioning, D4 Azure integrace).
-- Zpět: navazuje na app registraci a auth strategii z M1.2.
+- Zpět: navazuje na app registraci a auth strategii z [`../automation-strategy/`](../automation-strategy/).

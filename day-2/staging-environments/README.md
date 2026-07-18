@@ -1,4 +1,4 @@
-# M2.2 · Staging prostředí: DEV, TEST, PROD
+# Staging prostředí: DEV, TEST, PROD
 
 > Typ: povinný · Den: 2 · Odhad: <min>
 

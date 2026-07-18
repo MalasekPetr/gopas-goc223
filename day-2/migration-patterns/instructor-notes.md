@@ -22,6 +22,6 @@
 
 ## Vazby
 
-- Dopředu: wave planning je přímý vstup do capstone (M5.3, end-to-end blueprint migrace).
-- Zpět: navazuje na throttle/retry klasifikaci z M2.1 a baseline/diff koncept z M2.2
+- Dopředu: wave planning je přímý vstup do capstone ([`../../day-5/performance-cost-capstone/`](../../day-5/performance-cost-capstone/), end-to-end blueprint migrace).
+- Zpět: navazuje na throttle/retry klasifikaci z [`../graph-fundamentals/`](../graph-fundamentals/) a baseline/diff koncept z [`../staging-environments/`](../staging-environments/)
   (předmigrační kontrola = diff zdroje proti očekávanému stavu).

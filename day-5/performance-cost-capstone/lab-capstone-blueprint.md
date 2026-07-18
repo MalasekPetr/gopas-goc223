@@ -1,6 +1,6 @@
 # Lab · Capstone: provoz & konsolidace blueprintu
 
-> Modul: M5.3 · Odhad: 90 min · Režim: simulace | živý tenant
+> Odhad: 90 min · Režim: simulace | živý tenant
 
 ## Cíl
 
@@ -9,8 +9,11 @@ provisioningu, s explicitním rollback plánem a předávacím runbookem.
 
 ## Předpoklady
 
-- Wave plán (M2.3), provisioning artefakt (M3.1), Azure integrační/SIEM blueprint
-  (M4.1-M4.2), hardened app registrace (M5.2) — vlastní artefakty z celého týdne.
+- Wave plán ([`../../day-2/migration-patterns/`](../../day-2/migration-patterns/)), provisioning
+  artefakt ([`../../day-3/provisioning-patterns/`](../../day-3/provisioning-patterns/)), Azure
+  integrační/SIEM blueprint ([`../../day-4/azure-integration-patterns/`](../../day-4/azure-integration-patterns/) a
+  [`../../day-4/siem-blob-integration/`](../../day-4/siem-blob-integration/)), hardened app
+  registrace ([`../security-hardening/`](../security-hardening/)) — vlastní artefakty z celého týdne.
 
 ## Kroky
 
@@ -18,7 +21,7 @@ provisioningu, s explicitním rollback plánem a předávacím runbookem.
    od provisioningu přes migraci po monitoring).
 2. Ke každé fázi blueprintu doplnit `$select`/batching optimalizaci tam, kde chybí
    (revize z pohledu efektivity API).
-3. Napsat rollback plán — co přesně dělat, pokud vlna migrace (M2.3) selže v polovině.
+3. Napsat rollback plán — co přesně dělat, pokud vlna migrace ([`../../day-2/migration-patterns/`](../../day-2/migration-patterns/)) selže v polovině.
 4. Napsat předávací runbook — vlastník po kurzu, kde je dokumentace, jak se hlásí incident.
 5. Krátká prezentace blueprintu (5 min/student nebo ve dvojicích) — rizika, náklady, další
    kroky (certifikační cesta dle zájmu — viz `README.md` currency marker k AZ-204/AI-200).

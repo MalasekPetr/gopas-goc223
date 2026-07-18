@@ -1,6 +1,6 @@
 # Lab · <Název labu>
 
-> Modul: M<D>.<I> · Odhad: <min> · Režim: simulace | živý tenant
+> Odhad: <min> · Režim: simulace | živý tenant
 
 ## Cíl
 

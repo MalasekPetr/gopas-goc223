@@ -20,5 +20,5 @@
 
 ## Vazby
 
-- Dopředu: Function skeleton z tohoto labu je základ pro `siem-blob-integration` (M4.2).
-- Zpět: navazuje na Graph error/retry vzory z M2.1 a delta query (kontrast pull vs push).
+- Dopředu: Function skeleton z tohoto labu je základ pro `siem-blob-integration`.
+- Zpět: navazuje na Graph error/retry vzory z [`../../day-2/graph-fundamentals/`](../../day-2/graph-fundamentals/) a delta query (kontrast pull vs push).

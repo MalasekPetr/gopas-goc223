@@ -1,6 +1,6 @@
 # Lab · HelloWorld deploy přes App Catalog
 
-> Modul: M5.1 · Odhad: 75 min · Režim: živý tenant
+> Odhad: 75 min · Režim: živý tenant
 
 ## Cíl
 

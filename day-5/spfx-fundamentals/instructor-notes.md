@@ -25,6 +25,6 @@
 ## Vazby
 
 - Dopředu: SPFx app registrace/permissions (pokud webpart volá Graph/SPO) se řeší v
-  `security-hardening` (M5.2).
+  `security-hardening`.
 - Zpět: navazuje na tenant-wide deployment mechanismus (Tenant Wide Extensions) poprvé
-  viděný v `clarity-configuration` (M4.3) — zde se staví od nuly vlastní řešení.
+  viděný v `clarity-configuration` — zde se staví od nuly vlastní řešení.

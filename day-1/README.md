@@ -9,5 +9,6 @@ Základy, na kterých stojí zbytek týdne: vývojářské prostředí a návyky
 | 2 | Strategie automatizace & nástrojová mapa | [`automation-strategy`](automation-strategy/) | P |
 | 3 | PowerShell do hloubky | [`powershell-deep-dive`](powershell-deep-dive/) | P |
 
-> [!NOTE] Modul 2 (nástrojová mapa) zavádí app registration/identity strategii, na kterou
-> modul 3 (PowerShell do hloubky) navazuje konkrétní implementací autentizace.
+> [!NOTE] Nástrojová mapa ([`automation-strategy`](automation-strategy/)) zavádí app
+> registration/identity strategii, na kterou [`powershell-deep-dive`](powershell-deep-dive/)
+> navazuje konkrétní implementací autentizace.

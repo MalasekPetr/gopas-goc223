@@ -1,6 +1,6 @@
 # Lab · Inicializace repo, scaffolding, linting & testy
 
-> Modul: M1.1 · Odhad: 60 min · Režim: simulace
+> Odhad: 60 min · Režim: simulace
 
 ## Cíl
 

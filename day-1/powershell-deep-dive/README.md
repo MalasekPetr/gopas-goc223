@@ -1,4 +1,4 @@
-# M1.3 · PowerShell do hloubky
+# PowerShell do hloubky
 
 > Typ: povinný · Den: 1 · Odhad: <min>
 

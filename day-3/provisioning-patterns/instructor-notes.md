@@ -16,13 +16,13 @@
 
 ## Tripwires
 
-- Zdůraznit napětí Global Admin požadavku vs. least-privilege téma z M1.2/M5.2 — je to
+- Zdůraznit napětí Global Admin požadavku vs. least-privilege téma z [`../../day-1/automation-strategy/`](../../day-1/automation-strategy/)/[`../../day-5/security-hardening/`](../../day-5/security-hardening/) — je to
   záměrný teaching point, ne opomenutí kurikula.
 - `-Handlers All` aplikuje kompletně vše ze šablony včetně věcí, co student nechtěl — trvat na
   explicitním omezení rozsahu.
 
 ## Vazby
 
-- Dopředu: navazuje `orchestry-integration` (M3.2) jako alternativní/doplňkový přístup ke
+- Dopředu: navazuje `orchestry-integration` jako alternativní/doplňkový přístup ke
   stejnému problému (žádanky, metadata, governance).
-- Zpět: baseline/diff koncept z M2.2 se zde používá jako zdroj šablony i jako ověření výsledku.
+- Zpět: baseline/diff koncept z [`../../day-2/staging-environments/`](../../day-2/staging-environments/) se zde používá jako zdroj šablony i jako ověření výsledku.

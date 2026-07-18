@@ -31,11 +31,20 @@ Podle potřeby modul přidává i další soubory (bez šablony, ale konzistentn
 
 Pořadí modulů v běhu drží **`agenda.md`** — je to jediný zdroj pravdy o pořadí. Změna pořadí = úprava `agenda.md`, ne přejmenování složek.
 
-## Číslování modulů
+## Odkazování mezi moduly
 
-- H1 nadpis modulu má tvar `# M<den>.<pořadí> · <Název>` (např. `# M2.3 · Skladba migrací`) — čitelný odkaz na pořadí v rámci dne.
-- Číslo se **vždy** shoduje s pozicí v `agenda.md`. Při přeřazení modulu mezi dny/pozicemi se aktualizuje číslo v H1 i řádek v `agenda.md` ve stejném commitu.
-- Číslo nikdy nekóduje pořadí do názvu složky (slug zůstává beze změny i při přečíslování).
+- H1 nadpis modulu je jen `# <Název>` — **žádná pořadová čísla** v nadpisech ani v textu.
+  Vkládání/přesun modulu tak nikdy nevyvolá přečíslování napříč repem.
+- Křížové odkazy mezi moduly vždy **slugem jako relativní odkaz na složku**. Tvar odkazu
+  (z pohledu souboru uvnitř složky modulu):
+
+  ```md
+  jiný den:        [`../../day-2/migration-patterns/`](../../day-2/migration-patterns/)
+  sourozenec dne:  [`../security-hardening/`](../security-hardening/)
+  ```
+
+  V instruktorských poznámkách (sekce Vazby) stačí backtick slug bez odkazu.
+- Pořadí v rámci dne drží výhradně `agenda.md` (a `day-N/README.md` tabulka).
 
 ## Markdown styl
 

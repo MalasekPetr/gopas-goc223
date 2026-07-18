@@ -1,6 +1,6 @@
 # Lab · Rollout plán + App Customizer injekce (simulace)
 
-> Modul: M4.3 · Odhad: 60 min · Režim: simulace | živý tenant
+> Odhad: 60 min · Režim: simulace | živý tenant
 
 ## Cíl
 

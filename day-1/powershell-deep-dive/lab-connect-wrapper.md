@@ -1,6 +1,6 @@
 # Lab · Unified connect wrapper & logging scaffolding
 
-> Modul: M1.3 · Odhad: 60 min · Režim: simulace | živý tenant
+> Odhad: 60 min · Režim: simulace | živý tenant
 
 ## Cíl
 
@@ -9,7 +9,7 @@ a SPO Management Shell pod jedním rozhraním s volitelným auth módem a strukt
 
 ## Předpoklady
 
-- App registrace z M1.2 (`ClientId`).
+- App registrace z [`../automation-strategy/`](../automation-strategy/) (`ClientId`).
 - Nainstalované moduly: `PnP.PowerShell`, `Microsoft.Graph.Authentication`,
   `Microsoft.Online.SharePoint.PowerShell`.
 

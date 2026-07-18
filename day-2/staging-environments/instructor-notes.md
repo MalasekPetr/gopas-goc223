@@ -17,10 +17,9 @@
 - Studenti si pletou "diff mezi dvěma prostředími" s "diff proti baseline" — u prvního nejde o
   správnost, jen o rozdíl; u druhého je baseline autoritativní zdroj pravdy.
 - Nenechat lab sklouznout k psaní obecného "site cloner" nástroje — cíl je detekce a report
-  driftu, ne automatická synchronizace/oprava (to přijde v `lifecycle-compliance`, M3.3).
+  driftu, ne automatická synchronizace/oprava (to přijde v [`../../day-3/lifecycle-compliance/`](../../day-3/lifecycle-compliance/)).
 
 ## Vazby
 
-- Dopředu: baseline/diff koncept se rozšiřuje o compliance pravidla v `lifecycle-compliance`
-  (M3.3).
-- Zpět: navazuje na stránkování/ingest vzory z M2.1 (čtení stavu webu ve velkém).
+- Dopředu: baseline/diff koncept se rozšiřuje o compliance pravidla v `lifecycle-compliance`.
+- Zpět: navazuje na stránkování/ingest vzory z [`../graph-fundamentals/`](../graph-fundamentals/) (čtení stavu webu ve velkém).

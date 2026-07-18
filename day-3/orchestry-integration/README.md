@@ -1,4 +1,4 @@
-# M3.2 · Orchestry integrace & vlastní skripty (simulace)
+# Orchestry integrace & vlastní skripty (simulace)
 
 > Typ: povinný · Den: 3 · Odhad: <min>
 
@@ -11,7 +11,7 @@
 ## Výklad
 
 ### Request center a šablony
-Orchestry (3rd-party SaaS) staví nad stejným problémem jako M3.1 — provisioning s metadaty
+Orchestry (3rd-party SaaS) staví nad stejným problémem jako [`../provisioning-patterns/`](../provisioning-patterns/) — provisioning s metadaty
 a governance — ale jako hotový produkt, ne vlastní kód. Request Wizard vede uživatele
 žádostí o nový pracovní prostor (Teams/SharePoint) v rámci předdefinovaných šablon, s
 kontrolou duplicit (upozorní, pokud podobný prostor už existuje) a směrováním přes
@@ -23,13 +23,13 @@ vytvoření** — prostor nikdy nevznikne bez governance nastavení, "dodatečn�
 Koncepčně: **pre-provision hook** validuje žádost dřív, než cokoli vznikne (kontrola názvu,
 oprávněnosti žadatele), **post-provision hook** provádí akce po vzniku prostoru (notifikace,
 zápis do externího CMDB, spuštění vlastního PnP skriptu pro doplňkovou konfiguraci, kterou
-vendor šablona nepokrývá). Toto je integrační bod, kde vlastní PnP.PowerShell/Graph kód (M3.1)
+vendor šablona nepokrývá). Toto je integrační bod, kde vlastní PnP.PowerShell/Graph kód ([`../provisioning-patterns/`](../provisioning-patterns/))
 doplňuje vendor platformu tam, kde je specifický požadavek zákazníka mimo standardní šablonu.
 
 ### Governance artefakty
 Attestace vlastníků (pravidelné potvrzení "tento prostor pořád existuje z důvodu X, vlastník
 je pořád Y"), sensitivity labeling při vzniku, sprawl reporting (přehled neaktivních/duplicitních
-prostorů) — koncepty, které v M3.3 uvidíme jako nativní Microsoft funkce (Site Attestation v
+prostorů) — koncepty, které v [`../lifecycle-compliance/`](../lifecycle-compliance/) uvidíme jako nativní Microsoft funkce (Site Attestation v
 rámci SharePoint Advanced Management) — Orchestry a nativní SAM řeší podobný problém, srovnání
 je součástí labu.
 
@@ -42,7 +42,7 @@ flowchart LR
 ```
 
 ## Klíčové rozlišení
-- **Vendor platforma (Orchestry) vs vlastní PnP kód (M3.1)** — platforma dává rychlejší start
+- **Vendor platforma (Orchestry) vs vlastní PnP kód ([`../provisioning-patterns/`](../provisioning-patterns/))** — platforma dává rychlejší start
   a governance "by default", vlastní kód dává plnou kontrolu a žádný licenční náklad/vendor
   lock-in; hooky jsou místo, kde se obě strategie potkávají.
 - **Governance at creation (Orchestry přístup) vs governance po vzniku** (dodatečné nastavení

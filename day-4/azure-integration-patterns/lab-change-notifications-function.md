@@ -1,6 +1,6 @@
 # Lab · Funkce pro change notifications (skeleton)
 
-> Modul: M4.1 · Odhad: 60 min · Režim: živý tenant
+> Odhad: 60 min · Režim: živý tenant
 
 ## Cíl
 

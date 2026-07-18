@@ -1,4 +1,4 @@
-# M1.1 · Inženýrské prostředí, VS Code a Copilot
+# Inženýrské prostředí, VS Code a Copilot
 
 > Typ: povinný · Den: 1 · Odhad: AM blok
 

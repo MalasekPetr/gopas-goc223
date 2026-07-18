@@ -1,4 +1,4 @@
-# M5.2 · Security hardening & least privilege
+# Security hardening & least privilege
 
 > Typ: povinný · Den: 5 · Odhad: <min>
 
@@ -9,8 +9,8 @@
 ## Výklad
 
 ### Minimalizace záběru — audit permissions
-Projít permissions přiřazené app registraci z M1.2 napříč celým týdnem a odebrat vše, co
-reálně nebylo použito nebo má přesnější (užší) alternativu — stejný princip jako v M1.2,
+Projít permissions přiřazené app registraci z [`../../day-1/automation-strategy/`](../../day-1/automation-strategy/) napříč celým týdnem a odebrat vše, co
+reálně nebylo použito nebo má přesnější (užší) alternativu — stejný princip jako v [`../../day-1/automation-strategy/`](../../day-1/automation-strategy/),
 teď aplikovaný na skutečnou historii použití, ne na odhad předem.
 
 ### Conditional Access pro workload identities (service principals)

@@ -21,6 +21,6 @@
 ## Vazby
 
 - Dopředu: governance artefakty (attestace, sprawl) se srovnávají s nativní Microsoft variantou
-  v `lifecycle-compliance` (M3.3, Site Attestation).
-- Zpět: navazuje na PnP provisioning artefakt z M3.1, který zde slouží jako cíl post-provision
+  v `lifecycle-compliance` (Site Attestation).
+- Zpět: navazuje na PnP provisioning artefakt z [`../provisioning-patterns/`](../provisioning-patterns/), který zde slouží jako cíl post-provision
   hooku.

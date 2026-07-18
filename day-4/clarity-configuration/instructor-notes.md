@@ -8,7 +8,7 @@
 
 - Ověřit, zda studenti (nebo instruktor) mají v kurzovém tenantu oprávnění k App Catalogu —
   typicky vyžaduje SharePoint Administrator/Global Admin, stejné rozhodnutí jako u jiných
-  admin-scope labů v týdnu (viz M3.1 go/no-go).
+  admin-scope labů v týdnu (viz [`../../day-3/provisioning-patterns/`](../../day-3/provisioning-patterns/) go/no-go).
 - Připravit vlastní/testovací Clarity projekt s Project ID předem, ne zakládat na místě.
 - Ověřit aktuální dobu aktivace (dokumentovaných "až 20 minut") — pokud je delší, naplánovat
   aktivaci na začátek bloku a ověřovat výsledek až ke konci.
@@ -23,6 +23,6 @@
 ## Vazby
 
 - Dopředu: SPFx tenant-wide deployment mechanismus (Tenant Wide Extensions list,
-  `skipFeatureDeployment`) se dokončuje v `spfx-fundamentals` (M5.1) na vlastním HelloWorld
+  `skipFeatureDeployment`) se dokončuje v `spfx-fundamentals` na vlastním HelloWorld
   webpartu.
 - Zpět: —

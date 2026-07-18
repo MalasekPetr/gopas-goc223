@@ -1,4 +1,4 @@
-# M4.1 · Azure integrační vzory
+# Azure integrační vzory
 
 > Typ: povinný · Den: 4 · Odhad: <min>
 
@@ -46,7 +46,7 @@ flowchart TD
   kontrola) vs Runbooks (jednoduché scheduled PowerShell úlohy)**.
 - **Životnost access tokenu (endpoint auth, ~1h) vs životnost subscription (dny, dle resource
   typu)** — dvě nezávislé věci, obě je nutné hlídat.
-- **Delta query (pull, M2.1) vs change notifications (push, zde)** — push vyžaduje správu
+- **Delta query (pull, [`../../day-2/graph-fundamentals/`](../../day-2/graph-fundamentals/)) vs change notifications (push, zde)** — push vyžaduje správu
   subscription lifecycle, pull ne.
 
 ## Lab

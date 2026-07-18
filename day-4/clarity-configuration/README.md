@@ -1,4 +1,4 @@
-# M4.3 · Microsoft Clarity — konfigurace
+# Microsoft Clarity — konfigurace
 
 > Typ: povinný · Den: 4 · Odhad: <min>
 

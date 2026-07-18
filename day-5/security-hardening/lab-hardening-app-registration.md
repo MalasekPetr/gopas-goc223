@@ -1,16 +1,16 @@
 # Lab · Hardening app registration & úprava scope
 
-> Modul: M5.2 · Odhad: 60 min · Režim: živý tenant
+> Odhad: 60 min · Režim: živý tenant
 
 ## Cíl
 
-Student provede audit permissions app registrace z M1.2, odebere nadbytečná oprávnění a
+Student provede audit permissions app registrace z [`../../day-1/automation-strategy/`](../../day-1/automation-strategy/), odebere nadbytečná oprávnění a
 provede migraci ze client secret na certifikát bez výpadku (overlap starý/nový).
 
 ## Předpoklady
 
-- App registrace z M1.2 s historií použití napříč celým týdnem.
-- Oprávnění spravovat tuto app registraci (student by ji měl vlastnit od M1.2).
+- App registrace z [`../../day-1/automation-strategy/`](../../day-1/automation-strategy/) s historií použití napříč celým týdnem.
+- Oprávnění spravovat tuto app registraci (student by ji měl vlastnit od [`../../day-1/automation-strategy/`](../../day-1/automation-strategy/)).
 
 ## Kroky
 

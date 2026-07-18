@@ -1,15 +1,15 @@
 # Lab · Wave plán & throttle-aware exekuce
 
-> Modul: M2.3 · Odhad: 75 min · Režim: simulace
+> Odhad: 75 min · Režim: simulace
 
 ## Cíl
 
 Student navrhne wave plán pro fiktivní sadu webů/listů dle rizika/velikosti/závislostí a
-implementuje throttle-aware exekuci jedné vlny s korektním zpracováním 429/5xx (viz M2.1).
+implementuje throttle-aware exekuci jedné vlny s korektním zpracováním 429/5xx (viz [`../graph-fundamentals/`](../graph-fundamentals/)).
 
 ## Předpoklady
 
-- Retry/throttle klasifikace z M2.1, `Get-AllGraphResults`/connect wrapper.
+- Retry/throttle klasifikace z [`../graph-fundamentals/`](../graph-fundamentals/), `Get-AllGraphResults`/connect wrapper.
 - Demo migrační zdrojová data (fiktivní sada 15-20 webů s různou velikostí/rizikem).
 
 ## Kroky
@@ -19,7 +19,7 @@ implementuje throttle-aware exekuci jedné vlny s korektním zpracováním 429/5
 2. Sestavit wave plán: pilotní vlna (1-2 nízkorizikové weby), hlavní vlny, kritická vlna
    (nejvyšší riziko) s explicitním rollback krokem.
 3. Implementovat throttle-aware exekuci migrace jedné vlny — paralelní zpracování více webů
-   s respektováním throttling limitů z M2.1 (ne fire-and-forget bez kontroly chyb).
+   s respektováním throttling limitů z [`../graph-fundamentals/`](../graph-fundamentals/) (ne fire-and-forget bez kontroly chyb).
 4. Zdůvodnit pořadí vln v krátkém textovém shrnutí (proč tento web až v poslední vlně).
 
 ## Ověření

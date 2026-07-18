@@ -1,4 +1,4 @@
-# M2.1 · Microsoft Graph — inženýrské základy
+# Microsoft Graph — inženýrské základy
 
 > Typ: povinný · Den: 2 · Odhad: <min>
 
@@ -21,7 +21,7 @@ Delta query (`delta()`) je pull model pro inkrementální synchronizaci — serv
 entity vytvořené/změněné/smazané od posledního volání, ne plný re-scan. Odpověď obsahuje buď
 `@odata.nextLink` (další stránka téhož požadavku, se `skipToken`) nebo `@odata.deltaLink`
 (uložit a použít při příštím inkrementálním dotazu, obsahuje `deltatoken`). Delta query je
-protiklad k push modelu change notifications (webhooks) z M4.1 — different účel: delta = "co se
+protiklad k push modelu change notifications (webhooks) z [`../../day-4/azure-integration-patterns/`](../../day-4/azure-integration-patterns/) — different účel: delta = "co se
 změnilo od X", webhook = "informuj mě hned, až se něco změní".
 
 ### Throttling (429) — řízení
@@ -52,7 +52,7 @@ flowchart TD
 - **Batch-level 200 vs jednotlivý request status** — vždy kontrolovat `responses[].status`,
   ne jen kód celé batch odpovědi.
 - **Delta query (pull, "co se změnilo") vs change notifications (push, "informuj mě hned")** —
-  různé účely, viz M4.1.
+  různé účely, viz [`../../day-4/azure-integration-patterns/`](../../day-4/azure-integration-patterns/).
 - **`code` (stabilní, programově použitelný) vs `message` (lidsky čitelný, může se měnit)**
   v chybovém objektu.
 

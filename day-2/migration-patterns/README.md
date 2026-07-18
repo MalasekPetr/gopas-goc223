@@ -1,4 +1,4 @@
-# M2.3 · Skladba migrací
+# Skladba migrací
 
 > Typ: povinný · Den: 2 · Odhad: <min>
 

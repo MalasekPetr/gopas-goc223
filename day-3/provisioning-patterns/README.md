@@ -1,4 +1,4 @@
-# M3.1 · Vzory automatizace zřizování
+# Vzory automatizace zřizování
 
 > Typ: povinný · Den: 3 · Odhad: <min>
 
@@ -12,14 +12,14 @@
 Šablona (`.pnp` balíček nebo XML) deklarativně popisuje, co se má na webu nastavit — listy,
 sloupce, content types, theme, navigace, tenant-wide nastavení. `Get-PnPTenantTemplate`
 **exportuje aktuální konfiguraci existujícího webu jako šablonu** — to je přímé pojítko na
-baseline koncept z M2.2: baseline lze vytvořit jak ručně (site script), tak exportem ze
+baseline koncept z [`../../day-2/staging-environments/`](../../day-2/staging-environments/): baseline lze vytvořit jak ručně (site script), tak exportem ze
 vzorového ("zlatého") webu. `Invoke-PnPTenantTemplate -Path sablona.pnp` šablonu aplikuje;
 parametr `-Handlers` omezuje, které části šablony se skutečně provedou (např. jen `Lists,Fields`,
 ne celé `All`) — užitečné, když šablona obsahuje víc, než chceme na konkrétní web aplikovat.
 
 > [!IMPORTANT] Oprávnění
 > `Invoke-PnPTenantTemplate` vyžaduje roli **Global Administrator** — to je v přímém napětí s
-> least-privilege principem z M1.2/M5.2. V produkčním nasazení nikdy nespouštět interaktivně pod
+> least-privilege principem z [`../../day-1/automation-strategy/`](../../day-1/automation-strategy/)/[`../../day-5/security-hardening/`](../../day-5/security-hardening/). V produkčním nasazení nikdy nespouštět interaktivně pod
 > osobním Global Admin účtem; provisioning automatizace běží pod vyhrazenou app-only identitou s
 > touto rolí přiřazenou jen jí, ne lidem.
 

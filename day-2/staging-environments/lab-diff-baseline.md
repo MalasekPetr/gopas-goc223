@@ -1,6 +1,6 @@
 # Lab · Diff & baseline report skript
 
-> Modul: M2.2 · Odhad: 60 min · Režim: simulace | živý tenant
+> Odhad: 60 min · Režim: simulace | živý tenant
 
 ## Cíl
 
@@ -10,7 +10,7 @@ JSON) a vypíše strukturovaný report driftu (přidáno/chybí/změněno).
 ## Předpoklady
 
 - Přístup do per-student DEV/TEST/PROD sandbox webů (viz `environment.md`).
-- `Get-AllGraphResults`/connect wrapper z M2.1 a M1.3.
+- `Get-AllGraphResults`/connect wrapper z [`../graph-fundamentals/`](../graph-fundamentals/) a [`../../day-1/powershell-deep-dive/`](../../day-1/powershell-deep-dive/).
 
 ## Kroky
 

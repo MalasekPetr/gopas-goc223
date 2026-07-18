@@ -1,4 +1,4 @@
-# M5.3 · Výkon, náklady & capstone
+# Výkon, náklady & capstone
 
 > Typ: povinný · Den: 5 · Odhad: <min>
 
@@ -18,19 +18,21 @@ síťovou zátěž i dobu odezvy. Graph bez `$select` v odpovědi vrací tip
 je `$select` dokonce **povinný**, pokud chce aplikace vlastnosti mimo výchozí sadu. V
 kombinaci s `$expand` lze `$select` aplikovat i na vnořené (expanded) položky — ale u Entra
 resources `$expand` vrací max. 20 položek, což je nutné zohlednit ve stránkování. Spolu s
-batchingem (M2.1) je toto hlavní pákový bod pro snížení objemu přenášených dat a počtu
+batchingem ([`../../day-2/graph-fundamentals/`](../../day-2/graph-fundamentals/)) je toto hlavní pákový bod pro snížení objemu přenášených dat a počtu
 requestů.
 
 ### Náklady logování a asynchronní fan-out
-Logovací náklady (M4.2) rostou s objemem a granularitou — batching zápisů a DCR
+Logovací náklady ([`../../day-4/siem-blob-integration/`](../../day-4/siem-blob-integration/)) rostou s objemem a granularitou — batching zápisů a DCR
 transformace před uložením (filtrování, ne log-everything-then-filter) drží náklady dolů.
 Asynchronní fan-out (jeden trigger → N paralelních dílčích úloh, např. per-web migrace v
-rámci jedné vlny z M2.3) škáluje propustnost, ale musí respektovat throttling limity (M2.1)
+rámci jedné vlny z [`../../day-2/migration-patterns/`](../../day-2/migration-patterns/)) škáluje propustnost, ale musí respektovat throttling limity ([`../../day-2/graph-fundamentals/`](../../day-2/graph-fundamentals/))
 per cíl, ne jen agregátně.
 
 ### Capstone — konsolidace týdne
-Capstone spojuje: wave plán a throttle-aware exekuci (M2.3), provisioning artefakt (M3.1),
-Azure integrační/SIEM blueprint (M4.1-M4.2) a hardened app registraci (M5.2) do jednoho
+Capstone spojuje: wave plán a throttle-aware exekuci ([`../../day-2/migration-patterns/`](../../day-2/migration-patterns/)),
+provisioning artefakt ([`../../day-3/provisioning-patterns/`](../../day-3/provisioning-patterns/)),
+Azure integrační/SIEM blueprint ([`../../day-4/azure-integration-patterns/`](../../day-4/azure-integration-patterns/) + [`../../day-4/siem-blob-integration/`](../../day-4/siem-blob-integration/))
+a hardened app registraci ([`../security-hardening/`](../security-hardening/)) do jednoho
 end-to-end blueprintu migrace + provisioningu. Součástí je explicitní rollback plán (co
 dělat, když vlna selže v polovině) a předávací runbook do provozu (kdo je vlastník po
 kurzu, jak se hlásí incidenty, jaký je patch/update cyklus).
@@ -43,16 +45,16 @@ kurzu, jak se hlásí incidenty, jaký je patch/update cyklus).
 > Developer Associate)**. K datu psaní tohoto materiálu je to během několika dní od konce
 > platnosti AZ-204 jako aktivní cesty — **nedoporučovat studentům AZ-204** jako další krok,
 > doporučit AI-200 jako přímého nástupce. **SC-300 (Identity and Access Administrator)**
-> zůstává platnou cestou pro prohloubení identity/Conditional Access témat z M5.2. Ověřit
+> zůstává platnou cestou pro prohloubení identity/Conditional Access témat z [`../security-hardening/`](../security-hardening/). Ověřit
 > aktuální stav obou certifikací (obsahová náplň AI-200 se teprve ustaluje) před
 > doporučením konkrétního studijního plánu.
 
 ```mermaid
 flowchart LR
-  A[Wave plán M2.3] --> E[Capstone blueprint]
-  B[Provisioning M3.1] --> E
-  C[Azure/SIEM M4.1-M4.2] --> E
-  D[Hardened identity M5.2] --> E
+  A[Wave plán — migration-patterns] --> E[Capstone blueprint]
+  B[Provisioning — provisioning-patterns] --> E
+  C[Azure/SIEM — D4 integrace] --> E
+  D[Hardened identity — security-hardening] --> E
   E --> F[Rollback plán]
   E --> G[Předávací runbook]
 ```

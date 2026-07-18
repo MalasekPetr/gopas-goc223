@@ -7,7 +7,7 @@ Jediný zdroj pravdy pro nástroje, API a konvence používané v GOC223. Všech
 
 ## PowerShell moduly (tři, ne jeden)
 
-Kurz na rozdíl od administrátorských kurzů pokrývá všechny tři paralelně a učí, kdy který — to je nosný teaching point M1.3 a M1.2.
+Kurz na rozdíl od administrátorských kurzů pokrývá všechny tři paralelně a učí, kdy který — to je nosný teaching point [`day-1/powershell-deep-dive/`](day-1/powershell-deep-dive/) a [`day-1/automation-strategy/`](day-1/automation-strategy/).
 
 | Modul | Rozsah | Kdy použít |
 |---|---|---|
@@ -27,7 +27,7 @@ Kurz na rozdíl od administrátorských kurzů pokrývá všechny tři paraleln�
 | **Certificate (app-only)** | dávkové operace, produkční automatizace | Bez promptu; cert thumbprint + ClientId + TenantId |
 | **Managed identity** | Azure-hosted automatizace (Functions, Runbooks) | Žádný spravovaný secret/cert — identita vázaná na Azure resource |
 
-**Least privilege princip:** aplikační oprávnění (application permissions) se udělují na úrovni celého tenantu — každé navíc je rozšíření útočné plochy. Preferovat delegated tam, kde to dává smysl, a u app-only vždy sepsat přesný seznam permissions s odůvodněním (viz M5.2).
+**Least privilege princip:** aplikační oprávnění (application permissions) se udělují na úrovni celého tenantu — každé navíc je rozšíření útočné plochy. Preferovat delegated tam, kde to dává smysl, a u app-only vždy sepsat přesný seznam permissions s odůvodněním (viz [`day-5/security-hardening/`](day-5/security-hardening/)).
 
 ## Microsoft Graph — inženýrské pojmy
 
@@ -51,7 +51,7 @@ Kurz na rozdíl od administrátorských kurzů pokrývá všechny tři paraleln�
 
 ## SIEM pipeline (Azure Blob)
 
-Standardní tvar pipeline v M4.2: `aplikace → Azure Blob Storage → Event Grid → Azure Function → SIEM` (Sentinel/Splunk/QRadar dle zákazníka).
+Standardní tvar pipeline v [`day-4/siem-blob-integration/`](day-4/siem-blob-integration/): `aplikace → Azure Blob Storage → Event Grid → Azure Function → SIEM` (Sentinel/Splunk/QRadar dle zákazníka).
 
 - **Schéma logů**: strukturované (JSON), minimalizace PII (žádné celé UPN/e-maily v plain textu, kde to jde — hash/pseudonymizace).
 - **Retence**: log retence odděleně od retence zdrojových dat — GDPR/compliance požadavky se liší.

@@ -22,6 +22,6 @@
 
 ## Vazby
 
-- Dopředu: tato app registrace se používá napříč celým týdnem; `security-hardening` (M5.2)
+- Dopředu: tato app registrace se používá napříč celým týdnem; `security-hardening`
   na konci kurzu provádí audit a hardening přesně této aplikace.
-- Zpět: navazuje na repo hygienu z M1.1.
+- Zpět: navazuje na repo hygienu z [`../vscode-copilot-env/`](../vscode-copilot-env/).

@@ -1,4 +1,4 @@
-# M5.1 · SPFx základy & App Catalog
+# SPFx základy & App Catalog
 
 > Typ: povinný · Den: 5 · Odhad: <min>
 
@@ -25,7 +25,7 @@ zachovat, ale u nových projektů to není výchozí volba.
 ### Generování a klíčové soubory
 `yo @microsoft/sharepoint` → HelloWorld webpart. Klíčové soubory: manifest webpartu
 (`*.manifest.json` — GUID, verze, ikona), `package-solution.json` (metadata `.sppkg`
-balíčku, vč. `skipFeatureDeployment` pro tenant-wide deployment scénář z M4.3),
+balíčku, vč. `skipFeatureDeployment` pro tenant-wide deployment scénář z [`../../day-4/clarity-configuration/`](../../day-4/clarity-configuration/)),
 `config/config.json` (bundle entry). Build vytvoří `.sppkg` v `sharepoint/solution/`.
 
 ### App Catalog — tenant vs site collection

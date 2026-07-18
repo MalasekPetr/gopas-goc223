@@ -1,4 +1,4 @@
-# M<D>.<I> · <Název modulu>
+# <Název modulu>
 
 > Typ: povinný | volitelný · Den: <N> · Odhad: <min>
 

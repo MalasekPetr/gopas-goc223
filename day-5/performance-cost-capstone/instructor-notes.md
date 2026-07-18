@@ -23,6 +23,5 @@
 ## Vazby
 
 - Dopředu: —
-- Zpět: spojuje `migration-patterns` (M2.3), `provisioning-patterns` (M3.1),
-  `azure-integration-patterns`/`siem-blob-integration` (M4.1-M4.2), `security-hardening`
-  (M5.2).
+- Zpět: spojuje `migration-patterns`, `provisioning-patterns`,
+  `azure-integration-patterns`/`siem-blob-integration`, `security-hardening`.

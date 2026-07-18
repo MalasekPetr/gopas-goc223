@@ -1,4 +1,4 @@
-# M1.2 · Strategie automatizace & nástrojová mapa
+# Strategie automatizace & nástrojová mapa
 
 > Typ: povinný · Den: 1 · Odhad: <min>
 
@@ -14,7 +14,7 @@ Tři PowerShell moduly z GLOSSARY.md (PnP.PowerShell, Microsoft.Graph, SPO Manag
 wrappery nad dvěma REST rozhraními — Microsoft Graph a SharePoint REST/CSOM. Rozhodovací otázka
 není "PowerShell nebo REST", ale "wrapper, nebo přímé volání": moduly šetří boilerplate
 (auth, paging, serializace), přímé REST volání dává plnou kontrolu tam, kde modul nemá cmdlet
-pro potřebnou operaci nebo kde je nutná jemná kontrola nad chybovými stavy (viz M2.1).
+pro potřebnou operaci nebo kde je nutná jemná kontrola nad chybovými stavy (viz [`../../day-2/graph-fundamentals/`](../../day-2/graph-fundamentals/)).
 
 ### App registration & identity strategie
 Každá automatizace potřebuje identitu, pod kterou běží. Rozhodnutí padá na dvou osách:
@@ -46,7 +46,7 @@ flowchart TD
 - **PnP.PowerShell vs SPO Management Shell překryv** — viz `GLOSSARY.md`; preferovat PnP pro
   čitelnost, SPO modul jen tam, kde chybí PnP ekvivalent.
 - **Modul (wrapper) vs přímé REST/Graph volání** — modul je rychlejší start, přímé volání je
-  nutné pro jemnou kontrolu retry/error handlingu (M2.1).
+  nutné pro jemnou kontrolu retry/error handlingu ([`../../day-2/graph-fundamentals/`](../../day-2/graph-fundamentals/)).
 
 ## Lab
 Viz [`lab-app-registration.md`](lab-app-registration.md).

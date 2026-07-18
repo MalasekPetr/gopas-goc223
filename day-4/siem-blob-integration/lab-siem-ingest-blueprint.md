@@ -1,6 +1,6 @@
 # Lab · Blueprint ingest a transform skeleton
 
-> Modul: M4.2 · Odhad: 75 min · Režim: živý tenant
+> Odhad: 75 min · Režim: živý tenant
 
 ## Cíl
 
@@ -9,7 +9,7 @@ API), s minimalizací PII v logovaném schématu a ověřením přes KQL dotaz.
 
 ## Předpoklady
 
-- Function skeleton z M4.1, general-purpose v2 Storage Account v resource group studenta.
+- Function skeleton z [`../azure-integration-patterns/`](../azure-integration-patterns/), general-purpose v2 Storage Account v resource group studenta.
 - Přístup do Log Analytics workspace (per student nebo sdílený s odděleným DCR per student).
 
 ## Kroky
