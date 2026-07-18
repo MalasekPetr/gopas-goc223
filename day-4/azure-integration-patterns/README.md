@@ -30,7 +30,7 @@ plánovaného běhu nesmí spoléhat na interaktivní přihlášení):
 | Azure | Automation Runbook / Function (timer trigger) | **managed identity** | žádný spravovaný secret — identita vázaná na resource |
 | CI/CD pipeline | pipeline scheduler | certifikát / federated credentials | pipeline secret store (Key Vault-backed), nikdy repo |
 
-Vazba na auth módy z [`../../day-1/powershell-deep-dive/`](../../day-1/powershell-deep-dive/)
+Vazba na auth módy z [`../../day-2/powershell-deep-dive/`](../../day-2/powershell-deep-dive/)
 a runtime prostředí z [`../../day-1/vscode-copilot-env/explainer-runtime-environments.md`](../../day-1/vscode-copilot-env/explainer-runtime-environments.md);
 rotaci certifikátů řeší [`../../day-5/security-hardening/`](../../day-5/security-hardening/).
 
@@ -66,13 +66,15 @@ flowchart TD
   subscription lifecycle, pull ne.
 
 ## Laby
-Dva laby — pull i push strana integrace:
+Pull i push strana integrace:
 
 - [`lab-batch-sync-task.md`](lab-batch-sync-task.md) — třetí velký lab kurzu: idempotentní
   dávkový CRUD sync seznamu pod aplikační identitou, registrovaný jako plánovaný task
-  (scheduled/pull model).
+  (scheduled/pull model). Studenti dělají celý.
 - [`lab-change-notifications-function.md`](lab-change-notifications-function.md) — Function
-  jako endpoint pro Graph change notifications (event-driven/push model).
+  jako endpoint pro Graph change notifications (event-driven/push model). **Běží jako
+  instruktorské demo** (validation handshake + jedna notifikace, ~30 min); plné dokončení
+  vč. renewal skeletonu je samostudium dle zadání labu.
 
 ## Zdroje (Microsoft)
 - [Integration and automation platform options in Azure](https://learn.microsoft.com/en-us/azure/azure-functions/functions-compare-logic-apps-ms-flow-webjobs)

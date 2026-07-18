@@ -17,14 +17,14 @@ pro zbytek týdne, umí zdůvodnit každé přiřazené permission a rozumí roz
 
 1. Zaregistrovat novou aplikaci v Entra ID (App registrations → New registration) —
    pojmenovanou dle konvence `<jmeno.prijmeni>-course-app`.
-2. Zvolit typ klienta podle plánovaného použití v [`../powershell-deep-dive/`](../powershell-deep-dive/) (public client pro interactive/device
+2. Zvolit typ klienta podle plánovaného použití v [`../../day-2/powershell-deep-dive/`](../../day-2/powershell-deep-dive/) (public client pro interactive/device
    code, případně přidat certificate credential pro app-only scénář).
 3. Přidat baseline API permissions: `Sites.Read.All` (Graph, delegated) pro čtecí operace nad
    SharePointem, bez zápisových oprávnění v tomto kroku.
 4. Zapsat do `README.md` labu (lokální poznámka, ne commit do repa) zdůvodnění každého
    přiřazeného permission — proč je potřeba, proč ne širší varianta.
 5. Provést admin consent (pokud je vyžadován) a ověřit přihlášení skrz `Connect-*` cmdlet
-   libovolného ze tří modulů z [`../powershell-deep-dive/`](../powershell-deep-dive/).
+   libovolného ze tří modulů z [`../../day-2/powershell-deep-dive/`](../../day-2/powershell-deep-dive/).
 6. Najít tutéž aplikaci v **obou** portálových pohledech — App registrations (šablona,
    credentials, požadované permissions) i Enterprise applications (service principal,
    udělený consent) — a pojmenovat, co je v každém z nich jiného (viz

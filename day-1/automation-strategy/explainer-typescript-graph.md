@@ -15,7 +15,7 @@ i jako TypeScript/Node skripty s přímým voláním Microsoft Graph. Pro cílov
 
 ## Stejná auth matice, jiný jazyk
 
-Auth rozhodnutí z [`../powershell-deep-dive/`](../powershell-deep-dive/) platí beze změny —
+Auth rozhodnutí z [`../../day-2/powershell-deep-dive/`](../../day-2/powershell-deep-dive/) platí beze změny —
 mění se jen implementace: `DeviceCodeCredential`, `ClientCertificateCredential`,
 `ManagedIdentityCredential` z `@azure/identity` jsou 1:1 protějšky PowerShell auth módů.
 Graph JS SDK je napojí přes `TokenCredentialAuthenticationProvider`.

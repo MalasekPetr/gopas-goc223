@@ -24,4 +24,4 @@
 
 - Dopředu: retry/throttle klasifikace se přímo používá v `migration-patterns` (throttle-aware
   wave exekuce) a `siem-blob-integration` (spolehlivost pipeline).
-- Zpět: navazuje na `Connect-CourseTarget` wrapper a auth módy z [`../../day-1/powershell-deep-dive/`](../../day-1/powershell-deep-dive/).
+- Zpět: navazuje na `Connect-CourseTarget` wrapper a auth módy z [`../../day-2/powershell-deep-dive/`](../../day-2/powershell-deep-dive/).

@@ -13,7 +13,7 @@
 
 ## Tripwires
 
-- Nesklouznout do hloubky auth flows — to je [`../powershell-deep-dive/`](../powershell-deep-dive/);
+- Nesklouznout do hloubky auth flows — to je [`../../day-2/powershell-deep-dive/`](../../day-2/powershell-deep-dive/);
   tady jen "všechny cesty nesou Entra token".
 - Nesklouznout do Graph batching/throttling — to je [`../../day-2/graph-fundamentals/`](../../day-2/graph-fundamentals/).
 - Držet leaf-node charakter: nic, co tu zazní, nesmí být prerekvizita — pokud se přistihneš,
@@ -22,6 +22,6 @@
 ## Vazby
 
 - Dopředu: mapa podkládá [`../automation-strategy/`](../automation-strategy/) (nástrojová
-  rozhodovací osa) a [`../powershell-deep-dive/`](../powershell-deep-dive/) (auth) — ale jen
+  rozhodovací osa) a [`../../day-2/powershell-deep-dive/`](../../day-2/powershell-deep-dive/) (auth) — ale jen
   jako kontext, ne jako závislost.
 - Zpět: navazuje na onboarding (tenant vs subscription rozlišení z `environment.md`).

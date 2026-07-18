@@ -14,10 +14,10 @@ ne klikání v GUI.
 
 - SPMT nainstalovaný na učebním stroji + Windows PowerShell 5.1 (viz
   [`explainer-migration-tools.md`](explainer-migration-tools.md) — modul neběží v PS7).
-- Cílové weby `-dev/-test/-prod` z labu [`../../day-1/powershell-deep-dive/lab-cert-auth-sites.md`](../../day-1/powershell-deep-dive/lab-cert-auth-sites.md).
+- Cílové weby `-dev/-test/-prod` z labu [`../../day-2/powershell-deep-dive/lab-cert-auth-sites.md`](../../day-2/powershell-deep-dive/lab-cert-auth-sites.md).
 - Zdrojový fileshare: instruktorem připravená lokální struktura složek/souborů
   (fiktivní data — oddělení, typy dokumentů).
-- `Connect-CourseTarget` wrapper + retry vzory z [`../graph-fundamentals/`](../graph-fundamentals/).
+- `Connect-CourseTarget` wrapper + retry vzory z [`../../day-2/graph-fundamentals/`](../../day-2/graph-fundamentals/).
 
 ## Kroky
 

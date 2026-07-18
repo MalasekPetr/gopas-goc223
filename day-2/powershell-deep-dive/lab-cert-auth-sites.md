@@ -4,16 +4,16 @@
 
 ## Cíl
 
-První velký lab kurzu. Student vezme app registraci z [`../automation-strategy/`](../automation-strategy/),
+První velký lab kurzu. Student vezme app registraci z [`../../day-1/automation-strategy/`](../../day-1/automation-strategy/),
 vybaví ji certifikátem (bezpečně vygenerovaným a uloženým), přihlásí se app-only bez
 jakéhokoli promptu a skriptem si vytvoří pracovní weby (DEV/TEST/PROD), na kterých staví
 zbytek týdne.
 
 ## Předpoklady
 
-- App registrace `<jmeno.prijmeni>-course-app` z labu [`../automation-strategy/lab-app-registration.md`](../automation-strategy/lab-app-registration.md).
+- App registrace `<jmeno.prijmeni>-course-app` z labu [`../../day-1/automation-strategy/lab-app-registration.md`](../../day-1/automation-strategy/lab-app-registration.md).
 - PnP.PowerShell nainstalovaný s pinovanou verzí (viz [`explainer-module-management.md`](explainer-module-management.md)).
-- Naming konvence z [`../onboarding/ways-of-working.md`](../onboarding/ways-of-working.md).
+- Naming konvence z [`../../day-1/onboarding/ways-of-working.md`](../../day-1/onboarding/ways-of-working.md).
 
 ## Kroky
 

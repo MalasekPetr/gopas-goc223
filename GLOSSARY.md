@@ -7,7 +7,7 @@ Jediný zdroj pravdy pro nástroje, API a konvence používané v GOC223. Všech
 
 ## PowerShell moduly (tři, ne jeden)
 
-Kurz na rozdíl od administrátorských kurzů pokrývá všechny tři paralelně a učí, kdy který — to je nosný teaching point [`day-1/powershell-deep-dive/`](day-1/powershell-deep-dive/) a [`day-1/automation-strategy/`](day-1/automation-strategy/).
+Kurz na rozdíl od administrátorských kurzů pokrývá všechny tři paralelně a učí, kdy který — to je nosný teaching point [`day-2/powershell-deep-dive/`](day-2/powershell-deep-dive/) a [`day-1/automation-strategy/`](day-1/automation-strategy/).
 
 | Modul | Rozsah | Kdy použít |
 |---|---|---|
@@ -133,7 +133,7 @@ V kurzu se Orchestry probírá jako **simulace/koncept** (bez živé licence) �
 | **SMAT** (SharePoint Migration Assessment Tool) | Microsoft, zdarma, CLI | pre-migrační scan on-prem farmy (assess & remediate) |
 | **ShareGate / AvePoint Fly / Quest Content Matrix** | 3rd-party, komerční | kupují fidelitu (verze/permissions), tenant-to-tenant a reporting; ShareGate má vlastní PS modul (`Copy-Content`, také jen Windows PowerShell) |
 
-Detail a rozhodovací osa: [`day-2/migration-patterns/explainer-migration-tools.md`](day-2/migration-patterns/explainer-migration-tools.md).
+Detail a rozhodovací osa: [`day-3/migration-patterns/explainer-migration-tools.md`](day-3/migration-patterns/explainer-migration-tools.md).
 
 ## Migrace — klíčové limity
 

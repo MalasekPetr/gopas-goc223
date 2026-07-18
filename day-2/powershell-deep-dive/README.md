@@ -1,6 +1,6 @@
 # PowerShell do hloubky
 
-> Typ: povinný · Den: 1 · Odhad: <min>
+> Typ: povinný · Den: 2 (otvírák) · Odhad: 45 min výklad + 90 min Lab 1
 
 ## Cíle
 - Moduly: PnP.PowerShell, Microsoft.Graph, SPO Management Shell — rozdíly a použití.

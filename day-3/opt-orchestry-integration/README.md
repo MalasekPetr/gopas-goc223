@@ -1,6 +1,10 @@
 # Orchestry integrace & vlastní skripty (simulace)
 
-> Typ: povinný · Den: 3 · Odhad: <min>
+> Typ: volitelný · Den: 3 (dle času, po provisioningu) · Odhad: 100 min
+
+> [!NOTE] Volitelný modul — nic povinného na něm nezávisí (leaf node). Governance koncepty
+> (attestace, sprawl) mají nativní protějšek v [`../lifecycle-compliance/`](../lifecycle-compliance/),
+> který běží nezávisle na tomto bloku.
 
 ## Cíle
 - Request center a životní cyklus šablon pracovních prostorů.
@@ -49,7 +53,7 @@ flowchart LR
   sensitivity/retention) — first je odolnější vůči lidské chybě "zapomněl jsem to nastavit".
 
 ## Lab
-Viz [`lab-orchestry-integration-design.md`](lab-orchestry-integration-design.md).
+Viz [`lab-opt-orchestry-integration-design.md`](lab-opt-orchestry-integration-design.md).
 
 ## Zdroje
 - [Orchestry — MS Teams & SharePoint Provisioning](https://www.orchestry.com/ms-teams-workspace-provisioning) (vendor dokumentace, ne Microsoft)

@@ -23,5 +23,5 @@
 
 - Dopředu: hardening app registrace je vstup do `performance-cost-capstone`
   blueprintu.
-- Zpět: navazuje na auth módy z [`../../day-1/powershell-deep-dive/`](../../day-1/powershell-deep-dive/) a app registration strategii z [`../../day-1/automation-strategy/`](../../day-1/automation-strategy/) — uzavírá
+- Zpět: navazuje na auth módy z [`../../day-2/powershell-deep-dive/`](../../day-2/powershell-deep-dive/) a app registration strategii z [`../../day-1/automation-strategy/`](../../day-1/automation-strategy/) — uzavírá
   least-privilege vlákno celého týdne.

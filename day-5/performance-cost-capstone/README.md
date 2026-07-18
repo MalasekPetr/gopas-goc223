@@ -25,11 +25,11 @@ requestů.
 Logovací náklady ([`../../day-4/siem-blob-integration/`](../../day-4/siem-blob-integration/)) rostou s objemem a granularitou — batching zápisů a DCR
 transformace před uložením (filtrování, ne log-everything-then-filter) drží náklady dolů.
 Asynchronní fan-out (jeden trigger → N paralelních dílčích úloh, např. per-web migrace v
-rámci jedné vlny z [`../../day-2/migration-patterns/`](../../day-2/migration-patterns/)) škáluje propustnost, ale musí respektovat throttling limity ([`../../day-2/graph-fundamentals/`](../../day-2/graph-fundamentals/))
+rámci jedné vlny z [`../../day-3/migration-patterns/`](../../day-3/migration-patterns/)) škáluje propustnost, ale musí respektovat throttling limity ([`../../day-2/graph-fundamentals/`](../../day-2/graph-fundamentals/))
 per cíl, ne jen agregátně.
 
 ### Capstone — konsolidace týdne
-Capstone spojuje: wave plán a throttle-aware exekuci ([`../../day-2/migration-patterns/`](../../day-2/migration-patterns/)),
+Capstone spojuje: wave plán a throttle-aware exekuci ([`../../day-3/migration-patterns/`](../../day-3/migration-patterns/)),
 provisioning artefakt ([`../../day-3/provisioning-patterns/`](../../day-3/provisioning-patterns/)),
 Azure integrační/SIEM blueprint ([`../../day-4/azure-integration-patterns/`](../../day-4/azure-integration-patterns/) + [`../../day-4/siem-blob-integration/`](../../day-4/siem-blob-integration/))
 a hardened app registraci ([`../security-hardening/`](../security-hardening/)) do jednoho

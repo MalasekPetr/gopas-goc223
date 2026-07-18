@@ -1,6 +1,6 @@
 # Skladba migrací
 
-> Typ: povinný · Den: 2 · Odhad: <min>
+> Typ: povinný · Den: 3 (otvírák) · Odhad: 45 min výklad + 105 min Lab 2
 
 ## Cíle
 - Předmigrační kontroly a plánování.

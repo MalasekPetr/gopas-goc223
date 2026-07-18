@@ -34,7 +34,7 @@ JSON varianta je přímý zápis wave plánu jako dat (soubor = vlna, verzovatel
 > SPMT modul vyžaduje **Windows PowerShell 5.0 + .NET Framework 4.6.2** — v PowerShell 7
 > neběží. Totéž platí pro ShareGate PS modul (PowerShell 3.0+, PS7 nepodporován). Migrace
 > je dnes hlavní důvod, proč mít na stroji vedle PS7 pořád i 5.1 — přesně scénář z
-> [`../../day-1/powershell-deep-dive/explainer-module-management.md`](../../day-1/powershell-deep-dive/explainer-module-management.md).
+> [`../../day-2/powershell-deep-dive/explainer-module-management.md`](../../day-2/powershell-deep-dive/explainer-module-management.md).
 
 ## 3rd-party liga (komerční)
 

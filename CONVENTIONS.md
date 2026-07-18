@@ -39,7 +39,7 @@ Pořadí modulů v běhu drží **`agenda.md`** — je to jediný zdroj pravdy o
   (z pohledu souboru uvnitř složky modulu):
 
   ```md
-  jiný den:        [`../../day-2/migration-patterns/`](../../day-2/migration-patterns/)
+  jiný den:        [`../../day-3/migration-patterns/`](../../day-3/migration-patterns/)
   sourozenec dne:  [`../security-hardening/`](../security-hardening/)
   ```
 

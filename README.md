@@ -32,7 +32,7 @@ goc223/
 
 - **Povinný** modul — součást každého běhu.
 - **Volitelný** modul (slug s prefixem `opt-`) — spouští se dle času / potřeb skupiny; nikdy na něm nesmí záviset povinný modul ani capstone.
-- Moduly se odkazují **slugem** (relativní odkaz na složku, např. [`day-2/migration-patterns/`](day-2/migration-patterns/)), nikdy pořadovým číslem — **jediný zdroj pravdy o pořadí je `agenda.md`**.
+- Moduly se odkazují **slugem** (relativní odkaz na složku, např. [`day-3/migration-patterns/`](day-3/migration-patterns/)), nikdy pořadovým číslem — **jediný zdroj pravdy o pořadí je `agenda.md`**.
 - Currency-markery v textu:
   - `> [!WARNING] Ověřit k datu běhu` — fast-moving fakt (ceny, preview, throttling limity, verze modulů).
   - `> [!IMPORTANT]` — lineage / přejmenování / API breaking change, na které studenty upozornit.

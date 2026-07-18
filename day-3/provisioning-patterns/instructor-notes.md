@@ -23,6 +23,6 @@
 
 ## Vazby
 
-- Dopředu: navazuje `orchestry-integration` jako alternativní/doplňkový přístup ke
+- Dopředu: navazuje `opt-orchestry-integration` jako alternativní/doplňkový přístup ke
   stejnému problému (žádanky, metadata, governance).
 - Zpět: baseline/diff koncept z [`../../day-2/staging-environments/`](../../day-2/staging-environments/) se zde používá jako zdroj šablony i jako ověření výsledku.

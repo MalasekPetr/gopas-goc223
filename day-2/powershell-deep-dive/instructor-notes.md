@@ -8,7 +8,7 @@
 
 ## Go/no-go — KLÍČOVÉ, otestovat před během
 
-- Ověřit, že app registrace z [`../automation-strategy/`](../automation-strategy/) má `-ClientId` funkční pro PnP interaktivní přihlášení —
+- Ověřit, že app registrace z [`../../day-1/automation-strategy/`](../../day-1/automation-strategy/) má `-ClientId` funkční pro PnP interaktivní přihlášení —
   od 9. 9. 2024 PnP.PowerShell vyžaduje vlastní ClientId, sdílené výchozí už nefunguje.
 - **Projít celý flow labu na testovacím účtu den předem**: `New-SelfSignedCertificate` na
   učebním stroji (práva k CurrentUser store jsou standard, ale ověřit image učebny), upload
@@ -16,7 +16,7 @@
   **`New-PnPSite` v app-only režimu** — tenant policy umí app-only vytváření webů blokovat;
   pokud blokuje, aktivovat Fallback variantu (delegated vytvoření) rovnou ve výkladu.
 - Admin consent pro `Sites.FullControl.All` si studenti dávají sami (GA) — připomenout
-  pravidla z [`../onboarding/ways-of-working.md`](../onboarding/ways-of-working.md), je to druhá tenant-wide akce dne.
+  pravidla z [`../../day-1/onboarding/ways-of-working.md`](../../day-1/onboarding/ways-of-working.md), je to druhá tenant-wide akce dne.
 - Pokud v učebně není druhé zařízení pro device code test, mít připravený telefon/tablet
   jako záložní "druhé zařízení" pro demo.
 
@@ -34,8 +34,8 @@
 
 - Dopředu: weby `-dev/-test/-prod` z tohoto labu jsou přímý vstup do
   [`../../day-2/staging-environments/`](../../day-2/staging-environments/) (diff/baseline) a
-  [`../../day-2/migration-patterns/`](../../day-2/migration-patterns/) (migrační cíle);
+  [`../../day-3/migration-patterns/`](../../day-3/migration-patterns/) (migrační cíle);
   `Connect-CourseTarget` wrapper se znovupoužívá po celý zbytek kurzu; certifikátová identita
   je základ pro plánovaný sync task v [`../../day-4/azure-integration-patterns/`](../../day-4/azure-integration-patterns/)
   a pro rotační cvičení v [`../../day-5/security-hardening/`](../../day-5/security-hardening/).
-- Zpět: navazuje na app registraci a auth strategii z [`../automation-strategy/`](../automation-strategy/).
+- Zpět: navazuje na app registraci a auth strategii z [`../../day-1/automation-strategy/`](../../day-1/automation-strategy/).

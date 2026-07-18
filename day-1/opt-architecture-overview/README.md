@@ -9,7 +9,7 @@
   v obrázku sedí autentizace.
 
 > [!NOTE] Volitelný modul — nic povinného na něm nezávisí. Povinné moduly
-> ([`../automation-strategy/`](../automation-strategy/), [`../powershell-deep-dive/`](../powershell-deep-dive/))
+> ([`../automation-strategy/`](../automation-strategy/), [`../../day-2/powershell-deep-dive/`](../../day-2/powershell-deep-dive/))
 > jsou samonosné; tento blok je prohloubení pro skupiny, kde architektonický základ chybí
 > nebo je nesourodý.
 
@@ -41,7 +41,7 @@ s M365 tenant a identitu, ale má **oddělený billing** (subscription) a odděl
 Každé volání — Graph i SPO REST — nese Entra token. App registrace (identita aplikace),
 permissions (co token smí) a auth flow (jak se token získá) jsou společné pro všechny cesty;
 liší se jen resource, na který token zní. Detajlně v
-[`../powershell-deep-dive/`](../powershell-deep-dive/).
+[`../../day-2/powershell-deep-dive/`](../../day-2/powershell-deep-dive/).
 
 ```mermaid
 flowchart TD

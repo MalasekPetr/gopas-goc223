@@ -7,7 +7,7 @@ instalaci, aktualizace a hlavně autentizaci.
 ## DEV stanice — reprodukovatelnost přes konfiguraci
 
 - Jednotný základ: VS Code + PowerShell 7 + extension pack, verze modulů dle
-  [`../powershell-deep-dive/explainer-module-management.md`](../powershell-deep-dive/explainer-module-management.md).
+  [`../../day-2/powershell-deep-dive/explainer-module-management.md`](../../day-2/powershell-deep-dive/explainer-module-management.md).
 - **Devcontainer** (`.devcontainer/devcontainer.json` v repu) definuje celé prostředí jako
   kód — nový člen týmu (nebo nová učebna) dostane identické prostředí za minuty místo
   půldne ručního ladění "u mě to funguje".

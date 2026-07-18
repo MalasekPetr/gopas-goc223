@@ -42,6 +42,6 @@
 - Dopředu: JSON plán + exekuce je přímý vstup do capstone ([`../../day-5/performance-cost-capstone/`](../../day-5/performance-cost-capstone/),
   end-to-end blueprint); knihovny s metadaty z tohoto labu jsou zdroj/cíl pro plánovaný
   sync task v [`../../day-4/azure-integration-patterns/`](../../day-4/azure-integration-patterns/).
-- Zpět: navazuje na throttle/retry klasifikaci z [`../graph-fundamentals/`](../graph-fundamentals/), baseline/diff z
-  [`../staging-environments/`](../staging-environments/) (předmigrační kontrola) a weby + cert identitu z
-  [`../../day-1/powershell-deep-dive/`](../../day-1/powershell-deep-dive/).
+- Zpět: navazuje na throttle/retry klasifikaci z [`../../day-2/graph-fundamentals/`](../../day-2/graph-fundamentals/), baseline/diff z
+  [`../../day-2/staging-environments/`](../../day-2/staging-environments/) (předmigrační kontrola) a weby + cert identitu z
+  [`../../day-2/powershell-deep-dive/`](../../day-2/powershell-deep-dive/).

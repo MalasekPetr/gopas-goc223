@@ -2,8 +2,11 @@
 
 ## Timing
 
-- 30 min výklad + 90 min lab — poslední blok kurzu, počítat s prezentací/diskuzí navíc,
-  časový rozpočet je záměrně nejvolnější z celého týdne.
+- 30 min výklad + 60-120 min lab — poslední blok kurzu, **záměrně elastický**: studenti
+  občas odcházejí o 1-2 h dřív. Kompresní plán při zkrácení: prezentace → pair-share ve
+  dvojicích (5 min), konsolidace → jednostránkový blueprint místo plného dokumentu;
+  **jádro se nekrátí nikdy** — propojení artefaktů týdne + rollback plán. Při plném čase
+  navíc předávací runbook a individuální prezentace.
 
 ## Go/no-go — KLÍČOVÉ, otestovat před během
 

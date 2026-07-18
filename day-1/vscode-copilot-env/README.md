@@ -18,7 +18,7 @@
 VS Code s **PowerShell extension** je Microsoftem doporučené prostředí pro vývoj PowerShell
 skriptů — a jediné podporované pro PowerShell 7. **Windows PowerShell ISE** stále existuje,
 ale není aktivně vyvíjené a **umí jen Windows PowerShell 5.1** — pro tento kurz (PS7-first,
-viz [`../powershell-deep-dive/explainer-module-management.md`](../powershell-deep-dive/explainer-module-management.md))
+viz [`../../day-2/powershell-deep-dive/explainer-module-management.md`](../../day-2/powershell-deep-dive/explainer-module-management.md))
 je tedy mimo hru. Extension dává vše, co ISE, a navíc: IntelliSense nad cmdlety, integrovaný
 debugger (breakpointy, `launch.json`), PSScriptAnalyzer linting přímo v editoru, spouštění
 výběru F8 a integrovanou PowerShell konzoli. Pro adminy zvyklé na ISE existuje **ISE Mode**

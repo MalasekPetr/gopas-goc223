@@ -10,7 +10,7 @@ JSON) a vypíše strukturovaný report driftu (přidáno/chybí/změněno).
 ## Předpoklady
 
 - Přístup do per-student DEV/TEST/PROD sandbox webů (viz `environment.md`).
-- `Get-AllGraphResults`/connect wrapper z [`../graph-fundamentals/`](../graph-fundamentals/) a [`../../day-1/powershell-deep-dive/`](../../day-1/powershell-deep-dive/).
+- `Get-AllGraphResults`/connect wrapper z [`../graph-fundamentals/`](../graph-fundamentals/) a [`../../day-2/powershell-deep-dive/`](../../day-2/powershell-deep-dive/).
 
 ## Kroky
 

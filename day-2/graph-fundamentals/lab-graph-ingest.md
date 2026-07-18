@@ -9,7 +9,7 @@ Student má PowerShell/Graph skript, který korektně stránkuje výsledky, resp
 
 ## Předpoklady
 
-- `Connect-CourseTarget` wrapper z [`../../day-1/powershell-deep-dive/`](../../day-1/powershell-deep-dive/), app registrace s `Sites.Read.All` (Graph, delegated).
+- `Connect-CourseTarget` wrapper z [`../../day-2/powershell-deep-dive/`](../../day-2/powershell-deep-dive/), app registrace s `Sites.Read.All` (Graph, delegated).
 - Kurzový tenant obsahuje dostatek uživatelů/webů, aby dotaz reálně vyžadoval stránkování.
 
 ## Kroky
@@ -19,7 +19,7 @@ Student má PowerShell/Graph skript, který korektně stránkuje výsledky, resp
 2. Přidat klasifikaci chyb: 429 → počkat `Retry-After`, pak retry; 5xx → exponenciální
    backoff (max. N pokusů); jiné 4xx → vyhodit chybu okamžitě, bez retry.
 3. Uměle vyvolat throttling (vysoký počet rychlých requestů) a ověřit, že skript korektně čeká.
-4. Zalogovat každý pokus strukturovaně (viz logging scaffolding z [`../../day-1/powershell-deep-dive/`](../../day-1/powershell-deep-dive/)) včetně `client-request-id`.
+4. Zalogovat každý pokus strukturovaně (viz logging scaffolding z [`../../day-2/powershell-deep-dive/`](../../day-2/powershell-deep-dive/)) včetně `client-request-id`.
 
 ## Ověření
 

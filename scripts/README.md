@@ -23,8 +23,8 @@ z instruktorského kanálu — nikdy není součástí repa.
 | Fáze | Skript | API | Váže se k |
 |---|---|---|---|
 | 1. Účty studentů (vytvoření/reaktivace, E5 licence, role GA) | `New-CourseStudents.ps1` `[PLÁNOVANÉ]` | Graph | `day-1/onboarding` |
-| 2. Studentské weby — **jen fallback** (studenti si `-dev/-test/-prod` weby vytváří sami v D1 labu) + seedování úmyslného driftu a demo obsahu do nich | `New-CourseStudentSites.ps1` `[PLÁNOVANÉ]` | PnP | `day-1/powershell-deep-dive`, `day-2/staging-environments` |
-| 3. Demo migrační zdrojová data (velké listy, verze, metadata) | `New-MigrationSeedData.ps1` `[PLÁNOVANÉ]` | PnP | `day-2/migration-patterns` |
+| 2. Studentské weby — **jen fallback** (studenti si `-dev/-test/-prod` weby vytváří sami v D1 labu) + seedování úmyslného driftu a demo obsahu do nich | `New-CourseStudentSites.ps1` `[PLÁNOVANÉ]` | PnP | `day-2/powershell-deep-dive`, `day-2/staging-environments` |
+| 3. Demo migrační zdrojová data (velké listy, verze, metadata) | `New-MigrationSeedData.ps1` `[PLÁNOVANÉ]` | PnP | `day-3/migration-patterns` |
 | 4. Azure prostředky per student (Storage/Blob, Function App, Event Grid) | `New-CourseStudentAzureResources.ps1` `[PLÁNOVANÉ]` | Az/ARM | `day-4/siem-blob-integration` |
 | 5. Offboarding — smazání obsahu a artefaktů studentů (weby, app registrace, Tenant Wide Extensions záznamy) | `Remove-CourseStudentData.ps1` `[PLÁNOVANÉ]` | Graph + PnP | — |
 | 6. Offboarding — Azure resource group cleanup | `Remove-CourseStudentAzureResources.ps1` `[PLÁNOVANÉ]` | Az/ARM | — |
@@ -52,5 +52,5 @@ cert-based auth).
 
 ## Demo data
 
-`migration-seed/*` (vzniká s `day-2/migration-patterns`) — **výhradně fiktivní data** pro
+`migration-seed/*` (vzniká s `day-3/migration-patterns`) — **výhradně fiktivní data** pro
 migrační a provisioning scénáře. Nikdy sem nenahrávejte reálná zákaznická/personální data.

@@ -6,7 +6,7 @@
 
 ## Go/no-go — KLÍČOVÉ, otestovat před během
 
-- DEV/TEST/PROD weby si studenti vytvořili sami v D1 labu ([`../../day-1/powershell-deep-dive/lab-cert-auth-sites.md`](../../day-1/powershell-deep-dive/lab-cert-auth-sites.md));
+- DEV/TEST/PROD weby si studenti vytvořili sami v D1 labu ([`../../day-2/powershell-deep-dive/lab-cert-auth-sites.md`](../../day-2/powershell-deep-dive/lab-cert-auth-sites.md));
   ráno před blokem zkontrolovat, že je mají všichni (kdo ne — doprovisionovat
   `New-CourseStudentSites.ps1` fallbackem) a že seedovací skript do nich vložil úmyslný
   drift (naplánovaný rozdíl pro cvičení) — ve všech studentských webech, ne jen v jednom

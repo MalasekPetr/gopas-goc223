@@ -2,10 +2,9 @@
 
 ## Timing
 
-- 40 min výklad + 90 min lab (batch sync, třetí velký lab kurzu) + 60 min lab (change
-  notifications). Dva laby = celodenní hands-on těžiště; pokud čas nevyjde, change
-  notifications lab zkrátit na validation handshake + zpracování jedné notifikace
-  (renewal skeleton jako domácí úkol), batch sync nekrátit.
+- 40 min výklad + 90 min lab (batch sync, třetí velký lab kurzu) + ~30 min instruktorské
+  demo change notifications (validation handshake + jedna notifikace; plný lab vč. renewal
+  skeletonu je samostudium). Batch sync nikdy nekrátit — je to povinné jádro dne.
 
 ## Go/no-go — KLÍČOVÉ, otestovat před během
 

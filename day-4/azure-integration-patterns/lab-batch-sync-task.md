@@ -11,8 +11,8 @@ Třetí velký lab kurzu. Student napíše **idempotentní sync skript**: čte z
 
 ## Předpoklady
 
-- Certifikátová app-only identita z [`../../day-1/powershell-deep-dive/lab-cert-auth-sites.md`](../../day-1/powershell-deep-dive/lab-cert-auth-sites.md).
-- Knihovna/seznam s metadatovými sloupci z [`../../day-2/migration-patterns/lab-fileshare-migration.md`](../../day-2/migration-patterns/lab-fileshare-migration.md)
+- Certifikátová app-only identita z [`../../day-2/powershell-deep-dive/lab-cert-auth-sites.md`](../../day-2/powershell-deep-dive/lab-cert-auth-sites.md).
+- Knihovna/seznam s metadatovými sloupci z [`../../day-3/migration-patterns/lab-fileshare-migration.md`](../../day-3/migration-patterns/lab-fileshare-migration.md)
   (nebo instruktorem seedovaný seznam).
 - Zdrojový dataset (CSV/JSON, fiktivní — např. evidence zařízení/zaměstnanců) od instruktora,
   ve dvou verzích: `v1` (initial) a `v2` (změny: nové řádky, upravené hodnoty, smazané řádky).
