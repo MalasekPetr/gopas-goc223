@@ -23,6 +23,12 @@
   [`../onboarding/ways-of-working.md`](../onboarding/ways-of-working.md).
 - Pojmenování app registrace vymáhat dle naming konvence — 25 aplikací pojmenovaných
   "test" v jednom tenantu je nedohledatelných.
+- App registration vs Enterprise Application: studenti oba pohledy uvidí ve vlastním (=
+  domovském) tenantu, kde vznikají oba objekty najednou — rozdíl "vynikne" až u
+  multi-tenant scénáře. Mít připravený druhý tenant (nebo screenshoty) pro demo, jak
+  admin consent v cizím tenantu vytvoří jen Enterprise Application bez app registrace.
+- Nezabřednout do consent governance detailů (user consent settings, admin consent
+  workflow) — pro kurz stačí practices z explaineru; hloubka je téma pro SC-300.
 
 ## Vazby
 

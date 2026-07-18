@@ -25,12 +25,20 @@ pro zbytek týdne, umí zdůvodnit každé přiřazené permission a rozumí roz
    přiřazeného permission — proč je potřeba, proč ne širší varianta.
 5. Provést admin consent (pokud je vyžadován) a ověřit přihlášení skrz `Connect-*` cmdlet
    libovolného ze tří modulů z [`../powershell-deep-dive/`](../powershell-deep-dive/).
+6. Najít tutéž aplikaci v **obou** portálových pohledech — App registrations (šablona,
+   credentials, požadované permissions) i Enterprise applications (service principal,
+   udělený consent) — a pojmenovat, co je v každém z nich jiného (viz
+   [`explainer-app-registrations-enterprise-apps.md`](explainer-app-registrations-enterprise-apps.md)).
+   Zkontrolovat, že `signInAudience` je `AzureADMyOrg` (single-tenant).
 
 ## Ověření
 
 - [ ] App registrace existuje a má přiřazený přesně jeden delegated permission (`Sites.Read.All`).
 - [ ] Student umí vysvětlit rozdíl mezi tímto permission a jeho "write" ekvivalentem.
 - [ ] Přihlášení přes ClientId této aplikace proběhne úspěšně.
+- [ ] Student umí ukázat aplikaci v App registrations i Enterprise applications a říct,
+      který objekt drží credentials a který udělený consent.
+- [ ] `signInAudience` = `AzureADMyOrg`.
 
 ## Fallback
 

@@ -32,6 +32,14 @@ jako služba) a interaktivní vs headless. Microsoft doporučuje delegated tam, 
 aplikační oprávnění (application permissions) se udělují na úrovni celého tenantu a
 rozšiřují útočnou plochu víc než permission vázaná na konkrétního uživatele.
 
+Aplikace má přitom v Entra ID **dvě tváře**: **app registraci** (globální šablona s
+credentials a požadovanými permissions, žije v domovském tenantu) a **Enterprise
+Application** (service principal — lokální instance s uděleným consentem, v každém tenantu,
+kde aplikace působí). S tím souvisí volba **single-tenant vs multi-tenant**
+(`signInAudience`) — single-tenant je doporučený default, multi-tenant patří jen k reálným
+multi-tenant scénářům a nese consent-governance povinnosti. Detail vč. doporučených practices:
+[`explainer-app-registrations-enterprise-apps.md`](explainer-app-registrations-enterprise-apps.md).
+
 ### Bezpečnostní postoj a least privilege
 Žádat jen oprávnění nezbytná pro danou akci, pravidelně auditovat přiřazená oprávnění proti
 skutečně použitým a odebírat nadbytečná (např. `User.ReadWrite.All`, když stačí `User.Read.All`).
@@ -50,6 +58,11 @@ flowchart TD
 ```
 
 ## Klíčové rozlišení
+- **App registrace (šablona, domovský tenant, credentials) vs Enterprise Application
+  (service principal, per-tenant instance, udělený consent)** — dvě položky v portálu pro
+  jednu aplikaci; viz [`explainer-app-registrations-enterprise-apps.md`](explainer-app-registrations-enterprise-apps.md).
+- **Single-tenant (doporučený default) vs multi-tenant (`signInAudience`)** — multi-tenant
+  jen s reálným důvodem a consent governance.
 - **Delegated vs application permissions** — delegated je vázané na přihlášeného uživatele a jeho
   oprávnění, application permission platí tenant-wide bez ohledu na to, kdo skript spustí.
 - **PnP.PowerShell vs SPO Management Shell překryv** — viz `GLOSSARY.md`; preferovat PnP pro

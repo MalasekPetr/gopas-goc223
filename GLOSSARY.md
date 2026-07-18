@@ -47,6 +47,16 @@ Kurz jde do hloubky u trojice PnP/Graph/SPO (fokus = SharePoint Online). Zbytek 
 
 Alternativa k PowerShellu pro vývojářské týmy: **Graph JS SDK** (`@microsoft/microsoft-graph-client` + `@microsoft/microsoft-graph-types`) s `@azure/identity` credentials (stejná auth matice jako PowerShell — device code / certificate / managed identity) a **PnPjs** (`@pnp/sp`) pro SPO-native volání. Detail: [`day-1/automation-strategy/explainer-typescript-graph.md`](day-1/automation-strategy/explainer-typescript-graph.md).
 
+## App registrace vs Enterprise Application
+
+- **App registrace** (application object) = globální šablona aplikace — credentials,
+  požadované permissions, `signInAudience`; žije jen v domovském tenantu.
+- **Enterprise Application** (service principal) = lokální instance v každém tenantu, kde
+  aplikace působí — udělený consent, assignment, sign-in logy.
+- **Single-tenant** (`AzureADMyOrg`) je doporučený default; **multi-tenant**
+  (`AzureADMultipleOrgs`) jen s reálným scénářem a consent governance.
+- Detail a practices: [`day-1/automation-strategy/explainer-app-registrations-enterprise-apps.md`](day-1/automation-strategy/explainer-app-registrations-enterprise-apps.md).
+
 ## Autentizační strategie (app registration)
 
 | Režim | Kdy | Poznámka |
