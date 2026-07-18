@@ -53,7 +53,9 @@ flowchart TD
   napříč více resourcy s nezávislým životním cyklem.
 
 ## Lab
-Viz [`lab-connect-wrapper.md`](lab-connect-wrapper.md).
+Viz [`lab-cert-auth-sites.md`](lab-cert-auth-sites.md) — první velký lab kurzu: certifikát,
+bezpečné uložení, app-only přihlášení, skriptované vytvoření pracovních webů a unified
+connect wrapper.
 
 ## Zdroje (Microsoft)
 - [PnP PowerShell — Connect-PnPOnline](https://pnp.github.io/powershell/cmdlets/Connect-PnPOnline.html)

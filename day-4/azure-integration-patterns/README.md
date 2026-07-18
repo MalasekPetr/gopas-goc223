@@ -65,8 +65,14 @@ flowchart TD
 - **Delta query (pull, [`../../day-2/graph-fundamentals/`](../../day-2/graph-fundamentals/)) vs change notifications (push, zde)** — push vyžaduje správu
   subscription lifecycle, pull ne.
 
-## Lab
-Viz [`lab-change-notifications-function.md`](lab-change-notifications-function.md).
+## Laby
+Dva laby — pull i push strana integrace:
+
+- [`lab-batch-sync-task.md`](lab-batch-sync-task.md) — třetí velký lab kurzu: idempotentní
+  dávkový CRUD sync seznamu pod aplikační identitou, registrovaný jako plánovaný task
+  (scheduled/pull model).
+- [`lab-change-notifications-function.md`](lab-change-notifications-function.md) — Function
+  jako endpoint pro Graph change notifications (event-driven/push model).
 
 ## Zdroje (Microsoft)
 - [Integration and automation platform options in Azure](https://learn.microsoft.com/en-us/azure/azure-functions/functions-compare-logic-apps-ms-flow-webjobs)

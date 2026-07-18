@@ -2,33 +2,46 @@
 
 ## Timing
 
-- 45 min výklad + 75 min lab (nejdelší lab dne — wave plánování vyžaduje diskuzi, ne jen kód).
+- 45 min výklad + 105 min lab (druhý velký lab kurzu, nejdelší blok dne — plán v JSON
+  vyžaduje diskuzi, exekuce má reálné čekací časy).
 
 ## Go/no-go — KLÍČOVÉ, otestovat před během
 
-- Ověřit, že `New-MigrationSeedData.ps1` naplnil fiktivní weby s dostatečně rozmanitou
-  velikostí/rizikem, aby wave plánování mělo reálný smysl (ne 15 identických webů).
+- **Nainstalovat desktop SPMT na učební stroje předem** (PS modul se instaluje s klientem,
+  není v PowerShell Gallery) a ověřit dostupnost Windows PowerShell 5.1 vedle PS7.
+- **Připravit zdrojový fileshare** na učebních strojích (`C:\MigrationSource\...`) —
+  fiktivní struktura oddělení/typů dokumentů, dost souborů, aby report počtů dával smysl
+  (řádově stovky, ne 5). Distribuovat přes image učebny nebo kopírovací skript.
+- Projít celý flow (JSON → knihovny → SPMT pilot → metadata → report) den předem na
+  testovacím účtu — SPMT verze se mění a instalace umí přepsat PS modul.
+- Ověřit, že studenti mají weby `-dev/-test/-prod` z D1 labu — kdo nedokončil, potřebuje
+  je doprovisionovat před blokem (viz [`../../scripts/`](../../scripts/)).
 - Připravit alespoň jeden web s dostatkem položek, aby demonstrace list view threshold
   (5000) byla reálně viditelná.
-- Pro volitelný SPMT krok: **nainstalovat desktop SPMT na učební stroje předem** (PS modul
-  se instaluje s klientem, není v PowerShell Gallery) a ověřit, že Windows PowerShell 5.1
-  je na strojích dostupný vedle PS7. Připravit malý lokální file share (pár složek/souborů)
-  jako zdroj.
 
 ## Tripwires
 
-- Studenti řadí weby "podle abecedy" nebo "podle toho, co je hotové první" — explicitně
-  vyžadovat zdůvodnění pořadí vln vázané na riziko/velikost/závislosti.
-- Nezaměňovat list view threshold (limit na dotaz) s limitem velikosti listu (list může mít
-  miliony položek) — časté nepochopení, které vede ke špatným doporučením pro zákazníky.
-- Připomenout retention/eDiscovery hold jako důvod, proč se verze nemusí ořezat bez ohledu na
-  nastavený limit — týmy na toto často zapomínají při odhadu objemu migrace.
-- SPMT krok spouštět z Windows PowerShell 5.x — studenti ho reflexivně pustí v PS7 a modul
-  se nenačte; mít na slidu vedle příkazů. U 3rd-party nástrojů (ShareGate a spol.) neuvádět
-  konkrétní rychlosti/ceny z paměti — marketingová čísla, viz currency marker v explaineru.
+- **Přepínání shellů je záměrná lekce, ale i past**: SPMT kroky = Windows PowerShell 5.x,
+  PnP kroky (knihovny, metadata) = PS7. Studenti reflexivně jedou vše v jednom okně —
+  mít na slidu, které kroky patří do kterého shellu, a nechat obě okna otevřená vedle sebe.
+- Trvat na tom, že plán je JEDINÝ zdroj parametrů — jakmile se v kroku 6 objeví úprava
+  kódu místo změny parametru, návrh plánu byl špatně (tvrdá kontrola v ověření).
+- Studenti řadí vlny "podle abecedy" — vyžadovat zdůvodnění vázané na riziko/velikost/závislosti.
+- Metadata dávkově (`New-PnPBatch`), ne per-item smyčkou — při stovkách položek je rozdíl
+  viditelný na čase; nechat schválně jednoho studenta změřit obojí, pokud čas dovolí.
+- Nezaměňovat list view threshold (limit na dotaz) s limitem velikosti listu — časté
+  nepochopení vedoucí ke špatným doporučením pro zákazníky.
+- Připomenout retention/eDiscovery hold jako důvod, proč se verze nemusí ořezat bez ohledu
+  na nastavený limit — u fileshare zdroje nerelevantní (nemá verze), ale při SP→SP migraci
+  je to hlavní položka odhadu objemu.
+- U 3rd-party nástrojů (ShareGate a spol.) neuvádět konkrétní rychlosti/ceny z paměti —
+  marketingová čísla, viz currency marker v [`explainer-migration-tools.md`](explainer-migration-tools.md).
 
 ## Vazby
 
-- Dopředu: wave planning je přímý vstup do capstone ([`../../day-5/performance-cost-capstone/`](../../day-5/performance-cost-capstone/), end-to-end blueprint migrace).
-- Zpět: navazuje na throttle/retry klasifikaci z [`../graph-fundamentals/`](../graph-fundamentals/) a baseline/diff koncept z [`../staging-environments/`](../staging-environments/)
-  (předmigrační kontrola = diff zdroje proti očekávanému stavu).
+- Dopředu: JSON plán + exekuce je přímý vstup do capstone ([`../../day-5/performance-cost-capstone/`](../../day-5/performance-cost-capstone/),
+  end-to-end blueprint); knihovny s metadaty z tohoto labu jsou zdroj/cíl pro plánovaný
+  sync task v [`../../day-4/azure-integration-patterns/`](../../day-4/azure-integration-patterns/).
+- Zpět: navazuje na throttle/retry klasifikaci z [`../graph-fundamentals/`](../graph-fundamentals/), baseline/diff z
+  [`../staging-environments/`](../staging-environments/) (předmigrační kontrola) a weby + cert identitu z
+  [`../../day-1/powershell-deep-dive/`](../../day-1/powershell-deep-dive/).

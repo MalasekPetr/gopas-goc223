@@ -56,7 +56,9 @@ flowchart LR
   je snadné ho v odhadu opomenout.
 
 ## Lab
-Viz [`lab-wave-plan.md`](lab-wave-plan.md).
+Viz [`lab-fileshare-migration.md`](lab-fileshare-migration.md) — druhý velký lab kurzu:
+migrace z on-prem fileshare do SPO knihoven řízená JSON plánem (vlny, cíle, mapování
+metadat), exekuce přes SPMT PS modul, doplnění metadat PnP skriptem.
 
 ## Zdroje (Microsoft)
 - [Migration planning for SharePoint and OneDrive rollout](https://learn.microsoft.com/en-us/sharepoint/plan-rollout-migration)
