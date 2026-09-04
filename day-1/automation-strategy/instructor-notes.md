@@ -22,7 +22,14 @@
   je reálně tenant-wide akce — vztáhnout k pravidlům z
   [`../onboarding/ways-of-working.md`](../onboarding/ways-of-working.md).
 - Pojmenování app registrace vymáhat dle naming konvence — 25 aplikací pojmenovaných
-  "test" v jednom tenantu je nedohledatelných.
+  "test" v jednom tenantu je nedohledatelných. Od druhého kusu číslovat dvouciferně
+  (`-02`) dle [`../onboarding/ways-of-working.md`](../onboarding/ways-of-working.md).
+- **Public client jsou dvě samostatná nastavení, ne jedno** (krok 2 labu): platforma
+  *Mobile and desktop applications* + `http://localhost` řeší `-Interactive`, přepínač
+  *Allow public client flows* řeší device code (nemá redirect URI). Kdo nastaví jen jedno,
+  narazí v D2 na `AADSTS7000218` — a hledá chybu ve skriptu, ne v registraci.
+- Studenti si pletou `-ClientId` (aplikace) s `-TenantId` (tenant) — obojí je na stránce
+  Overview app registrace; zdůraznit hned, ušetří to čas v D2.
 - App registration vs Enterprise Application: studenti oba pohledy uvidí ve vlastním (=
   domovském) tenantu, kde vznikají oba objekty najednou — rozdíl "vynikne" až u
   multi-tenant scénáře. Mít připravený druhý tenant (nebo screenshoty) pro demo, jak

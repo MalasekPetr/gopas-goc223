@@ -2,9 +2,11 @@
 
 ## Timing
 
-- 45 min výklad + 90 min lab (první velký lab kurzu — závěr dne 1, počítat s rezervou;
+- 45 min výklad + 90 min lab (první velký lab kurzu — otvírák dne 2, počítat s rezervou;
   instalace tří modulů může zabrat 10-15 minut na pomalejší síti, pustit na pozadí hned
   na začátku bloku).
+- Volitelný mini-lab [`lab-write-identities.md`](lab-write-identities.md) (+25 min) spouštět
+  **jen při reálné rezervě**; jinak zadat jako samostudium. Nic na něm nezávisí.
 
 ## Go/no-go — KLÍČOVÉ, otestovat před během
 
@@ -29,6 +31,17 @@
   parametrizace; UI-cesta neprojde ověřením.
 - SPO modul v PowerShell 7 potřebuje `-UseWindowsPowerShell` při importu na některých verzích —
   mít na slidu jako rychlou opravu, pokud `Import-Module` selže.
+- **Certifikát musí být RSA.** ECC klíč (`-KeyAlgorithm ECDSA_nistP256`) projde generováním
+  i uploadem, ale `Connect-PnPOnline` skončí „The provided certificate is not of type RSA".
+  Kdo si příkaz upraví po svém, spadne — a chyba nezní jako problém certifikátu.
+- **`$t.Payload.aud` tiše vrátí prázdno** (objekt z `-Decoded` vlastnost `Payload` nemá) —
+  studenti pak hlásí „token je prázdný". Používat `.Audiences` / `.Claims` nebo ruční
+  dekódování; tichý prázdný výstup je vděčný učební moment.
+- **Po každé změně consentu je nutné nové připojení** — token v paměti roli nedostane
+  zpětně. Typický scénář: „permission tam přece je" a přitom 401. Plus 1–2 min propagace.
+- Delegated vs Application permission u app-only: přidané jako *Delegated* se v app-only
+  režimu **ignoruje** — 401 s prázdnou odpovědí. Tabulka symptomů:
+  [`troubleshooting-auth.md`](troubleshooting-auth.md).
 
 ## Vazby
 

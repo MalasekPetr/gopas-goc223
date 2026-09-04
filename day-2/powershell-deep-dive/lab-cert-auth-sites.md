@@ -32,6 +32,23 @@ zbytek týdne.
    Export-Certificate -Cert $cert -FilePath .\course-app.cer   # JEN verejna cast
    ```
 
+   **Kde certifikát leží — úložiště certifikátů.** Windows má úložiště dvojí:
+   **uživatele** (`certmgr.msc`, PowerShellem `Cert:\CurrentUser\...`) a **počítače**
+   (`certlm.msc`, `Cert:\LocalMachine\...`, vyžaduje admina — sem patří certy pro
+   scheduled tasky). Právě vygenerovaný cert leží v uživatelském úložišti ve složce
+   *Osobní* — pozor, PowerShell jí říká `My`. Úložiště je v PowerShellu obyčejný „disk":
+
+   ```powershell
+   Get-ChildItem Cert:\CurrentUser\My |
+     Where-Object Subject -like "*course-app*" |
+     Select-Object Subject, Thumbprint, NotAfter, HasPrivateKey
+   ```
+
+   Ověřit obě cesty: v `certmgr.msc` dvojklikem na cert („Máte privátní klíč, který
+   odpovídá tomuto certifikátu") a zkusit pravý klik → *Všechny úkoly → Exportovat* —
+   volba „exportovat privátní klíč" je zašedlá. To je `NonExportable` v akci; souvislosti
+   a formáty souborů: [`explainer-certificates-keys.md`](explainer-certificates-keys.md).
+
 3. **Nahrát veřejnou část** (`.cer`) na app registraci (Certificates & secrets →
    Certificates → Upload). Soubor `.cer` je jediné, co stroj opouští — žádný `.pfx`,
    žádný private key, nic do repa (ověř `.gitignore`).
@@ -42,6 +59,26 @@ zbytek týdne.
      -ClientId $clientId -Tenant "<tenant>.onmicrosoft.com" `
      -Thumbprint $cert.Thumbprint
    ```
+
+   **Hned po připojení ověřit, že jsem připojený a kdo jsem** (návyk na celý kurz):
+
+   ```powershell
+   # 1. Detaily pripojeni
+   Get-PnPConnection | Select-Object Url, ConnectionType, ClientId, Tenant
+
+   # 2. Analyza tokenu - app-only ma roles, nema upn
+   $t = Get-PnPAccessToken -ResourceTypeName SharePoint -Decoded
+   $t.Audiences
+   $t.Claims | Where-Object Type -in 'roles','upn','app_displayname' |
+     Select-Object Type, Value
+
+   # 3. Realne volani - teprve tohle je dukaz
+   Get-PnPTenantSite | Select-Object -First 3
+   ```
+
+   Když cokoli selže (`Unauthorized`, `AADSTS…`, „not of type RSA"), postupovat podle
+   [`troubleshooting-auth.md`](troubleshooting-auth.md) — pokrývá i past Delegated vs
+   Application permission.
 
 5. **Skriptem vytvořit tři pracovní weby** dle naming konvence — parametrizovaně, ne
    copy-paste třikrát:
@@ -66,6 +103,8 @@ zbytek týdne.
       složce ani repu není žádný `.pfx`/private key.
 - [ ] App registrace má nahranou veřejnou část certifikátu a přihlášení kroku 4 proběhne
       **bez jakéhokoli interaktivního promptu**.
+- [ ] Student ověřil připojení všemi třemi úrovněmi (connection → token → reálné volání)
+      a umí v tokenu ukázat `roles` a vysvětlit, proč chybí `upn`.
 - [ ] Existují weby `-dev`, `-test`, `-prod` dle naming konvence, vytvořené skriptem
       (ne ručně v UI).
 - [ ] `Connect-CourseTarget` funguje minimálně pro kombinace PnP+Certificate a

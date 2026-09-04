@@ -8,6 +8,8 @@
 - Build/balíček .sppkg.
 - App Catalog (tenant vs site), nahrání, deploy, trust.
 - Přidání webpartu na moderní stránku; verzování a update.
+- Správcovský pohled na hotové řešení — API access (sdílený service principal!),
+  tenant-wide extensions, provozní hygiena: [`explainer-spfx-admin.md`](explainer-spfx-admin.md).
 
 ## Výklad
 

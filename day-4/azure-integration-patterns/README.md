@@ -5,6 +5,8 @@
 ## Cíle
 - Logic Apps vs Functions vs Runbooks.
 - Event/webhook subscription, change notifications.
+- Orientace v Azure před laby dne (tenant vs subscription, RBAC vs Entra role, kde skript
+  běží, kontejnery) — k přečtení předem: [`explainer-azure-orientation.md`](explainer-azure-orientation.md).
 
 ## Výklad
 

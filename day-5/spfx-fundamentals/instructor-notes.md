@@ -23,6 +23,11 @@
   chybové hlášky bývají neintuitivní; mít připravený working combo jako referenci.
 - Nezapomenout na "trust" krok (make available to all sites) — nahrání bez tohoto potvrzení
   vypadá jako úspěch, ale řešení nejde použít.
+- Pokud dojde na dotaz „a jak se schvalují oprávnění pro webpart?" — je to **API access**
+  a oprávnění visí na **jednom sdíleném service principalu pro celý tenant**, ne na
+  konkrétním řešení. Nejsilnější governance pointa celého bloku; podklad
+  [`explainer-spfx-admin.md`](explainer-spfx-admin.md), navazuje audit v
+  [`../security-hardening/`](../security-hardening/).
 
 ## Vazby
 

@@ -39,6 +39,28 @@ flowchart LR
   D[Rotace bez výpadku] --> E[Nahrát nový cert] --> F[Přepnout klienty] --> G[Odebrat starý cert]
 ```
 
+### Ztráta credentialu — co se odvolává (a co ne)
+Častá otázka z praxe: „přišel jsem o stroj/klíč s certifikátem — mám aplikaci odebrat
+oprávnění?" Ne. **Odvolává se credential, ne permissions:**
+
+- Z app registrace se smaže **certifikát ztraceného credentialu** (podle thumbprintu)
+  v *Certificates & secrets*. Oprávnění (`Sites.Read.All`…) říkají, *co aplikace smí*,
+  a platí pro ni jako celek — jejich odebráním rozbijete i zbylé funkční klienty.
+- Protože je `keyCredentials` multi-hodnotové, dá se totéž použít **preventivně**: druhý,
+  záložní certifikát nahraný předem znamená, že ztráta prvního je úkon na 30 sekund.
+  Záložní certifikát ale **není kopie** — je to samostatný pár klíčů (privátní klíč se
+  nekopíruje, viz [`../../day-2/powershell-deep-dive/explainer-certificates-keys.md`](../../day-2/powershell-deep-dive/explainer-certificates-keys.md)).
+- **Už vydaný access token dožívá** (řádově do hodiny) i po smazání certifikátu —
+  okamžité odříznutí umí až **CAE** (viz výše). To je praktický důvod, proč CAE u vysoce
+  privilegovaných workload identit není luxus.
+
+### Co ještě patří do auditu vedle app registrací
+Oprávnění schválená pro **SPFx řešení** (SharePoint admin center → API access) visí na
+**jediném sdíleném service principalu** pro celý tenant — a využije je i každé další SPFx
+řešení, které do tenantu přijde později. Do auditního skriptu proto vedle app registrací
+patří `Get-PnPTenantServicePrincipalPermissionGrants` a přehled tenant-wide extensions;
+mechanika je v [`../spfx-fundamentals/explainer-spfx-admin.md`](../spfx-fundamentals/explainer-spfx-admin.md).
+
 ## Klíčové rozlišení
 - **Managed identity vs certifikát vs client secret** — v tomto pořadí preference pro
   produkci; secret nikdy není produkční volba.

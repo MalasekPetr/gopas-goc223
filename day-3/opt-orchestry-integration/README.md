@@ -53,7 +53,7 @@ flowchart LR
   sensitivity/retention) — first je odolnější vůči lidské chybě "zapomněl jsem to nastavit".
 
 ## Lab
-Viz [`lab-opt-orchestry-integration-design.md`](lab-opt-orchestry-integration-design.md).
+Viz [`lab-orchestry-integration-design.md`](lab-orchestry-integration-design.md).
 
 ## Zdroje
 - [Orchestry — MS Teams & SharePoint Provisioning](https://www.orchestry.com/ms-teams-workspace-provisioning) (vendor dokumentace, ne Microsoft)

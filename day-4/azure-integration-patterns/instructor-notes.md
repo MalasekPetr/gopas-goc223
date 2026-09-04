@@ -17,6 +17,11 @@
   policy (jinak rovnou aktivovat Fallback z labu).
 - Ověřit, že studenti mají funkční cert identitu z D1 — batch sync lab na ní stojí; kdo ji
   nemá, opravit před blokem.
+- Pro skupiny bez Azure zkušeností poslat den předem
+  [`explainer-azure-orientation.md`](explainer-azure-orientation.md) jako pre-read
+  (tenant vs subscription, RBAC vs Entra role, kde skript běží) — den je nejhustší v kurzu
+  a základní orientace v něm nemá kde vzniknout. Zároveň ověřit, že studenti mají roli
+  Contributor na **vlastní** resource group, ne na subscription.
 
 ## Tripwires
 

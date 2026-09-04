@@ -51,13 +51,17 @@ samostatnou, placenou subscription připojenou k témuž tenantu.
 
 | Položka | Hodnota |
 |---|---|
-| VS Code | poslední stabilní verze, extension pack: PowerShell, GitHub Copilot, Azure Functions |
+| VS Code | poslední stabilní verze, extension pack: PowerShell, Azure Functions |
 | PowerShell | PowerShell 7 (aktuální LTS) vedle Windows PowerShell 5.1 |
 | Node.js | aktuální LTS kompatibilní s SPFx generátorem (viz [`day-5/spfx-fundamentals/`](day-5/spfx-fundamentals/)) |
-| GitHub Copilot | individuální licence (Copilot Individual/Business) — **není** M365 Copilot, samostatný nákup mimo tenant |
+| AI asistent | **Microsoft Copilot Chat** — v prohlížeči pod kurzovním účtem; žádná samostatná licence se nekupuje |
 | Git | nainstalovaný, nakonfigurovaný `user.name`/`user.email` před D1 |
 
 ### Náklady — upozornění pro učebnu
-> [!WARNING] Ověřit k datu běhu.
-> GitHub Copilot licence musí být přidělena každému studentovi před D1 (samostatný nákup/trial,
-> mimo M365 licenční tok) — zajistit dostatečně dopředu, ne den před kurzem.
+> [!WARNING] Ověřit k datu běhu — stav k 2026-09.
+> AI asistent kurzu je **Microsoft Copilot Chat** v rámci kurzovního účtu — nic se
+> nedokupuje ani nepřiřazuje před D1. Pokud se v běhu má ukazovat **agent nad firemními
+> daty** (Scripting Assistant, SharePoint agents), jde o **měřenou spotřebu**
+> (pay-as-you-go): před kurzem musí být v M365 admin centru založená **billing policy**
+> navázaná na Azure subscription, připojená ke službě a s nastaveným rozpočtem.
+> Mechanika a role: [`day-1/vscode-copilot-env/explainer-copilot-licensing.md`](day-1/vscode-copilot-env/explainer-copilot-licensing.md).

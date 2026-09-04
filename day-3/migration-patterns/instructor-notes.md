@@ -30,7 +30,15 @@
 - Metadata dávkově (`New-PnPBatch`), ne per-item smyčkou — při stovkách položek je rozdíl
   viditelný na čase; nechat schválně jednoho studenta změřit obojí, pokud čas dovolí.
 - Nezaměňovat list view threshold (limit na dotaz) s limitem velikosti listu — časté
-  nepochopení vedoucí ke špatným doporučením pro zákazníky.
+  nepochopení vedoucí ke špatným doporučením pro zákazníky. Podklad:
+  [`../../day-2/graph-fundamentals/explainer-large-lists.md`](../../day-2/graph-fundamentals/explainer-large-lists.md).
+- Otázka „a co naše stará řešení?" přijde skoro vždy — Add-iny a ACS jsou v M365 vypnuté
+  od 2. 4. 2026, **v on-premises ale běží dál**, takže migrace je typicky odhalí. Nenechat
+  se stáhnout do dlouhé debaty; mapa a otázky do assessmentu jsou v
+  [`explainer-legacy-layers.md`](explainer-legacy-layers.md).
+- Migrovaný obsah zapsaný app-only identitou nese v `Author`/`Editor` **jméno aplikace**,
+  ne původního autora — nástroje to řeší zvlášť; zaznít to má dřív, než se na to někdo
+  zeptá po cutoveru.
 - Připomenout retention/eDiscovery hold jako důvod, proč se verze nemusí ořezat bez ohledu
   na nastavený limit — u fileshare zdroje nerelevantní (nemá verze), ale při SP→SP migraci
   je to hlavní položka odhadu objemu.

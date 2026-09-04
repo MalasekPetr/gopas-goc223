@@ -4,8 +4,12 @@
 
 ## Cíle
 - Ovládat VS Code jako pracovní prostředí pro automatizační skripty (workspace, `tasks.json`, formátování, ladění).
-- Dodržovat základní hygienu repozitáře — branch strategie, commit zprávy, PR a code review.
-- Používat GitHub Copilot zodpovědně — s explicitním promptingem, bezpečnostními mantinely a akceptačními kritérii, ne slepým přijímáním návrhů.
+- Dodržovat základní hygienu repozitáře — branch strategie, commit zprávy, PR a code review —
+  a umět rozhodnout, kde má repozitář organizace bydlet (viz [`explainer-git-hosting.md`](explainer-git-hosting.md)).
+- Používat **Microsoft Copilot Chat** zodpovědně — s explicitním promptingem, priming promptem
+  proti fantazii modelu, bezpečnostními mantinely a akceptačními kritérii, ne slepým přijímáním návrhů.
+- Vědět, co je v Copilotu součástí stávajícího předplatného a kde začíná měřená spotřeba —
+  viz [`explainer-copilot-licensing.md`](explainer-copilot-licensing.md).
 - Rozumět třem runtime prostředím automatizace (DEV stanice, kontejner/CI, server) — viz
   [`explainer-runtime-environments.md`](explainer-runtime-environments.md).
 
@@ -26,14 +30,18 @@ výběru F8 a integrovanou PowerShell konzoli. Pro adminy zvyklé na ISE existuj
 na ISE zvyklosti, takže přechod nebolí.
 
 ### Git základy a hygiena repozitáře
-Branch per feature/fix, malé commity s popisnou zprávou (proč, ne jen co), PR jako povinná brána před merge do `main`, code review checklist zaměřený na automatizační kód: hardcoded identifikátory (tenant ID, ClientId, secrety), chybějící error handling, chybějící `-WhatIf` u destruktivních skriptů.
+Branch per feature/fix, malé commity s popisnou zprávou (proč, ne jen co), PR jako povinná brána před merge do `main`, code review checklist zaměřený na automatizační kód: hardcoded identifikátory (tenant ID, ClientId, secrety), chybějící error handling, chybějící `-WhatIf` u destruktivních skriptů. Slovníček pojmů, srovnání hostingů (GitHub vs Azure DevOps vs self-hosted) a rozhodovací osa pro repozitář se skripty k produkčnímu tenantu: [`explainer-git-hosting.md`](explainer-git-hosting.md).
 
-### GitHub Copilot zodpovědně
-Copilot je nástroj ke generování návrhu, ne náhrada za review — každý návrh je nutné před merge stejně důkladně prověřit jako kód od libovolného jiného přispěvatele: testy, kontrola bezpečnostních zranitelností, soulad s interními standardy. Bezpečnostní mantinely: nikdy nevkládat do promptu tenant ID, secrety, cert thumbprinty ani jiné citlivé identifikátory — kontext promptu může být zpracován mimo hranice tenantu. Akceptační kritéria patří do promptu explicitně (co má kód dělat, jaké má mít okrajové podmínky), ne do až následné kontroly.
+### Microsoft Copilot Chat zodpovědně
+Kurz používá **Microsoft Copilot Chat** — asistenta dostupného v rámci firemního přihlášení, s ochranou firemních dat (prompty a odpovědi netrénují modely). Žádná samostatná vývojářská AI licence se nekupuje; co je součástí předplatného, kde začíná měřená spotřeba a jak se pay-as-you-go zapíná a hlídá, řeší [`explainer-copilot-licensing.md`](explainer-copilot-licensing.md).
+
+Copilot je nástroj ke generování návrhu, ne náhrada za review — každý návrh je nutné před merge stejně důkladně prověřit jako kód od libovolného jiného přispěvatele: testy, kontrola bezpečnostních zranitelností, soulad s interními standardy. Bezpečnostní mantinely: nikdy nevkládat do promptu tenant ID, secrety, cert thumbprinty ani jiné citlivé identifikátory. Akceptační kritéria patří do promptu explicitně (co má kód dělat, jaké má mít okrajové podmínky), ne až do následné kontroly.
+
+Model si ochotně **vymyslí** neexistující cmdlet nebo parametr — a stejně ochotně zopakuje roky starou praxi, která dnes spadne. Proto každá konverzace začíná **priming promptem** se závaznými pravidly: [`copilot-priming-prompt.md`](copilot-priming-prompt.md). Otestovaná sada pravidel je zároveň polotovar **deklarativního agenta** — tím vkládání promptu končí. Generování fiktivních testovacích dat (a proč do promptu nepatří reálná): [`guide-dummy-data.md`](guide-dummy-data.md).
 
 ```mermaid
 flowchart LR
-  A[Prompt s akceptačními kritérii] --> B[Copilot návrh]
+  A[Priming prompt + zadání s akceptačními kritérii] --> B[Copilot návrh]
   B --> C[Code review: bezpečnost, korektnost]
   C -->|OK| D[Test / lint]
   C -->|nevyhovuje| A
@@ -46,6 +54,11 @@ flowchart LR
   prostředí. ISE Mode v extension usnadní přechod, ale cíl je plný VS Code workflow
   (tasks, debugger, linting), ne trvalé žití v ISE emulaci.
 - **Copilot návrh vs přijatý/otestovaný kód** — návrh je vstup k review, ne hotový výstup; odpovědnost za merge nese student, ne nástroj.
+- **Vymyšlený cmdlet vs zastaralá praxe** — dvě různé tváře fantazie modelu; první chytí
+  pravidlo „nevymýšlej názvy", druhou až explicitní pravidlo o aktuálním postupu (viz
+  [`copilot-priming-prompt.md`](copilot-priming-prompt.md)).
+- **Copilot Chat (součást předplatného) vs agent nad firemními daty (měřená spotřeba)** —
+  licenční hranice, kterou musí admin znát dřív, než agenty pustí do tenantu.
 - **Formátování vs linting** — formátování řeší styl (whitespace, odsazení), linting hledá reálné chyby a anti-patterny (PSScriptAnalyzer pravidla); obojí patří do `tasks.json`, aby fungovalo i mimo editor (CI).
 - **Lokální commit vs PR review gate** — lokální historie je studentova pracovní plocha, `main` je chráněná větev s vynuceným review před mergem.
 
@@ -56,7 +69,11 @@ Viz [`lab-repo-scaffold.md`](lab-repo-scaffold.md).
 - [Integrate with External Tools via Tasks (VS Code)](https://code.visualstudio.com/docs/debugtest/tasks)
 - [Using Visual Studio Code for PowerShell Development](https://learn.microsoft.com/en-us/powershell/scripting/dev-cross-plat/vscode/using-vscode)
 - [How to replicate the ISE experience in Visual Studio Code](https://learn.microsoft.com/en-us/powershell/scripting/dev-cross-plat/vscode/how-to-replicate-the-ise-experience-in-vscode)
-- [Responsible use of GitHub Copilot features](https://docs.github.com/en/copilot/responsible-use)
+- [Microsoft Copilot Chat — přehled](https://learn.microsoft.com/en-us/copilot/overview)
+- [Agents for Microsoft Copilot Chat](https://learn.microsoft.com/en-us/copilot/agents)
 
 ## Stav produktu / delta
-- Ověřit k datu běhu — GitHub Copilot funkce (chat mode, agent mode, coding agent) se vyvíjí rychle; ověřit aktuální feature set a doporučené modely/nastavení organizace před během.
+> [!WARNING] Ověřit k datu běhu — stav k 2026-09.
+> Funkce Copilot Chatu (dostupnost, vstupní URL, trvalé instrukce, tvorba agentů) i licenční
+> hranice pay-as-you-go se vyvíjejí rychle — ověřit před KAŽDÝM během včetně dostupnosti na
+> kurzovním tenantu. Zdroje a detail: [`explainer-copilot-licensing.md`](explainer-copilot-licensing.md).

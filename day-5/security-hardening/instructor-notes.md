@@ -18,6 +18,14 @@
   to je přesně bod labu (zero-downtime rotace).
 - Nezaměňovat Conditional Access na service principal (musí být přiřazená přímo, ne přes
   skupinu) s CA na uživatele (skupiny fungují běžně) — časté nedorozumění.
+- Otázka „ztratil jsem klíč/stroj, mám odebrat oprávnění?" padne pravidelně: **odvolává se
+  credential (certifikát podle thumbprintu), ne permissions** — a už vydaný token dožívá
+  řádově hodinu, okamžité odříznutí umí až CAE. Nenechat studenty „pro jistotu" mazat
+  permissions, rozbije to zbylé funkční klienty.
+- Do auditu patří i **API access granty SPFx řešení** — visí na jednom sdíleném service
+  principalu pro celý tenant (`Get-PnPTenantServicePrincipalPermissionGrants`), takže je
+  žádná app registrace „nevlastní"; podklad
+  [`../spfx-fundamentals/explainer-spfx-admin.md`](../spfx-fundamentals/explainer-spfx-admin.md).
 
 ## Vazby
 

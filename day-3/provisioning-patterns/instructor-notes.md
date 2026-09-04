@@ -20,6 +20,13 @@
   záměrný teaching point, ne opomenutí kurikula.
 - `-Handlers All` aplikuje kompletně vše ze šablony včetně věcí, co student nechtěl — trvat na
   explicitním omezení rozsahu.
+- Padne otázka „a co site templates z UI?" — mít po ruce
+  [`explainer-site-list-templates.md`](explainer-site-list-templates.md): site template je
+  samoobsluha pro uživatele, PnP šablona je nástroj skriptu; kombinují se. Zmínit i limit
+  100 scriptů / 100 templates na tenant, který je **sdílený** s baseline artefakty z D2 —
+  po opakovaných bězích dochází.
+- Aplikace site scriptu je **asynchronní** — kdo výsledek ověřuje hned, vidí nedokončený
+  stav a hlásí falešný drift.
 
 ## Vazby
 

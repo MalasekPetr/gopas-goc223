@@ -5,6 +5,9 @@
 ## Cíle
 - PnP provisioning vs Orchestry katalog (přehled).
 - Žádanky na weby a zachycení metadata.
+- Deklarativní vrstva vedle PnP enginu — site scripty, site templates, **list designy**
+  a reverzní cesta `Get-PnPSiteScriptFromWeb`; kdy JSON nestačí:
+  [`explainer-site-list-templates.md`](explainer-site-list-templates.md).
 
 ## Výklad
 

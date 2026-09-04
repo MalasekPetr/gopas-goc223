@@ -48,6 +48,20 @@ flowchart TD
   B -->|jiné 4xx| F[Neretryovat, logovat jako chybu]
 ```
 
+### Velké seznamy a throttling ve velkém
+Throttling z Graphu je jen jedna polovina; druhou potkáte, jakmile skript opustí testovací
+data. **List view threshold 5000** není strop velikosti seznamu ani throttling — je to limit
+na to, kolik položek smí projít **jeden dotaz**, a v SPO se nedá zvýšit. Nástroj, jak se pod
+něj vejít, je **indexovaný sloupec** (limit 20 na seznam, nelze u vícehodnotových
+a počítaných sloupců). Pravidlo do praxe: **filtruj na serveru, ber po stránkách, na velký
+seznam nikdy nesahej „celý"** (`Get-PnPListItem | Where-Object …` je anti-pattern).
+
+U objemných operací proti SPO k tomu patří: paralelizací se throttlingu nezbavíte (přivoláte
+ho), dávková API místo N volání (`Invoke-PnPBatch`, `$batch`), a u vlastních REST volání
+**dekorovaný user agent** (`NONISV|<organizace>|<Aplikace>/1.0` — nedekorovaný provoz je
+throttlován agresivněji; PnP si ho nastavuje sám). Detail, konkrétní příkazy a checklist
+před spuštěním skriptu nad velkým seznamem: [`explainer-large-lists.md`](explainer-large-lists.md).
+
 ## Klíčové rozlišení
 - **Batch-level 200 vs jednotlivý request status** — vždy kontrolovat `responses[].status`,
   ne jen kód celé batch odpovědi.
@@ -55,12 +69,26 @@ flowchart TD
   různé účely, viz [`../../day-4/azure-integration-patterns/`](../../day-4/azure-integration-patterns/).
 - **`code` (stabilní, programově použitelný) vs `message` (lidsky čitelný, může se měnit)**
   v chybovém objektu.
+- **Threshold vs throttling** — *jeden dotaz je moc velký* (chyba hned, řeší index
+  a stránkování) vs *voláš moc často* (429/503 s `Retry-After`, řeší backoff a dávky).
 
 ## Lab
 Viz [`lab-graph-ingest.md`](lab-graph-ingest.md).
 
+## Tipy
+- **Tahák SPO API**: [`tips-spo-api.md`](tips-spo-api.md) — jak zjistit ID webu, site
+  a seznamu, definici seznamu a knihovny, **interní názvy polí** a povolené hodnoty choice
+  polí (Graph / PnP / REST vedle sebe). Nepostradatelné při migračním mapování metadat.
+- Dotaz nejdřív složit v Graph Exploreru, kde se chyba v `$filter` vrátí hned a čitelně;
+  do skriptu přenášet až ověřenou variantu.
+- Počet výsledků skriptu vždy porovnat s Graph Explorerem — skript bez `nextLink` smyčky
+  selže tiše: vrátí méně dat bez jediné chybové hlášky.
+- `Retry-After` číst z odpovědi; pevný `Start-Sleep -Seconds 30` je anti-pattern.
+
 ## Zdroje (Microsoft)
 - [Microsoft Graph throttling guidance](https://learn.microsoft.com/en-us/graph/throttling)
+- [Paging Microsoft Graph data in your app](https://learn.microsoft.com/en-us/graph/paging)
+- [Graph Explorer](https://developer.microsoft.com/en-us/graph/graph-explorer)
 - [Combine multiple HTTP requests using JSON batching](https://learn.microsoft.com/en-us/graph/json-batching)
 - [Use delta query to track changes in Microsoft Graph data](https://learn.microsoft.com/en-us/graph/delta-query-overview)
 - [Microsoft Graph error responses and resource types](https://learn.microsoft.com/en-us/graph/errors)

@@ -16,14 +16,23 @@ zajišťují role. Porušení pravidla typicky rozbije práci ostatním 24 lidem
 
 ## Naming konvence (izolace přes pojmenování)
 
-Protože nás neizolují role, izolují nás jména. Všechno, co vytvoříš, nese tvůj login prefix:
+Protože nás neizolují role, izolují nás jména. Všechno, co vytvoříš, nese tvůj login prefix —
+a od **druhého artefaktu stejného typu a účelu** i dvouciferné pořadové číslo:
 
 | Artefakt | Vzor | Příklad |
 |---|---|---|
-| SharePoint web | `/sites/<jmeno-prijmeni>-<účel>` | `/sites/jan-novak-dev` |
-| App registrace | `<jmeno.prijmeni>-<účel>` | `jan.novak-course-app` |
-| Azure resource group | `rg-goc223-<jmeno-prijmeni>` | `rg-goc223-jan-novak` |
+| SharePoint web | `/sites/<jmeno-prijmeni>-<účel>[-NN]` | `/sites/jan-novak-dev`, druhý pokus `/sites/jan-novak-dev-02` |
+| App registrace | `<jmeno.prijmeni>-<účel>[-NN]` | `jan.novak-course-app`, druhá `jan.novak-course-app-02` |
+| Azure resource group | `rg-goc223-<jmeno-prijmeni>[-NN]` | `rg-goc223-jan-novak` |
 | Skripty/soubory v repu | složka `<jmeno-prijmeni>/` | `jan-novak/connect-wrapper.ps1` |
+
+Pravidla pro číslování:
+
+- **První kus bez čísla** — laby odkazují na kanonická jména (`-dev`, `-course-app`);
+  číslo se přidává až od druhého kusu (`-02`, `-03`…).
+- **Vždy dvouciferně** (`-02`, ne `-2`) — správně se řadí v seznamech i ve skriptech.
+- **Nepřepoužívat jméno smazaného artefaktu** pro něco jiného — smazaný web drží URL
+  v koši a smazaná app registrace zůstává v *Deleted applications*; nový pokus = nové číslo.
 
 ## Přístupový princip
 
@@ -36,6 +45,10 @@ Protože nás neizolují role, izolují nás jména. Všechno, co vytvoříš, n
 ## Zodpovědná AI a data
 
 - Do tenantu nenahrávat reálná firemní/osobní data — jen kurzovní a fiktivní obsah.
-- Do promptů (GitHub Copilot, M365 Copilot) nikdy nevkládat tenant ID, ClientId, secrety,
+  Fiktivní testovací data (weby, položky, dokumenty, cesty ze zdrojového fileshare) si nechte
+  vygenerovat Copilot Chatem — recepty na prompty:
+  [`../vscode-copilot-env/guide-dummy-data.md`](../vscode-copilot-env/guide-dummy-data.md).
+- Do promptů (Copilot Chat i jakýkoli jiný AI asistent) nikdy nevkládat tenant ID, ClientId, secrety,
   cert thumbprinty (viz [`../vscode-copilot-env/`](../vscode-copilot-env/)).
-- Výstupy AI ověřovat před použitím — platí pro kód i pro fakta.
+- Výstupy AI ověřovat před použitím — platí pro kód, fakta i vygenerovaná dummy data
+  (kontrola, že neobsahují reálná jména a firmy).

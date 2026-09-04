@@ -36,6 +36,20 @@ s M365 tenant a identitu, ale má **oddělený billing** (subscription) a odděl
 - Pravidlo: **Graph first, SPO REST tam, kde Graph nestačí** — stejná logika jako
   "wrapper vs přímé volání" v [`../automation-strategy/`](../automation-strategy/).
 
+### Časová osa: proč je krajina takhle rozdělená
+Dnešní dvojice Graph + SPO REST je výsledek generační výměny, ne návrhu na zelené louce.
+Postupně zemřely: SOAP web services (`_vti_bin/*.asmx`), JSOM, sandbox solutions s kódem,
+**SharePoint Add-ins + Azure ACS** (v Microsoft 365 vypnuté 2. 4. 2026) a „JS injection"
+(JSLink, Script Editor — custom script je od 11/2024 vynucovaně vypnutý). Na straně
+PowerShellu totéž: MSOnline a AzureAD moduly jsou mrtvé, PnP a Graph SDK žijí.
+
+Dvě ponaučení, která nesou celý kurz: (1) **moduly a vrstvy umírají, REST API zůstává** —
+kdo rozumí principu pod nástrojem, řešení přepíše; (2) prostředí zákazníků jsou mrtvých
+vrstev plná a **umět je poznat je samostatná dovednost**, kterou potřebujete hned při
+migračním assessmentu — mapa i otázky do assessmentu jsou v
+[`../../day-3/migration-patterns/explainer-legacy-layers.md`](../../day-3/migration-patterns/explainer-legacy-layers.md).
+Náhrada je vždy táž dvojice: **Entra app registrace** (identita) a **SPFx** (customizace).
+
 ### Kde sedí autentizace
 
 Každé volání — Graph i SPO REST — nese Entra token. App registrace (identita aplikace),

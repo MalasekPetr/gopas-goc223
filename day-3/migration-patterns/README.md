@@ -8,6 +8,8 @@
 - Velké seznamy, verze, throttling, zpoždění vyhledávání.
 - Nástrojová mapa migrace: SPMT (+ PS modul), Migration Manager, 3rd-party (ShareGate a spol.)
   — viz [`explainer-migration-tools.md`](explainer-migration-tools.md).
+- Assessment mrtvých vrstev na zdroji (Add-ins/ACS, custom script, `.wsp`/`.stp` šablony) —
+  co v cíli nemá kam přistát: [`explainer-legacy-layers.md`](explainer-legacy-layers.md).
 
 ## Výklad
 
