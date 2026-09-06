@@ -55,11 +55,18 @@ který kdykoli řekne, co chybí — a dá se předat kolegovi.
 4. PowerShell moduly, vše do uživatelského profilu:
 
    ```powershell
-   Install-Module PnP.PowerShell     -Scope CurrentUser -Force
-   Install-Module Microsoft.Graph    -Scope CurrentUser -Force
-   Install-Module PSScriptAnalyzer   -Scope CurrentUser -Force
-   Install-Module Pester             -Scope CurrentUser -Force -SkipPublisherCheck
+   Install-Module PnP.PowerShell   -Scope CurrentUser -Force
+   Install-Module Microsoft.Graph  -Scope CurrentUser -Force
+   Install-Module PSScriptAnalyzer -Scope CurrentUser -Force
+   Install-Module Pester           -Scope CurrentUser -Force -SkipPublisherCheck
+   Install-Module Microsoft.Online.SharePoint.PowerShell -Scope CurrentUser -Force
    ```
+
+   Poslední řádek je **SPO Management Shell** — třetí z kurzovní trojice modulů
+   (PnP / Graph / SPO). Potřebujete ho pro tenant-wide nastavení mimo rozsah PnP a pro DAG reporty
+   SharePoint Advanced Management ([`../../day-5/permission-discovery/`](../../day-5/permission-discovery/)).
+   V PowerShellu 7 může jeho import vyžadovat `-UseWindowsPowerShell` — detail
+   v [`../../day-2/powershell-deep-dive/explainer-module-management.md`](../../day-2/powershell-deep-dive/explainer-module-management.md).
 
 5. CLI for Microsoft 365 (proto je na stroji Node):
 
@@ -85,7 +92,7 @@ který kdykoli řekne, co chybí — a dá se předat kolegovi.
    `scripts/verify-toolchain.ps1`. Tenhle repozitář používáte celý týden — vzdálený
    repozitář a push k němu přidáte v bloku [`../vscode-copilot-env/`](../vscode-copilot-env/).
    Skript musí:
-   - vypsat verze: `pwsh`, `git`, `node`, `npm`, `m365` a všech čtyř PowerShell modulů;
+   - vypsat verze: `pwsh`, `git`, `node`, `npm`, `m365` a všech pěti PowerShell modulů;
    - **porovnat je proti minimálním verzím** v `param()` bloku (PowerShell `7.4.0`,
      Node `18.0.0`), ne jen vypsat;
    - u chybějící položky napsat **příkaz, kterým se doinstaluje**, ne jen „chybí";
@@ -110,6 +117,8 @@ který kdykoli řekne, co chybí — a dá se předat kolegovi.
 - [ ] `$PSVersionTable.PSVersion` vrací **7.4.0 nebo vyšší**.
 - [ ] `node --version` vrací `v22.x`, `m365 --version` vrací verzi bez chyby.
 - [ ] `Get-Module PnP.PowerShell -ListAvailable` vrací nainstalovanou verzi.
+- [ ] `Get-Module Microsoft.Online.SharePoint.PowerShell -ListAvailable` vrací verzi —
+      bez něj neodjedete SPO větev wrapperu v Labu 1 dne 2.
 - [ ] Ve VS Code je aktivní PowerShell 7 session (Session Menu), ne 5.1.
 - [ ] `verify-toolchain.ps1` proběhne, vypíše všechny položky a skončí exit kódem `0`.
 - [ ] Skript **detekuje chybu**: dočasně zvýšit požadovanou verzi Node v `param()` na `99.0.0`,

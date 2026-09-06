@@ -23,7 +23,10 @@ neřeší. Modul je rozdělen na desítky submodulů (`Microsoft.Graph.Users`, `
 atd.), takže lze instalovat jen potřebnou část. **SPO Management Shell**
 (`Microsoft.Online.SharePoint.PowerShell`) je oficiální tenant-admin modul pro nastavení
 mimo rozsah PnP — typicky `Set-SPOTenant` a nejnovější preview nastavení, která často
-přistanou v SPO modulu dřív než v PnP ekvivalentu.
+přistanou v SPO modulu dřív než v PnP ekvivalentu. Konkrétně, co tím jde vypnout a co je
+naopak jen kosmetika, je v [`comparison-spo-switches.md`](comparison-spo-switches.md);
+SPO modul je zároveň jediná cesta k DAG reportům SharePoint Advanced Management
+([`../../day-5/permission-discovery/`](../../day-5/permission-discovery/)).
 
 ### Autentizační módy
 - **Interaktivní** — `-Interactive` (PnP) otevře webový dialog / WAM prompt s MFA flow; vhodné
@@ -83,6 +86,9 @@ drží, přečte si ho** — podpis brání změnám, ne čtení. Když krok 3 s
 ## Klíčové rozlišení
 - **PnP.PowerShell vs SPO Management Shell** — viz `GLOSSARY.md`; PnP pro čitelnost a širší
   funkčnost, SPO modul pro tenant-wide nastavení bez PnP ekvivalentu.
+- **Kosmetika vs skutečná hranice** — skrýt tlačítko (`commandBarProps`, per view,
+  obejitelné) není totéž co vypnout cestu (`BlockDownloadPolicy`, permission level).
+  Zadavatel chce skoro vždy druhé a popíše první: [`comparison-spo-switches.md`](comparison-spo-switches.md).
 - **Interaktivní/device code (delegated) vs certifikát/managed identity (app-only)** — první
   dvojice vyžaduje přihlášeného uživatele a jeho oprávnění, druhá běží jako samostatná identita
   s vlastními aplikačními oprávněními.

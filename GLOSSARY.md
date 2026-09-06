@@ -18,6 +18,8 @@ Kurz na rozdíl od administrátorských kurzů pokrývá všechny tři paraleln�
 > [!IMPORTANT] Překryv
 > PnP.PowerShell a SPO Management Shell se v site-admin oblasti překrývají. Preferovat PnP pro čitelnost a širší funkčnost, SPO modul jen tam, kde PnP ekvivalent chybí (typicky nejnovější tenant-wide preview nastavení — ta často přistanou v SPO modulu dřív).
 
+**Kde SPO modul nemá náhradu:** tenant-wide a site-collection přepínače (`Set-SPOTenant`, `Set-SPOSite`) a **DAG reporty SharePoint Advanced Management**. Přehled vrstev, ve kterých se v SPO dá co vypnout — a co je jen UI kosmetika bez bezpečnostní hodnoty: [`day-2/powershell-deep-dive/comparison-spo-switches.md`](day-2/powershell-deep-dive/comparison-spo-switches.md).
+
 ## Evoluce modulů: legacy → současnost → budoucnost
 
 Nosná pointa pro [`day-1/automation-strategy/`](day-1/automation-strategy/): **moduly umírají, REST API zůstává** — proto kurz učí principy nad Graph/REST, ne jen konkrétní cmdlety.

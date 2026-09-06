@@ -46,6 +46,10 @@
   ladí v 5.1 a diví se, proč se PnP modul nenačte.
 - **`Microsoft.Graph` je velký meta-modul** a instaluje se dlouho (desítky sub-modulů).
   Na pomalé síti to je nejdelší příkaz labu. Pustit ho jako první a mluvit přes to.
+- **SPO Management Shell v PowerShell 7** může při importu vyžadovat `-UseWindowsPowerShell`.
+  Instalace projde vždy, problém se projeví až při prvním `Connect-SPOService` v D2. Ověřit
+  na demo stroji předem a mít po ruce jednořádkovou odpověď — je to nejčastější „ten modul
+  je rozbitý" celého kurzu, přitom jde jen o kompatibilitní shim.
 - Dotaz „proč ne prostě Node z instalátoru" padne skoro jistě. Odpověď je provozní, ne
   technická, a je v README — netvrdit, že instalátor je špatně, protože pro jeden projekt
   není.

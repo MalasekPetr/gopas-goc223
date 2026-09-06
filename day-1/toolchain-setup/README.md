@@ -18,6 +18,7 @@
 |---|---|---|
 | **Runtime** | PowerShell 7, Node.js | na stroj, přes `winget`/správce verzí |
 | **Globální nástroj** | CLI for Microsoft 365, PSScriptAnalyzer, Pester | na uživatele (`-Scope CurrentUser`, `npm -g`) |
+| **Doménový modul** | PnP.PowerShell, Microsoft.Graph, SPO Management Shell | tamtéž; kurz používá všechny tři a učí, kdy který |
 | **Projektová závislost** | moduly a balíčky, které skript vyžaduje | do repa (`#Requires`, `package.json`) |
 
 Pravidlo: **co skript potřebuje k běhu, patří do repa, ne do hlavy admina.** Globálně se
@@ -58,7 +59,7 @@ flowchart LR
   W --> F[fnm]
   F --> N[Node 22 LTS]
   N -->|npm -g| CLI[CLI for Microsoft 365]
-  PS -->|Install-Module CurrentUser| M[PnP.PowerShell<br/>Microsoft.Graph<br/>PSScriptAnalyzer, Pester]
+  PS -->|Install-Module CurrentUser| M[PnP.PowerShell / Microsoft.Graph<br/>SPO Management Shell<br/>PSScriptAnalyzer, Pester]
   PS --> V[verify-toolchain.ps1]
   CLI --> V
 ```
