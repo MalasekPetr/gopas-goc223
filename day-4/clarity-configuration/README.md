@@ -1,6 +1,6 @@
 # Microsoft Clarity — konfigurace
 
-> Typ: povinný · Den: 4 · Odhad: <min>
+> Typ: povinný · Den: 4 · Odhad: 35 min výklad + 60 min lab
 
 ## Cíle
 - Založení projektu: role, retence, soukromí.

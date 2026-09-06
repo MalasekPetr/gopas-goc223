@@ -1,6 +1,6 @@
 # Azure integrační vzory
 
-> Typ: povinný · Den: 4 · Odhad: <min>
+> Typ: povinný · Den: 4 · Odhad: 40 min výklad + 90 min Lab 3 + 30 min instruktorské demo (change notifications)
 
 ## Cíle
 - Logic Apps vs Functions vs Runbooks.

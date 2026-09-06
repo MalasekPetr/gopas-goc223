@@ -1,6 +1,6 @@
 # SIEM integrace přes Azure Blob
 
-> Typ: povinný · Den: 4 · Odhad: <min>
+> Typ: povinný · Den: 4 · Odhad: 45 min výklad + 75 min lab
 
 ## Cíle
 - Logovací strategie: schéma, minimalizace PII, retence.

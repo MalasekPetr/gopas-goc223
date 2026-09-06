@@ -1,6 +1,6 @@
 # Lifecycle & compliance enforcement
 
-> Typ: povinný · Den: 3 · Odhad: <min>
+> Typ: povinný · Den: 3 · Odhad: 40 min výklad + 60 min lab
 
 ## Cíle
 - Skripty pro retenci a citlivost.

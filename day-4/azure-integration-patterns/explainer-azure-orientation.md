@@ -38,6 +38,13 @@ Pointa žebříku: čím výš, tím **méně tajemství leží na discích** �
 co ukrást ani co zapomenout zrotovat. Srovnání plánovačů a rozhodovací osa pro tento
 kurz jsou v [`README.md`](README.md).
 
+> [!NOTE] Kde žebřík neplatí
+> **Migrační exekuce se po něm nedá posunout nahoru.** SPMT i ShareGate vyžadují Windows
+> PowerShell 5.x, agenti Migration Manageru jsou Windows služba — žádná Linux Function,
+> žádný `mcr.microsoft.com/powershell` kontejner. Do Azure jde přesunout jen *stroj*,
+> ne runtime. Proč a co z toho plyne pro plánování vln:
+> [`../../day-3/migration-patterns/explainer-migration-tools.md`](../../day-3/migration-patterns/explainer-migration-tools.md).
+
 ## Kontejnery — přenositelné běhové prostředí
 
 Kontejner je zabalený běhový svět (OS knihovny + runtime + nástroje), který se všude

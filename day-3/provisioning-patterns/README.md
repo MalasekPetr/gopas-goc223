@@ -1,6 +1,6 @@
 # Vzory automatizace zřizování
 
-> Typ: povinný · Den: 3 · Odhad: <min>
+> Typ: povinný · Den: 3 · Odhad: 40 min výklad + 60 min lab
 
 ## Cíle
 - PnP provisioning vs Orchestry katalog (přehled).
