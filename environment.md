@@ -36,7 +36,8 @@ samostatnou, placenou subscription připojenou k témuž tenantu.
 |---|---|
 | Azure subscription | dedikovaná kurzová subscription (instruktorský kanál) |
 | Resource group per student | `rg-goc223-<jmeno-prijmeni>` — vytváří `New-CourseStudentAzureResources.ps1` |
-| Rozsah | Storage Account (Blob), Function App (Consumption plan), Event Grid Topic — dle dne (D4) |
+| Rozsah | Storage Account (Blob, **general-purpose v2**), Function App (Consumption plan), Event Grid Topic, **Log Analytics workspace + Data Collection Rule** — dle dne (D4) |
+| Log Analytics | **sdílený workspace pro celý kurz + samostatná DCR per student** (izolace dat mezi studenty bez ceny za 25 workspaců) |
 | Role studenta | Contributor jen na vlastní resource group, ne na subscription |
 
 > [!NOTE] Global administrator v tenantu ≠ přístup k Azure — Entra role a Azure RBAC jsou
@@ -46,6 +47,13 @@ samostatnou, placenou subscription připojenou k témuž tenantu.
 > Azure Consumption-plan náklady jsou u tohoto rozsahu labů zanedbatelné, ale sledovat
 > orfánní resources po předchozích bězích (`Get-AzResourceGroup -Name 'rg-goc223-*'`)
 > a mít nastavený budget alert na subscription.
+>
+> **Log Analytics je jediná položka rozsahu, která se neúčtuje po výpočetním čase, ale
+> po objemu ingestovaných dat a retenci.** U labu jde o kilobajty testovacích záznamů,
+> takže reálný náklad je zanedbatelný — riziko není v labu, ale v **chybně nastavené DCR
+> nebo zacyklené Function**, které umí ingestovat řádově víc. Budget alert na subscription
+> je tu proto povinný, ne doporučený. Sazby a případný bezplatný objem ověřit
+> v aktuálním Azure ceníku před během.
 
 ## Student-facing — vývojářské nástroje
 

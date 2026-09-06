@@ -10,7 +10,10 @@ API), s minimalizací PII v logovaném schématu a ověřením přes KQL dotaz.
 ## Předpoklady
 
 - Function skeleton z [`../azure-integration-patterns/`](../azure-integration-patterns/), general-purpose v2 Storage Account v resource group studenta.
-- Přístup do Log Analytics workspace (per student nebo sdílený s odděleným DCR per student).
+- Přístup do **sdíleného kurzovního Log Analytics workspace** a vlastní **DCR**
+  (zakládá se spolu se zbytkem Azure rozsahu — viz [`../../environment.md`](../../environment.md)).
+  Na DCR potřebujete roli **Monitoring Metrics Publisher**; Contributor na vlastní
+  resource group nestačí, protože workspace leží mimo ni.
 
 ## Kroky
 

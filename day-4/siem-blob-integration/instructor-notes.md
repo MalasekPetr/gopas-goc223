@@ -8,8 +8,17 @@
 
 - Ověřit, že Storage Account per student je **general-purpose v2** — jinak Event Grid trigger
   nepůjde nastavit a lab spadne na starší polling chování.
-- Rozhodnout předem, zda studenti mají vlastní Log Analytics workspace, nebo sdílený se
-  samostatnou DCR per student (kvůli izolaci dat mezi studenty) — připravit před kurzem.
+- **Log Analytics workspace musí existovat před kurzem — není součástí M365 tenantu ani
+  Consumption plánu.** Doporučená varianta: **jeden sdílený workspace pro celý kurz
+  a samostatná DCR per student** — izolaci dat to zajistí, 25 workspaců se neplatí
+  a cleanup je jeden resource. Založit spolu se zbytkem Azure rozsahu
+  (viz [`../../environment.md`](../../environment.md)), ne ad-hoc ve čtvrtek.
+- **Ověřit, že student má na DCR i workspace roli, která stačí na zápis** (Monitoring
+  Metrics Publisher na DCR). Contributor na vlastní resource group nestačí, pokud
+  workspace leží mimo ni — což u sdíleného workspacu leží.
+- **Budget alert na subscription je u tohoto bloku povinný.** Log Analytics se účtuje po
+  objemu ingestovaných dat; zacyklená Function nebo chybná DCR umí utrhnout účet způsobem,
+  na který zbytek D4 rozsahu (Consumption plán) není schopný.
 - Ověřit aktuální DCR konfiguraci (`logsIngestion` vlastnost bez nutnosti DCE) na demo
   prostředí den předem.
 
@@ -20,6 +29,10 @@
 - Zdůraznit pseudonymizaci PII **před** zápisem (v transformu), ne jako dodatečný krok —
   v ověření labu kontrolovat cílovou tabulku, ne jen mezikrok.
 - KQL je case-sensitive — časté drobné chyby v názvech sloupců/tabulek u začátečníků.
+- **Ingest do Log Analytics má latenci.** Po zápisu přes Logs Ingestion API se záznamy
+  v tabulce neobjeví okamžitě — u custom tabulky počítat s několika minutami, u první
+  ingesce do nově založené tabulky i déle. Studenti to hlásí jako „nefunguje to";
+  říct to dřív, než se první ruka zvedne, a nechat je mezitím napsat KQL dotaz.
 
 ## Vazby
 
