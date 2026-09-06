@@ -1,6 +1,6 @@
 # Security hardening & least privilege
 
-> Typ: povinný · Den: 5 · Odhad: <min>
+> Typ: povinný · Den: 5 · Odhad: 40 min výklad + 60 min lab
 
 ## Cíle
 - Minimalizace záběru, dopad Conditional Access.
@@ -59,7 +59,7 @@ Oprávnění schválená pro **SPFx řešení** (SharePoint admin center → API
 **jediném sdíleném service principalu** pro celý tenant — a využije je i každé další SPFx
 řešení, které do tenantu přijde později. Do auditního skriptu proto vedle app registrací
 patří `Get-PnPTenantServicePrincipalPermissionGrants` a přehled tenant-wide extensions;
-mechanika je v [`../spfx-fundamentals/explainer-spfx-admin.md`](../spfx-fundamentals/explainer-spfx-admin.md).
+mechanika je v [`../app-catalog-lifecycle/`](../app-catalog-lifecycle/).
 
 ## Klíčové rozlišení
 - **Managed identity vs certifikát vs client secret** — v tomto pořadí preference pro

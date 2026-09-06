@@ -93,6 +93,10 @@ drží, přečte si ho** — podpis brání změnám, ne čtení. Když krok 3 s
   (server, Function) drží secret nebo certifikát. Interactive + device code = public client
   flows; certifikátový app-only = confidential. Jedna app registrace může podporovat obojí.
 
+## Volitelné demo
+Hardware klíč (YubiKey/PIV) jako credential aplikace — [`demo-yubikey.md`](demo-yubikey.md),
+30 min, spouštět jen při reálné rezervě. Nástroje pro samostudium: [`setup-ykman.md`](setup-ykman.md).
+
 ## Lab
 Viz [`lab-cert-auth-sites.md`](lab-cert-auth-sites.md) — první velký lab kurzu: certifikát,
 bezpečné uložení, app-only přihlášení, skriptované vytvoření pracovních webů a unified

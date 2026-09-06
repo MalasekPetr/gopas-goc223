@@ -35,7 +35,7 @@ Dva praktické důsledky pro migrační projekt:
   zdrojové farmě fungují. Migrace tedy typicky odhalí řešení, které roky běželo — a pro
   které v SPO neexistuje protějšek. Náhrada je vždy dvojice: **Entra app registrace**
   (identita, viz [`../../day-1/automation-strategy/`](../../day-1/automation-strategy/))
-  a **SPFx** (customizace, viz [`../../day-5/spfx-fundamentals/`](../../day-5/spfx-fundamentals/)).
+  a **SPFx** (customizace, viz [`../../day-5/app-catalog-lifecycle/`](../../day-5/app-catalog-lifecycle/)).
 - **Staré app-only skripty přestaly fungovat.** Cokoli, co se autentizovalo přes ACS
   (client id + secret registrovaný v `AppRegNew.aspx`), je nefunkční — přepsat na
   certifikátové app-only přihlášení proti Entra

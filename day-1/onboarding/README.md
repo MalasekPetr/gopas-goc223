@@ -1,6 +1,6 @@
 # Onboarding & pravidla práce
 
-> Typ: povinný · Den: 1 (otvírák) · Odhad: AM blok
+> Typ: povinný · Den: 1 (otvírák) · Odhad: 120 min včetně 30 min rezervy na MFA
 > Prostředí: viz [`../../environment.md`](../../environment.md)
 
 ## Cíle

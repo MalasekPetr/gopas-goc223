@@ -26,6 +26,7 @@ Podle potřeby modul přidává i další soubory (bez šablony, ale konzistentn
 | `explainer-<téma>.md` | samostatný deep-dive na jeden mechanismus/koncept, odkazovaný z README |
 | `comparison-<téma>.md` | srovnávací tabulka + rozhodovací osa |
 | `guide-<téma>.md` | krok-za-krokem návod (instruktorský demo skript nebo PowerShell referenční postup) |
+| `exercise-<téma>.md` | krátké hands-on cvičení (do ~20 min, bez psaní kódu) — menší útvar než `lab-`; v `README.md` mu odpovídá sekce `## Cvičení` místo `## Lab` |
 | `scenario-<téma>.md` | běžící příklad/dataset sdílený napříč sourozeneckými moduly |
 | `solution/<skript>.ps1` | referenční řešení labu — plně okomentované, odpovídá `Ověření` v labu |
 

@@ -65,6 +65,62 @@ ne bezpečnostní vylepšení.
 Certifikát je z podstaty lepší než secret: podepisuje se jím výzva, samotný klíč po síti
 nikdy neputuje — na rozdíl od secretu, který se posílá při každém přihlášení.
 
+## Hardware klíč — NonExportable dotažený do konce
+
+`NonExportable` je **softwarová** pojistka: je to příznak, který respektuje Windows.
+Administrátor stroje ho umí obejít a útočník s dostatečnými právy taky. Hardware klíč
+tuhle vlastnost mění z dohody na fyzikální fakt.
+
+**YubiKey v režimu PIV** (a stejně tak čipová karta, HSM nebo Azure Key Vault) funguje takto:
+
+1. Klíčový pár se **vygeneruje přímo na čipu**. Privátní klíč se nikdy neobjeví
+   v paměti počítače.
+2. **Neexistuje operace, která by ho z čipu dostala ven.** Není to zakázané — čip to
+   neumí. To je celý rozdíl proti `NonExportable`.
+3. Podpis se provádí **uvnitř čipu**: aplikace pošle data k podpisu, čip vrátí podpis.
+   Volitelně až po zadání PIN a **fyzickém dotyku** klíče.
+4. Windows minidriver certifikát z čipu promítne do cert store, takže
+   `Connect-PnPOnline -Thumbprint <thumb>` funguje **beze změny jediného znaku** —
+   jen podpis proběhne v hardwaru místo v softwaru.
+
+Bod 4 je pointa pro skriptera: **hardware klíč není jiné API, je to jiné úložiště klíče.**
+Skript se nemění.
+
+**PIV** (Personal Identity Verification) je protokol čipových karet — YubiKey se pod ním
+tváří jako smart card. Tentýž princip, jen jiný formfaktor, mají HSM a v cloudu
+**Azure Key Vault** (HSM jako služba pro automatizaci, která neběží na vašem stolku).
+
+### Kdy to má smysl a kdy je to chyba nasazení
+
+| Situace | Správná volba |
+|---|---|
+| Credential s vysokými právy používaný **člověkem** (admin, konzultant napříč tenanty) | hardware klíč |
+| Bezobslužná automatizace **v Azure** | managed identity, případně Key Vault |
+| Noční scheduled task on-prem | software cert v `LocalMachine` s NonExportable |
+
+**Hardware klíč vyžadující dotyk je pro noční scheduled task chyba nasazení, ne
+bezpečnostní vylepšení** — v 03:00 u něj nikdo nestojí. Pravidlo: *hardware klíč patří
+k člověku, bezobslužná automatizace patří na managed identity.*
+
+### MFA token vs PIV credential — tentýž klíč, dvě různé role
+
+YubiKey jste v [`../../day-1/onboarding/mfa-setup.md`](../../day-1/onboarding/mfa-setup.md)
+mohli potkat jako **druhý faktor při přihlášení člověka**. Tady drží **credential
+aplikace**. Je to stejný kus hardwaru ve dvou nesouvisejících rolích:
+
+| | Přihlášení člověka | Credential aplikace |
+|---|---|---|
+| Protokol | FIDO2 / WebAuthn (passkey) | PIV (smart card) |
+| Co prokazuje | že u klávesnice je konkrétní člověk | že volající je konkrétní aplikace |
+| Kde se registruje | Entra → Authentication methods uživatele | app registrace → Certificates |
+| Nahrazuje | heslo | client secret |
+
+Záměna těchto dvou je častý zdroj zmatku v diskuzi „máme YubiKeys, tak jsme
+bezpeční" — bezpečné je to, k čemu je klíč skutečně nasazený.
+
+Živé demo celého postupu (klíč → self-signed certifikát → upload `.cer` na app registraci
+z labu → přihlášení s dotykem): [`demo-yubikey.md`](demo-yubikey.md).
+
 ## Praktické důsledky pro skripty
 
 - Na app registraci nahrávat **výhradně `.cer`**; `.pfx` vzniká jen tam, kde se cert
@@ -89,6 +145,11 @@ nikdy neputuje — na rozdíl od secretu, který se posílá při každém přih
   servisním účtem do uživatelského store nevidí.
 - **NonExportable (softwarová pojistka) vs hardware klíč (fyzická nemožnost)** —
   mezistupně nejsou selhání, jsou to úrovně podle hodnoty credentialu.
+- **MFA token (FIDO2/passkey, prokazuje člověka) vs PIV credential (prokazuje aplikaci)** —
+  tentýž YubiKey ve dvou nesouvisejících rolích; „máme YubiKeys" samo o sobě neříká nic
+  o tom, co je zabezpečené.
+- **Hardware klíč vs managed identity** — první patří k člověku, druhá k bezobslužné
+  automatizaci. Klíč s dotykem u nočního tasku je chyba nasazení.
 
 ## Zdroje (Microsoft)
 
@@ -96,6 +157,8 @@ nikdy neputuje — na rozdíl od secretu, který se posílá při každém přih
 - [about_Certificate_Provider (PowerShell)](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.security/about/about_certificate_provider)
 - [New-SelfSignedCertificate](https://learn.microsoft.com/en-us/powershell/module/pki/new-selfsignedcertificate)
 - [Azure Key Vault keys overview](https://learn.microsoft.com/en-us/azure/key-vault/keys/about-keys)
+- [Passwordless authentication s FIDO2 / passkeys (Entra)](https://learn.microsoft.com/en-us/entra/identity/authentication/concept-authentication-passwordless)
+- [YubiKey Manager (`ykman`) — Yubico](https://developers.yubico.com/yubikey-manager/)
 
 ## Stav produktu / delta
 > [!WARNING] Ověřit k datu běhu — stav k 2026-09.

@@ -1,0 +1,40 @@
+{
+    "$schema": "https://developer.microsoft.com/en-us/json-schemas/teams/v1.30/MicrosoftTeams.schema.json",
+    "manifestVersion": "1.30",
+    "version": "1.0.1",
+    "id": "${{TEAMS_APP_ID}}",
+    "developer": {
+        "name": "Malach IS s.r.o.",
+        "websiteUrl": "https://www.malachis.eu/",
+        "privacyUrl": "https://www.malachis.eu/en-US/terms/privacy-policy",
+        "termsOfUseUrl": "https://www.malachis.eu/en-US/terms",
+        "mpnId": "5305658"
+    },
+    "icons": {
+        "color": "color.png",
+        "outline": "outline.png"
+    },
+    "name": {
+        "short": "Scripting Advisor",
+        "full": "Scripting Advisor by Malach IS"
+    },
+    "description": {
+        "short": "Advisor for M365 PowerShell, SharePoint, Graph and Entra app registrations.",
+        "full": "Scripting Advisor by Malach IS helps Microsoft 365 administrators and developers write safe, correct automation. It covers PowerShell scripting (PnP PowerShell, the Microsoft Graph module, CLI for Microsoft 365), SharePoint Online configuration and migration, Microsoft Graph API usage, tenant reporting, and Microsoft Entra app registrations. The agent is built for training and self-study: it names the minimum permission a task requires, distinguishes delegated from application permissions, offers a dry-run before any destructive operation, and flags deprecated modules and cmdlets. Grounding comes from official Microsoft documentation through Microsoft Learn, together with the PnP community documentation and script samples (pnp.github.io), the Microsoft 365 developer blog, and Microsoft Tech Community. The agent reads no tenant data - it uses public documentation only, and nothing leaves your Microsoft 365 tenant. Scripts it produces are examples for review and testing, not production-ready code. [Malach IS](https://www.malachis.eu)"
+    },
+    "accentColor": "#FF7517",
+    "supportsChannelFeatures": "tier1",
+    "composeExtensions": [],
+    "permissions": [
+        "identity"
+    ],
+    "copilotAgents": {
+        "declarativeAgents": [
+            {
+                "id": "scriptingAdvisor",
+                "file": "declarativeAgent.json"
+            }
+        ]
+    },
+    "validDomains": []
+}

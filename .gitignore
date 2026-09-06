@@ -7,3 +7,6 @@ CLAUDE.md
 /scripts/*.local.*
 **/solution/*.csv
 **/solution/*.local.*
+
+# Playwright MCP session logs — lokalni smeti
+.playwright-mcp/

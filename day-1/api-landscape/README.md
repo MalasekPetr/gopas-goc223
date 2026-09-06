@@ -1,17 +1,21 @@
-# Architektonický přehled: Azure, Entra ID, M365, Graph, SPO REST
+# Mapa API nad M365 a SPO: Azure, Entra ID, Graph, SPO REST
 
-> Typ: volitelný · Den: 1 (po onboardingu, dle času) · Odhad: 30-45 min
+> Typ: povinný · Den: 1 · Odhad: 25 min výklad + 20 min cvičení
 
 ## Cíle
 - Student umí zařadit pojmy Azure, Entra ID, Microsoft 365 a SharePoint Online do jedné mapy
   a ví, co je čeho součást.
 - Student rozumí, kudy vedou API cesty k datům (Microsoft Graph vs SPO REST v1/CSOM) a kde
   v obrázku sedí autentizace.
+- Student si obě cesty **sám vyzkouší na živém tenantu** a umí pojmenovat, čím se liší
+  jejich odpovědi — viz [`exercise-graph-explorer.md`](exercise-graph-explorer.md).
+- Student pozná v zákaznickém prostředí **mrtvou vrstvu** a ví, čím se dnes nahrazuje.
 
-> [!NOTE] Volitelný modul — nic povinného na něm nezávisí. Povinné moduly
-> ([`../automation-strategy/`](../automation-strategy/), [`../../day-2/powershell-deep-dive/`](../../day-2/powershell-deep-dive/))
-> jsou samonosné; tento blok je prohloubení pro skupiny, kde architektonický základ chybí
-> nebo je nesourodý.
+> [!NOTE] Proč je tenhle blok povinný
+> Mapa API je rozhodovací rámec, na kterém stojí zbytek týdne: „Graph first, SPO REST tam,
+> kde Graph nestačí" se vrací v každém dalším labu. Cvičení v Graph Exploreru je zároveň
+> **jediný hands-on moment dne 1** před blokem
+> [`../automation-strategy/`](../automation-strategy/) — první úspěch, který nemá vypadnout.
 
 ## Výklad
 
@@ -75,6 +79,19 @@ flowchart TD
   různé autorizační soustavy; GA v tenantu automaticky neznamená přístup k Azure resources.
 - **Graph (jednotná brána, moderní) vs SPO REST v1/CSOM (starší, širší SPO pokrytí)** —
   ne konkurence, ale doplněk; PnP je wrapper nad oběma.
+- **Mrtvá vrstva vs podporovaná náhrada** — Add-ins/ACS, JSOM, MSOnline a AzureAD moduly
+  v zákaznickém prostředí stále běží; poznat je a znát náhradu je dovednost pro migrační
+  assessment, ne historická poznámka.
+
+## Cvičení
+Viz [`exercise-graph-explorer.md`](exercise-graph-explorer.md) — každý účastník si sám
+zavolá `/me`, `$select` a seznamy jednoho webu přes Graph i přes SPO REST, a porovná
+odpovědi.
+
+> [!NOTE] Formáty odpovědí
+> JSON je v tomto kurzu předpokládaná znalost; kdo si chce doplnit UTF-8 disciplínu
+> a export do CSV pro Excel (česká diakritika), má to v
+> [`../../day-2/powershell-deep-dive/explainer-formats-encoding.md`](../../day-2/powershell-deep-dive/explainer-formats-encoding.md).
 
 ## Zdroje (Microsoft)
 - [Microsoft Graph overview](https://learn.microsoft.com/en-us/graph/overview)

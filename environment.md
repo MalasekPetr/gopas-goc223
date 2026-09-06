@@ -40,7 +40,7 @@ samostatnou, placenou subscription připojenou k témuž tenantu.
 | Role studenta | Contributor jen na vlastní resource group, ne na subscription |
 
 > [!NOTE] Global administrator v tenantu ≠ přístup k Azure — Entra role a Azure RBAC jsou
-> oddělené soustavy (viz [`day-1/opt-architecture-overview/`](day-1/opt-architecture-overview/)).
+> oddělené soustavy (viz [`day-1/api-landscape/`](day-1/api-landscape/)).
 
 > [!WARNING] Ověřit k datu běhu — stav k 2026-07.
 > Azure Consumption-plan náklady jsou u tohoto rozsahu labů zanedbatelné, ale sledovat
@@ -51,17 +51,27 @@ samostatnou, placenou subscription připojenou k témuž tenantu.
 
 | Položka | Hodnota |
 |---|---|
-| VS Code | poslední stabilní verze, extension pack: PowerShell, Azure Functions |
-| PowerShell | PowerShell 7 (aktuální LTS) vedle Windows PowerShell 5.1 |
-| Node.js | aktuální LTS kompatibilní s SPFx generátorem (viz [`day-5/spfx-fundamentals/`](day-5/spfx-fundamentals/)) |
+| VS Code | poslední stabilní verze, rozšíření **PowerShell** (`ms-vscode.powershell`) + Azure Functions |
+| PowerShell | **PowerShell 7.4+** vedle Windows PowerShell 5.1 (PnP PowerShell 7.4.0 vyžaduje) |
+| Node.js | aktuální LTS (**Node 22**), instalovaný přes **fnm** — jediný důvod je CLI for Microsoft 365 (npm balíček); viz [`day-1/toolchain-setup/`](day-1/toolchain-setup/) |
 | AI asistent | **Microsoft Copilot Chat** — v prohlížeči pod kurzovním účtem; žádná samostatná licence se nekupuje |
-| Git | nainstalovaný, nakonfigurovaný `user.name`/`user.email` před D1 |
+| Agent kurzu | **Scripting Advisor** — deklarativní agent poskytnutý autorem kurzu, publikovaný v tenantu (ne v Agent Store). Zdrojový kód a architektura: [`day-1/vscode-copilot-env/agent-scripting-advisor/`](day-1/vscode-copilot-env/agent-scripting-advisor/) |
+| Git | instaluje se v bloku [`day-1/toolchain-setup/`](day-1/toolchain-setup/); `user.name`/`user.email` si student nastaví tam |
+| Ověření | `scripts/verify-toolchain.ps1` — vzniká v labu [`day-1/toolchain-setup/`](day-1/toolchain-setup/) |
 
 ### Náklady — upozornění pro učebnu
 > [!WARNING] Ověřit k datu běhu — stav k 2026-09.
 > AI asistent kurzu je **Microsoft Copilot Chat** v rámci kurzovního účtu — nic se
 > nedokupuje ani nepřiřazuje před D1. Pokud se v běhu má ukazovat **agent nad firemními
-> daty** (Scripting Assistant, SharePoint agents), jde o **měřenou spotřebu**
-> (pay-as-you-go): před kurzem musí být v M365 admin centru založená **billing policy**
-> navázaná na Azure subscription, připojená ke službě a s nastaveným rozpočtem.
+> daty** (SharePoint agents, agent s capability `OneDriveAndSharePoint`/`Email`/`People`),
+> jde o **měřenou spotřebu** (pay-as-you-go): před kurzem musí být v M365 admin centru
+> založená **billing policy** navázaná na Azure subscription, připojená ke službě
+> a s nastaveným rozpočtem. Rozpočet ale jen **notifikuje, nevynucuje** — tvrdá brzda je
+> odpojení policy.
+>
+> Kurzovní agent **Scripting Advisor** je postavený tak, aby do téhle kategorie nespadl:
+> nemá **žádnou capability nad daty tenantu**, jen WebSearch a MCP akci. Zda deklarovaná
+> MCP akce zařazení mění, dokumentace neříká — **ověřit na řádku agenta v Copilot Credits
+> reportu před během** (Reports > Usage > Microsoft Copilot > Credits). Dokud to není
+> ověřeno, agent jede jako instruktorské demo na jednom sedadle.
 > Mechanika a role: [`day-1/vscode-copilot-env/explainer-copilot-licensing.md`](day-1/vscode-copilot-env/explainer-copilot-licensing.md).

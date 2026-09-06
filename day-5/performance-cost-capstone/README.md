@@ -1,6 +1,6 @@
 # Výkon, náklady & capstone
 
-> Typ: povinný · Den: 5 · Odhad: <min>
+> Typ: povinný · Den: 5 · Odhad: 30 min výklad + 60-120 min lab (elastický blok)
 
 ## Cíle
 - Efektivita API (batching, selektivní projekce).

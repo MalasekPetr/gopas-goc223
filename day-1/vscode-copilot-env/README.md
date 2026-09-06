@@ -1,15 +1,20 @@
 # Inženýrské prostředí, VS Code a Copilot
 
-> Typ: povinný · Den: 1 · Odhad: AM blok
+> Typ: povinný · Den: 1 · Odhad: 40 min výklad + 45 min lab
 
 ## Cíle
 - Ovládat VS Code jako pracovní prostředí pro automatizační skripty (workspace, `tasks.json`, formátování, ladění).
-- Dodržovat základní hygienu repozitáře — branch strategie, commit zprávy, PR a code review —
-  a umět rozhodnout, kde má repozitář organizace bydlet (viz [`explainer-git-hosting.md`](explainer-git-hosting.md)).
+- Dodržovat základní hygienu repozitáře — malé commity s popisnou zprávou, `pull` před
+  `push`, review před nasazením — a umět rozhodnout, kde má repozitář organizace bydlet
+  (viz [`explainer-git-hosting.md`](explainer-git-hosting.md)).
 - Používat **Microsoft Copilot Chat** zodpovědně — s explicitním promptingem, priming promptem
   proti fantazii modelu, bezpečnostními mantinely a akceptačními kritérii, ne slepým přijímáním návrhů.
 - Vědět, co je v Copilotu součástí stávajícího předplatného a kde začíná měřená spotřeba —
   viz [`explainer-copilot-licensing.md`](explainer-copilot-licensing.md).
+- Rozumět tomu, **z čeho se skládá deklarativní agent** a proč umí věci, na které obecný chat
+  nedosáhne (MCP grounding, vynucené guardrails) — viz
+  [`explainer-declarative-agent.md`](explainer-declarative-agent.md) a kompletní zdrojový kód
+  kurzovního agenta v [`agent-scripting-advisor/`](agent-scripting-advisor/).
 - Rozumět třem runtime prostředím automatizace (DEV stanice, kontejner/CI, server) — viz
   [`explainer-runtime-environments.md`](explainer-runtime-environments.md).
 
@@ -30,7 +35,20 @@ výběru F8 a integrovanou PowerShell konzoli. Pro adminy zvyklé na ISE existuj
 na ISE zvyklosti, takže přechod nebolí.
 
 ### Git základy a hygiena repozitáře
-Branch per feature/fix, malé commity s popisnou zprávou (proč, ne jen co), PR jako povinná brána před merge do `main`, code review checklist zaměřený na automatizační kód: hardcoded identifikátory (tenant ID, ClientId, secrety), chybějící error handling, chybějící `-WhatIf` u destruktivních skriptů. Slovníček pojmů, srovnání hostingů (GitHub vs Azure DevOps vs self-hosted) a rozhodovací osa pro repozitář se skripty k produkčnímu tenantu: [`explainer-git-hosting.md`](explainer-git-hosting.md).
+**Skripty jsou kód a kód patří do Gitu** — bez ohledu na to, kde repozitář bydlí. Vstupní
+úroveň, kterou po sobě chtějte hned: malé commity s popisnou zprávou (**proč**, ne jen co),
+`pull` před `push`, a review — byť vlastní — před tím, než se něco pustí na produkční
+tenant. Review checklist je zaměřený na automatizační kód: hardcoded identifikátory
+(tenant ID, ClientId, secrety), chybějící error handling, chybějící `-WhatIf`
+u destruktivních skriptů.
+
+**Branch per feature a PR jako povinná brána do `main` je cílový stav pro tým, ne vstupní
+požadavek.** Kurz jede lineárně v `main` s malými commity — to je pracovní návyk, který
+si odnesete i jako jednotlivec. PR gate má smysl zavádět, až workflow drží celý tým;
+zavedený předčasně vede k tomu, že se obchází. Slovníček pojmů (commit, push/pull, branch,
+pull request, merge, `.gitignore`), srovnání hostingů **GitHub vs Azure DevOps vs
+self-hosted** a rozhodovací osa pro repozitář se skripty k produkčnímu tenantu:
+[`explainer-git-hosting.md`](explainer-git-hosting.md).
 
 ### Microsoft Copilot Chat zodpovědně
 Kurz používá **Microsoft Copilot Chat** — asistenta dostupného v rámci firemního přihlášení, s ochranou firemních dat (prompty a odpovědi netrénují modely). Žádná samostatná vývojářská AI licence se nekupuje; co je součástí předplatného, kde začíná měřená spotřeba a jak se pay-as-you-go zapíná a hlídá, řeší [`explainer-copilot-licensing.md`](explainer-copilot-licensing.md).
@@ -45,8 +63,24 @@ flowchart LR
   B --> C[Code review: bezpečnost, korektnost]
   C -->|OK| D[Test / lint]
   C -->|nevyhovuje| A
-  D --> E[Commit + PR]
+  D --> E[Commit]
 ```
+
+### Od priming promptu k agentovi
+Priming prompt řeší správný problém špatnou cestou: musí se vložit na začátku každé
+konverzace, každý den, každým členem týmu — a kdo ho vloží jen napůl, pracuje s jiným
+nástrojem než ostatní. **Deklarativní agent je ta stejná sada pravidel zabalená do
+publikovaného artefaktu**, který se schvaluje a verzuje jako každá jiná aplikace v tenantu.
+
+Navíc přidává dvě věci, které pouhý prompt neumí. **Grounding přes MCP** — kurzovní agent
+volá Microsoft Learn MCP server a dokumentaci si v konverzaci *čte*, místo aby ji rekonstruoval
+z vah modelu; prompt umí říct „nevymýšlej si", ale nedá modelu čím to nahradit. A **hranice,
+které nelze zapomenout** — agent nemá jedinou capability sahající na data tenantu, takže není
+otázka disciplíny, jestli se dostane k zákaznickým datům.
+
+Kurz jednoho takového agenta používá celý týden. Architektura:
+[`explainer-declarative-agent.md`](explainer-declarative-agent.md). Kompletní zdrojový kód
+včetně instrukcí a testovacích otázek: [`agent-scripting-advisor/`](agent-scripting-advisor/).
 
 ## Klíčové rozlišení
 - **VS Code + PowerShell extension vs Windows PowerShell ISE** — ISE není aktivně vyvíjené a
@@ -59,8 +93,15 @@ flowchart LR
   [`copilot-priming-prompt.md`](copilot-priming-prompt.md)).
 - **Copilot Chat (součást předplatného) vs agent nad firemními daty (měřená spotřeba)** —
   licenční hranice, kterou musí admin znát dřív, než agenty pustí do tenantu.
+- **Vložený prompt vs zabalený guardrail** — prompt lze zapomenout, vložit napůl nebo
+  upravit; agent je publikovaný artefakt s verzí, vydavatelem a schvalovacím krokem.
+- **Model knowledge vs grounding** — co model „ví" z tréninku vs co si v konverzaci
+  skutečně přečte z dokumentace; jen druhé je ověřitelné a citovatelné (viz
+  [`explainer-declarative-agent.md`](explainer-declarative-agent.md)).
 - **Formátování vs linting** — formátování řeší styl (whitespace, odsazení), linting hledá reálné chyby a anti-patterny (PSScriptAnalyzer pravidla); obojí patří do `tasks.json`, aby fungovalo i mimo editor (CI).
-- **Lokální commit vs PR review gate** — lokální historie je studentova pracovní plocha, `main` je chráněná větev s vynuceným review před mergem.
+- **Vstupní úroveň vs cílový stav Gitu** — malé commity, `pull` před `push` a review před
+  nasazením zvládne jednotlivec od prvního dne; branch per feature s PR gate má smysl, až
+  workflow drží celý tým. Zavedený předčasně se obchází.
 
 ## Lab
 Viz [`lab-repo-scaffold.md`](lab-repo-scaffold.md).
@@ -71,6 +112,8 @@ Viz [`lab-repo-scaffold.md`](lab-repo-scaffold.md).
 - [How to replicate the ISE experience in Visual Studio Code](https://learn.microsoft.com/en-us/powershell/scripting/dev-cross-plat/vscode/how-to-replicate-the-ise-experience-in-vscode)
 - [Microsoft Copilot Chat — přehled](https://learn.microsoft.com/en-us/copilot/overview)
 - [Agents for Microsoft Copilot Chat](https://learn.microsoft.com/en-us/copilot/agents)
+- [Declarative agent schema 1.8 for Microsoft 365 Copilot](https://learn.microsoft.com/en-us/microsoft-365/copilot/extensibility/declarative-agent-manifest-1.8)
+- [API plugin manifest schema 2.4 (runtime `RemoteMCPServer`)](https://learn.microsoft.com/en-us/microsoft-365-copilot/extensibility/api-plugin-manifest-2.4)
 
 ## Stav produktu / delta
 > [!WARNING] Ověřit k datu běhu — stav k 2026-09.

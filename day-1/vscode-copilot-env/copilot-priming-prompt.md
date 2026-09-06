@@ -95,10 +95,17 @@ polí z [`../../day-2/graph-fundamentals/tips-spo-api.md`](../../day-2/graph-fun
 stránkování, threshold 5000, dekorace user agenta).
 
 **Evoluce → agent:** vkládat prompt do každé konverzace je daň za ruční přístup.
-Otestovaná sada pravidel je přesně to, z čeho se dá udělat **deklarativní agent**
-(„Scripting Assistant") — pravidla se stanou trvalými instrukcemi agenta a vkládání
-končí. Cesta **prompt → otestovaná pravidla → agent** je hlavní AI dovednost, kterou si
-z kurzu odnesete; licenční a nákladovou stránku agentů řeší
+Otestovaná sada pravidel je přesně to, z čeho se dá udělat **deklarativní agent** —
+pravidla se stanou trvalými instrukcemi agenta a vkládání končí. Cesta
+**prompt → otestovaná pravidla → agent** je hlavní AI dovednost, kterou si z kurzu
+odnesete.
+
+Kurzovní agent **Scripting Advisor** je hotový výsledek téhle cesty a máte ho celý
+k dispozici: instrukce, capabilities, MCP akci i testovací otázky v
+[`agent-scripting-advisor/`](agent-scripting-advisor/), architekturu v
+[`explainer-declarative-agent.md`](explainer-declarative-agent.md). Porovnejte si jeho
+`instruction.txt` s blokem výše — je to tentýž druh pravidel, jen o řád propracovanější.
+Licenční a nákladovou stránku agentů řeší
 [`explainer-copilot-licensing.md`](explainer-copilot-licensing.md).
 
 ## Vazby

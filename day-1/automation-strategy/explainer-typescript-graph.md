@@ -41,7 +41,7 @@ const site = await client.api("/sites/root").get();
 - Tým je primárně vývojářský (TS je domácí jazyk) a skripty žijí vedle aplikačního kódu.
 - Cíl běhu je Node prostředí — Azure Function (TS), CI pipeline s node image (viz
   [`../vscode-copilot-env/explainer-runtime-environments.md`](../vscode-copilot-env/explainer-runtime-environments.md)).
-- Návaznost na SPFx ([`../../day-5/spfx-fundamentals/`](../../day-5/spfx-fundamentals/)) —
+- Návaznost na SPFx ([`../../day-5/app-catalog-lifecycle/`](../../day-5/app-catalog-lifecycle/)) —
   stejný jazyk a tooling pro webparty i automatizaci. CLI for Microsoft 365 je sám Node/TS,
   takže tahle cesta je "to samé o vrstvu níž".
 

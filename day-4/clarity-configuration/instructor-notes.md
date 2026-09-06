@@ -24,6 +24,6 @@
 ## Vazby
 
 - Dopředu: SPFx tenant-wide deployment mechanismus (Tenant Wide Extensions list,
-  `skipFeatureDeployment`) se dokončuje v `spfx-fundamentals` na vlastním HelloWorld
+  `skipFeatureDeployment`) se dokončuje v `app-catalog-lifecycle` na vlastním HelloWorld
   webpartu.
 - Zpět: —

@@ -43,7 +43,7 @@ Kurz jde do hloubky u trojice PnP/Graph/SPO (fokus = SharePoint Online). Zbytek 
 | **MicrosoftTeams** | Teams admin (týmy, policies, telefonie) | |
 | **Microsoft.PowerApps.Administration.PowerShell** | Power Platform admin (environments, DLP) | service principal nutný při MFA |
 | **Az PowerShell** | Azure resources | používá se v D4 (Functions, Blob) — ne M365 samotné |
-| **CLI for Microsoft 365** (`@pnp/cli-microsoft365`) | cross-workload, npm/Node | **úzká role v kurzu: CI/CD pipeline a SPFx tooling** (`spfx doctor`, project upgrade) — ne obecná alternativa PnP.PowerShell pro administraci; překryv s PnP je u SPO ~80 % a učit oba na stejný problém nedává smysl |
+| **CLI for Microsoft 365** (`@pnp/cli-microsoft365`) | cross-workload, npm/Node | **úzká role v kurzu: CI/CD pipeline a skriptování mimo PowerShell** — ne obecná alternativa PnP.PowerShell pro administraci; překryv s PnP je u SPO ~80 % a učit oba na stejný problém nedává smysl. Je to npm balíček (Node 18+) — jediný důvod, proč je Node v toolchainu kurzu, viz [`day-1/toolchain-setup/`](day-1/toolchain-setup/) |
 
 ## TypeScript/Node cesta
 
@@ -67,6 +67,8 @@ Alternativa k PowerShellu pro vývojářské týmy: **Graph JS SDK** (`@microsof
 | **Device code** | headless/vzdálené prostředí, MFA | Kód zadaný v libovolném browseru/profilu |
 | **Certificate (app-only)** | dávkové operace, produkční automatizace | Bez promptu; cert thumbprint + ClientId + TenantId |
 | **Managed identity** | Azure-hosted automatizace (Functions, Runbooks) | Žádný spravovaný secret/cert — identita vázaná na Azure resource |
+
+**`Sites.Selected`** — aplikační oprávnění pro SharePoint, které samo o sobě **nedává přístup nikam**; consent je první krok, per-site grant (`Grant-PnPAzureADAppSitePermission`) druhý. Nelze jím ale vypsat weby tenantu ani web založit — provisioning a discovery jsou tenant-scoped a vyžadují `Sites.FullControl.All`. Pravidlo: least privilege = nejužší rozsah, **který úlohu splní**, ne nejužší název. Detail: [`day-2/permissions-consent/`](day-2/permissions-consent/).
 
 **Least privilege princip:** aplikační oprávnění (application permissions) se udělují na úrovni celého tenantu — každé navíc je rozšíření útočné plochy. Preferovat delegated tam, kde to dává smysl, a u app-only vždy sepsat přesný seznam permissions s odůvodněním (viz [`day-5/security-hardening/`](day-5/security-hardening/)).
 
@@ -110,7 +112,18 @@ Bezplatný web analytics nástroj (heatmapy, session recordings). V SPO kontextu
 > [!WARNING] Ověřit k datu běhu
 > Ověřit aktuální požadavky na cookie/souhlas banner a regionální ukládání dat (EU data residency) před nasazením u zákazníka — liší se dle Clarity plánu a legislativy cílové organizace.
 
-## SPFx & App Catalog
+## SharePoint Advanced Management (SAM)
+
+Licencovaná nadstavba SPO admin centra pro governance: content sprawl, lifecycle, **oversharing**. Dostupná, pokud má v tenantu **aspoň jeden uživatel licenci Microsoft Copilot** (nemusí být admin), nebo přes **SAM Plan 1** add-on. Role: SharePoint Administrator nebo SharePoint Advanced Management Administrator.
+
+V kurzu se objevuje dvakrát: **Site Attestation** ([`day-3/lifecycle-compliance/`](day-3/lifecycle-compliance/)) a **Data access governance (DAG)** reporty ([`day-5/permission-discovery/`](day-5/permission-discovery/)) — z nich hlavně **Site permissions for users**, který odpoví „ke kterým webům má uživatel přístup a jak je udělený".
+
+> [!WARNING] Ověřit k datu běhu — stav k 2026-09.
+> Limity DAG reportu pro uživatele: max **5 reportů**, opakovaný běh **1× za 30 dní**, data až **48 h stará**, vyžaduje předchozí běh org-wide reportu *Site permissions*. Kvůli tomu je to v kurzu **instruktorské demo**, nikdy hands-on. Licenční podmínky i seznam reportů se mění po měsících.
+
+**Tranzitivní členství** — `transitiveMemberOf` (Graph) vrací i vnořené skupiny, `memberOf` jen přímé. Report přístupů, který používá `memberOf`, míjí uživatele s přístupem přes Entra skupinu vloženou do SharePoint skupiny — nejběžnější případ v reálném tenantu.
+
+## App Catalog & SPFx (správcovský pohled)
 
 | Pojem | Poznámka |
 |---|---|
@@ -120,10 +133,10 @@ Bezplatný web analytics nástroj (heatmapy, session recordings). V SPO kontextu
 | **API access** | Schvalování oprávnění pro SPFx řešení v SharePoint admin centru — oprávnění se přidává **jedinému sdílenému service principalu** pro celý tenant („SharePoint Online Client Extensibility Web Application Principal"), takže ho využije i každé další SPFx řešení. Zmírnění: **isolated web parts** (vlastní principal). Audit: `Get-PnPTenantServicePrincipalPermissionGrants` / `…PermissionRequests` |
 | **Tenant-wide extensions** | Seznam na webu App Catalogu, kterým běží application customizery na všech stránkách bez instalace na konkrétní web — první místo ke kontrole, když se „rozbije SharePoint všem" |
 
-Správcovský pohled (nasazení, API access, verze, hygiena): [`day-5/spfx-fundamentals/explainer-spfx-admin.md`](day-5/spfx-fundamentals/explainer-spfx-admin.md). SPFx kód běží **pod identitou přihlášeného uživatele**, ne pod vlastním credentialem jako app registrace.
+Správcovský pohled (nasazení, API access, verze, hygiena): [`day-5/app-catalog-lifecycle/`](day-5/app-catalog-lifecycle/). **Vývoj SPFx není součástí kurzu** (vypuštěno 2026-09-06) — balíček `.sppkg` je v kurzu black box od dodavatele. SPFx kód běží **pod identitou přihlášeného uživatele**, ne pod vlastním credentialem jako app registrace.
 
 > [!WARNING] Ověřit k datu běhu — stav k 2026-07.
-> Vyřešeno k datu psaní: od SPFx v1.22 generátor defaultně scaffolduje **Heft-based toolchain** (`heft start`/`heft build`), Gulp je dostupný jen přes `--use-gulp` pro starší projekty. Microsoft plánuje vynucený konec podpory Gulp toolchainu kolem SPFx 1.24 (cca září 2026) — ověřit před každým během, zda se harmonogram nezměnil a zda kurzový baseline (SPFx 1.21.1+ / Node 22 LTS) stále odpovídá aktuální doporučené kombinaci.
+> **Neaktuální — vývoj SPFx byl z kurzu vypuštěn 2026-09-06.** Build toolchain (Heft vs Gulp), verze generátoru ani vazba Node ↔ SPFx se v kurzu neřeší a **nepatří do pre-run checklistu**. Balíček `.sppkg` je black box od dodavatele; kurz řeší jen jeho nasazení, upgrade a audit — [`day-5/app-catalog-lifecycle/`](day-5/app-catalog-lifecycle/).
 
 ## Provisioning & Orchestry
 
@@ -179,4 +192,7 @@ Detail a rozhodovací osa: [`day-3/migration-patterns/explainer-migration-tools.
 |---|---|
 | **VS Code** | primární editor — workspace, tasks.json, launch.json (ladění PowerShell/Node), formátování |
 | **Microsoft Copilot Chat** | AI asistent kurzu pro přípravu a testování skriptů — součást firemního přihlášení, s ochranou firemních dat; vždy s priming promptem ([`day-1/vscode-copilot-env/copilot-priming-prompt.md`](day-1/vscode-copilot-env/copilot-priming-prompt.md)) a bez tajných klíčů/tenant ID v promptu. Agenti nad firemními daty pro nelicencované uživatele = **měřená spotřeba** (pay-as-you-go, [`day-1/vscode-copilot-env/explainer-copilot-licensing.md`](day-1/vscode-copilot-env/explainer-copilot-licensing.md)). GitHub Copilot = placená editor-integrace mimo M365, v kurzu se nepoužívá |
+| **Deklarativní agent** | pojmenovaná konfigurace nad hostovaným Copilotem — instrukce, capabilities (grounding), actions a behavior overrides zabalené do app package a publikované do tenantu jako aplikace. Není to vlastní aplikace: hosting i orchestraci drží Microsoft (na rozdíl od **custom engine agenta**). Kurzovní agent **Scripting Advisor**: [`day-1/vscode-copilot-env/agent-scripting-advisor/`](day-1/vscode-copilot-env/agent-scripting-advisor/) |
+| **MCP** (Model Context Protocol) | otevřený protokol, kterým agent volá externí server a dostává zpět nástroje a data. V deklarativním agentovi se deklaruje jako **action** (plugin manifest, runtime `RemoteMCPServer`), ne jako capability. Kurzovní agent volá **Microsoft Learn MCP** (`learn.microsoft.com/api/mcp`, bez autentizace) |
+| **Grounding** | zdroje, ze kterých agent v konverzaci **skutečně čte** — na rozdíl od **model knowledge**, tedy toho, co model „ví" z tréninku. Jen grounding je ověřitelný a citovatelný; přepínač `discourage_model_knowledge` model knowledge potlačí, ale díru po nedokumentovaných nástrojích tím nezalepí |
 | **Git** | hygiena repozitáře, branch strategie, PR/code review workflow pro infrastructure-as-code přístup kurzu; volba hostingu [`day-1/vscode-copilot-env/explainer-git-hosting.md`](day-1/vscode-copilot-env/explainer-git-hosting.md) |

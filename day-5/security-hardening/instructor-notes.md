@@ -25,7 +25,7 @@
 - Do auditu patří i **API access granty SPFx řešení** — visí na jednom sdíleném service
   principalu pro celý tenant (`Get-PnPTenantServicePrincipalPermissionGrants`), takže je
   žádná app registrace „nevlastní"; podklad
-  [`../spfx-fundamentals/explainer-spfx-admin.md`](../spfx-fundamentals/explainer-spfx-admin.md).
+  [`../app-catalog-lifecycle/`](../app-catalog-lifecycle/).
 
 ## Vazby
 

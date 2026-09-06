@@ -1,0 +1,91 @@
+{
+    "$schema": "https://developer.microsoft.com/json-schemas/copilot/declarative-agent/v1.8/schema.json",
+    "version": "v1.8",
+    "name": "Scripting Advisor by Malach IS",
+    "description": "Advisor for Microsoft 365 administrators and developers working with automation: PowerShell scripting (PnP PowerShell, the Microsoft Graph module, CLI for Microsoft 365), SharePoint Online configuration and migration, Microsoft Graph API usage, tenant reporting, and Microsoft Entra app registrations. Answers are grounded in official Microsoft documentation through Microsoft Learn, plus the PnP community documentation and script samples. Built for training and self-study: it explains the reasoning behind a script, names the minimum permissions required, and flags destructive or deprecated patterns instead of just emitting code.",
+    "instructions": "$[file('instruction.txt')]",
+    "capabilities": [
+        {
+            "name": "WebSearch",
+            "sites": [
+                {
+                    "url": "https://pnp.github.io"
+                },
+                {
+                    "url": "https://devblogs.microsoft.com"
+                },
+                {
+                    "url": "https://techcommunity.microsoft.com"
+                }
+            ]
+        }
+    ],
+    "actions": [
+        {
+            "id": "learnMcp",
+            "file": "ai-plugin.json"
+        }
+    ],
+    "behavior_overrides": {
+        "default_response_mode": "Think deeper",
+        "special_instructions": {
+            "discourage_model_knowledge": false
+        },
+        "suggestions": {
+            "disabled": false
+        }
+    },
+    "disclaimer": {
+        "text": "Allow the Microsoft Learn connection when prompted - without it this agent cannot check cmdlets, parameters and permissions against official documentation, and answers get less reliable. Scripts shown here are examples, not production-ready code: test in a non-production tenant first, review the permissions they need, and run destructive operations with -WhatIf before committing."
+    },
+    "conversation_starters": [
+        {
+            "title": "Which tool should I use?",
+            "text": "I need to automate a task in Microsoft 365. Help me choose between PnP PowerShell, CLI for Microsoft 365, the Microsoft Graph PowerShell module, and raw Graph REST, and explain the trade-offs."
+        },
+        {
+            "title": "Minimum permission",
+            "text": "What is the narrowest Microsoft Graph permission that lets me do this, and is it a delegated or an application permission?"
+        },
+        {
+            "title": "Set up Sites.Selected",
+            "text": "Walk me through using Sites.Selected instead of Sites.FullControl.All, including how to grant an app access to one specific SharePoint site."
+        },
+        {
+            "title": "App-only with a certificate",
+            "text": "Show me how to set up app-only authentication with a certificate for an unattended script, and explain why that is preferable to a client secret."
+        },
+        {
+            "title": "Tenant inventory report",
+            "text": "I need a report of all site collections in the tenant with owners, storage used and last activity. Show me the options and explain what each one costs in runtime."
+        },
+        {
+            "title": "Audit permissions",
+            "text": "How do I produce a permissions audit for a SharePoint site collection, including broken inheritance, sharing links and external users?"
+        },
+        {
+            "title": "Classic to modern",
+            "text": "Plan a migration from classic SharePoint sites to modern sites: what to inventory first, what breaks, and how to stage it safely."
+        },
+        {
+            "title": "Bulk change, safely",
+            "text": "I have to apply a change across hundreds of sites. Show me how to structure the script so I can dry-run it, review the result, and roll it back."
+        },
+        {
+            "title": "Graph throttling",
+            "text": "My script is getting 429 responses from Microsoft Graph. Explain how to handle Retry-After correctly and when to batch requests instead."
+        },
+        {
+            "title": "Replace a deprecated module",
+            "text": "I have an old script that uses the AzureAD or MSOnline module. What replaces each part of it today, and what changes in behaviour should I expect?"
+        },
+        {
+            "title": "Tenant configuration baseline",
+            "text": "How do I capture a snapshot of tenant and SharePoint configuration settings so I can detect drift and compare it against a baseline later?"
+        },
+        {
+            "title": "Run it unattended",
+            "text": "I want this script to run on a schedule without a signed-in user. Compare Azure Functions, Azure Automation and a scheduled task, and explain how each one authenticates."
+        }
+    ]
+}

@@ -1,0 +1,22 @@
+{
+    "schema_version": "v2.4",
+    "namespace": "learnmcp",
+    "name_for_human": "Microsoft Learn",
+    "description_for_human": "Search official Microsoft documentation and code samples on Microsoft Learn.",
+    "description_for_model": "Retrieves official Microsoft technical documentation and code samples from Microsoft Learn. Use it for questions about Microsoft 365, SharePoint Online, Microsoft Graph, Microsoft Entra, Microsoft-published PowerShell modules, and Azure. Always use it to verify a cmdlet name, parameter name, API endpoint, permission scope, throttling behaviour, or service limit before stating it.",
+    "functions": [],
+    "runtimes": [
+        {
+            "type": "RemoteMCPServer",
+            "auth": {
+                "type": "None"
+            },
+            "run_for_functions": [
+                "*"
+            ],
+            "spec": {
+                "url": "https://learn.microsoft.com/api/mcp"
+            }
+        }
+    ]
+}

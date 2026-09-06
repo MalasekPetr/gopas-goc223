@@ -4,9 +4,10 @@
 
 - AM blok, ale kratší než celé dopoledne (účty jsou předpřipravené, žádné žonglování
   s rolemi — všichni GA). Největší žrout času je MFA registrace u 25 účtů: rezerva
-  minimálně 30 minut jen na ni. Po onboardingu následuje volitelný architektonický
-  přehled ([`../opt-architecture-overview/`](../opt-architecture-overview/)) — pokud
-  MFA proběhne rychle, je z čeho brát.
+  minimálně 30 minut jen na ni. Po onboardingu následuje
+  [`../toolchain-setup/`](../toolchain-setup/) — na předinstalované učebně se zkrátí
+  z 45 na 35 min, což je jediná rezerva dne. Pokud MFA přeteče i tu, krátí se výklad
+  [`../api-landscape/`](../api-landscape/), **nikdy jeho cvičení**.
 
 ## Go/no-go — KLÍČOVÉ, otestovat před během
 

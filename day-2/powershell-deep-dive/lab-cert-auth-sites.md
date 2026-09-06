@@ -18,8 +18,23 @@ zbytek týdne.
 ## Kroky
 
 1. **Rozšířit oprávnění aplikace pro app-only**: přidat application permission
-   `Sites.FullControl.All` (SharePoint) + admin consent. Zapsat si do poznámky zdůvodnění —
-   přesně tohle rozšíření bude předmětem auditu v [`../../day-5/security-hardening/`](../../day-5/security-hardening/).
+   `Sites.FullControl.All` (SharePoint) + admin consent.
+
+   > [!IMPORTANT] Proč tady `Sites.Selected` z minulého bloku nestačí
+   > V [`../permissions-consent/`](../permissions-consent/) jste se naučili sáhnout po
+   > nejužším oprávnění — a je to správný reflex. **Tenhle lab je výjimka, která pravidlo
+   > upřesňuje.** `Sites.Selected` dává přístup k **vyjmenovaným, existujícím** webům;
+   > neumí ani vypsat weby tenantu (`Get-PnPTenantSite`), ani žádný web **založit**
+   > (`New-PnPSite`). Obojí jsou tenant-scoped operace a přesně to tenhle lab dělá.
+   >
+   > Least privilege není „vždy vyber nejužší název", ale **nejužší rozsah, který úlohu
+   > skutečně splní**. Rozdíl mezi těmito dvěma větami je to, co odlišuje bezpečnostní
+   > úvahu od bezpečnostního rituálu.
+
+   Zapsat si do poznámky zdůvodnění — **včetně věty, kdy tohle oprávnění přestane být
+   potřeba**. Přesně tohle rozšíření bude předmětem auditu v
+   [`../../day-5/security-hardening/`](../../day-5/security-hardening/): provisioning
+   skončil, oprávnění zůstalo.
 2. **Vygenerovat self-signed certifikát** do uživatelského úložiště — private key nikdy
    neopustí stroj:
 

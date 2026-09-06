@@ -44,6 +44,12 @@ Pravidla pro číslování:
 
 ## Zodpovědná AI a data
 
+- **AI asistent kurzu je Microsoft Copilot Chat + agent Scripting Advisor.** Doma používejte
+  co chcete (Claude Code, GitHub Copilot — dobré nástroje); na kurzu se pracuje s tím, co je
+  v učebně dostupné. Agent má pravidla proti fantazii modelu zabudovaná, takže se u něj
+  priming prompt už nevkládá — u holého chatu ano, vždy
+  ([`../vscode-copilot-env/copilot-priming-prompt.md`](../vscode-copilot-env/copilot-priming-prompt.md)).
+  Co agent je a jak je postavený: [`../vscode-copilot-env/agent-scripting-advisor/`](../vscode-copilot-env/agent-scripting-advisor/).
 - Do tenantu nenahrávat reálná firemní/osobní data — jen kurzovní a fiktivní obsah.
   Fiktivní testovací data (weby, položky, dokumenty, cesty ze zdrojového fileshare) si nechte
   vygenerovat Copilot Chatem — recepty na prompty:
