@@ -106,6 +106,8 @@ Standardní tvar pipeline v [`day-4/siem-blob-integration/`](day-4/siem-blob-int
 - **Retence**: log retence odděleně od retence zdrojových dat — GDPR/compliance požadavky se liší.
 - **Spolehlivost**: batching (snížení počtu Function invocations), retry s exponenciálním backoff, dead-letter queue pro trvale selhávající zprávy.
 - **KQL** (Kusto Query Language) — dotazovací jazyk nad Log Analytics/Sentinel, používaný k validaci ingestované telemetrie a stavbě dashboardů.
+- **Logování vs SIEM** — log odpovídá na otázku, kterou položíte; **SIEM se ptá sám** (analytics rule → incident s vlastníkem a stavem → vyšetřování). Hranice, u které lab jinak končí: [`day-4/siem-blob-integration/demo-sentinel-incident.md`](day-4/siem-blob-integration/demo-sentinel-incident.md).
+- **Microsoft Sentinel** — SIEM vrstva zapínaná **nad existujícím Log Analytics workspacem**, ne samostatný resource. `OfficeActivity` (SharePoint, Exchange, Teams) je v něm bezplatný datový zdroj; audit logy M365 mají ale latenci **60–90 min bez SLA**, takže nejsou podkladem pro real-time detekci, nýbrž pro forenzní stopu.
 
 ## Microsoft Clarity
 

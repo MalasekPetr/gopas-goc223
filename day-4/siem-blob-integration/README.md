@@ -61,6 +61,11 @@ flowchart LR
 ## Lab
 Viz [`lab-siem-ingest-blueprint.md`](lab-siem-ingest-blueprint.md).
 
+## Demo
+[`demo-sentinel-incident.md`](demo-sentinel-incident.md) — 20 min uvnitř labu: analytics
+rule nad tabulkou, kterou lab právě naplnil, a z nálezu **incident**. Ukazuje hranici,
+u které lab jinak končí: **log odpovídá na otázku, kterou položíte; SIEM se ptá sám.**
+
 ## Zdroje (Microsoft)
 - [Tutorial: Trigger Azure Functions on blob containers using an event subscription](https://learn.microsoft.com/en-us/azure/azure-functions/functions-event-grid-blob-trigger)
 - [Logs Ingestion API in Azure Monitor](https://learn.microsoft.com/en-us/azure/azure-monitor/logs/logs-ingestion-api-overview)
