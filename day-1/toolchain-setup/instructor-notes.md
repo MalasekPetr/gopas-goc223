@@ -16,6 +16,9 @@
   jádrem bloku, což je pedagogicky lepší než 25 lidí čekajících na `winget`.
 - **Projet celý lab na čistém stroji den předem** a zapsat si skutečné verze —
   minimální verze v labu (PowerShell 7.4.0, Node 18) jsou k datu psaní a posouvají se.
+  Na go/no-go stačí pustit [`solution/verify-toolchain.ps1`](solution/verify-toolchain.ps1) —
+  je to zároveň nejrychlejší kontrola připravenosti učebního image a podklad pro fallback
+  „instruktor rozdá předpřipravený repozitář".
 - **Ověřit síť z učebny na všechny čtyři cíle**: `winget` (`cdn.winget.microsoft.com`),
   VS Code Marketplace, PowerShell Gallery (`www.powershellgallery.com`), npm registry
   (`registry.npmjs.org`). Firewall v učebnách často pouští jen část — zjistit **předem**,
@@ -41,6 +44,11 @@
 - **Pester 5 vs vestavěná Pester 3.4.0.** Windows má předinstalovanou starou Pester
   podepsanou Microsoftem — `Install-Module Pester` bez `-SkipPublisherCheck` selže na
   neshodě vydavatele. Proto je ten přepínač v labu; počítat s dotazem „proč zrovna tady".
+  **Pozor na tichou variantu téhož problému:** kontrola „je modul k dispozici?" na
+  předinstalované 3.4.0 projde jako OK, ačkoli `Should -Invoke` z
+  [`../vscode-copilot-env/explainer-quality-gates.md`](../vscode-copilot-env/explainer-quality-gates.md)
+  v ní neexistuje. Referenční řešení proto u Pesteru **pinuje minimum 5.0.0** a u ostatních
+  modulů ne — je to dobrá otázka do diskuze: *kdy verzi pinovat a kdy ne?*
 - **VS Code se umí přilepit na Windows PowerShell 5.1** jako výchozí session, i když je
   7.4 nainstalovaná. Krok 7 (Session Menu) není kosmetika — bez něj student celý týden
   ladí v 5.1 a diví se, proč se PnP modul nenačte.

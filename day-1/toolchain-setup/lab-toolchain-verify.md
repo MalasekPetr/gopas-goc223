@@ -126,6 +126,13 @@ který kdykoli řekne, co chybí — a dá se předat kolegovi.
       Pak vrátit zpět.
 - [ ] `.node-version` a `.vscode/extensions.json` jsou v repu a commitnuté.
 
+> [!NOTE] Referenční řešení
+> Plně okomentované řešení je v [`solution/verify-toolchain.ps1`](solution/verify-toolchain.ps1).
+> **Otevřete ho až po vlastním pokusu** — psaní toho skriptu je jádro labu, ne jeho příprava.
+> Pak ho ale otevřete: obsahuje dvě věci, na které se přijde jen zkušeností — proč má
+> **Pester** minimální verzi, zatímco ostatní moduly ne, a jak se v kódu zdokumentuje
+> vědomá výjimka z pravidla PSScriptAnalyzeru.
+
 ## Fallback
 
 - **Blokovaný `winget`** — instruktor rozdá offline instalátory (PowerShell `.msi`,
