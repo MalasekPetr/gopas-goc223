@@ -4,6 +4,8 @@
 
 ## Cíle
 - Ovládat VS Code jako pracovní prostředí pro automatizační skripty (workspace, `tasks.json`, formátování, ladění).
+- Vědět, **co dělá PSScriptAnalyzer a co Pester** a proč automatizace potřebuje oba —
+  viz [`explainer-quality-gates.md`](explainer-quality-gates.md).
 - Dodržovat základní hygienu repozitáře — malé commity s popisnou zprávou, `pull` před
   `push`, review před nasazením — a umět rozhodnout, kde má repozitář organizace bydlet
   (viz [`explainer-git-hosting.md`](explainer-git-hosting.md)).
@@ -73,6 +75,10 @@ spustí kdokoli a cokoli: vy z editoru, kolega z terminálu, CI z pipeline.
 
 Test, kterým si to ověříte: **jde ta kontrola spustit, aniž bych otevřel VS Code?**
 Když ne, není to kontrola kvality, ale váš osobní zvyk.
+
+Co ty dva nástroje v úlohách vlastně dělají a proč jsou v automatizaci nad produkčním
+tenantem důležitější než u běžné aplikace — **nemáte rollback, takže se celý rozpočet na
+kvalitu utrácí před prvním spuštěním**: [`explainer-quality-gates.md`](explainer-quality-gates.md).
 
 ### PowerShell extension — náhrada za ISE
 VS Code s **PowerShell extension** je Microsoftem doporučené prostředí pro vývoj PowerShell
