@@ -84,8 +84,8 @@ Application customizery (globální hlavička, patička, telemetrie) lze aktivov
 tenant přes seznam **Tenant Wide Extensions** na webu App Catalogu. Praktický důsledek:
 existuje kód, který běží na všech stránkách, **aniž by ho kdokoli instaloval na konkrétní
 web**. Když se „rozbije SharePoint všem", je tohle první místo, kam se dívat — a záznam
-lze vypnout jedním přepínačem (`Disabled`). Konkrétní instanci tohoto mechanismu jste
-viděli v [`../../day-4/clarity-configuration/`](../../day-4/clarity-configuration/).
+lze vypnout jedním přepínačem (`Disabled`). Tenhle mechanismus je **jediné místo v kurzu**, kde se SPFx tenant-wide deployment
+řeší — dřív ho demonstrovala Microsoft Clarity, ta byla ale z kurzu vypuštěna.
 
 ### Provozní hygiena
 

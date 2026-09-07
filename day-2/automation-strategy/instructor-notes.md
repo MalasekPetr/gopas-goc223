@@ -1,8 +1,14 @@
-# Instructor notes — Strategie automatizace & nástrojová mapa
+# Instructor notes — Strategie automatizace, identita a oprávnění
 
 ## Timing
 
-- 40 min výklad + 45 min lab.
+- 50 min výklad + 55 min lab. Otvírák dne 2.
+- **Blok vznikl 2026-09-07 sloučením** `automation-strategy` (byl v D1) a
+  `permissions-consent`. Sloučené je to proto, že oba mluvily o least privilege a oba
+  laby pracovaly na **téže app registraci** — spojením zmizel kontextový přesun mezi
+  dvěma bloky nad jedním artefaktem a ušetřilo se ~30 min, které den 2 potřeboval.
+- Lab má dvě části a **část B je ta, kvůli které blok existuje**. Když se krátí, krátí
+  se písemná zdůvodnění (kroky 4 a 13), ne kroky 10-12.
 
 ## Go/no-go — KLÍČOVÉ, otestovat před během
 
@@ -36,9 +42,31 @@
   admin consent v cizím tenantu vytvoří jen Enterprise Application bez app registrace.
 - Nezabřednout do consent governance detailů (user consent settings, admin consent
   workflow) — pro kurz stačí practices z explaineru; hloubka je téma pro SC-300.
+- **Delegated vs Application záložka.** Nejčastější chyba části B a příčina `Unauthorized`
+  s prázdnou odpovědí v Labu 1. Ukázat obě záložky vedle sebe na plátně dřív, než začnou.
+- **„Dal jsem consent a nic nefunguje" je u `Sites.Selected` správná odpověď.** Krok 10
+  labu je na to nastražený schválně — nechat je narazit a teprve pak vysvětlit. Kdo to
+  zažije, nezapomene; kdo to jen slyší, zapomene do oběda.
+- **Nepřepálit to na „Sites.Selected vždycky".** Hned následující Lab 1 ho použít nemůže
+  (zakládá site collections a vypisuje tenant) a skupina si toho všimne. Pointa je
+  *nejužší rozsah, který úlohu splní*, ne jméno oprávnění — viz sekce v README. Otázka
+  „a proč tady ne Sites.Selected?" je nejlepší možný začátek Labu 1.
+- **Všichni jsou GA, takže consent past neuvidí.** Vyslovit nahlas jako varování do praxe:
+  *test pod adminem neprokáže nic*. Je to jediná věc z bloku, kterou si v kurzovním
+  tenantu nemohou vyzkoušet — o to důrazněji ji říct.
+- Ověřit Object ID service principalu vs App registrace — studenti je zaručeně zamění.
+  Mít připravený jednořádkový návod, kde se které bere.
+- Nesklouznout do Conditional Access ani do obsahových oprávnění (skupiny, dědičnost) —
+  blok je **o aplikacích**, ne o lidech. Reporting přístupů lidí je
+  [`../../day-5/permission-discovery/`](../../day-5/permission-discovery/).
 
 ## Vazby
 
-- Dopředu: tato app registrace se používá napříč celým týdnem; `security-hardening`
-  na konci kurzu provádí audit a hardening přesně této aplikace.
-- Zpět: navazuje na repo hygienu z [`../../day-1/vscode-copilot-env/`](../../day-1/vscode-copilot-env/).
+- Dopředu: tato app registrace se používá napříč celým týdnem.
+  [`../powershell-deep-dive/`](../powershell-deep-dive/) jí hned dá certifikát a přihlásí
+  se app-only; `security-hardening` na konci kurzu provádí audit a hardening přesně
+  této aplikace. Audit uděleného consentu se vrací i v
+  [`../../day-5/app-catalog-lifecycle/`](../../day-5/app-catalog-lifecycle/) — API access
+  u SPFx je tentýž problém na jiném objektu.
+- Zpět: navazuje na repo hygienu z [`../../day-1/vscode-copilot-env/`](../../day-1/vscode-copilot-env/)
+  a hotový toolchain z [`../../day-1/toolchain-setup/`](../../day-1/toolchain-setup/).

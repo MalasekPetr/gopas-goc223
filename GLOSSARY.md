@@ -70,7 +70,7 @@ Alternativa k PowerShellu pro vývojářské týmy: **Graph JS SDK** (`@microsof
 | **Certificate (app-only)** | dávkové operace, produkční automatizace | Bez promptu; cert thumbprint + ClientId + TenantId |
 | **Managed identity** | Azure-hosted automatizace (Functions, Runbooks) | Žádný spravovaný secret/cert — identita vázaná na Azure resource |
 
-**`Sites.Selected`** — aplikační oprávnění pro SharePoint, které samo o sobě **nedává přístup nikam**; consent je první krok, per-site grant (`Grant-PnPAzureADAppSitePermission`) druhý. Nelze jím ale vypsat weby tenantu ani web založit — provisioning a discovery jsou tenant-scoped a vyžadují `Sites.FullControl.All`. Pravidlo: least privilege = nejužší rozsah, **který úlohu splní**, ne nejužší název. Detail: [`day-2/permissions-consent/`](day-2/permissions-consent/).
+**`Sites.Selected`** — aplikační oprávnění pro SharePoint, které samo o sobě **nedává přístup nikam**; consent je první krok, per-site grant (`Grant-PnPAzureADAppSitePermission`) druhý. Nelze jím ale vypsat weby tenantu ani web založit — provisioning a discovery jsou tenant-scoped a vyžadují `Sites.FullControl.All`. Pravidlo: least privilege = nejužší rozsah, **který úlohu splní**, ne nejužší název. Detail: [`day-2/automation-strategy/`](day-2/automation-strategy/).
 
 **Least privilege princip:** aplikační oprávnění (application permissions) se udělují na úrovni celého tenantu — každé navíc je rozšíření útočné plochy. Preferovat delegated tam, kde to dává smysl, a u app-only vždy sepsat přesný seznam permissions s odůvodněním (viz [`day-5/security-hardening/`](day-5/security-hardening/)).
 
@@ -108,13 +108,6 @@ Standardní tvar pipeline v [`day-4/siem-blob-integration/`](day-4/siem-blob-int
 - **KQL** (Kusto Query Language) — dotazovací jazyk nad Log Analytics/Sentinel, používaný k validaci ingestované telemetrie a stavbě dashboardů.
 - **Logování vs SIEM** — log odpovídá na otázku, kterou položíte; **SIEM se ptá sám** (analytics rule → incident s vlastníkem a stavem → vyšetřování). Hranice, u které lab jinak končí: [`day-4/siem-blob-integration/demo-sentinel-incident.md`](day-4/siem-blob-integration/demo-sentinel-incident.md).
 - **Microsoft Sentinel** — SIEM vrstva zapínaná **nad existujícím Log Analytics workspacem**, ne samostatný resource. `OfficeActivity` (SharePoint, Exchange, Teams) je v něm bezplatný datový zdroj; audit logy M365 mají ale latenci **60–90 min bez SLA**, takže nejsou podkladem pro real-time detekci, nýbrž pro forenzní stopu.
-
-## Microsoft Clarity
-
-Bezplatný web analytics nástroj (heatmapy, session recordings). V SPO kontextu se injektuje přes **SPFx Application Customizer** (tenant-wide extension), ne ruční vkládání skriptu do stránek.
-
-> [!WARNING] Ověřit k datu běhu
-> Ověřit aktuální požadavky na cookie/souhlas banner a regionální ukládání dat (EU data residency) před nasazením u zákazníka — liší se dle Clarity plánu a legislativy cílové organizace.
 
 ## SharePoint Advanced Management (SAM)
 

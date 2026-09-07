@@ -22,7 +22,7 @@ Praktický päťdňový kurz pokročilej automatizácie a migrácie SharePointu 
 
 ## Popis kurzu
 
-Kurz prevedie inžinierov migrácií a automatizácie kompletným cyklom pokročilej automatizácie a migrácie SharePointu Online. Týždeň otvára voľba nástrojovej stratégie (PowerShell, Microsoft Graph, PnP, REST) a bezpečná identita automatizácie, na ne nadväzuje PowerShell do hĺbky s tromi produkčnými modulmi, štyrmi autentizačnými módmi a prvým veľkým labom (certifikát, app-only prihlásenie, skriptované pracovné weby). Druhý deň prehlbuje inžinierstvo nad Microsoft Graph (batching, delta query, throttling) a princíp staging prostredia DEV/TEST/PROD s detekciou driftu. Tretí deň patrí dvom pilierom kurzu — skladbe migrácií (wave planning, cutover taktiky, druhý veľký lab: fileshare → SharePoint Online podľa JSON plánu) a automatizácii zriaďovania cez PnP provisioning engine, doplneným o lifecycle a compliance enforcement. Štvrtý deň prepája SharePoint s Azure integračnými vzormi (Logic Apps, Functions, Runbooks, Graph change notifications), SIEM pipeline cez Azure Blob a nasadením Microsoft Clarity. Posledný deň stavia základy SPFx a App Catalogu, prechádza security hardeningom identít automatizácie a končí capstone blueprintom, ktorý spája migráciu, provisioning a Azure integráciu do jedného end-to-end plánu s rollbackom a odovzdaním do prevádzky.
+Kurz prevedie inžinierov migrácií a automatizácie kompletným cyklom pokročilej automatizácie a migrácie SharePointu Online. Týždeň otvára voľba nástrojovej stratégie (PowerShell, Microsoft Graph, PnP, REST) a bezpečná identita automatizácie, na ne nadväzuje PowerShell do hĺbky s tromi produkčnými modulmi, štyrmi autentizačnými módmi a prvým veľkým labom (certifikát, app-only prihlásenie, skriptované pracovné weby). Druhý deň prehlbuje inžinierstvo nad Microsoft Graph — batching, delta query, throttling a klasifikáciu chýb pre odolné skripty. Tretí deň patrí dvom pilierom kurzu — skladbe migrácií (wave planning, cutover taktiky, druhý veľký lab: fileshare → SharePoint Online podľa JSON plánu) a automatizácii zriaďovania cez PnP provisioning engine, doplneným o lifecycle a compliance enforcement. Štvrtý deň prepája SharePoint s Azure integračnými vzormi (Logic Apps, Functions, Runbooks, Graph change notifications), SIEM pipeline cez Azure Blob až do Log Analytics a stagingom DEV/TEST/PROD s detekciou driftu. Posledný deň rieši správu dodaných riešení v App Catalogu, reporting oprávnení („ku ktorým webom má tento človek prístup") a security hardening identít automatizácie a končí capstone blueprintom, ktorý spája migráciu, provisioning a Azure integráciu do jedného end-to-end plánu s rollbackom a odovzdaním do prevádzky.
 
 ## Pre koho je kurz určený
 
@@ -55,14 +55,12 @@ Kurz prevedie inžinierov migrácií a automatizácie kompletným cyklom pokroč
 - **Mapa API nad M365 a SPO** *(cvičenie)* — Azure, Entra ID, Microsoft Graph a SPO REST v jednej mape, mŕtve vrstvy a ich náhrady; každý účastník si sám zavolá prvé Graph dotazy v Graph Exploreri.
 - **Inžinierske prostredie, VS Code a Copilot** *(lab)* — VS Code ako pracovný nástroj pre automatizáciu, hygiena Git repozitára a zodpovedné použitie Microsoft Copilot Chatu pri písaní skriptov.
 
-### Deň 2 — Stratégia, oprávnenia, PowerShell a Graph engineering
+### Deň 2 — Stratégia, oprávnenia, PowerShell a Graph
 
-- **Stratégia automatizácie & nástrojová mapa** *(lab)* — orientácia medzi PowerShell, Microsoft Graph, PnP a REST, návrh identity automatizácie (app registrácia) a princíp least privilege.
-- **Oprávnenia a consent** *(lab)* — delegated vs. application permissions, consent ako samostatný krok, `Sites.Selected` namiesto generálneho kľúča a audit toho, čo má aplikácia v tenante skutočne udelené.
+- **Stratégia automatizácie: nástroje, identita a oprávnenia** *(lab)* — orientácia medzi PowerShell, Microsoft Graph, PnP a REST, návrh identity automatizácie (app registrácia), delegated vs. application permissions a `Sites.Selected` namiesto generálneho kľúča.
 
 - **PowerShell do hĺbky** *(Lab 1)* — tri PowerShell moduly (PnP, Graph, SPO) a štyri autentizačné módy; lab: certifikát, app-only prihlásenie, skriptované vytvorenie pracovných webov.
 - **Microsoft Graph — inžinierske základy** — batching, delta query, throttling a klasifikácia chýb pre odolné automatizačné skripty.
-- **Staging prostredie: DEV, TEST, PROD** — baseline ako deklaratívny artefakt a detekcia driftu medzi prostrediami.
 
 ### Deň 3 — Migrácia, provisioning a lifecycle
 
@@ -72,11 +70,11 @@ Kurz prevedie inžinierov migrácií a automatizácie kompletným cyklom pokroč
 
 > Voliteľne podľa času skupiny: Orchestry integrácia a vlastné skripty (simulácia bez licencie, návrh governance hookov proti PnP/Graph rozhraniu).
 
-### Deň 4 — Azure integrácia, SIEM a Clarity
+### Deň 4 — Azure integrácia, SIEM a staging
 
 - **Azure integračné vzory** *(Lab 3)* — Logic Apps vs. Functions vs. Runbooks, subscription lifecycle Graph change notifications; lab: dávkový sync ako naplánovaný task pod aplikačnou identitou.
 - **SIEM integrácia cez Azure Blob** — logovacia pipeline aplikácia → Blob → Event Grid → Function → SIEM, KQL základy pre validáciu a dashboardy.
-- **Microsoft Clarity — konfigurácia** — tenant-wide nasadenie cez SPFx Application Customizer, cookie/súhlas compliance.
+- **Staging prostredie: DEV, TEST, PROD** — baseline ako deklaratívny artefakt a detekcia driftu medzi prostrediami.
 
 ### Deň 5 — App Catalog, security hardening a capstone
 

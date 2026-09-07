@@ -1,7 +1,6 @@
 # Den 5 — App Catalog, security hardening & capstone
 
-App Catalog uzavírá kruh s Clarity injekcí z D4 — tam jste tenant-wide deployment viděli
-na jednom případu, tady je obecný mechanismus a jeho správa. Security hardening shrnuje least-privilege
+App Catalog zavádí tenant-wide deployment a správu dodaných řešení. Security hardening shrnuje least-privilege
 vlákno celého týdne — a předchází mu reporting oprávnění, protože nelze zpřísňovat to,
 o čem nevíte. Capstone spojuje migraci, provisioning a integrace do jednoho
 end-to-end blueprintu. **~5,7–6,7 h.**

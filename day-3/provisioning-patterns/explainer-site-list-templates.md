@@ -3,7 +3,7 @@
 Deep-dive k [`README.md`](README.md), který pokrývá **PnP provisioning engine**. Vedle
 něj existuje druhá, „lehčí" deklarativní vrstva přímo v SharePointu: **site scripty
 (JSON) + site templates + list designy**. Baseline a drift z
-[`../../day-2/staging-environments/`](../../day-2/staging-environments/) stojí na site
+[`../../day-4/staging-environments/`](../../day-4/staging-environments/) stojí na site
 scriptech; tenhle explainer dopovídá zbytek — jak šablonu **vyrobit z existujícího webu**,
 jak šablonovat **jednotlivý seznam** a **kdy JSON nestačí a nastupuje PnP šablona**.
 

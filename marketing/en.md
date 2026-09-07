@@ -22,7 +22,7 @@ A hands-on five-day course on advanced SharePoint Online automation and migratio
 
 ## Course overview
 
-This course takes migration and automation engineers through the full cycle of advanced SharePoint Online automation and migration. The week opens with the tooling strategy decision (PowerShell, Microsoft Graph, PnP, REST) and secure automation identity, followed by PowerShell in depth across three production-grade modules, four authentication modes, and the first large lab (certificate, app-only sign-in, scripted work sites). Day two deepens engineering skills on Microsoft Graph (batching, delta query, throttling) and the DEV/TEST/PROD staging environment model with drift detection. Day three covers the course's two pillars — migration composition (wave planning, cutover tactics, the second large lab: file share to SharePoint Online driven by a JSON plan) and provisioning automation via the PnP provisioning engine, rounded out with lifecycle and compliance enforcement. Day four connects SharePoint with Azure integration patterns (Logic Apps, Functions, Runbooks, Graph change notifications), a SIEM pipeline via Azure Blob, and a Microsoft Clarity rollout. The final day builds SPFx and App Catalog fundamentals, works through security hardening for automation identities, and closes with a capstone blueprint tying migration, provisioning, and Azure integration into a single end-to-end plan with a rollback plan and an operational handoff.
+This course takes migration and automation engineers through the full cycle of advanced SharePoint Online automation and migration. The week opens with the tooling strategy decision (PowerShell, Microsoft Graph, PnP, REST) and secure automation identity, followed by PowerShell in depth across three production-grade modules, four authentication modes, and the first large lab (certificate, app-only sign-in, scripted work sites). Day two deepens engineering skills on Microsoft Graph - batching, delta query, throttling, and error classification for resilient scripts. Day three covers the course's two pillars — migration composition (wave planning, cutover tactics, the second large lab: file share to SharePoint Online driven by a JSON plan) and provisioning automation via the PnP provisioning engine, rounded out with lifecycle and compliance enforcement. Day four connects SharePoint with Azure integration patterns (Logic Apps, Functions, Runbooks, Graph change notifications), a SIEM pipeline from Azure Blob into Log Analytics, and the DEV/TEST/PROD staging model with drift detection. The final day covers App Catalog lifecycle management for supplied solutions, permission reporting ("which sites can this person reach"), and security hardening for automation identities, and closes with a capstone blueprint tying migration, provisioning, and Azure integration into a single end-to-end plan with a rollback plan and an operational handoff.
 
 ## Who this course is for
 
@@ -55,14 +55,12 @@ This course takes migration and automation engineers through the full cycle of a
 - **API map across M365 and SPO** *(exercise)* — Azure, Entra ID, Microsoft Graph, and SPO REST on one map, dead layers and their replacements; every participant makes their own first Graph calls in Graph Explorer.
 - **Engineering environment, VS Code, and Copilot** *(lab)* — VS Code as the working tool for automation, Git repository hygiene, and responsible use of Microsoft Copilot Chat when writing scripts.
 
-### Day 2 — Strategy, Permissions, PowerShell & Graph Engineering
+### Day 2 — Strategy, Permissions, PowerShell & Graph
 
-- **Automation strategy & tool map** *(lab)* — choosing between PowerShell, Microsoft Graph, PnP, and REST, designing an automation identity (app registration), and the least-privilege principle.
-- **Permissions and consent** *(lab)* — delegated vs. application permissions, consent as a separate step, `Sites.Selected` instead of a master key, and auditing what an app has actually been granted in the tenant.
+- **Automation strategy: tools, identity, and permissions** *(lab)* — choosing between PowerShell, Microsoft Graph, PnP, and REST, designing an automation identity (app registration), delegated vs. application permissions, and `Sites.Selected` instead of a master key.
 
 - **PowerShell in depth** *(Lab 1)* — the three PowerShell modules (PnP, Graph, SPO) and four authentication modes; lab: certificate, app-only sign-in, scripted creation of work sites.
 - **Microsoft Graph — engineering basics** — batching, delta query, throttling, and error classification for resilient automation scripts.
-- **Staging environments: DEV, TEST, PROD** — baseline as a declarative artifact and drift detection between environments.
 
 ### Day 3 — Migration, Provisioning & Lifecycle
 
@@ -72,11 +70,11 @@ This course takes migration and automation engineers through the full cycle of a
 
 > Optional, time permitting: Orchestry integration and custom scripts (unlicensed simulation, designing governance hooks against the PnP/Graph interface).
 
-### Day 4 — Azure Integration, SIEM & Clarity
+### Day 4 — Azure Integration, SIEM & Staging
 
 - **Azure integration patterns** *(Lab 3)* — Logic Apps vs. Functions vs. Runbooks, the Graph change notifications subscription lifecycle; lab: a batch sync scheduled task running under an application identity.
 - **SIEM integration via Azure Blob** — the app → Blob → Event Grid → Function → SIEM logging pipeline, KQL basics for validation and dashboards.
-- **Microsoft Clarity — configuration** — tenant-wide rollout via an SPFx Application Customizer, cookie/consent compliance.
+- **Staging environments: DEV, TEST, PROD** — baseline as a declarative artifact and drift detection between environments.
 
 ### Day 5 — App Catalog, Security Hardening & Capstone
 

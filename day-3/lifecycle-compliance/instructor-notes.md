@@ -23,5 +23,5 @@
 
 - Dopředu: compliance drift koncept se vrací v D4 (SIEM logging pro audit trail) a v capstone
   ([`../../day-5/performance-cost-capstone/`](../../day-5/performance-cost-capstone/)).
-- Zpět: navazuje na baseline/diff z [`../../day-2/staging-environments/`](../../day-2/staging-environments/) a governance artefakty (attestace, sprawl) z [`../opt-orchestry-integration/`](../opt-orchestry-integration/) —
+- Zpět: navazuje na baseline/diff z [`../../day-4/staging-environments/`](../../day-4/staging-environments/) a governance artefakty (attestace, sprawl) z [`../opt-orchestry-integration/`](../opt-orchestry-integration/) —
   Site Attestation je zde nativní Microsoft ekvivalent k Orchestry simulaci.

@@ -42,9 +42,9 @@
 
 ## Vazby
 
-- Zpět: tenant-wide deployment mechanismus (Tenant Wide Extensions, `skipFeatureDeployment`)
-  studenti poprvé viděli v [`../../day-4/clarity-configuration/`](../../day-4/clarity-configuration/) —
-  tady se ukáže obecný případ, jehož konkrétní instancí Clarity byla.
+- **Tenant-wide deployment (Tenant Wide Extensions, `skipFeatureDeployment`) tu studenti
+  vidí POPRVÉ** — dřív ho uváděl blok o Microsoft Clarity, ten byl 2026-09-07 z kurzu
+  vypuštěn. Nepředpokládat, že pojem znají; je potřeba ho zavést, ne jen připomenout.
 - Dopředu: audit permission grants z části C labu pokračuje přímo v
   [`../security-hardening/`](../security-hardening/); `Get-AppInventory.ps1` je použitelný
   artefakt do capstone blueprintu

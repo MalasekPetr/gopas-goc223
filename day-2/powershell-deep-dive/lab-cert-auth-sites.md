@@ -21,7 +21,7 @@ zbytek týdne.
    `Sites.FullControl.All` (SharePoint) + admin consent.
 
    > [!IMPORTANT] Proč tady `Sites.Selected` z minulého bloku nestačí
-   > V [`../permissions-consent/`](../permissions-consent/) jste se naučili sáhnout po
+   > V [`../automation-strategy/`](../automation-strategy/) jste se naučili sáhnout po
    > nejužším oprávnění — a je to správný reflex. **Tenhle lab je výjimka, která pravidlo
    > upřesňuje.** `Sites.Selected` dává přístup k **vyjmenovaným, existujícím** webům;
    > neumí ani vypsat weby tenantu (`Get-PnPTenantSite`), ani žádný web **založit**

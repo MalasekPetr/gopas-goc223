@@ -24,4 +24,4 @@
 ## Vazby
 
 - Dopředu: baseline/diff koncept se rozšiřuje o compliance pravidla v `lifecycle-compliance`.
-- Zpět: navazuje na stránkování/ingest vzory z [`../graph-fundamentals/`](../graph-fundamentals/) (čtení stavu webu ve velkém).
+- Zpět: navazuje na stránkování/ingest vzory z [`../../day-2/graph-fundamentals/`](../../day-2/graph-fundamentals/) (čtení stavu webu ve velkém).

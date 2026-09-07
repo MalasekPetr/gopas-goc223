@@ -56,7 +56,7 @@
 ## Vazby
 
 - Dopředu: weby `-dev/-test/-prod` z tohoto labu jsou přímý vstup do
-  [`../../day-2/staging-environments/`](../../day-2/staging-environments/) (diff/baseline) a
+  [`../../day-4/staging-environments/`](../../day-4/staging-environments/) (diff/baseline) a
   [`../../day-3/migration-patterns/`](../../day-3/migration-patterns/) (migrační cíle);
   `Connect-CourseTarget` wrapper se znovupoužívá po celý zbytek kurzu; certifikátová identita
   je základ pro plánovaný sync task v [`../../day-4/azure-integration-patterns/`](../../day-4/azure-integration-patterns/)

@@ -27,34 +27,29 @@ Jediný zdroj pravdy o pořadí modulů. Složky jsou slugy; pořadí drží tat
 > výklad bloku 3, **nikdy jeho cvičení** — je to jediný hands-on moment před blokem 5.
 > PowerShell do hloubky je na začátku dne 2.
 
-## Den 2 — Oprávnění, PowerShell, Graph engineering & staging
+## Den 2 — Strategie, oprávnění, PowerShell a Graph
 
 | # | Blok | Slug | Typ |
 |---|---|---|---|
-| 1 | Strategie automatizace & nástrojová mapa *(lab: app registrace)* | `day-2/automation-strategy` | P |
-| 2 | Oprávnění a consent *(lab: Sites.Selected)* | `day-2/permissions-consent` | P |
-| 3 | PowerShell do hloubky *(Lab 1: certifikát, app-only, pracovní weby)* | `day-2/powershell-deep-dive` | P |
-| 4 | Microsoft Graph — inženýrské základy | `day-2/graph-fundamentals` | P |
-| 5 | Staging prostředí: DEV, TEST, PROD | `day-2/staging-environments` | P |
+| 1 | Strategie automatizace: nástroje, identita a oprávnění *(lab: app registrace + Sites.Selected)* | `day-2/automation-strategy` | P |
+| 2 | PowerShell do hloubky *(Lab 1: certifikát, app-only, pracovní weby)* | `day-2/powershell-deep-dive` | P |
+| 3 | Microsoft Graph — inženýrské základy | `day-2/graph-fundamentals` | P |
 
-> [!WARNING] PŘETÍŽENO: 8,2 h povinně — otevřené rozhodnutí
-> Součet: 85 + 50 + 135 + 120 + 100 = 490 min. `automation-strategy` se sem přesunul
-> z D1 (2026-09-07) po reálném běhu, kde se na něj v D1 nedostalo. Přesun je logicky
-> správný — app registrace z jeho labu je vstup pro blok 2 i pro certifikát v Labu 1 —
-> ale **žádný jiný den nemá 100 min volných**, takže se problém jen přemístil z D1 do D2.
+> [!NOTE] ~6,0 h povinně (105 + 135 + 120 = 360 min). Přestavěno 2026-09-07 po reálném běhu.
+> Blok 1 přišel z D1, kde se na něj nedostalo, a **sloučil se s bývalým `permissions-consent`** —
+> oba mluvily o least privilege a jejich laby pracovaly na téže app registraci, takže
+> spojením zmizel kontextový přesun nad jedním artefaktem (a ušetřilo ~30 min).
+> `staging-environments` odešlo na D4 na místo vypuštěné Clarity; bez toho by den vycházel
+> na 8,2 h.
 >
-> Kandidáti na řešení (nerozhodnuto):
-> 1. `staging-environments` → D3 (D2 = 6,5 h ✓, ale D3 = 7,5 h ✗)
-> 2. sloučit bloky 1 a 2 do jednoho (obsahový překryv v least privilege, ušetří ~30 min)
-> 3. vypustit `clarity-configuration` z D4 a přesunout tam `staging-environments`
->    (jediná varianta, po které je každý den pod 6,5 h — za cenu vypuštění Clarity)
+> Linka dne je jedna app registrace, která dospívá: blok 1 ji vytvoří a dá jí delegated
+> i `Sites.Selected`, blok 2 jí přidá certifikát a přihlásí ji app-only, blok 3 nad ní staví
+> odolné Graph volání. Bloky 1 a 2 si schválně protiřečí — Lab 1 potřebuje
+> `Sites.FullControl.All`, protože zakládá weby, a to je ta lekce: least privilege je
+> nejužší rozsah, **který úlohu splní**.
 >
-> Blok 2 je krátká rozcvička **těsně před prvním app-only přihlášením** v Labu 1 — bez něj
-> si skupina udělí `Sites.FullControl.All` a považuje to za normální. Lab 1 dopoledne
-> vytvoří weby `-dev/-test/-prod`, které staging odpoledne rovnou používá.
->
-> Volitelné demo hardware klíče (YubiKey/PIV, +30 min) uvnitř bloku 3 — jen při rezervě.
-
+> Volitelné demo hardware klíče (YubiKey/PIV, +30 min) a mini-lab „tři podpisy zápisu"
+> (+25 min) uvnitř bloku 2 — jen při reálné rezervě.
 ## Den 3 — Migrace, provisioning & lifecycle
 
 | # | Blok | Slug | Typ |
@@ -67,18 +62,22 @@ Jediný zdroj pravdy o pořadí modulů. Složky jsou slugy; pořadí drží tat
 > [!NOTE] Orchestry je volitelný blok (simulace bez licence, leaf node — nic povinného na
 > něm nezávisí; stejný model jako v GOC224) — spouští se dle času po provisioningu.
 
-## Den 4 — Azure integrace, SIEM & Clarity
+## Den 4 — Azure integrace, SIEM a staging
 
 | # | Blok | Slug | Typ |
 |---|---|---|---|
 | 1 | Azure integrační vzory *(Lab 3: dávkový sync + plánovaný task; change notifications jako instruktorské demo)* | `day-4/azure-integration-patterns` | P |
 | 2 | SIEM integrace přes Azure Blob | `day-4/siem-blob-integration` | P |
-| 3 | Microsoft Clarity — konfigurace | `day-4/clarity-configuration` | P |
+| 3 | Staging prostředí: DEV, TEST, PROD | `day-4/staging-environments` | P |
 
-> [!NOTE] ~6,25 h — uprostřed týdne, bez onboarding/odchodových rizik. Nejhustším dnem
-> je od 2026-09-07 **den 2** (8,2 h), ale to je otevřený problém k rozhodnutí, ne
-> zamýšlený stav. Change-notifications lab běží jako instruktorské demo (handshake + jedna notifikace),
-> plné dokončení je samostudium.
+> [!NOTE] ~6,3 h (160 + 120 + 100 = 380 min) — nejhustší den kurzu, ale uprostřed týdne,
+> bez onboarding/odchodových rizik. Change-notifications lab běží jako instruktorské demo
+> (handshake + jedna notifikace), plné dokončení je samostudium.
+>
+> **Microsoft Clarity byl 2026-09-07 z kurzu vypuštěn** a jeho slot dostalo
+> `staging-environments` z D2. Z celého týdne to bylo téma nejvzdálenější automatizaci
+> a migraci; obecný mechanismus SPFx tenant-wide deploymentu, který demonstrovalo, zůstává
+> v `day-5/app-catalog-lifecycle`.
 
 ## Den 5 — App Catalog, security hardening & capstone
 

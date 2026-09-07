@@ -40,7 +40,7 @@
   je to O(počet webů) na uživatele — a právě proto existuje SAM. Je to dobrý most k SAM
   části, ne odbočka.
 - **Nezaměňovat s auditem aplikací.** Tenhle blok je o **lidech**; oprávnění aplikací
-  řeší [`../../day-2/permissions-consent/`](../../day-2/permissions-consent/) a
+  řeší [`../../day-2/automation-strategy/`](../../day-2/automation-strategy/) a
   [`../security-hardening/`](../security-hardening/).
 
 ## Vazby

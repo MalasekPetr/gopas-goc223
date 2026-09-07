@@ -10,7 +10,7 @@ app-only identitou, ne pod osobním Global Admin účtem.
 
 ## Předpoklady
 
-- Web sloužící jako "zlatý" vzor (baseline) — může být sandbox z [`../../day-2/staging-environments/`](../../day-2/staging-environments/).
+- Web sloužící jako "zlatý" vzor (baseline) — může být sandbox z [`../../day-4/staging-environments/`](../../day-4/staging-environments/).
 - Vlastní účet (Global administrator, viz [`../../environment.md`](../../environment.md)) —
   `Invoke-PnPTenantTemplate` tuto roli vyžaduje; aplikovat výhradně na vlastní web dle
   naming konvence.
@@ -21,13 +21,13 @@ app-only identitou, ne pod osobním Global Admin účtem.
 2. Upravit šablonu — nahradit pevné hodnoty (název listu, popis) tokeny `{parameter:...}`.
 3. Omezit rozsah aplikace přes `-Handlers` na relevantní část (např. jen `Lists,Fields`).
 4. `Invoke-PnPTenantTemplate` s `-Parameters` simulujícími metadata žádanky (název, vlastník).
-5. Ověřit výsledný web proti diff skriptu z [`../../day-2/staging-environments/`](../../day-2/staging-environments/) — má odpovídat zadané baseline.
+5. Ověřit výsledný web proti diff skriptu z [`../../day-4/staging-environments/`](../../day-4/staging-environments/) — má odpovídat zadané baseline.
 
 ## Ověření
 
 - [ ] Šablona obsahuje alespoň dva parametrizované tokeny nahrazené za běhu.
 - [ ] Aplikace šablony s `-Handlers` omezením neprovede nic mimo zadaný rozsah.
-- [ ] Diff skript z [`../../day-2/staging-environments/`](../../day-2/staging-environments/) nehlásí drift mezi výsledným webem a očekávanou baseline.
+- [ ] Diff skript z [`../../day-4/staging-environments/`](../../day-4/staging-environments/) nehlásí drift mezi výsledným webem a očekávanou baseline.
 
 ## Fallback
 

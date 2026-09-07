@@ -32,4 +32,4 @@
 
 - Dopředu: navazuje `opt-orchestry-integration` jako alternativní/doplňkový přístup ke
   stejnému problému (žádanky, metadata, governance).
-- Zpět: baseline/diff koncept z [`../../day-2/staging-environments/`](../../day-2/staging-environments/) se zde používá jako zdroj šablony i jako ověření výsledku.
+- Zpět: baseline/diff koncept z [`../../day-4/staging-environments/`](../../day-4/staging-environments/) se zde používá jako zdroj šablony i jako ověření výsledku.

@@ -15,7 +15,7 @@
 Šablona (`.pnp` balíček nebo XML) deklarativně popisuje, co se má na webu nastavit — listy,
 sloupce, content types, theme, navigace, tenant-wide nastavení. `Get-PnPTenantTemplate`
 **exportuje aktuální konfiguraci existujícího webu jako šablonu** — to je přímé pojítko na
-baseline koncept z [`../../day-2/staging-environments/`](../../day-2/staging-environments/): baseline lze vytvořit jak ručně (site script), tak exportem ze
+baseline koncept z [`../../day-4/staging-environments/`](../../day-4/staging-environments/): baseline lze vytvořit jak ručně (site script), tak exportem ze
 vzorového ("zlatého") webu. `Invoke-PnPTenantTemplate -Path sablona.pnp` šablonu aplikuje;
 parametr `-Handlers` omezuje, které části šablony se skutečně provedou (např. jen `Lists,Fields`,
 ne celé `All`) — užitečné, když šablona obsahuje víc, než chceme na konkrétní web aplikovat.
