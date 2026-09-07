@@ -21,7 +21,58 @@
 ## Výklad
 
 ### VS Code pro automatizaci
-`.vscode/tasks.json` (verze `2.0.0`) definuje opakovatelné akce — build/test/lint — jako `type: "shell"` nebo `"process"` úlohy s `label`, `command`, `args` a `group` (`build`/`test`, případně `isDefault`). Umístění v `.vscode/` znamená, že konfigurace jde do repozitáře a sdílí se s týmem, ne jen s jedním strojem. `launch.json` řeší ladění (PowerShell extension i Node debugger). Formátování při uložení + linting (PSScriptAnalyzer pro PowerShell) patří do tasků, ne jen do nastavení editoru — jinak selžou v CI, kde editor neběží.
+
+**`tasks.json` je seznam pojmenovaných tlačítek pro jeden konkrétní projekt.** Příkazy,
+které se v repu pořád opakují — lint, testy, formátování — přestanou žít ve vaší hlavě
+nebo v `README` a stanou se něčím, co jde vybrat ze seznamu (`Ctrl+Shift+P` →
+*Tasks: Run Task*). `"version": "2.0.0"` je jen verze formátu, jiná se dnes nepoužívá.
+
+```json
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "lint",
+      "type": "shell",
+      "command": "Invoke-ScriptAnalyzer",
+      "args": [ "-Path", "./scripts", "-Recurse" ],
+      "group": "test"
+    },
+    {
+      "label": "test",
+      "type": "shell",
+      "command": "Invoke-Pester",
+      "args": [ "-Path", "./tests" ],
+      "group": { "kind": "test", "isDefault": true }
+    }
+  ]
+}
+```
+
+`label` je jméno v seznamu, `command` co se spustí, `args` argumenty **zvlášť** (vyhnete se
+tím problémům s uvozovkami a mezerami v cestách). `type: "shell"` spustí příkaz přes shell,
+takže fungují roury a rozbalování cest; `"process"` spustí program přímo, bez shellu —
+hodí se, když nechcete, aby shell do příkazu jakkoli zasahoval. `group` zařadí úlohu jako
+`build` nebo `test`, čímž zprovozní klávesové zkratky, a `isDefault` říká, kterou z nich
+zkratka spustí, když jich je víc.
+
+**Umístění v `.vscode/` je to podstatné.** VS Code má dvě různá místa pro nastavení:
+uživatelský profil (platí pro všechny vaše projekty, **kolega ho nevidí**) a `.vscode/`
+v repozitáři (platí pro tenhle projekt a **je commitnuté**). Tlačítka v repu znamenají,
+že kolega si naklonuje projekt a má je taky, aniž byste mu něco vysvětlovali — stejná
+logika jako `.node-version` a `.vscode/extensions.json` z
+[`../toolchain-setup/`](../toolchain-setup/). Sousedský `launch.json` dělá totéž pro
+ladění: po `F5` běží skript s breakpointy (PowerShell extension i Node debugger).
+
+**Formátování při uložení a podtrhávání chyb v editoru je pohodlné — a je to past, pokud
+je to jediné místo, kde kontrola žije.** Stojí to na třech podmínkách: máte VS Code, máte
+rozšíření, máte zapnuté nastavení. **CI pipeline nemá ani jednu z nich** — na buildovacím
+serveru žádný editor neběží. Kolega bez toho nastavení si nekvalitní kód commitne a
+pipeline to nezachytí, protože nemá čím. Jako úloha je to naopak obyčejný příkaz, který
+spustí kdokoli a cokoli: vy z editoru, kolega z terminálu, CI z pipeline.
+
+Test, kterým si to ověříte: **jde ta kontrola spustit, aniž bych otevřel VS Code?**
+Když ne, není to kontrola kvality, ale váš osobní zvyk.
 
 ### PowerShell extension — náhrada za ISE
 VS Code s **PowerShell extension** je Microsoftem doporučené prostředí pro vývoj PowerShell
@@ -99,6 +150,9 @@ včetně instrukcí a testovacích otázek: [`agent-scripting-advisor/`](agent-s
   skutečně přečte z dokumentace; jen druhé je ověřitelné a citovatelné (viz
   [`explainer-declarative-agent.md`](explainer-declarative-agent.md)).
 - **Formátování vs linting** — formátování řeší styl (whitespace, odsazení), linting hledá reálné chyby a anti-patterny (PSScriptAnalyzer pravidla); obojí patří do `tasks.json`, aby fungovalo i mimo editor (CI).
+- **Nastavení editoru vs úloha v repu** — nastavení platí jen tomu, kdo ho má; úloha
+  v `.vscode/tasks.json` je příkaz, který spustí i kolega a i CI. Kontrola kvality, kterou
+  nelze spustit bez editoru, není brána, ale zvyk.
 - **Vstupní úroveň vs cílový stav Gitu** — malé commity, `pull` před `push` a review před
   nasazením zvládne jednotlivec od prvního dne; branch per feature s PR gate má smysl, až
   workflow drží celý tým. Zavedený předčasně se obchází.
