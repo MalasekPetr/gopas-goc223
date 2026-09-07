@@ -56,6 +56,14 @@ Třetí velký lab kurzu. Student napíše **idempotentní sync skript**: čte z
 - [ ] Student umí vysvětlit, kdy by task přesunul do Azure (Runbook/Function) a co by se
       změnilo na auth (managed identity) — vazba na rozhodovací tabulku v README.
 
+> [!NOTE] Referenční řešení
+> [`solution/Sync-CourseList.ps1`](solution/Sync-CourseList.ps1) + **18 testů**.
+> Otevřete až po vlastním pokusu. Tři testy dokazují to, co u dávkového skriptu nad
+> produkcí nelze „vyzkoušet": **druhý běh nezapíše nic** (idempotence), **s `-WhatIf`
+> neproběhne ani jeden zápis** a **retry se opakuje jen na 429/5xx, ne na 403**.
+> Poslední z nich vysvětluje, proč `Invoke-WithRetry` existuje jako samostatná funkce —
+> jinak by na klasifikaci chyb nešlo napsat test.
+
 ## Fallback
 
 - Pokud Task Scheduler na učebních strojích nejde použít (policy), krok 5-6 nahradit

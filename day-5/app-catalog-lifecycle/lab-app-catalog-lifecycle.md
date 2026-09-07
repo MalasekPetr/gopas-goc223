@@ -83,6 +83,12 @@ proti jednomu.
 - [ ] Odpověď z kroku 8 je v commit message a jmenuje sdílený service principal.
 - [ ] Po části E je stav katalogu shodný se stavem před labem.
 
+> [!NOTE] Referenční řešení
+> [`solution/Get-AppInventory.ps1`](solution/Get-AppInventory.ps1) + **12 testů**.
+> Otevřete až po vlastním pokusu. Jeden test tvrdí, že skript **nic nemění** — kdyby ho
+> někdo „vylepšil" o automatický upgrade, spadne. Jiný fixuje, že `1.10.0` je vyšší než
+> `1.9.0`; textové porovnání by tvrdilo opak a upgrade na verzi 1.10 by nikdo neviděl.
+
 ## Fallback
 
 - **Site collection app catalog nejde na některém webu zapnout**: student nahraje balíček
