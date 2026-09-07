@@ -22,6 +22,16 @@
 - Pokud v učebně není druhé zařízení pro device code test, mít připravený telefon/tablet
   jako záložní "druhé zařízení" pro demo.
 
+## Referenční řešení
+
+- [`solution/Connect-CourseTarget.ps1`](solution/Connect-CourseTarget.ps1) + 18 testů.
+  `Invoke-Pester ./solution` projde bez tenantu i bez certifikátu — dá se pustit jako
+  součást go/no-go i na stroji, kde ještě není nic nastavené.
+- **Dva testy jsou tam kvůli chybám, které odhalily.** Stojí za zmínku ve výkladu, protože
+  obojí je poučení, ne kuriozita: `throw` po emitování objektu zahodí návratovou hodnotu
+  (proto je ve wrapperu `Write-Error`), a nepodporovaná kombinace je chyba **zadání**,
+  takže patří k validaci, ne do chybové větve připojení.
+
 ## Tripwires
 
 - Studenti si pletou `-ClientId` aplikace s `-TenantId` — zdůraznit rozdíl hned na začátku.

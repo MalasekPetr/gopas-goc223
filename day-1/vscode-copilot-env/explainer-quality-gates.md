@@ -120,8 +120,9 @@ takže lze tvrdit i „zavolalo se to právě jednou a právě s tímto webem".
 Druhá hodnota přijde později: až budete po půl roce přepisovat 500řádkový migrační skript,
 testy jsou to jediné, co vám řekne, že jste nic nerozbili.
 
-> [!IMPORTANT] Pester 5, ne 4
-> `Should -Invoke` / `Should -Not -Invoke` je syntaxe **Pesteru 5**. Starší
+> [!IMPORTANT] Pester 5+, ne 4
+> `Should -Invoke` / `Should -Not -Invoke` je syntaxe **Pesteru 5 a novějších**
+> (k 2026-09 je aktuální Pester 6, syntaxe zůstává). Starší
 > `Assert-MockCalled` z Pesteru 4 najdete v polovině příkladů na internetu — a v Pesteru 5
 > je to zastaralá cesta. Souvisí to i s tripwirem z instalace: Windows má předinstalovanou
 > Pester 3.4.0 a bez `-SkipPublisherCheck` se novější verze nenainstaluje.
@@ -159,6 +160,7 @@ A obojí patří do `tasks.json`, ne jen do editoru — v CI žádný editor neb
 - [Invoke-ScriptAnalyzer](https://learn.microsoft.com/en-us/powershell/module/psscriptanalyzer/invoke-scriptanalyzer)
 - [Everything you wanted to know about ShouldProcess](https://learn.microsoft.com/en-us/powershell/scripting/learn/deep-dives/everything-about-shouldprocess)
 - [Pester — Should](https://pester.dev/docs/commands/Should) a [Mock](https://pester.dev/docs/commands/Mock) (pester.dev, ne Microsoft)
+- Funkční ukázka mockování v tomto kurzu: [`../../day-2/powershell-deep-dive/solution/Connect-CourseTarget.Tests.ps1`](../../day-2/powershell-deep-dive/solution/Connect-CourseTarget.Tests.ps1)
 
 ## Stav produktu / delta
 > [!WARNING] Ověřit k datu běhu — stav k 2026-09.

@@ -126,6 +126,18 @@ zbytek týdne.
       PnP+Interactive a loguje strukturovaně.
 - [ ] Import modulů jde přes `-RequiredVersion` (pin z předpokladů).
 
+> [!NOTE] Referenční řešení
+> [`solution/Connect-CourseTarget.ps1`](solution/Connect-CourseTarget.ps1) + **18 unit testů**
+> v [`solution/Connect-CourseTarget.Tests.ps1`](solution/Connect-CourseTarget.Tests.ps1).
+> Otevřete až po vlastním pokusu — a pak si projděte testy, ne jen skript: jsou to
+> **funkční ukázky mockování** z [`../../day-1/vscode-copilot-env/explainer-quality-gates.md`](../../day-1/vscode-copilot-env/explainer-quality-gates.md).
+> Dva z nich vznikly proto, že odhalily reálnou chybu v první verzi wrapperu —
+> je to v komentářích popsané.
+>
+> Sám wrapper **nebyl testovaný proti živému tenantu**: ověřená je validace vstupu,
+> výběr cmdletu a podoba logu, ale skutečné přihlášení závisí na app registraci
+> a tenant policy. Projít všechny tři auth módy je součást go/no-go.
+
 ## Fallback
 
 - Pokud `New-PnPSite` v app-only režimu selže (tenant policy), vytvořit weby pod delegated
