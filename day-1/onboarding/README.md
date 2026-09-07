@@ -27,7 +27,7 @@ flowchart LR
 Kurz je o automatizaci na úrovni tenantu — app registrace, `Invoke-PnPTenantTemplate`,
 App Catalog, tenant-wide nastavení. S nižší rolí by polovina labů byla jen instruktorské
 demo. Cena za to: **žádná technická izolace mezi studenty**. To je záměrný teaching point —
-least privilege z [`../automation-strategy/`](../automation-strategy/) se tu učí kontrastem:
+least privilege z [`../../day-2/automation-strategy/`](../../day-2/automation-strategy/) se tu učí kontrastem:
 v kurzu jsme všichni GA a chrání nás jen pravidla; v produkci je to přesně naopak.
 
 ## Klíčové rozlišení

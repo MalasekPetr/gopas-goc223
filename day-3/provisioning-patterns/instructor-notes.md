@@ -16,7 +16,7 @@
 
 ## Tripwires
 
-- Zdůraznit napětí Global Admin požadavku vs. least-privilege téma z [`../../day-1/automation-strategy/`](../../day-1/automation-strategy/)/[`../../day-5/security-hardening/`](../../day-5/security-hardening/) — je to
+- Zdůraznit napětí Global Admin požadavku vs. least-privilege téma z [`../../day-2/automation-strategy/`](../../day-2/automation-strategy/)/[`../../day-5/security-hardening/`](../../day-5/security-hardening/) — je to
   záměrný teaching point, ne opomenutí kurikula.
 - `-Handlers All` aplikuje kompletně vše ze šablony včetně věcí, co student nechtěl — trvat na
   explicitním omezení rozsahu.

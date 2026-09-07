@@ -4,7 +4,7 @@
 
 - 25 min výklad + 20 min cvičení ([`exercise-graph-explorer.md`](exercise-graph-explorer.md)).
 - **Cvičení se neškrtá.** Je to jediný hands-on moment dne 1 před
-  [`../automation-strategy/`](../automation-strategy/) a první okamžik, kdy student něco
+  [`../../day-2/automation-strategy/`](../../day-2/automation-strategy/) a první okamžik, kdy student něco
   sám udělá. Při skluzu se zkracuje výklad (časová osa se dá odbýt jedním slidem), ne cvičení.
 - Uvnitř cvičení se smí vypustit kroky 6-7 (Graph vs SPO REST nad jedním webem); kroky 2-4
   ne.
@@ -38,9 +38,9 @@
 
 ## Vazby
 
-- Dopředu: mapa je rozhodovací rámec pro [`../automation-strategy/`](../automation-strategy/)
+- Dopředu: mapa je rozhodovací rámec pro [`../../day-2/automation-strategy/`](../../day-2/automation-strategy/)
   (nástrojová osa) a permissions úvaha z kroku 4 cvičení pokračuje přímo v
-  [`../automation-strategy/lab-app-registration.md`](../automation-strategy/lab-app-registration.md).
+  [`../../day-2/automation-strategy/lab-app-registration.md`](../../day-2/automation-strategy/lab-app-registration.md).
   Mrtvé vrstvy se vracejí v migračním assessmentu
   [`../../day-3/migration-patterns/`](../../day-3/migration-patterns/).
 - Zpět: navazuje na onboarding (rozlišení tenant vs subscription z `environment.md`,

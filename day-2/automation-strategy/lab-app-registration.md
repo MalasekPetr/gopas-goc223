@@ -9,9 +9,9 @@ pro zbytek týdne, umí zdůvodnit každé přiřazené permission a rozumí roz
 
 ## Předpoklady
 
-- Účet z onboardingu ([`../onboarding/`](../onboarding/)) — role Global administrator,
+- Účet z onboardingu ([`../../day-1/onboarding/`](../../day-1/onboarding/)) — role Global administrator,
   takže registrace i admin consent probíhají pod vlastním účtem.
-- Naming konvence z [`../onboarding/ways-of-working.md`](../onboarding/ways-of-working.md).
+- Naming konvence z [`../../day-1/onboarding/ways-of-working.md`](../../day-1/onboarding/ways-of-working.md).
 
 ## Kroky
 

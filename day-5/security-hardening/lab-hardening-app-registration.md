@@ -4,13 +4,13 @@
 
 ## Cíl
 
-Student provede audit permissions app registrace z [`../../day-1/automation-strategy/`](../../day-1/automation-strategy/), odebere nadbytečná oprávnění a
+Student provede audit permissions app registrace z [`../../day-2/automation-strategy/`](../../day-2/automation-strategy/), odebere nadbytečná oprávnění a
 provede migraci ze client secret na certifikát bez výpadku (overlap starý/nový).
 
 ## Předpoklady
 
-- App registrace z [`../../day-1/automation-strategy/`](../../day-1/automation-strategy/) s historií použití napříč celým týdnem.
-- Oprávnění spravovat tuto app registraci (student by ji měl vlastnit od [`../../day-1/automation-strategy/`](../../day-1/automation-strategy/)).
+- App registrace z [`../../day-2/automation-strategy/`](../../day-2/automation-strategy/) s historií použití napříč celým týdnem.
+- Oprávnění spravovat tuto app registraci (student by ji měl vlastnit od [`../../day-2/automation-strategy/`](../../day-2/automation-strategy/)).
 
 ## Kroky
 

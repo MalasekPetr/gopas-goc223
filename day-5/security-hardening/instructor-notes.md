@@ -6,7 +6,7 @@
 
 ## Go/no-go — KLÍČOVÉ, otestovat před během
 
-- Připravit přehled permissions přiřazených app registraci z [`../../day-1/automation-strategy/`](../../day-1/automation-strategy/) v průběhu týdne (pokud
+- Připravit přehled permissions přiřazených app registraci z [`../../day-2/automation-strategy/`](../../day-2/automation-strategy/) v průběhu týdne (pokud
   studenti sami neevidovali) — pomůže s auditem, když si student na začátek týdne
   nepamatuje přesně.
 - Ověřit, že vygenerování self-signed certifikátu a jeho nahrání na app registraci funguje
@@ -31,5 +31,5 @@
 
 - Dopředu: hardening app registrace je vstup do `performance-cost-capstone`
   blueprintu.
-- Zpět: navazuje na auth módy z [`../../day-2/powershell-deep-dive/`](../../day-2/powershell-deep-dive/) a app registration strategii z [`../../day-1/automation-strategy/`](../../day-1/automation-strategy/) — uzavírá
+- Zpět: navazuje na auth módy z [`../../day-2/powershell-deep-dive/`](../../day-2/powershell-deep-dive/) a app registration strategii z [`../../day-2/automation-strategy/`](../../day-2/automation-strategy/) — uzavírá
   least-privilege vlákno celého týdne.

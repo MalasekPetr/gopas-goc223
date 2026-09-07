@@ -75,7 +75,7 @@
 ## Vazby
 
 - Dopředu: repo hygiena a review disciplína z tohoto bloku se vyžaduje po celý zbytek týdne
-  (všechny laby produkují kód do stejného repozitáře). App registration strategie v [`../automation-strategy/`](../automation-strategy/) na
+  (všechny laby produkují kód do stejného repozitáře). App registration strategie v [`../../day-2/automation-strategy/`](../../day-2/automation-strategy/) na
   toto přímo navazuje.
 - Zpět: navazuje na účet a pravidla z [`../onboarding/`](../onboarding/) (pracovní profil
   Edge, naming konvence pro repo složky).

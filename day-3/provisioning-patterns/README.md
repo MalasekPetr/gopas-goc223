@@ -22,7 +22,7 @@ ne celé `All`) — užitečné, když šablona obsahuje víc, než chceme na ko
 
 > [!IMPORTANT] Oprávnění
 > `Invoke-PnPTenantTemplate` vyžaduje roli **Global Administrator** — to je v přímém napětí s
-> least-privilege principem z [`../../day-1/automation-strategy/`](../../day-1/automation-strategy/)/[`../../day-5/security-hardening/`](../../day-5/security-hardening/). V produkčním nasazení nikdy nespouštět interaktivně pod
+> least-privilege principem z [`../../day-2/automation-strategy/`](../../day-2/automation-strategy/)/[`../../day-5/security-hardening/`](../../day-5/security-hardening/). V produkčním nasazení nikdy nespouštět interaktivně pod
 > osobním Global Admin účtem; provisioning automatizace běží pod vyhrazenou app-only identitou s
 > touto rolí přiřazenou jen jí, ne lidem.
 

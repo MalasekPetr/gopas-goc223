@@ -16,7 +16,7 @@ automatizace, který se hodí i mimo učebnu).
 
 - Dokončený Lab 1 ([`lab-cert-auth-sites.md`](lab-cert-auth-sites.md)): web `-dev`,
   certifikát, funkční app-only připojení.
-- App registrace z [`../../day-1/automation-strategy/lab-app-registration.md`](../../day-1/automation-strategy/lab-app-registration.md)
+- App registrace z [`../automation-strategy/lab-app-registration.md`](../automation-strategy/lab-app-registration.md)
   s application permission `Sites.FullControl.All` (SharePoint) přidaným v Labu 1.
 
 ## Kroky

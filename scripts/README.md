@@ -31,7 +31,7 @@ z instruktorského kanálu — nikdy není součástí repa.
 | 7. Offboarding — disable sign-in + uvolnění licencí | `Disable-CourseStudents.ps1` `[PLÁNOVANÉ]` | Graph | — |
 
 > [!NOTE] App registrace pro laby si studenti zakládají sami (všichni jsou Global
-> administrator — lab v `day-1/automation-strategy`), samostatný provisioning skript pro ně
+> administrator — lab v `day-2/automation-strategy`), samostatný provisioning skript pro ně
 > není potřeba. O to důležitější je offboarding fáze 5: posbírat a smazat vše, co studenti
 > pod GA rolí vytvořili (dle naming konvence z `day-1/onboarding/ways-of-working.md`).
 
@@ -46,7 +46,7 @@ Pořadí offboardingu: **nejdřív 5, pak 6, pak 7** — mazání obsahu vyžadu
 3. **`-CertificateThumbprint` + `-ClientId` + `-TenantId` (GUID)** — app-only, bez
    jakéhokoli promptu. Doporučeno pro dávkové operace (offboarding = 20+ připojení).
 
-Detailní návod na app registraci a přiřazení permissions je součástí `day-1/automation-strategy`
+Detailní návod na app registraci a přiřazení permissions je součástí `day-2/automation-strategy`
 (lab: registrace app & baseline oprávnění) a `day-5/security-hardening` (rotace secretu →
 cert-based auth).
 

@@ -10,7 +10,7 @@ konkrétní web a umí skriptem ověřit, co má aplikace skutečně udělené.
 
 ## Předpoklady
 
-- App registrace z [`../../day-1/automation-strategy/lab-app-registration.md`](../../day-1/automation-strategy/lab-app-registration.md)
+- App registrace z [`../automation-strategy/lab-app-registration.md`](../automation-strategy/lab-app-registration.md)
   (zatím jen delegated `Sites.Read.All`).
 - PnP PowerShell a `Microsoft.Graph` z [`../../day-1/toolchain-setup/`](../../day-1/toolchain-setup/).
 - Certifikát ještě **nemáte** — ten vzniká v následujícím bloku. Tento lab pracuje

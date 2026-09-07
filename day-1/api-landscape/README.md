@@ -15,7 +15,7 @@
 > Mapa API je rozhodovací rámec, na kterém stojí zbytek týdne: „Graph first, SPO REST tam,
 > kde Graph nestačí" se vrací v každém dalším labu. Cvičení v Graph Exploreru je zároveň
 > **jediný hands-on moment dne 1** před blokem
-> [`../automation-strategy/`](../automation-strategy/) — první úspěch, který nemá vypadnout.
+> [`../../day-2/automation-strategy/`](../../day-2/automation-strategy/) — první úspěch, který nemá vypadnout.
 
 ## Výklad
 
@@ -38,7 +38,7 @@ s M365 tenant a identitu, ale má **oddělený billing** (subscription) a odděl
   rozhraní. Pokrývají věci, které Graph dosud neumí (jemné detaily listů, provisioning
   artefakty) — proto PnP.PowerShell pod kapotou kombinuje obojí.
 - Pravidlo: **Graph first, SPO REST tam, kde Graph nestačí** — stejná logika jako
-  "wrapper vs přímé volání" v [`../automation-strategy/`](../automation-strategy/).
+  "wrapper vs přímé volání" v [`../../day-2/automation-strategy/`](../../day-2/automation-strategy/).
 
 ### Časová osa: proč je krajina takhle rozdělená
 Dnešní dvojice Graph + SPO REST je výsledek generační výměny, ne návrhu na zelené louce.

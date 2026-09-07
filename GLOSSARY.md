@@ -7,7 +7,7 @@ Jediný zdroj pravdy pro nástroje, API a konvence používané v GOC223. Všech
 
 ## PowerShell moduly (tři, ne jeden)
 
-Kurz na rozdíl od administrátorských kurzů pokrývá všechny tři paralelně a učí, kdy který — to je nosný teaching point [`day-2/powershell-deep-dive/`](day-2/powershell-deep-dive/) a [`day-1/automation-strategy/`](day-1/automation-strategy/).
+Kurz na rozdíl od administrátorských kurzů pokrývá všechny tři paralelně a učí, kdy který — to je nosný teaching point [`day-2/powershell-deep-dive/`](day-2/powershell-deep-dive/) a [`day-2/automation-strategy/`](day-2/automation-strategy/).
 
 | Modul | Rozsah | Kdy použít |
 |---|---|---|
@@ -22,7 +22,7 @@ Kurz na rozdíl od administrátorských kurzů pokrývá všechny tři paraleln�
 
 ## Evoluce modulů: legacy → současnost → budoucnost
 
-Nosná pointa pro [`day-1/automation-strategy/`](day-1/automation-strategy/): **moduly umírají, REST API zůstává** — proto kurz učí principy nad Graph/REST, ne jen konkrétní cmdlety.
+Nosná pointa pro [`day-2/automation-strategy/`](day-2/automation-strategy/): **moduly umírají, REST API zůstává** — proto kurz učí principy nad Graph/REST, ne jen konkrétní cmdlety.
 
 | Generace | Moduly | Stav |
 |---|---|---|
@@ -49,7 +49,7 @@ Kurz jde do hloubky u trojice PnP/Graph/SPO (fokus = SharePoint Online). Zbytek 
 
 ## TypeScript/Node cesta
 
-Alternativa k PowerShellu pro vývojářské týmy: **Graph JS SDK** (`@microsoft/microsoft-graph-client` + `@microsoft/microsoft-graph-types`) s `@azure/identity` credentials (stejná auth matice jako PowerShell — device code / certificate / managed identity) a **PnPjs** (`@pnp/sp`) pro SPO-native volání. Detail: [`day-1/automation-strategy/explainer-typescript-graph.md`](day-1/automation-strategy/explainer-typescript-graph.md).
+Alternativa k PowerShellu pro vývojářské týmy: **Graph JS SDK** (`@microsoft/microsoft-graph-client` + `@microsoft/microsoft-graph-types`) s `@azure/identity` credentials (stejná auth matice jako PowerShell — device code / certificate / managed identity) a **PnPjs** (`@pnp/sp`) pro SPO-native volání. Detail: [`day-2/automation-strategy/explainer-typescript-graph.md`](day-2/automation-strategy/explainer-typescript-graph.md).
 
 ## App registrace vs Enterprise Application
 
@@ -59,7 +59,7 @@ Alternativa k PowerShellu pro vývojářské týmy: **Graph JS SDK** (`@microsof
   aplikace působí — udělený consent, assignment, sign-in logy.
 - **Single-tenant** (`AzureADMyOrg`) je doporučený default; **multi-tenant**
   (`AzureADMultipleOrgs`) jen s reálným scénářem a consent governance.
-- Detail a practices: [`day-1/automation-strategy/explainer-app-registrations-enterprise-apps.md`](day-1/automation-strategy/explainer-app-registrations-enterprise-apps.md).
+- Detail a practices: [`day-2/automation-strategy/explainer-app-registrations-enterprise-apps.md`](day-2/automation-strategy/explainer-app-registrations-enterprise-apps.md).
 
 ## Autentizační strategie (app registration)
 

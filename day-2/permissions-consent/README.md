@@ -1,6 +1,6 @@
 # Oprávnění a consent: než aplikace poprvé dostane klíče
 
-> Typ: povinný · Den: 2 (otvírák) · Odhad: 25 min výklad + 25 min lab
+> Typ: povinný · Den: 2 · Odhad: 25 min výklad + 25 min lab
 
 Za chvíli v [`../powershell-deep-dive/`](../powershell-deep-dive/) přihlásíte aplikaci
 **bez přihlášeného uživatele** — poprvé v celém kurzu. Do té chvíle za vás všechno dělal
@@ -57,7 +57,7 @@ Tři důsledky, které se pletou:
 3. **User consent lze omezit i vypnout.** Volný user consent je vektor
    *illicit consent grant* útoku — uživatel odklikne souhlas podvržené aplikaci a ta
    dostane přístup k jeho datům bez jediného hesla. Detail governance:
-   [`../../day-1/automation-strategy/explainer-app-registrations-enterprise-apps.md`](../../day-1/automation-strategy/explainer-app-registrations-enterprise-apps.md).
+   [`../automation-strategy/explainer-app-registrations-enterprise-apps.md`](../automation-strategy/explainer-app-registrations-enterprise-apps.md).
 
 > [!IMPORTANT] Past, kterou v tomto kurzu neuvidíte sami
 > Všichni jste v kurzovním tenantu **Global administrator**, takže consent máte

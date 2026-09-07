@@ -14,7 +14,7 @@ rozdíl mezi „Windows slíbil, že klíč neexportuje" a „klíč z čipu nej
 
 - Vlastní **YubiKey 5** (instruktorský) — starší modely PIV nemusí podporovat.
 - `ykman` nainstalovaný na demo stroji — viz [`setup-ykman.md`](setup-ykman.md).
-- App registrace z [`../../day-1/automation-strategy/lab-app-registration.md`](../../day-1/automation-strategy/lab-app-registration.md),
+- App registrace z [`../automation-strategy/lab-app-registration.md`](../automation-strategy/lab-app-registration.md),
   do které se nahraje veřejná část certifikátu.
 - **Otestováno den předem na stejném stroji.** Viz `instructor-notes.md`.
 

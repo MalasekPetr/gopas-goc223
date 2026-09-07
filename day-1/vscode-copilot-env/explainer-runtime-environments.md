@@ -20,7 +20,7 @@ instalaci, aktualizace a hlavně autentizaci.
   takže image je deterministická.
 - CLI for Microsoft 365 (npm balíček, bez PowerShell závislosti) sedí do `node` image —
   přesně tady je jeho místo v nástrojové mapě (viz
-  [`../automation-strategy/`](../automation-strategy/)).
+  [`../../day-2/automation-strategy/`](../../day-2/automation-strategy/)).
 - Auth v CI: **nikdy interaktivní** — certificate (secret/cert z pipeline secret store,
   ne v repu) nebo federated credentials, kde je platforma podporuje.
 

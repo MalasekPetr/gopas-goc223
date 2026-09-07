@@ -34,6 +34,6 @@
 ## Vazby
 
 - Dopředu: ways-of-working pravidla se vymáhají celý týden; kontrast "všichni GA" vs
-  least privilege se vrací v [`../automation-strategy/`](../automation-strategy/) a uzavírá
+  least privilege se vrací v [`../../day-2/automation-strategy/`](../../day-2/automation-strategy/) a uzavírá
   v [`../../day-5/security-hardening/`](../../day-5/security-hardening/).
 - Zpět: —

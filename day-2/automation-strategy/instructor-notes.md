@@ -20,10 +20,10 @@
 - Nezaměňovat consent dialog uživatele (delegated, per-user) s admin consent (tenant-wide) —
   časté nedorozumění u prvního zkoušení; a protože každý student je GA, jeho admin consent
   je reálně tenant-wide akce — vztáhnout k pravidlům z
-  [`../onboarding/ways-of-working.md`](../onboarding/ways-of-working.md).
+  [`../../day-1/onboarding/ways-of-working.md`](../../day-1/onboarding/ways-of-working.md).
 - Pojmenování app registrace vymáhat dle naming konvence — 25 aplikací pojmenovaných
   "test" v jednom tenantu je nedohledatelných. Od druhého kusu číslovat dvouciferně
-  (`-02`) dle [`../onboarding/ways-of-working.md`](../onboarding/ways-of-working.md).
+  (`-02`) dle [`../../day-1/onboarding/ways-of-working.md`](../../day-1/onboarding/ways-of-working.md).
 - **Public client jsou dvě samostatná nastavení, ne jedno** (krok 2 labu): platforma
   *Mobile and desktop applications* + `http://localhost` řeší `-Interactive`, přepínač
   *Allow public client flows* řeší device code (nemá redirect URI). Kdo nastaví jen jedno,
@@ -41,4 +41,4 @@
 
 - Dopředu: tato app registrace se používá napříč celým týdnem; `security-hardening`
   na konci kurzu provádí audit a hardening přesně této aplikace.
-- Zpět: navazuje na repo hygienu z [`../vscode-copilot-env/`](../vscode-copilot-env/).
+- Zpět: navazuje na repo hygienu z [`../../day-1/vscode-copilot-env/`](../../day-1/vscode-copilot-env/).

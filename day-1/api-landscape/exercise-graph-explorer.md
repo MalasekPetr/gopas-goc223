@@ -32,7 +32,7 @@ a proč by v konkrétní situaci sáhl po té či oné.
 
 4. **Permissions**: záložka *Modify permissions* u dotazu. Jaké oprávnění dotaz použil,
    je delegated nebo application, a kdo ho schválil? Tuhle úvahu budete dělat za vlastní
-   aplikaci v [`../automation-strategy/lab-app-registration.md`](../automation-strategy/lab-app-registration.md).
+   aplikaci v [`../../day-2/automation-strategy/lab-app-registration.md`](../../day-2/automation-strategy/lab-app-registration.md).
 
 5. **`GET /sites?search=*`** — weby tenantu. Všimnout si obálky `value` a **absence**
    `@odata.nextLink` u malé odpovědi. Co se stane, až webů bude víc než se vejde,

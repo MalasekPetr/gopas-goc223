@@ -48,16 +48,16 @@ Kurz provede inženýry migrací a automatizace kompletním cyklem pokročilé a
 
 ## Osnova kurzu
 
-### Den 1 — Onboarding, prostředí, mapa API a strategie
+### Den 1 — Onboarding, prostředí a mapa API
 
 - **Onboarding & pravidla práce** — vstup do sdíleného cvičného tenantu, registrace MFA a pravidla bezpečné spolupráce většího počtu administrátorů v jednom prostředí.
 - **Toolchain skriptera** *(lab)* — PowerShell 7, Node a CLI for Microsoft 365, VS Code rozšíření a správa verzí; výstupem je vlastní ověřovací skript, který řekne, co na stroji chybí.
 - **Mapa API nad M365 a SPO** *(cvičení)* — Azure, Entra ID, Microsoft Graph a SPO REST v jedné mapě, mrtvé vrstvy a jejich náhrady; každý účastník si sám zavolá první Graph dotazy v Graph Exploreru.
 - **Inženýrské prostředí, VS Code a Copilot** *(lab)* — VS Code jako pracovní nástroj pro automatizaci, hygiena Git repozitáře a zodpovědné použití Microsoft Copilot Chatu při psaní skriptů.
+
+### Den 2 — Strategie, oprávnění, PowerShell & Graph engineering
+
 - **Strategie automatizace & nástrojová mapa** *(lab)* — orientace mezi PowerShell, Microsoft Graph, PnP a REST, návrh identity automatizace (app registrace) a princip least privilege.
-
-### Den 2 — Oprávnění, PowerShell, Graph engineering & staging
-
 - **Oprávnění a consent** *(lab)* — delegated vs application permissions, consent jako samostatný krok, `Sites.Selected` místo generálního klíče a audit toho, co má aplikace v tenantu skutečně udělené.
 - **PowerShell do hloubky** *(Lab 1)* — tři PowerShell moduly (PnP, Graph, SPO) a čtyři autentizační módy; lab: certifikát, app-only přihlášení, skriptované vytvoření pracovních webů.
 - **Microsoft Graph — inženýrské základy** — batching, delta query, throttling a klasifikace chyb pro odolné automatizační skripty.

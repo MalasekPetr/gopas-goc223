@@ -48,16 +48,16 @@ This course takes migration and automation engineers through the full cycle of a
 
 ## Course outline
 
-### Day 1 — Onboarding, Environment, API Map & Strategy
+### Day 1 — Onboarding, Environment & API Map
 
 - **Onboarding & working rules** — entry into the shared training tenant, MFA registration, and rules for safely collaborating with a larger group of administrators in one environment.
 - **The scripter's toolchain** *(lab)* — PowerShell 7, Node, and CLI for Microsoft 365, VS Code extensions, and version management; the deliverable is your own verification script that reports what the machine is missing.
 - **API map across M365 and SPO** *(exercise)* — Azure, Entra ID, Microsoft Graph, and SPO REST on one map, dead layers and their replacements; every participant makes their own first Graph calls in Graph Explorer.
 - **Engineering environment, VS Code, and Copilot** *(lab)* — VS Code as the working tool for automation, Git repository hygiene, and responsible use of Microsoft Copilot Chat when writing scripts.
+
+### Day 2 — Strategy, Permissions, PowerShell & Graph Engineering
+
 - **Automation strategy & tool map** *(lab)* — choosing between PowerShell, Microsoft Graph, PnP, and REST, designing an automation identity (app registration), and the least-privilege principle.
-
-### Day 2 — Permissions, PowerShell, Graph Engineering & Staging
-
 - **Permissions and consent** *(lab)* — delegated vs. application permissions, consent as a separate step, `Sites.Selected` instead of a master key, and auditing what an app has actually been granted in the tenant.
 
 - **PowerShell in depth** *(Lab 1)* — the three PowerShell modules (PnP, Graph, SPO) and four authentication modes; lab: certificate, app-only sign-in, scripted creation of work sites.

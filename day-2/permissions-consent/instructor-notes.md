@@ -54,7 +54,7 @@
   [`../../day-5/app-catalog-lifecycle/`](../../day-5/app-catalog-lifecycle/)
   (API access u SPFx je tentýž problém na jiném objektu).
 - Zpět: staví na app registraci z
-  [`../../day-1/automation-strategy/`](../../day-1/automation-strategy/) — ta byla
+  [`../automation-strategy/`](../automation-strategy/) — ta byla
   záměrně jen delegated, aby tenhle blok měl co přidat.
 
 > [!NOTE] Nový blok (2026-09-06)

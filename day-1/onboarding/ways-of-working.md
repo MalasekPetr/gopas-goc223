@@ -40,7 +40,7 @@ Pravidla pro číslování:
   permissions řídí obsah, Entra role (GA) řídí administraci. Tři různé vrstvy, viz
   [`../../GLOSSARY.md`](../../GLOSSARY.md).
 - To, že něco *můžeš* (GA), neznamená, že to *smíš* (pravidla kurzu) — přesně tak zní
-  least-privilege argument v [`../automation-strategy/`](../automation-strategy/).
+  least-privilege argument v [`../../day-2/automation-strategy/`](../../day-2/automation-strategy/).
 
 ## Zodpovědná AI a data
 

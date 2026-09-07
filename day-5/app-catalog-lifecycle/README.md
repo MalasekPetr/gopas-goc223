@@ -24,7 +24,7 @@ SPFx kód běží **v prohlížeči uživatele, pod jeho identitou a s jeho opr�
 nemá vlastní credential jako app registrace. To je dobrá zpráva (uživatel neuvidí víc,
 než na co má právo) i varování: **řešení může dělat cokoli, na co má právo přihlášený
 uživatel** — a u správce je to hodně. Bezpečnostní posouzení SPFx je proto jiná úloha
-než posouzení app registrace z [`../../day-1/automation-strategy/`](../../day-1/automation-strategy/).
+než posouzení app registrace z [`../../day-2/automation-strategy/`](../../day-2/automation-strategy/).
 
 ### App Catalog — dvě úrovně
 

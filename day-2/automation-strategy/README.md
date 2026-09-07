@@ -1,6 +1,6 @@
 # Strategie automatizace & nástrojová mapa
 
-> Typ: povinný · Den: 1 · Odhad: 40 min výklad + 45 min lab
+> Typ: povinný · Den: 2 (otvírák) · Odhad: 40 min výklad + 45 min lab
 
 ## Cíle
 - PowerShell vs Graph vs PnP vs REST — kdy který.

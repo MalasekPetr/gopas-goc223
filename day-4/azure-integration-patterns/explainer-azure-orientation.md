@@ -18,7 +18,7 @@ jednotka úklidu a účtování) → **resource** (Function App, Storage Account
 
 Přístup v Azure = **role** (co smím: Reader / Contributor / Owner nebo jemnější)
 přiřazená na **scope** (kde to smím: subscription / resource group / jednotlivý resource).
-Least-privilege princip z [`../../day-1/automation-strategy/`](../../day-1/automation-strategy/)
+Least-privilege princip z [`../../day-2/automation-strategy/`](../../day-2/automation-strategy/)
 platí beze změny — jen se místo API permissions přiřazují role na co nejužší scope.
 Vzor pro kurz: student = Contributor jen na vlastní resource group, ne na subscription
 (viz [`../../environment.md`](../../environment.md)).
