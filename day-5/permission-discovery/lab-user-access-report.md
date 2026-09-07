@@ -81,6 +81,16 @@ která je míjí.
 - [ ] Student umí říct, proč nelze mít index „uživatel → weby" a co z toho plyne pro
       dobu běhu nad velkým tenantem.
 
+> [!NOTE] Referenční řešení
+> [`solution/Get-UserAccess.ps1`](solution/Get-UserAccess.ps1) + **11 testů**
+> v [`solution/Get-UserAccess.Tests.ps1`](solution/Get-UserAccess.Tests.ps1).
+> Otevřete až po vlastním pokusu. Dva testy fixují přesně ten kontrast, který v labu
+> zažijete mezi krokem 3 a 6 — *naivní verze přístup nenajde*, *verze s `transitiveMemberOf`
+> ano* — takže kdyby někdo při refaktoru sáhl po `memberOf`, testy to zachytí.
+>
+> Skript **nebyl testovaný proti živému tenantu**; ověřená je rozhodovací logika,
+> ne skutečná volání.
+
 ## Fallback
 
 - **`Get-MgUserTransitiveMemberOf` selže na oprávnění**: potřebuje `GroupMember.Read.All`
