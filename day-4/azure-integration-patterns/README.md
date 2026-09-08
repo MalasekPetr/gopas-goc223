@@ -29,8 +29,15 @@ plánovaného běhu nesmí spoléhat na interaktivní přihlášení):
 | Kde běží | Plánovač | Auth | Secret management |
 |---|---|---|---|
 | On-premise server | Task Scheduler | certifikát (app-only) | **machine** certificate store — ne user store, task běží pod servisním účtem; nikdy secret v definici tasku |
-| Azure | Automation Runbook / Function (timer trigger) | **managed identity** | žádný spravovaný secret — identita vázaná na resource |
+| Azure — reakce na event | Function (timer / event trigger) | **managed identity** | žádný spravovaný secret — identita vázaná na resource |
+| Azure — periodická remediace | Automation Runbook | **managed identity** | dtto; pozor, runbook **neprojde** firewallem na Key Vaultu |
+| Azure — dávka s vlastním runtime | **Container Apps Job** (cron, UTC) | **managed identity** | dtto; moduly zapečené v image, scale-to-zero |
 | CI/CD pipeline | pipeline scheduler | certifikát / federated credentials | pipeline secret store (Key Vault-backed), nikdy repo |
+
+Ta tabulka odpovídá na otázku *„kde bydlí credential"*. Druhá otázka — *„co to udělá
+s PowerShellovým skriptem"* (jak se dovnitř dostanou moduly, kdo drží jejich verzi, jaký je
+strop doby běhu) — rozhoduje často víc a má vlastní srovnání:
+[`comparison-scheduled-runtimes.md`](comparison-scheduled-runtimes.md).
 
 Vazba na auth módy z [`../../day-2/powershell-deep-dive/`](../../day-2/powershell-deep-dive/)
 a runtime prostředí z [`../../day-1/vscode-copilot-env/explainer-runtime-environments.md`](../../day-1/vscode-copilot-env/explainer-runtime-environments.md);
