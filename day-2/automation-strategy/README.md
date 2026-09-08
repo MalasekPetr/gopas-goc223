@@ -92,7 +92,9 @@ Tři důsledky, které se pletou:
    drží starý stav, dokud consent neproběhne znovu. U multi-tenant aplikace to znamená
    obejít **každého** zákazníka.
 2. **Admin consent uděluje oprávnění celému tenantu**, ne sobě. Kliknutí „Grant admin
-   consent for &lt;org&gt;" je rozhodnutí za všechny uživatele.
+   consent for &lt;org&gt;" je rozhodnutí za všechny uživatele. V **cizím** tenantu se
+   consent spouští odkazem, který si musíte složit sami — portál ho nikde nenabízí:
+   [`explainer-app-registrations-enterprise-apps.md`](explainer-app-registrations-enterprise-apps.md).
 3. **User consent lze omezit i vypnout.** Volný user consent je vektor
    *illicit consent grant* útoku — uživatel odklikne souhlas podvržené aplikaci a ta
    dostane přístup k jeho datům bez jediného hesla.
