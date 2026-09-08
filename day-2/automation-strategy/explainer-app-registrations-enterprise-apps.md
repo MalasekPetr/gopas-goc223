@@ -30,15 +30,52 @@ per-tenant stavem (co bylo skutečně odsouhlaseno zde).
 
 U multi-tenant aplikace: app registrace zůstává **jen v domovském tenantu**; v každém
 zákaznickém tenantu vznikne po consentu **jen service principal** (Enterprise Application).
-Consent typicky přes admin consent URL:
+
+## Admin consent URL — portál vám ji nedá
+
+Consent v cizím tenantu se spouští odkazem, který si **musíte složit sami**. Panel
+*Endpoints* v App registrations vypisuje OAuth 2.0 authorize/token, OIDC metadata a SAML
+endpointy — **admin consent URL mezi nimi není**. Z portálu potřebujete jen
+**Application (client) ID**.
+
+Minimální tvar (v1.0 endpoint) — to, co pošlete e-mailem:
 
 ```text
 https://login.microsoftonline.com/<tenantId>/adminconsent?client_id=<clientId>
 ```
 
+Dokumentovaný **v2.0** endpoint má ale dva **povinné** parametry navíc, na které se naráží:
+
+```text
+https://login.microsoftonline.com/<tenantId>/v2.0/adminconsent
+  ?client_id=<clientId>
+  &scope=https://graph.microsoft.com/.default
+  &redirect_uri=<musi presne odpovidat registrovane redirect URI>
+  &state=<cokoli>
+```
+
+- **`scope` musí být `/.default`, pokud žádáte aplikační oprávnění.** Dynamické scopes
+  (výčet konkrétních permissions) aplikační oprávnění **nezahrnou** — `/.default` říká
+  „všechno, co je v *Required permissions* app registrace".
+- **`redirect_uri` se musí přesně shodovat** s některým registrovaným redirect URI.
+  Neshoda je nejčastější příčina selhání, které vypadá jako problém s oprávněními.
+
+> [!IMPORTANT] Tři věci, které consent v cizím tenantu shodí
+> - **Aplikace musí být multi-tenant.** Single-tenant app (`AzureADMyOrg`, doporučený
+>   default!) skončí chybou „application not found in directory" — a protože default je
+>   správný, je tohle nejčastější příčina.
+> - **Nepoužívat `common`.** Dokumentace to říká výslovně: osobní účty nemohou udělit admin
+>   consent. Použijte **tenant GUID** (verified domain funguje taky). U práce napříč víc
+>   zákaznickými tenanty je GUID bezpečnější návyk — odstraňuje možnost consentovat
+>   v cizím adresáři omylem.
+> - **Role v cílovém tenantu**: Global Administrator, Privileged Role Administrator, nebo
+>   Cloud Application Administrator.
+
 Po každém přidání permission na app registraci je nutné consent v konzumujících tenantech
 **obnovit** — service principal drží to, co bylo odsouhlaseno, ne to, co si šablona
-aktuálně přeje.
+aktuálně přeje. A po consentu **ověřit, že grant skutečně přistál**
+(`Get-MgServicePrincipalAppRoleAssignment`), ne usuzovat z toho, že se redirect vrátil
+bez chyby.
 
 ```mermaid
 flowchart LR
@@ -87,12 +124,21 @@ flowchart LR
 
 - [Apps & service principals in Microsoft Entra ID](https://learn.microsoft.com/en-us/entra/identity-platform/app-objects-and-service-principals)
 - [Single and multitenant apps in Microsoft Entra ID](https://learn.microsoft.com/en-us/entra/identity-platform/single-and-multi-tenant-apps)
+- [Microsoft identity platform admin consent protocols](https://learn.microsoft.com/en-us/entra/identity-platform/v2-admin-consent) — tvar URL a parametry
+- [Grant tenant-wide admin consent to an application](https://learn.microsoft.com/en-us/entra/identity/enterprise-apps/grant-admin-consent)
+- [Convert single-tenant app to multitenant](https://learn.microsoft.com/en-us/entra/identity-platform/howto-convert-app-to-be-multi-tenant)
 - [Overview of user and admin consent](https://learn.microsoft.com/en-us/entra/identity/enterprise-apps/user-admin-consent-overview)
 - [Configure how users consent to applications](https://learn.microsoft.com/en-us/entra/identity/enterprise-apps/configure-user-consent)
 
 ## Stav produktu / delta
 
-> [!WARNING] Ověřit k datu běhu — stav k 2026-07.
+> [!WARNING] Ověřit k datu běhu — stav k 2026-09.
+> **Tvar admin consent URL a povinnost `scope`/`redirect_uri`** na v2.0 endpointu ověřit
+> proti [admin consent protocols](https://learn.microsoft.com/en-us/entra/identity-platform/v2-admin-consent)
+> — v1.0 tvar bez těch parametrů funguje dlouhodobě, ale je to starší endpoint. Panel
+> *Endpoints* v portálu admin consent URL nenabízí; kdyby ji Microsoft doplnil, zkrátit
+> tuhle sekci na odkaz.
+>
 > `signInAudienceRestrictions` je novější mechanismus — ověřit aktuální dostupnost/GA stav
 > a přesnou konfiguraci před demonstrací; defaulty user consent nastavení v nových tenantech
 > se v čase zpřísňují.
