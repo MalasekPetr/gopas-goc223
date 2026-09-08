@@ -52,9 +52,10 @@ což sandbox neumí ani spustit.
 > protože Automation na seznamu trusted services není.** Průchod pak existuje jen přes
 > Hybrid Runbook Worker a service endpoint.
 >
-> Kurz přitom učí ukládat credentialy do Key Vaultu
-> ([`../../day-1/vscode-copilot-env/explainer-runtime-environments.md`](../../day-1/vscode-copilot-env/explainer-runtime-environments.md)).
-> Kombinace „runbook + zamčený Key Vault" je architektura, která vypadá správně a nefunguje.
+> Zlaté pravidlo z [`../../day-1/vscode-copilot-env/explainer-runtime-environments.md`](../../day-1/vscode-copilot-env/explainer-runtime-environments.md)
+> zní „cert store, Key Vault, nebo managed identity — nic jiného". U runbooku si z té
+> trojice vyberte **managed identity**: kombinace „runbook + zamčený Key Vault" vypadá
+> správně a nefunguje.
 
 ### 3. Na Flex Consumption `requirements.psd1` nefunguje
 

@@ -12,6 +12,8 @@ API), s minimalizací PII v logovaném schématu a ověřením přes KQL dotaz.
 - Function skeleton z [`../azure-integration-patterns/`](../azure-integration-patterns/) na **Flex Consumption** plánu a
   **general-purpose v2** Storage Account v resource group studenta -- event subscription na
   Azure Storage GPv2 vyžaduje.
+- V `host.json` **extension bundle verze `[4.0.0, 5.0.0)`** nebo novější -- Event Grid Blob
+  trigger je binding z 5.x+ Storage rozšíření a se starším bundlem v projektu neexistuje.
 - Přístup do **sdíleného kurzovního Log Analytics workspace** a vlastní **DCR**
   (zakládá se spolu se zbytkem Azure rozsahu — viz [`../../environment.md`](../../environment.md)).
   Na DCR potřebujete roli **Monitoring Metrics Publisher**; Contributor na vlastní
