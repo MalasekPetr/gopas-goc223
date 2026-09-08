@@ -91,7 +91,7 @@ a poznámku, čím placeholder nahradit. Stejný model, stejná otázka — jin�
 
 Když model **opakovaně** dělá tutéž chybu, nepřepisujte pořád jeho výstup — **přidejte
 pravidlo do priming promptu**. Během kurzu vám přibudou vlastní pravidla (interní názvy
-polí z [`../../day-2/graph-fundamentals/tips-spo-api.md`](../../day-2/graph-fundamentals/tips-spo-api.md),
+polí z [`../../day-3/graph-fundamentals/tips-spo-api.md`](../../day-3/graph-fundamentals/tips-spo-api.md),
 stránkování, threshold 5000, dekorace user agenta).
 
 **Evoluce → agent:** vkládat prompt do každé konverzace je daň za ruční přístup.
@@ -114,7 +114,7 @@ Licenční a nákladovou stránku agentů řeší
   identifikátorů z [`../onboarding/ways-of-working.md`](../onboarding/ways-of-working.md).
 - Pravidlo 9 odpovídá deltě v [`../../day-2/powershell-deep-dive/README.md`](../../day-2/powershell-deep-dive/README.md)
   (PnP `-ClientId` od 9/2024); Test B se hodí zopakovat živě před Labem 1 dne 2.
-- Pravidla 10–11 vycházejí z [`../../day-2/graph-fundamentals/`](../../day-2/graph-fundamentals/)
+- Pravidla 10–11 vycházejí z [`../../day-3/graph-fundamentals/`](../../day-3/graph-fundamentals/)
   (stránkování, klasifikace chyb, velké seznamy).
 
 ## Stav produktu / delta

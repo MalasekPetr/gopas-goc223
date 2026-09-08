@@ -24,7 +24,7 @@ Třetí velký lab kurzu. Student napíše **idempotentní sync skript**: čte z
    **žádné "smaž vše a nahraj znovu"**.
 2. **Dávkové provedení**: všechny tři kategorie přes `New-PnPBatch` → `Add-PnPListItem` /
    `Set-PnPListItem` / `Remove-PnPListItem -Batch` → `Invoke-PnPBatch`; respektovat
-   throttling vzory z [`../../day-2/graph-fundamentals/`](../../day-2/graph-fundamentals/).
+   throttling vzory z [`../../day-3/graph-fundamentals/`](../../day-3/graph-fundamentals/).
 3. **Aplikační identita**: připojení výhradně `Connect-CourseTarget -AuthMode Certificate`
    (žádný interaktivní prompt kdekoli ve skriptu) + strukturovaný log (co se
    vytvořilo/změnilo/smazalo, počty, trvání).

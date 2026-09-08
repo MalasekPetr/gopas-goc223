@@ -98,7 +98,7 @@ to funguje, na to testy nepotřebujete.
 - **Výběr a filtry** — obsahuje vlna to, co má? A hlavně: **neobsahuje to, co nemá?**
   Filtr `-like "*-dev"` vezme i `sites/legacy-dev` a v produkci to zjistíte pozdě.
 - **Chybové větve** — retry na `429`, žádný retry na `404`
-  ([`../../day-2/graph-fundamentals/`](../../day-2/graph-fundamentals/)). Tuhle logiku
+  ([`../../day-3/graph-fundamentals/`](../../day-3/graph-fundamentals/)). Tuhle logiku
   v produkci nevyzkoušíte na přání; s mockem ano.
 - **Idempotence** — druhý běh nesmí udělat nic. Test to ověří za sekundu, ruční zkouška
   za půl hodiny.

@@ -88,7 +88,7 @@ Nemusí se šablonovat celý web. Tři úrovně:
 
 Právě list design je nejlevnější způsob, jak do organizace dostat **seznam s předem
 nastavenými indexy** — a tím předejít pádům na threshold 5000 dřív, než seznam vyroste
-([`../../day-2/graph-fundamentals/explainer-large-lists.md`](../../day-2/graph-fundamentals/explainer-large-lists.md)).
+([`../../day-3/graph-fundamentals/explainer-large-lists.md`](../graph-fundamentals/explainer-large-lists.md)).
 
 ## Kdy JSON nestačí — rozhodovací osa
 

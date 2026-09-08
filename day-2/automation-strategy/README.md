@@ -30,7 +30,7 @@ Tři PowerShell moduly z GLOSSARY.md (PnP.PowerShell, Microsoft.Graph, SPO Manag
 wrappery nad dvěma REST rozhraními — Microsoft Graph a SharePoint REST/CSOM. Rozhodovací otázka
 není "PowerShell nebo REST", ale "wrapper, nebo přímé volání": moduly šetří boilerplate
 (auth, paging, serializace), přímé REST volání dává plnou kontrolu tam, kde modul nemá cmdlet
-pro potřebnou operaci nebo kde je nutná jemná kontrola nad chybovými stavy (viz [`../graph-fundamentals/`](../graph-fundamentals/)).
+pro potřebnou operaci nebo kde je nutná jemná kontrola nad chybovými stavy (viz [`../graph-fundamentals/`](../../day-3/graph-fundamentals/)).
 
 Vedle PowerShell trojice mapa obsahuje dva doplňky s úzkou rolí: **CLI for Microsoft 365**
 (npm/Node, bez PowerShell závislosti) pro CI/CD pipeline a skriptování mimo PowerShell — ne jako obecnou
@@ -176,7 +176,7 @@ jedné neotevřela přístup ke všem.
 
 ## Klíčové rozlišení
 - **Modul (wrapper) vs přímé REST/Graph volání** — modul je rychlejší start, přímé volání je
-  nutné pro jemnou kontrolu retry/error handlingu ([`../graph-fundamentals/`](../graph-fundamentals/)).
+  nutné pro jemnou kontrolu retry/error handlingu ([`../graph-fundamentals/`](../../day-3/graph-fundamentals/)).
 - **App registrace (šablona, domovský tenant, credentials) vs Enterprise Application
   (service principal, per-tenant instance, udělený consent)** — dvě položky v portálu pro
   jednu aplikaci.

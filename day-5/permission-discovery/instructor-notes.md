@@ -49,7 +49,7 @@
   ([`../performance-cost-capstone/`](../performance-cost-capstone/)) a přímý vstup do
   [`../security-hardening/`](../security-hardening/) — hardening začíná tím, že víte,
   kdo co má.
-- Zpět: stránkování a throttling z [`../../day-2/graph-fundamentals/`](../../day-2/graph-fundamentals/),
+- Zpět: stránkování a throttling z [`../../day-3/graph-fundamentals/`](../../day-3/graph-fundamentals/),
   UTF-8/CSV z [`../../day-2/powershell-deep-dive/explainer-formats-encoding.md`](../../day-2/powershell-deep-dive/explainer-formats-encoding.md),
   weby `-dev/-test/-prod` z Labu 1. SAM se v kurzu poprvé objevil u Site Attestation
   v [`../../day-3/lifecycle-compliance/`](../../day-3/lifecycle-compliance/) — odkázat

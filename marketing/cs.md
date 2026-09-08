@@ -22,7 +22,7 @@ Praktický pětidenní kurz pokročilé automatizace a migrace SharePointu Onlin
 
 ## Popis kurzu
 
-Kurz provede inženýry migrací a automatizace kompletním cyklem pokročilé automatizace a migrace SharePointu Online. Týden otevírá volba nástrojové strategie (PowerShell, Microsoft Graph, PnP, REST) a bezpečná identita automatizace, na ně navazuje PowerShell do hloubky se třemi produkčními moduly, čtyřmi autentizačními módy a prvním velkým labem (certifikát, app-only přihlášení, skriptované pracovní weby). Druhý den prohlubuje inženýrství nad Microsoft Graph — batching, delta query, throttling a klasifikaci chyb pro odolné skripty. Třetí den patří dvěma pilířům kurzu — skladbě migrací (wave planning, cutover taktiky, druhý velký lab: fileshare → SharePoint Online podle JSON plánu) a automatizaci zřizování přes PnP provisioning engine, doplněným o lifecycle a compliance enforcement. Čtvrtý den propojuje SharePoint s Azure integračními vzory (Logic Apps, Functions, Runbooks, Graph change notifications), SIEM pipeline přes Azure Blob až do Log Analytics a stagingem DEV/TEST/PROD s detekcí driftu. Poslední den řeší správu dodaných řešení v App Catalogu, reporting oprávnění („ke kterým webům má tenhle člověk přístup") a security hardening identit automatizace a končí capstone blueprintem, který spojuje migraci, provisioning a Azure integraci do jednoho end-to-end plánu s rollbackem a předávkou do provozu.
+Kurz provede inženýry migrací a automatizace kompletním cyklem pokročilé automatizace a migrace SharePointu Online. Týden otevírá volba nástrojové strategie (PowerShell, Microsoft Graph, PnP, REST) a bezpečná identita automatizace, na ně navazuje PowerShell do hloubky se třemi produkčními moduly, čtyřmi autentizačními módy a prvním velkým labem (certifikát, app-only přihlášení, skriptované pracovní weby). Třetí den otevírá inženýrství nad Microsoft Graph — batching, delta query, throttling a klasifikaci chyb pro odolné skripty — a dál patří dvěma pilířům kurzu: skladbě migrací (wave planning, cutover taktiky, druhý velký lab: fileshare → SharePoint Online podle JSON plánu) a automatizaci zřizování přes PnP provisioning engine, doplněným o lifecycle a compliance enforcement. Čtvrtý den propojuje SharePoint s Azure integračními vzory (Logic Apps, Functions, Runbooks, Graph change notifications), SIEM pipeline přes Azure Blob až do Log Analytics a stagingem DEV/TEST/PROD s detekcí driftu. Poslední den řeší správu dodaných řešení v App Catalogu, reporting oprávnění („ke kterým webům má tenhle člověk přístup") a security hardening identit automatizace a končí capstone blueprintem, který spojuje migraci, provisioning a Azure integraci do jednoho end-to-end plánu s rollbackem a předávkou do provozu.
 
 ## Pro koho je kurz určen
 
@@ -55,14 +55,14 @@ Kurz provede inženýry migrací a automatizace kompletním cyklem pokročilé a
 - **Mapa API nad M365 a SPO** *(cvičení)* — Azure, Entra ID, Microsoft Graph a SPO REST v jedné mapě, mrtvé vrstvy a jejich náhrady; každý účastník si sám zavolá první Graph dotazy v Graph Exploreru.
 - **Inženýrské prostředí, VS Code a Copilot** *(lab)* — VS Code jako pracovní nástroj pro automatizaci, hygiena Git repozitáře a zodpovědné použití Microsoft Copilot Chatu při psaní skriptů.
 
-### Den 2 — Strategie, oprávnění, PowerShell a Graph
+### Den 2 — Strategie, oprávnění a PowerShell
 
 - **Strategie automatizace: nástroje, identita a oprávnění** *(lab)* — orientace mezi PowerShell, Microsoft Graph, PnP a REST, návrh identity automatizace (app registrace), delegated vs application permissions a `Sites.Selected` místo generálního klíče.
 - **PowerShell do hloubky** *(Lab 1)* — tři PowerShell moduly (PnP, Graph, SPO) a čtyři autentizační módy; lab: certifikát, app-only přihlášení, skriptované vytvoření pracovních webů.
+
+### Den 3 — Graph, migrace, provisioning & lifecycle
+
 - **Microsoft Graph — inženýrské základy** — batching, delta query, throttling a klasifikace chyb pro odolné automatizační skripty.
-
-### Den 3 — Migrace, provisioning & lifecycle
-
 - **Skladba migrací** *(Lab 2)* — předmigrační kontroly, wave planning, cutover taktiky; lab: migrace z fileshare do SharePointu Online podle JSON plánu.
 - **Vzory automatizace zřizování** — PnP provisioning engine, tenant templates a parametrizace žádanek na weby.
 - **Lifecycle & compliance enforcement** — automatizace retence a citlivosti, governance sdílení, Site Attestation.

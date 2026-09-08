@@ -2,7 +2,7 @@
 
 > Odhad: 20 min · Režim: živý tenant, jen čtení, bez psaní kódu
 
-První hands-on dne. Cíl není naučit Graph — to je [`../../day-2/graph-fundamentals/`](../../day-2/graph-fundamentals/) —
+První hands-on dne. Cíl není naučit Graph — to je [`../../day-3/graph-fundamentals/`](../../day-3/graph-fundamentals/) —
 ale **na živém tenantu si osahat mapu z výkladu**: že Graph a SPO REST jsou dvě cesty
 ke stejným datům, každá s jiným tvarem odpovědi, a že za každým voláním stojí token
 s konkrétním, zdůvodnitelným oprávněním.
@@ -36,7 +36,7 @@ a proč by v konkrétní situaci sáhl po té či oné.
 
 5. **`GET /sites?search=*`** — weby tenantu. Všimnout si obálky `value` a **absence**
    `@odata.nextLink` u malé odpovědi. Co se stane, až webů bude víc než se vejde,
-   řeší [`../../day-2/graph-fundamentals/`](../../day-2/graph-fundamentals/).
+   řeší [`../../day-3/graph-fundamentals/`](../../day-3/graph-fundamentals/).
 
 6. **Vybrat jeden web** z kroku 5, poznamenat si jeho `id` a zavolat
    `GET /sites/{id}/lists` — seznamy toho webu očima Graphu.

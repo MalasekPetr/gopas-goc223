@@ -72,4 +72,4 @@
 ## Vazby
 
 - Dopředu: logging/retry vzory se shrnují v `performance-cost-capstone`.
-- Zpět: navazuje na Function skeleton z [`../azure-integration-patterns/`](../azure-integration-patterns/) a retry/error klasifikaci z [`../../day-2/graph-fundamentals/`](../../day-2/graph-fundamentals/).
+- Zpět: navazuje na Function skeleton z [`../azure-integration-patterns/`](../azure-integration-patterns/) a retry/error klasifikaci z [`../../day-3/graph-fundamentals/`](../../day-3/graph-fundamentals/).

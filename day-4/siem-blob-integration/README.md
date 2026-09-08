@@ -34,7 +34,7 @@ ne až dodatečně v dotazech.
 Workspace se zapnutým Sentinelem **není** předmětem Azure Monitor ingestion filtering
 poplatku bez ohledu na to, kolik dat transformace odfiltruje — cenová výhoda oproti čistému
 Log Analytics workspace. Spolehlivost pipeline: batching (méně Function invocations za
-stejný objem dat), retry s exponenciálním backoffem (viz [`../../day-2/graph-fundamentals/`](../../day-2/graph-fundamentals/) klasifikace chyb), dead-letter
+stejný objem dat), retry s exponenciálním backoffem (viz [`../../day-3/graph-fundamentals/`](../../day-3/graph-fundamentals/) klasifikace chyb), dead-letter
 queue pro zprávy, které trvale selhávají — nezacyklit retry donekonečna.
 
 ### KQL základy
@@ -57,7 +57,7 @@ flowchart LR
   Flex Consumption podporuje výhradně druhou variantu.
 - **Transformace v DCR (před uložením, KQL) vs transformace až v dotazu** — první šetří
   úložný prostor a skrývá PII už při zápisu.
-- **Retry (transientní selhání, viz [`../../day-2/graph-fundamentals/`](../../day-2/graph-fundamentals/)) vs dead-letter (trvalé selhání, needs review)**.
+- **Retry (transientní selhání, viz [`../../day-3/graph-fundamentals/`](../../day-3/graph-fundamentals/)) vs dead-letter (trvalé selhání, needs review)**.
 
 ## Lab
 Viz [`lab-siem-ingest-blueprint.md`](lab-siem-ingest-blueprint.md).

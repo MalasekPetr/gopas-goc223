@@ -33,7 +33,7 @@ s M365 tenant a identitu, ale má **oddělený billing** (subscription) a odděl
 
 - **Microsoft Graph** (`graph.microsoft.com`) — jednotná brána nad celým M365 včetně
   SharePointu (`/sites`, `/drives`). Moderní default, konzistentní auth (Entra tokeny),
-  batching/delta (viz [`../../day-2/graph-fundamentals/`](../../day-2/graph-fundamentals/)).
+  batching/delta (viz [`../../day-3/graph-fundamentals/`](../../day-3/graph-fundamentals/)).
 - **SPO REST v1** (`<tenant>.sharepoint.com/_api/...`) a **CSOM** — starší, SharePoint-native
   rozhraní. Pokrývají věci, které Graph dosud neumí (jemné detaily listů, provisioning
   artefakty) — proto PnP.PowerShell pod kapotou kombinuje obojí.

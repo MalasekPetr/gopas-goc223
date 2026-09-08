@@ -166,7 +166,7 @@ Detail a rozhodovací osa: [`day-3/migration-patterns/explainer-migration-tools.
 - **Indexovaný sloupec**: pomocná struktura, která dotaz zúží pod threshold; filtr nebo řazení na indexovaném sloupci projde i nad velkým listem. Limit 20 indexů na list; nelze indexovat vícehodnotové a počítané sloupce ani víceřádkový text; zavádět, dokud je list malý (automatické indexování SPO se nevztahuje na listy nad 20 000 položek). `Set-PnPField -List X -Identity Y -Values @{Indexed=$true}`.
 - **Threshold vs throttling**: threshold = *jeden dotaz je moc velký* (chyba okamžitě), throttling = *voláš moc často* (429/503 + `Retry-After`). Dvě různé věci, dvě různá řešení: index a stránkování vs backoff a dávky.
 - **Dekorace user agenta**: vlastní REST/CSOM volání do SPO označit `NONISV|<organizace>|<Aplikace>/1.0` — nedekorovaný provoz je throttlován agresivněji (PnP.PowerShell si UA nastavuje sám).
-- Detail a checklist: [`day-2/graph-fundamentals/explainer-large-lists.md`](day-2/graph-fundamentals/explainer-large-lists.md).
+- Detail a checklist: [`day-3/graph-fundamentals/explainer-large-lists.md`](day-3/graph-fundamentals/explainer-large-lists.md).
 - **Verze souborů**: výchozí retence verzí (major/minor) násobí objem migrovaných dat — řešit před migrací, ne po ní.
 - **Search crawl delay**: po migraci obsah není okamžitě vyhledatelný — plánovat cutover s rezervou na re-index.
 - **Wave planning**: rozdělení migrace do vln dle rizika/velikosti/závislostí, ne dle abecedy — kritické weby v pozdější vlně s delším bufferem na rollback.

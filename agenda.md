@@ -25,42 +25,62 @@ Jediný zdroj pravdy o pořadí modulů. Složky jsou slugy; pořadí drží tat
 > Rezerva na nepředvídatelný onboarding (MFA u 25 účtů) leží v bloku 2: na předinstalované
 > učebně se zkrátí z 45 na 35 min a lze ho spojit s blokem 1. Při větším skluzu se zkracuje
 > výklad bloku 3, **nikdy jeho cvičení** — je to jediný hands-on moment před blokem 5.
-> PowerShell do hloubky je na začátku dne 2.
+> PowerShell do hloubky přichází ve dni 2 (blok 3), po strategii a oprávněních.
 
-## Den 2 — Strategie, oprávnění, PowerShell a Graph
+## Den 2 — Strategie, oprávnění a PowerShell
 
 | # | Blok | Slug | Typ |
 |---|---|---|---|
 | 1 | Strategie automatizace: nástroje, identita a oprávnění *(lab: app registrace + Sites.Selected)* | `day-2/automation-strategy` | P |
-| 2 | PowerShell do hloubky *(Lab 1: certifikát, app-only, pracovní weby)* | `day-2/powershell-deep-dive` | P |
-| 3 | Microsoft Graph — inženýrské základy | `day-2/graph-fundamentals` | P |
+| 2 | PowerShell — základy pro ty, kdo je nemají | `day-2/opt-powershell-basics` | V |
+| 3 | PowerShell do hloubky *(Lab 1: certifikát, app-only, pracovní weby)* | `day-2/powershell-deep-dive` | P |
 
-> [!NOTE] ~6,0 h povinně (105 + 135 + 120 = 360 min). Přestavěno 2026-09-07 po reálném běhu.
-> Blok 1 přišel z D1, kde se na něj nedostalo, a **sloučil se s bývalým `permissions-consent`** —
-> oba mluvily o least privilege a jejich laby pracovaly na téže app registraci, takže
-> spojením zmizel kontextový přesun nad jedním artefaktem (a ušetřilo ~30 min).
-> `staging-environments` odešlo na D4 na místo vypuštěné Clarity; bez toho by den vycházel
-> na 8,2 h.
+> [!NOTE] ~4,0 h povinně (105 + 135 = 240 min), **5,0 h s volitelným blokem 2**.
+> Přestavěno 2026-09-08 po reálném běhu: `graph-fundamentals` odešel na D3, protože se na
+> něj ve dni 2 nedostalo. Blok 1 přišel z D1 (2026-09-07) a **sloučil se s bývalým
+> `permissions-consent`** — oba mluvily o least privilege a jejich laby pracovaly na téže
+> app registraci. `staging-environments` odešlo na D4 na místo vypuštěné Clarity.
 >
 > Linka dne je jedna app registrace, která dospívá: blok 1 ji vytvoří a dá jí delegated
-> i `Sites.Selected`, blok 2 jí přidá certifikát a přihlásí ji app-only, blok 3 nad ní staví
-> odolné Graph volání. Bloky 1 a 2 si schválně protiřečí — Lab 1 potřebuje
-> `Sites.FullControl.All`, protože zakládá weby, a to je ta lekce: least privilege je
-> nejužší rozsah, **který úlohu splní**.
+> i `Sites.Selected`, blok 3 jí přidá certifikát a přihlásí ji app-only. Odolné Graph
+> volání nad tou samou aplikací otevírá ráno dne 3. Bloky 1 a 3 si schválně protiřečí —
+> Lab 1 potřebuje `Sites.FullControl.All`, protože zakládá weby, a to je ta lekce: least
+> privilege je nejužší rozsah, **který úlohu splní**.
+>
+> **Blok 2 je záchranná síť, ne plnohodnotný blok.** Spouští se jen tehdy, když je skupina
+> slabá v základech PowerShellu — což se pozná už u labu bloku 1. Pustit ho je rozhodnutí
+> dopoledne druhého dne, ne dopředu; den se tím prodlouží o hodinu a pořád zůstane pod
+> stropem. Bez něj se blok 3 pro takovou skupinu nedá odučit.
 >
 > Volitelné demo hardware klíče (YubiKey/PIV, +30 min) a mini-lab „tři podpisy zápisu"
-> (+25 min) uvnitř bloku 2 — jen při reálné rezervě.
-## Den 3 — Migrace, provisioning & lifecycle
+> (+25 min) uvnitř bloku 3 — jen při reálné rezervě.
+
+## Den 3 — Graph, migrace, provisioning & lifecycle
 
 | # | Blok | Slug | Typ |
 |---|---|---|---|
-| 1 | Skladba migrací *(Lab 2: fileshare → SPO dle JSON plánu + metadata)* | `day-3/migration-patterns` | P |
-| 2 | Vzory automatizace zřizování | `day-3/provisioning-patterns` | P |
-| 3 | Orchestry integrace & vlastní skripty (simulace) | `day-3/opt-orchestry-integration` | V |
-| 4 | Lifecycle & compliance enforcement | `day-3/lifecycle-compliance` | P |
+| 1 | Microsoft Graph — inženýrské základy | `day-3/graph-fundamentals` | P |
+| 2 | Skladba migrací *(Lab 2: fileshare → SPO dle JSON plánu + metadata)* | `day-3/migration-patterns` | P |
+| 3 | Vzory automatizace zřizování | `day-3/provisioning-patterns` | P |
+| 4 | Orchestry integrace & vlastní skripty (simulace) | `day-3/opt-orchestry-integration` | V |
+| 5 | Lifecycle & compliance enforcement | `day-3/lifecycle-compliance` | P |
 
 > [!NOTE] Orchestry je volitelný blok (simulace bez licence, leaf node — nic povinného na
 > něm nezávisí; stejný model jako v GOC224) — spouští se dle času po provisioningu.
+
+> [!IMPORTANT] Graph musí být blok 1 — plyne to z Labu 2, ne z preference
+> [`day-3/migration-patterns/lab-fileshare-migration.md`](day-3/migration-patterns/lab-fileshare-migration.md)
+> má retry vzory z `graph-fundamentals` ve **Předpokladech**. Graph proto otevírá den
+> a migrace ho následuje; obrácené pořadí by nechalo Lab 2 bez vstupní znalosti.
+
+> [!WARNING] Den 3 je nad stropem: ~7,8 h povinně (120 + 150 + 100 + 100 = 470 min)
+> Vzniklo 2026-09-08 přesunem `graph-fundamentals` z D2. **Zatím vědomě nevyřešeno** —
+> platí pravidlo, že **moduly se smí posouvat jen dozadu v týdnu, nikdy dopředu**, takže
+> odlehčení přes přesun do D2 není ve hře. Legální kandidáti jsou přesun něčeho z D3 na
+> D4/D5 (oba dny jsou dnes plné: 6,3 h a 5,7-6,7 h) nebo zkrácení uvnitř D3.
+>
+> Do prvního reálného běhu D3 se s tím nic nedělá — rozhodne se podle toho, kde se den
+> reálně zadrhne. Prakticky odpadá jako první blok 4 (už dnes volitelný).
 
 ## Den 4 — Azure integrace, SIEM a staging
 

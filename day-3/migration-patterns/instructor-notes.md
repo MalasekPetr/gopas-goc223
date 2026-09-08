@@ -31,7 +31,7 @@
   viditelný na čase; nechat schválně jednoho studenta změřit obojí, pokud čas dovolí.
 - Nezaměňovat list view threshold (limit na dotaz) s limitem velikosti listu — časté
   nepochopení vedoucí ke špatným doporučením pro zákazníky. Podklad:
-  [`../../day-2/graph-fundamentals/explainer-large-lists.md`](../../day-2/graph-fundamentals/explainer-large-lists.md).
+  [`../../day-3/graph-fundamentals/explainer-large-lists.md`](../graph-fundamentals/explainer-large-lists.md).
 - Otázka „a co naše stará řešení?" přijde skoro vždy — Add-iny a ACS jsou v M365 vypnuté
   od 2. 4. 2026, **v on-premises ale běží dál**, takže migrace je typicky odhalí. Nenechat
   se stáhnout do dlouhé debaty; mapa a otázky do assessmentu jsou v
@@ -50,6 +50,6 @@
 - Dopředu: JSON plán + exekuce je přímý vstup do capstone ([`../../day-5/performance-cost-capstone/`](../../day-5/performance-cost-capstone/),
   end-to-end blueprint); knihovny s metadaty z tohoto labu jsou zdroj/cíl pro plánovaný
   sync task v [`../../day-4/azure-integration-patterns/`](../../day-4/azure-integration-patterns/).
-- Zpět: navazuje na throttle/retry klasifikaci z [`../../day-2/graph-fundamentals/`](../../day-2/graph-fundamentals/), baseline/diff z
+- Zpět: navazuje na throttle/retry klasifikaci z [`../../day-3/graph-fundamentals/`](../graph-fundamentals/), baseline/diff z
   [`../../day-4/staging-environments/`](../../day-4/staging-environments/) (předmigrační kontrola) a weby + cert identitu z
   [`../../day-2/powershell-deep-dive/`](../../day-2/powershell-deep-dive/).

@@ -24,7 +24,7 @@ Varianty téhož receptu:
 - **CSV** — „výstup jako CSV se středníkem jako oddělovačem, první řádek hlavička";
   uložit jako UTF-8 (viz [`../../day-2/powershell-deep-dive/explainer-formats-encoding.md`](../../day-2/powershell-deep-dive/explainer-formats-encoding.md)).
 - **Položky SPO seznamu** — schéma opsat z reálného seznamu (interní názvy polí a choice
-  hodnoty zjistíte tahákem [`../../day-2/graph-fundamentals/tips-spo-api.md`](../../day-2/graph-fundamentals/tips-spo-api.md)),
+  hodnoty zjistíte tahákem [`../../day-3/graph-fundamentals/tips-spo-api.md`](../../day-3/graph-fundamentals/tips-spo-api.md)),
   ale do promptu dát jen **strukturu**, žádná reálná data.
 - **Fileshare pro migrační lab** — „vygeneruj strom 30 cest k souborům včetně názvů
   s diakritikou, mezerami, dlouhými cestami a znaky, které SharePoint nepovoluje";

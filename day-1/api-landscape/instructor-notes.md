@@ -24,14 +24,14 @@
 
 - **Nesklouznout do hloubky auth flows** — to je [`../../day-2/powershell-deep-dive/`](../../day-2/powershell-deep-dive/);
   tady jen „všechny cesty nesou Entra token".
-- **Nesklouznout do Graph batching/throttlingu** — to je [`../../day-2/graph-fundamentals/`](../../day-2/graph-fundamentals/).
+- **Nesklouznout do Graph batching/throttlingu** — to je [`../../day-3/graph-fundamentals/`](../../day-3/graph-fundamentals/).
   Krok 5 cvičení (`@odata.nextLink`) je návnada na tuhle debatu; odpověď je „zítra".
 - **SPO REST v prohlížeči vrátí XML, ne JSON.** Není to chyba a je to dobrý teaching point
   (starší vrstva, jiné výchozí chování). Mít odpověď připravenou, ne se jí lekat — fallback
   je v cvičení.
 - U kroku 7 se skoro jistě rozjede debata „tak proč vůbec Graph, když SPO REST umí víc" —
   odpověď je konzistentní auth, jednotný tvar odpovědi napříč workloady a batching/delta.
-  Utnout po dvou minutách, je to celý blok [`../../day-2/graph-fundamentals/`](../../day-2/graph-fundamentals/).
+  Utnout po dvou minutách, je to celý blok [`../../day-3/graph-fundamentals/`](../../day-3/graph-fundamentals/).
 - Časová osa mrtvých vrstev umí sežrat 15 minut nostalgie. Držet dvě ponaučení (moduly
   umírají, REST zůstává; poznat mrtvou vrstvu je dovednost pro assessment) a jít dál —
   detail je v [`../../day-3/migration-patterns/explainer-legacy-layers.md`](../../day-3/migration-patterns/explainer-legacy-layers.md).

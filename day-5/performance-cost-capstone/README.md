@@ -18,14 +18,14 @@ síťovou zátěž i dobu odezvy. Graph bez `$select` v odpovědi vrací tip
 je `$select` dokonce **povinný**, pokud chce aplikace vlastnosti mimo výchozí sadu. V
 kombinaci s `$expand` lze `$select` aplikovat i na vnořené (expanded) položky — ale u Entra
 resources `$expand` vrací max. 20 položek, což je nutné zohlednit ve stránkování. Spolu s
-batchingem ([`../../day-2/graph-fundamentals/`](../../day-2/graph-fundamentals/)) je toto hlavní pákový bod pro snížení objemu přenášených dat a počtu
+batchingem ([`../../day-3/graph-fundamentals/`](../../day-3/graph-fundamentals/)) je toto hlavní pákový bod pro snížení objemu přenášených dat a počtu
 requestů.
 
 ### Náklady logování a asynchronní fan-out
 Logovací náklady ([`../../day-4/siem-blob-integration/`](../../day-4/siem-blob-integration/)) rostou s objemem a granularitou — batching zápisů a DCR
 transformace před uložením (filtrování, ne log-everything-then-filter) drží náklady dolů.
 Asynchronní fan-out (jeden trigger → N paralelních dílčích úloh, např. per-web migrace v
-rámci jedné vlny z [`../../day-3/migration-patterns/`](../../day-3/migration-patterns/)) škáluje propustnost, ale musí respektovat throttling limity ([`../../day-2/graph-fundamentals/`](../../day-2/graph-fundamentals/))
+rámci jedné vlny z [`../../day-3/migration-patterns/`](../../day-3/migration-patterns/)) škáluje propustnost, ale musí respektovat throttling limity ([`../../day-3/graph-fundamentals/`](../../day-3/graph-fundamentals/))
 per cíl, ne jen agregátně.
 
 ### Capstone — konsolidace týdne

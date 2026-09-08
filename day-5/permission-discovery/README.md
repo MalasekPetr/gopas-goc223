@@ -52,7 +52,7 @@ platí, a reportem, který uklidní.
 
 Reverzní dotaz je z principu drahý: neexistuje index „uživatel → weby", takže se musí
 projít weby a v každém se ptát. To je **O(počet webů)** na jednoho uživatele, s throttlingem
-(viz [`../../day-2/graph-fundamentals/`](../../day-2/graph-fundamentals/)) a s tím, že
+(viz [`../../day-3/graph-fundamentals/`](../../day-3/graph-fundamentals/)) a s tím, že
 web, ke kterému se nelze připojit, nesmí shodit celý běh.
 
 Praktické důsledky pro skript:

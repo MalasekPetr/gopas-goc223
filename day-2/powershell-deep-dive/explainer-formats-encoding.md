@@ -55,7 +55,7 @@ Pravidla, aby přežila celou cestu:
 
 - **Interní názvy polí** kódují diakritiku a mezery (`_x0020_`, `_x00e1_`) — pole
   zakládat bez nich, přejmenovat až zobrazovaný název
-  ([`../graph-fundamentals/tips-spo-api.md`](../graph-fundamentals/tips-spo-api.md)).
+  ([`../graph-fundamentals/tips-spo-api.md`](../../day-3/graph-fundamentals/tips-spo-api.md)).
 - **Názvy souborů z fileshare** nesou diakritiku i znaky, které SPO nepovoluje —
   sanitizace patří do migračního plánu, ne do improvizace při běhu.
 - **`ConvertTo-Json` má výchozí `-Depth 2`** — hlubší struktury tiše ořízne; u vnořených

@@ -68,7 +68,7 @@ smysl víc než stanice v kanceláři, protože data netečou přes firemní lin
   vlnu stihne v požadovaném okně**. Víc agentů znamená vyšší API request rate a tím
   **vyšší throttling** — přidávání agentů výkon v určitém bodě zhoršuje, ne zlepšuje.
   Je to tentýž mechanismus jako u dávkových skriptů v
-  [`../../day-2/graph-fundamentals/`](../../day-2/graph-fundamentals/): propustnost
+  [`../../day-3/graph-fundamentals/`](../graph-fundamentals/): propustnost
   neurčuje váš hardware, ale to, co vám služba dovolí.
 
 Nosná věta: **migrační kapacita se neškáluje penězi za compute, ale plánováním vln.**

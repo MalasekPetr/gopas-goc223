@@ -17,7 +17,7 @@ ne klikání v GUI.
 - Cílové weby `-dev/-test/-prod` z labu [`../../day-2/powershell-deep-dive/lab-cert-auth-sites.md`](../../day-2/powershell-deep-dive/lab-cert-auth-sites.md).
 - Zdrojový fileshare: instruktorem připravená lokální struktura složek/souborů
   (fiktivní data — oddělení, typy dokumentů).
-- `Connect-CourseTarget` wrapper + retry vzory z [`../../day-2/graph-fundamentals/`](../../day-2/graph-fundamentals/).
+- `Connect-CourseTarget` wrapper + retry vzory z [`../../day-3/graph-fundamentals/`](../graph-fundamentals/).
 
 ## Kroky
 

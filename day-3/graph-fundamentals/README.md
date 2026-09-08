@@ -1,6 +1,6 @@
 # Microsoft Graph — inženýrské základy
 
-> Typ: povinný · Den: 2 · Odhad: 45 min výklad + 75 min lab
+> Typ: povinný · Den: 3 (otvírák) · Odhad: 45 min výklad + 75 min lab
 
 ## Cíle
 - Batching, delta, řízení throttlingu.
