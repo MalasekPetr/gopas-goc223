@@ -55,49 +55,59 @@ Jediný zdroj pravdy o pořadí modulů. Složky jsou slugy; pořadí drží tat
 > Volitelné demo hardware klíče (YubiKey/PIV, +30 min) a mini-lab „tři podpisy zápisu"
 > (+25 min) uvnitř bloku 3 — jen při reálné rezervě.
 
-## Den 3 — Graph, migrace, provisioning & lifecycle
+## Den 3 — Graph, staging, migrace & provisioning
 
 | # | Blok | Slug | Typ |
 |---|---|---|---|
 | 1 | Microsoft Graph — inženýrské základy | `day-3/graph-fundamentals` | P |
-| 2 | Skladba migrací *(Lab 2: fileshare → SPO dle JSON plánu + metadata)* | `day-3/migration-patterns` | P |
-| 3 | Vzory automatizace zřizování | `day-3/provisioning-patterns` | P |
-| 4 | Orchestry integrace & vlastní skripty (simulace) | `day-3/opt-orchestry-integration` | V |
-| 5 | Lifecycle & compliance enforcement | `day-3/lifecycle-compliance` | P |
+| 2 | Staging prostředí: DEV, TEST, PROD | `day-3/staging-environments` | P |
+| 3 | Skladba migrací *(Lab 2: fileshare → SPO dle JSON plánu + metadata)* | `day-3/migration-patterns` | P |
+| 4 | Vzory automatizace zřizování | `day-3/provisioning-patterns` | P |
+| 5 | Orchestry integrace & vlastní skripty (simulace) | `day-3/opt-orchestry-integration` | V |
 
 > [!NOTE] Orchestry je volitelný blok (simulace bez licence, leaf node — nic povinného na
-> něm nezávisí; stejný model jako v GOC224) — spouští se dle času po provisioningu.
+> něm nezávisí; stejný model jako v GOC224) — spouští se dle času po provisioningu, jehož
+> artefakt používá jako cíl.
 
-> [!IMPORTANT] Graph musí být blok 1 — plyne to z Labu 2, ne z preference
+> [!IMPORTANT] Pořadí bloků 1 a 2 plyne z předpokladů labů, ne z tématu
 > [`day-3/migration-patterns/lab-fileshare-migration.md`](day-3/migration-patterns/lab-fileshare-migration.md)
-> má retry vzory z `graph-fundamentals` ve **Předpokladech**. Graph proto otevírá den
-> a migrace ho následuje; obrácené pořadí by nechalo Lab 2 bez vstupní znalosti.
+> má retry vzory z `graph-fundamentals` ve **Předpokladech**, proto Graph otevírá den.
+> A **diff/baseline skript** ze `staging-environments` je vstupem pro lab
+> `provisioning-patterns` (krok 5 i Ověření), pro předmigrační kontrolu v
+> `migration-patterns` a pro lab v `day-4/lifecycle-compliance` — proto staging jako blok 2.
+> Je to nejvíc znovupoužitý artefakt kurzu: jeho přesun rozbije tři laby, ne jeden.
 
-> [!WARNING] Den 3 je nad stropem: ~7,8 h povinně (120 + 150 + 100 + 100 = 470 min)
-> Vzniklo 2026-09-08 přesunem `graph-fundamentals` z D2. **Zatím vědomě nevyřešeno** —
-> platí pravidlo, že **moduly se smí posouvat jen dozadu v týdnu, nikdy dopředu**, takže
-> odlehčení přes přesun do D2 není ve hře. Legální kandidáti jsou přesun něčeho z D3 na
-> D4/D5 (oba dny jsou dnes plné: 6,3 h a 5,7-6,7 h) nebo zkrácení uvnitř D3.
+> [!WARNING] Den 3 je nad stropem: ~7,8 h povinně (120 + 100 + 150 + 100 = 470 min)
+> Vzniklo 2026-09-08 přesunem `graph-fundamentals` z D2. **Přesunem to nejde vyřešit** —
+> dvojice D3 + D4 drží dohromady **850 min** povinné látky, takže i ideální rozdělení dává
+> **7,1 h na den**. Rezerva týdne leží v D1 (4,9 h) a D2 (4,0 h), a tam se přesouvat nesmí:
+> moduly jdou jen dozadu.
 >
-> Do prvního reálného běhu D3 se s tím nic nedělá — rozhodne se podle toho, kde se den
-> reálně zadrhne. Prakticky odpadá jako první blok 4 (už dnes volitelný).
+> Odlehčení proto znamená **ubrat 70 min**, aby se D3 i D4 dostaly pod 6,5 h. Kandidáti
+> jsou v `CLAUDE.md` v otevřených otázkách. Rozhodne se podle prvního reálného běhu D3;
+> prakticky odpadá jako první blok 5, který je už dnes volitelný.
 
-## Den 4 — Azure integrace, SIEM a staging
+## Den 4 — Azure integrace, SIEM a lifecycle
 
 | # | Blok | Slug | Typ |
 |---|---|---|---|
 | 1 | Azure integrační vzory *(Lab 3: dávkový sync + plánovaný task; change notifications jako instruktorské demo)* | `day-4/azure-integration-patterns` | P |
 | 2 | SIEM integrace přes Azure Blob | `day-4/siem-blob-integration` | P |
-| 3 | Staging prostředí: DEV, TEST, PROD | `day-4/staging-environments` | P |
+| 3 | Lifecycle & compliance enforcement | `day-4/lifecycle-compliance` | P |
 
-> [!NOTE] ~6,3 h (160 + 120 + 100 = 380 min) — nejhustší den kurzu, ale uprostřed týdne,
-> bez onboarding/odchodových rizik. Change-notifications lab běží jako instruktorské demo
+> [!NOTE] ~6,3 h (160 + 120 + 100 = 380 min) — hustý den, ale uprostřed týdne, bez
+> onboarding/odchodových rizik. Change-notifications lab běží jako instruktorské demo
 > (handshake + jedna notifikace), plné dokončení je samostudium.
 >
-> **Microsoft Clarity byl 2026-09-07 z kurzu vypuštěn** a jeho slot dostalo
-> `staging-environments` z D2. Z celého týdne to bylo téma nejvzdálenější automatizaci
-> a migraci; obecný mechanismus SPFx tenant-wide deploymentu, který demonstrovalo, zůstává
-> v `day-5/app-catalog-lifecycle`.
+> **Přestavba 2026-09-08:** třetím blokem byl `staging-environments`; ten se vrátil na D3,
+> před laby, které jeho baseline skript potřebují. Výměnou sem přišel `lifecycle-compliance`
+> z D3. Den se časově nezměnil (oba bloky 100 min) a vazba na staging teď míří správným
+> směrem, do předchozího dne. Tematicky to sedí lépe: blok 2 postaví telemetrickou
+> pipeline, blok 3 na ní staví governance pravidla.
+>
+> **Microsoft Clarity byl 2026-09-07 z kurzu vypuštěn.** Z celého týdne to bylo téma
+> nejvzdálenější automatizaci a migraci; obecný mechanismus SPFx tenant-wide deploymentu,
+> který demonstrovalo, zůstává v `day-5/app-catalog-lifecycle`.
 
 ## Den 5 — App Catalog, security hardening & capstone
 

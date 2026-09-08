@@ -113,7 +113,7 @@ Standardní tvar pipeline v [`day-4/siem-blob-integration/`](day-4/siem-blob-int
 
 Licencovaná nadstavba SPO admin centra pro governance: content sprawl, lifecycle, **oversharing**. Dostupná, pokud má v tenantu **aspoň jeden uživatel licenci Microsoft Copilot** (nemusí být admin), nebo přes **SAM Plan 1** add-on. Role: SharePoint Administrator nebo SharePoint Advanced Management Administrator.
 
-V kurzu se objevuje dvakrát: **Site Attestation** ([`day-3/lifecycle-compliance/`](day-3/lifecycle-compliance/)) a **Data access governance (DAG)** reporty ([`day-5/permission-discovery/`](day-5/permission-discovery/)) — z nich hlavně **Site permissions for users**, který odpoví „ke kterým webům má uživatel přístup a jak je udělený".
+V kurzu se objevuje dvakrát: **Site Attestation** ([`day-4/lifecycle-compliance/`](day-4/lifecycle-compliance/)) a **Data access governance (DAG)** reporty ([`day-5/permission-discovery/`](day-5/permission-discovery/)) — z nich hlavně **Site permissions for users**, který odpoví „ke kterým webům má uživatel přístup a jak je udělený".
 
 > [!WARNING] Ověřit k datu běhu — stav k 2026-09.
 > Limity DAG reportu pro uživatele: max **5 reportů**, opakovaný běh **1× za 30 dní**, data až **48 h stará**, vyžaduje předchozí běh org-wide reportu *Site permissions*. Kvůli tomu je to v kurzu **instruktorské demo**, nikdy hands-on. Licenční podmínky i seznam reportů se mění po měsících.

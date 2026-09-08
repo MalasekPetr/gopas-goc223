@@ -19,7 +19,7 @@
 - Studenti si pletou "diff mezi dvěma prostředími" s "diff proti baseline" — u prvního nejde o
   správnost, jen o rozdíl; u druhého je baseline autoritativní zdroj pravdy.
 - Nenechat lab sklouznout k psaní obecného "site cloner" nástroje — cíl je detekce a report
-  driftu, ne automatická synchronizace/oprava (to přijde v [`../../day-3/lifecycle-compliance/`](../../day-3/lifecycle-compliance/)).
+  driftu, ne automatická synchronizace/oprava (to přijde v [`../../day-4/lifecycle-compliance/`](../../day-4/lifecycle-compliance/)).
 
 ## Vazby
 

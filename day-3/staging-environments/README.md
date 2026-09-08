@@ -1,6 +1,6 @@
 # Staging prostředí: DEV, TEST, PROD
 
-> Typ: povinný · Den: 4 · Odhad: 40 min výklad + 60 min lab
+> Typ: povinný · Den: 3 · Odhad: 40 min výklad + 60 min lab
 
 ## Cíle
 - Role tenantů/prostředí a bezpečné nasazování změn.

@@ -1,6 +1,6 @@
 # Lifecycle & compliance enforcement
 
-> Typ: povinný · Den: 3 · Odhad: 40 min výklad + 60 min lab
+> Typ: povinný · Den: 4 · Odhad: 40 min výklad + 60 min lab
 
 ## Cíle
 - Skripty pro retenci a citlivost.
@@ -31,7 +31,7 @@ Site Attestation posílá vlastníkům webu pravidelné (měsíční) actionable
 potvrzení údajů o webu (nutnost, vlastníci, sdílení). Web bez potvrzení po **třech** po sobě
 jdoucích měsíčních výzvách spadá do "unattested" stavu, na který lze navázat vynucenou akci
 (např. omezení přístupu) — přímý nativní ekvivalent k "attestaci vlastníků" z Orchestry
-simulace v [`../opt-orchestry-integration/`](../opt-orchestry-integration/), tentokrát jako standardní Microsoft funkce bez 3rd-party licence.
+simulace v [`../opt-orchestry-integration/`](../../day-3/opt-orchestry-integration/), tentokrát jako standardní Microsoft funkce bez 3rd-party licence.
 
 ```mermaid
 flowchart LR

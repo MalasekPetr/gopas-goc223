@@ -3,7 +3,7 @@
 > Typ: volitelný · Den: 3 (dle času, po provisioningu) · Odhad: 100 min
 
 > [!NOTE] Volitelný modul — nic povinného na něm nezávisí (leaf node). Governance koncepty
-> (attestace, sprawl) mají nativní protějšek v [`../lifecycle-compliance/`](../lifecycle-compliance/),
+> (attestace, sprawl) mají nativní protějšek v [`../lifecycle-compliance/`](../../day-4/lifecycle-compliance/),
 > který běží nezávisle na tomto bloku.
 
 ## Cíle
@@ -33,7 +33,7 @@ doplňuje vendor platformu tam, kde je specifický požadavek zákazníka mimo s
 ### Governance artefakty
 Attestace vlastníků (pravidelné potvrzení "tento prostor pořád existuje z důvodu X, vlastník
 je pořád Y"), sensitivity labeling při vzniku, sprawl reporting (přehled neaktivních/duplicitních
-prostorů) — koncepty, které v [`../lifecycle-compliance/`](../lifecycle-compliance/) uvidíme jako nativní Microsoft funkce (Site Attestation v
+prostorů) — koncepty, které v [`../lifecycle-compliance/`](../../day-4/lifecycle-compliance/) uvidíme jako nativní Microsoft funkce (Site Attestation v
 rámci SharePoint Advanced Management) — Orchestry a nativní SAM řeší podobný problém, srovnání
 je součástí labu.
 

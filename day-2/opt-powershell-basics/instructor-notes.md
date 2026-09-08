@@ -68,7 +68,7 @@ nemá a nedostane je, ztratí celý týden.
   [`../../day-4/azure-integration-patterns/solution/Sync-CourseList.ps1`](../../day-4/azure-integration-patterns/solution/Sync-CourseList.ps1))
   — dobré je na to při výkladu ukázat, ať student ví, že to není teorie.
 - `-WhatIf` jako návyk navazuje na disciplínu „report-only před remediací" z
-  [`../../day-3/lifecycle-compliance/`](../../day-3/lifecycle-compliance/).
+  [`../../day-4/lifecycle-compliance/`](../../day-4/lifecycle-compliance/).
 
 > [!NOTE] Proč blok existuje (2026-09-08)
 > Přidán po reálném běhu dne 2. Kurz je cílený na pokročilé SPO adminy a inženýry migrací,

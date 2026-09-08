@@ -52,7 +52,7 @@
 - Zpět: stránkování a throttling z [`../../day-3/graph-fundamentals/`](../../day-3/graph-fundamentals/),
   UTF-8/CSV z [`../../day-2/powershell-deep-dive/explainer-formats-encoding.md`](../../day-2/powershell-deep-dive/explainer-formats-encoding.md),
   weby `-dev/-test/-prod` z Labu 1. SAM se v kurzu poprvé objevil u Site Attestation
-  v [`../../day-3/lifecycle-compliance/`](../../day-3/lifecycle-compliance/) — odkázat
+  v [`../../day-4/lifecycle-compliance/`](../../day-4/lifecycle-compliance/) — odkázat
   na to, ať studenti vidí, že je to tentýž produkt.
 
 > [!NOTE] Nový blok (2026-09-06)

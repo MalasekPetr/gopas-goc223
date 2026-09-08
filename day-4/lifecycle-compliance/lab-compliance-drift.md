@@ -4,18 +4,18 @@
 
 ## Cíl
 
-Student rozšíří diff/baseline skript z [`../../day-4/staging-environments/`](../../day-4/staging-environments/) o kontrolu sharing policy driftu a napíše
+Student rozšíří diff/baseline skript z [`../../day-3/staging-environments/`](../../day-3/staging-environments/) o kontrolu sharing policy driftu a napíše
 report rozlišující report-only nález od navrhované (ne automaticky provedené) remediation akce.
 
 ## Předpoklady
 
-- Diff/baseline skript z [`../../day-4/staging-environments/`](../../day-4/staging-environments/).
+- Diff/baseline skript z [`../../day-3/staging-environments/`](../../day-3/staging-environments/).
 - Sandbox web s úmyslně nastaveným sharing driftem (web-level volnější než org policy by měl
   dovolit, nebo naopak zbytečně restriktivní oproti očekávání).
 
 ## Kroky
 
-1. Rozšířit baseline z [`../../day-4/staging-environments/`](../../day-4/staging-environments/) o očekávanou hodnotu external sharing pro daný web.
+1. Rozšířit baseline z [`../../day-3/staging-environments/`](../../day-3/staging-environments/) o očekávanou hodnotu external sharing pro daný web.
 2. Načíst aktuální sharing nastavení webu a porovnat s baseline i s org-level policy.
 3. Report jasně rozlišuje: web odpovídá baseline / web je restriktivnější (OK, jen info) /
    web je otevřenější než dovoluje org policy (violation, nutná akce).

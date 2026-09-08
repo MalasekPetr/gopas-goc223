@@ -51,5 +51,5 @@
   end-to-end blueprint); knihovny s metadaty z tohoto labu jsou zdroj/cíl pro plánovaný
   sync task v [`../../day-4/azure-integration-patterns/`](../../day-4/azure-integration-patterns/).
 - Zpět: navazuje na throttle/retry klasifikaci z [`../../day-3/graph-fundamentals/`](../graph-fundamentals/), baseline/diff z
-  [`../../day-4/staging-environments/`](../../day-4/staging-environments/) (předmigrační kontrola) a weby + cert identitu z
+  [`../../day-3/staging-environments/`](../staging-environments/) (předmigrační kontrola) a weby + cert identitu z
   [`../../day-2/powershell-deep-dive/`](../../day-2/powershell-deep-dive/).

@@ -14,7 +14,7 @@
 Strukturované (JSON) logy s konzistentním schématem — usnadňuje pozdější KQL dotazy i
 transformace. PII (UPN, e-maily, jména) minimalizovat na zdroji, ne až v SIEM — hash nebo
 pseudonymizovat identifikátory tam, kde plná hodnota není nutná k analýze. Retence logů se
-řeší nezávisle na retenci zdrojových dat (viz [`../../day-3/lifecycle-compliance/`](../../day-3/lifecycle-compliance/)) — jiné compliance požadavky.
+řeší nezávisle na retenci zdrojových dat (viz [`../../day-4/lifecycle-compliance/`](../lifecycle-compliance/)) — jiné compliance požadavky.
 
 ### Pipeline: aplikace → Blob → Event Grid → Function → SIEM
 Novější verze Blob Storage rozšíření pro Azure Functions (5.x+) používají **Event Grid event

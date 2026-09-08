@@ -54,7 +54,7 @@ předá jako incident s vlastníkem a stavem, ne jako řádek v tabulce.
 Sentinel má **Microsoft 365 konektor** a `OfficeActivity` (SharePoint, Exchange, Teams)
 je v něm **bezplatný datový zdroj** — dá se tedy postavit pravidlo nad skutečnou aktivitou
 tenantu, například nad vytvořením anonymního sdíleného odkazu (vazba na governance sdílení
-v [`../../day-3/lifecycle-compliance/`](../../day-3/lifecycle-compliance/)).
+v [`../../day-4/lifecycle-compliance/`](../lifecycle-compliance/)).
 
 > [!WARNING] Živě to nevyjde — je to o latenci, ne o konfiguraci
 > Audit logy Microsoftu 365 mají latenci **typicky 60–90 minut a bez SLA** (Microsoft
