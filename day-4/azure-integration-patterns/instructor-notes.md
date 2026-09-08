@@ -8,6 +8,16 @@
 
 ## Go/no-go — KLÍČOVÉ, otestovat před během
 
+- **Elevovaná operace místo Power Automate** ([`guide-elevated-op.md`](guide-elevated-op.md))
+  je **volitelné demo na 15 min**, které se pouští, až když padne dotaz na Power Automate.
+  Agenda se kvůli němu neposouvá. Před během: založit oba seznamy, udělit `Sites.Selected`
+  na demo web a **projít celý postup jednou nanečisto** — rozbití dědění oprávnění na
+  položce se před skupinou improvizovat nedá.
+- Pokud na demo není čas ani chuť, stačí pustit
+  [`solution/Grant-RequestedAccess.Tests.ps1`](solution/Grant-RequestedAccess.Tests.ps1).
+  Dva testy (`zamitne zadost za nekoho jineho`, `s -WhatIf neprovede ani jeden zapis`)
+  sdělí celou pointu za třicet sekund.
+
 - Ověřit, že `New-CourseStudentAzureResources.ps1` proběhl a Function App per student existuje
   a je dostupná (public endpoint pro Graph validation handshake).
 - Zkusit den předem celý flow (vytvoření subscription → validation handshake → notifikace) —
@@ -24,6 +34,15 @@
   Contributor na **vlastní** resource group, ne na subscription.
 
 ## Tripwires
+
+- **U Power Automate nesklouznout do hanění.** Studenti tam mají postavené věci, které
+  fungují, a materiál to říká výslovně: flow dělá interakci s člověkem, skript dělá
+  privilegovanou operaci. Kdo z bloku odejde s dojmem „Power Automate je špatný", odnesl
+  si opak toho, co je v [`comparison-power-automate.md`](comparison-power-automate.md).
+- **Nejsilnější moment dema je zamítnutá žádost, ne úspěšná.** Založit řádek, kde
+  `RequesterEmail` je někdo jiný než zakladatel, a nechat skript odpovědět. Teprve tím je
+  vidět, že aplikační identita s právem na celý web není generální klíč — autorizace je
+  v kódu a zamítnutí se auditovalo.
 
 - Studenti zapomínají na validační handshake při vytváření subscription — Function musí umět
   vrátit `validationToken` jako plain text, jinak vytvoření subscription selže s chybou.

@@ -3,7 +3,8 @@
 > Typ: povinný · Den: 4 · Odhad: 40 min výklad + 90 min Lab 3 + 30 min instruktorské demo (change notifications)
 
 ## Cíle
-- Logic Apps vs Functions vs Runbooks.
+- Logic Apps vs Functions vs Runbooks — a kdy nic z toho, ale Power Automate flow
+  ([`comparison-power-automate.md`](comparison-power-automate.md)).
 - Event/webhook subscription, change notifications.
 - Orientace v Azure před laby dne (tenant vs subscription, RBAC vs Entra role, kde skript
   běží, kontejnery) — k přečtení předem: [`explainer-azure-orientation.md`](explainer-azure-orientation.md).
@@ -19,6 +20,16 @@ nákladově efektivní řešení pro přímočaré, PowerShell-native scheduled 
 jednodušší remediace). Klíčové technické omezení: **PowerShell neběží nativně uvnitř Logic
 App** — potřebuje-li workflow spustit PowerShell, musí zavolat Function nebo Automation
 Runbook jako druhý krok.
+
+
+> [!NOTE] „A proč to nenapsat v Power Automate?"
+> Ten dotaz padne skoro vždycky a je legitimní — flow má zákazník nasazený a pro schvalování
+> i notifikace je správnou odpovědí. Rozhodovací hranice ale neleží v tom, co která
+> platforma umí, nýbrž **pod čí identitou to běží**: elevace v Power Automate se dělá
+> sdílením flow, kde konektor zůstane na vlastníkovi, takže automatizace visí na osobním
+> účtu. Srovnání a nasaditelná náhrada:
+> [`comparison-power-automate.md`](comparison-power-automate.md)
+> a [`guide-elevated-op.md`](guide-elevated-op.md).
 
 ### Plánované běhy: on-premise vs Azure — a auth bez člověka
 Čtvrtá varianta vedle Azure trojice je klasický **on-premise server s Task Schedulerem** —
