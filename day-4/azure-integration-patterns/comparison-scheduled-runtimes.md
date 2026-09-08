@@ -77,6 +77,12 @@ Je to tentýž princip jako `#Requires` a `-RequiredVersion` z
 [`../../day-1/toolchain-setup/`](../../day-1/toolchain-setup/), jen posunutý o vrstvu výš:
 **co skript potřebuje k běhu, patří do repa** — a u kontejneru to platí i pro runtime.
 
+Kolik ty varianty reálně stojí, spočítá
+[`../../day-5/performance-cost-capstone/solution/Get-HostingCost.ps1`](../../day-5/performance-cost-capstone/solution/Get-HostingCost.ps1)
+ze živého ceníku. Krátká verze: u noční dávky **vyjdou všechny čtyři na nulu**, protože
+se vejdou do free grantů, takže se tady nerozhoduje podle ceny — rozhoduje se podle
+determinismu runtime a stropu doby běhu.
+
 Container Apps Job k tomu dává **cron plánovač, `replicaTimeout` podle vaší potřeby,
 `replicaRetryLimit`, `parallelism`** a scale-to-zero, tedy stejnou ekonomiku jako
 serverless. Cenou je, že si musíte postavit image — což pro tým, který už má repo

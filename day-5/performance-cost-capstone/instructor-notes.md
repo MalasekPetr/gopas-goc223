@@ -10,6 +10,14 @@
 
 ## Go/no-go — KLÍČOVÉ, otestovat před během
 
+- **Spustit `solution/Get-HostingCost.ps1` a přepsat čísla v README.** Sekce „Kolik to
+  reálně stojí" má konkrétní hodnoty v EUR a ty stárnou. Skript je bez závislostí a bez
+  přihlášení (Retail Prices API je anonymní), takže je to práce na dvě minuty — ale musí
+  se udělat, jinak instruktor u projektoru cituje starý ceník.
+- **Ověřit, že učebna má na `prices.azure.com` výstup.** Kdyby ne, vygenerovat snapshot
+  předem (`Get-HostingRate | ConvertTo-Json -Depth 6 > prices-snapshot.json`) a promítat
+  s `-Offline -PricesPath`. Snapshot **nedávat do repa** — je to datum a region, ne obsah.
+
 - Ověřit, že artefakty ze všech dnů jsou dostupné a nebyly smazány offboarding skriptem
   předchozího běhu (`scripts/README.md`).
 - **Ověřit aktuální stav AZ-204 retirementu a AI-200 obsahové náplně těsně před kurzem** —
@@ -18,6 +26,13 @@
 
 ## Tripwires
 
+- **Nulová tabulka není chyba kalkulátoru.** U noční dávky vyjdou všechny čtyři varianty
+  na 0 EUR a někdo se ozve, že „to nepočítá". Počítá — vejde se to do free grantů, a to
+  je celá pointa. Ukázat kontrast hned: `-LogGbPerMonth 100` je jediný nenulový řádek
+  a je vyšší než nejdražší compute o řád.
+- **Neříkat „Flex je vždycky lepší".** U vysokofrekvenčního běhu je Flex nejdražší varianta
+  z celé tabulky, protože má čtyřikrát menší free grant než legacy Consumption. Volí se
+  z jiných důvodů (viz D4), ne kvůli ceně, a je čestné to říct.
 - Nenechat capstone sklouznout k dodělávání nedokončených labů z dřívějších dnů — je to
   konsolidace, ne dohánění (viz Fallback v labu).
 - Prezentace na konci nemá být hodnocení/zkouška — udržet ji jako sdílení, ne stresující
