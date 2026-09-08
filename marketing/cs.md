@@ -33,7 +33,7 @@ Kurz provede inženýry migrací a automatizace kompletním cyklem pokročilé a
 
 ## Předpokládané znalosti
 
-- Základy PowerShellu
+- Základy PowerShellu — pokud si nejste jistí, kurz je na začátku druhého dne v případě potřeby sjednotí
 - Zkušenost se správou SharePoint Online
 - Základy Azure (resource groups, identity)
 - Výhodou: znalost JSON/REST, zkušenost s migračními nástroji (SPMT, ShareGate a podobné)
@@ -59,6 +59,8 @@ Kurz provede inženýry migrací a automatizace kompletním cyklem pokročilé a
 
 - **Strategie automatizace: nástroje, identita a oprávnění** *(lab)* — orientace mezi PowerShell, Microsoft Graph, PnP a REST, návrh identity automatizace (app registrace), delegated vs application permissions a `Sites.Selected` místo generálního klíče.
 - **PowerShell do hloubky** *(Lab 1)* — tři PowerShell moduly (PnP, Graph, SPO) a čtyři autentizační módy; lab: certifikát, app-only přihlášení, skriptované vytvoření pracovních webů.
+
+> Volitelně podle vstupní úrovně skupiny: **sjednocení základů PowerShellu** (objekty v pipeline, filtrování vlevo, čtení výstupů cmdletů) — instruktor blok zařadí, když ho skupina potřebuje, aby na navazující práci se skripty stačili všichni.
 
 ### Den 3 — Graph, staging, migrace & provisioning
 

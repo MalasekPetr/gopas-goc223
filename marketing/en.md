@@ -33,7 +33,7 @@ This course takes migration and automation engineers through the full cycle of a
 
 ## Prerequisites
 
-- PowerShell basics
+- PowerShell basics — if you are unsure, the course levels these up at the start of day two when the group needs it
 - Experience administering SharePoint Online
 - Azure fundamentals (resource groups, identity)
 - Beneficial: JSON/REST literacy, experience with migration tools (SPMT, ShareGate, and similar)
@@ -60,6 +60,8 @@ This course takes migration and automation engineers through the full cycle of a
 - **Automation strategy: tools, identity, and permissions** *(lab)* — choosing between PowerShell, Microsoft Graph, PnP, and REST, designing an automation identity (app registration), delegated vs. application permissions, and `Sites.Selected` instead of a master key.
 
 - **PowerShell in depth** *(Lab 1)* — the three PowerShell modules (PnP, Graph, SPO) and four authentication modes; lab: certificate, app-only sign-in, scripted creation of work sites.
+
+> Optional, depending on the group's starting level: a **PowerShell fundamentals levelling block** (objects in the pipeline, filtering left, reading cmdlet output) — the instructor runs it when the group needs it, so nobody falls behind on the scripting work that follows.
 
 ### Day 3 — Graph, Staging, Migration & Provisioning
 
