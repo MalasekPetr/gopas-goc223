@@ -9,10 +9,18 @@
 
 ## Go/no-go — KLÍČOVÉ, otestovat před během
 
-- Ověřit, že Storage Account per student je **general-purpose v2** — jinak Event Grid trigger
-  nepůjde nastavit a lab spadne na starší polling chování.
+- Ověřit, že Storage Account per student je **general-purpose v2** — event subscription na
+  Azure Storage ji vyžaduje. Na Flex Consumption **není kam sestoupit**: polling-based Blob
+  trigger na tomto plánu neexistuje, takže bez GPv2 lab nemá jak nastartovat.
+- **Ověřit dostupnost Flex Consumption ve zvoleném regionu.** Plán nepokrývá všechny regiony
+  a v nepodporovaném se v portálu ani nezobrazí — `New-CourseStudentAzureResources.ps1` pak
+  skončí chybou, kterou nikdo nečeká. Sestup na (legacy) Consumption plán **není fallback**,
+  protože by změnil trigger model celého labu.
+- **Vyzkoušet celou cestu k systémovému klíči `blobs_extension`** (Function App -> App keys
+  -> System keys). Endpoint URL pro Event Grid subscription se skládá ručně a je to
+  nejfiddly krok labu; navíc ho po vytvoření subscription nejde změnit.
 - **Log Analytics workspace musí existovat před kurzem — není součástí M365 tenantu ani
-  Consumption plánu.** Doporučená varianta: **jeden sdílený workspace pro celý kurz
+  Flex Consumption plánu.** Doporučená varianta: **jeden sdílený workspace pro celý kurz
   a samostatná DCR per student** — izolaci dat to zajistí, 25 workspaců se neplatí
   a cleanup je jeden resource. Založit spolu se zbytkem Azure rozsahu
   (viz [`../../environment.md`](../../environment.md)), ne ad-hoc ve čtvrtek.
@@ -21,7 +29,7 @@
   workspace leží mimo ni — což u sdíleného workspacu leží.
 - **Budget alert na subscription je u tohoto bloku povinný.** Log Analytics se účtuje po
   objemu ingestovaných dat; zacyklená Function nebo chybná DCR umí utrhnout účet způsobem,
-  na který zbytek D4 rozsahu (Consumption plán) není schopný.
+  na který zbytek D4 rozsahu (Flex Consumption) není schopný.
 - Ověřit aktuální DCR konfiguraci (`logsIngestion` vlastnost bez nutnosti DCE) na demo
   prostředí den předem.
 - **Sentinel zapnout nad kurzovním workspacem těsně před během, ne dřív.** Trial je
@@ -38,9 +46,16 @@
 ## Tripwires
 
 - Nezaměňovat Event Grid-based trigger (5.x+ rozšíření) se starším polling-based Blob
-  triggerem — na Consumption plánu je Event Grid varianta nutná, ne volitelná optimalizace.
+  triggerem — na Flex Consumption je Event Grid varianta **jediná podporovaná**, ne volitelná
+  optimalizace. Polling-based varianta na tomto plánu neexistuje.
 - Zdůraznit pseudonymizaci PII **před** zápisem (v transformu), ne jako dodatečný krok —
   v ověření labu kontrolovat cílovou tabulku, ne jen mezikrok.
+- **`FUNCTIONS_WORKER_RUNTIME` se na Flex Consumption nepodporuje.** Kdo publikuje projekt
+  z VS Code a nahraje local settings tak, jak jsou, dostane selhání na nastavení, které bylo
+  na starším plánu povinné. Před `Upload Local Settings...` ten záznam z `local.settings.json`
+  odstranit. Non-C# aplikace navíc na Flex Consumption **musí** mít v `host.json`
+  extension bundle verze `[4.0.0, 5.0.0)` nebo novější — bez toho Event Grid Blob trigger
+  není k dispozici.
 - KQL je case-sensitive — časté drobné chyby v názvech sloupců/tabulek u začátečníků.
 - **Ingest do Log Analytics má latenci.** Po zápisu přes Logs Ingestion API se záznamy
   v tabulce neobjeví okamžitě — u custom tabulky počítat s několika minutami, u první

@@ -90,7 +90,7 @@ Kurz prevedie inžinierov migrácií a automatizácie kompletným cyklom pokroč
 ## Pred publikáciou — kontrolný zoznam pre editora
 
 - [ ] Doplniť cenu kurzu (obchodné oddelenie GOPAS).
-- [ ] Overiť aktuálne PAYG/Consumption náklady Azure labov dňa 4 a dostupnosť/životnosť M365 Developer Program tenantu.
+- [ ] Overiť aktuálne PAYG / Flex Consumption náklady Azure labov dňa 4 a dostupnosť/životnosť M365 Developer Program tenantu.
 - [ ] Overiť aktuálny stav certifikácie AZ-204 (plánovaný koniec 31. 7. 2026) a jej náhrady AI-200, než sa cesty ďalšieho štúdia spomenú v propagačných materiáloch.
 - [ ] Overiť minimálne verzie toolchainu (PowerShell pre PnP, Node pre CLI for Microsoft 365) pred uvedením do textu.
 - [ ] Skontrolovať, že žiadny blok „Poznámka pre editora" nezostal skopírovaný do publikovaného textu.

@@ -90,7 +90,7 @@ Participants leave with their own end-to-end blueprint for migrating and provisi
 ## Pre-publish checklist for the editor
 
 - [ ] Fill in the course price (GOPAS sales).
-- [ ] Verify current Azure PAYG/Consumption costs for the Day 4 labs and the availability/lifespan of the M365 Developer Program tenant.
+- [ ] Verify current Azure PAYG / Flex Consumption costs for the Day 4 labs and the availability/lifespan of the M365 Developer Program tenant.
 - [ ] Verify the current status of the AZ-204 certification (planned retirement 2026-07-31) and its AI-200 replacement before mentioning next-step study paths in promotional material.
 - [ ] Verify the minimum toolchain versions (PowerShell for PnP, Node for CLI for Microsoft 365) before they go into the text.
 - [ ] Check that no "Editor note" block was left copied into the published text.

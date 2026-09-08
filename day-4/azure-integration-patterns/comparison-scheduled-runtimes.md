@@ -12,10 +12,10 @@ dávka nad tisíci weby vůbec doběhne.
 
 | | **Functions** (timer trigger) | **Automation Runbook** | **Container Apps Job** | **on-prem Task Scheduler** |
 |---|---|---|---|---|
-| Jak se dovnitř dostanou moduly | `requirements.psd1` (managed dependencies) — platforma je stahuje | import do Automation accountu | **zapečené v image** | `Install-Module` na stroji |
-| Kdo drží verzi modulu | platforma, s vaší konfigurací | vy, ale mimo repo | **vy, v `Dockerfile` v repu** | vy, ručně |
+| Jak se dovnitř dostanou moduly | **v app content** (deployment package) — Flex Consumption managed dependencies **nepodporuje** | import do Automation accountu | **zapečené v image** | `Install-Module` na stroji |
+| Kdo drží verzi modulu | vy, v deployment package | vy, ale mimo repo | **vy, v `Dockerfile` v repu** | vy, ručně |
 | Strop doby běhu | 30 min default, **neomezeno** (Flex/Premium/Dedicated) | **3 h — fair share**, job je zastaven | `replicaTimeout` (nastavíte v sekundách) | žádný |
-| Plánovač | timer trigger (NCRONTAB) | Automation schedule | **cron výraz, 5 polí, v UTC** | Task Scheduler |
+| Plánovač | timer trigger (NCRONTAB, **UTC** — `TZ`/`WEBSITE_TIME_ZONE` na Flexu nefunguje) | Automation schedule | **cron výraz, 5 polí, v UTC** | Task Scheduler (lokální čas) |
 | Cena při nečinnosti | 0 (Flex Consumption) | 0 | **0 — scale-to-zero** | běžící železo |
 | Credential | managed identity | managed identity | managed identity | certifikát v machine store |
 | Spustí `.exe` / subprocess | ano | **ne** (Azure sandbox) | ano | ano |
@@ -56,12 +56,21 @@ což sandbox neumí ani spustit.
 > ([`../../day-1/vscode-copilot-env/explainer-runtime-environments.md`](../../day-1/vscode-copilot-env/explainer-runtime-environments.md)).
 > Kombinace „runbook + zamčený Key Vault" je architektura, která vypadá správně a nefunguje.
 
-### 3. Determinismus runtime je hlavní argument pro kontejner
+### 3. Na Flex Consumption `requirements.psd1` nefunguje
 
-`Microsoft.Graph` je meta-modul s desítkami sub-modulů. Ve Functions se řeší
-`requirements.psd1` a managed dependencies — platforma moduly stahuje a jejich přesná verze
-se může posunout pod rukama. V kontejneru je **pin v `Dockerfile`, který leží v repu**
-vedle skriptu, takže image je deterministická a přezkoumatelná.
+Tenhle nález převrací obvyklé poučení. **Flex Consumption nepodporuje managed dependencies
+v PowerShellu** — `requirements.psd1` na něm neplatí a moduly je nutné **přiložit k app
+content**, tedy nést je v deployment package.
+
+Pro praxi to má dva důsledky. Za prvé: kdo přijde s návykem „napíšu `requirements.psd1`
+a platforma to dotáhne", narazí — a hláška o chybějícím cmdletu tuhle příčinu neprozradí.
+Za druhé, a příznivěji: na Flex Consumption **držíte verzi modulu vy**, protože ji nesete
+v balíčku. Determinismus, který jinak musíte hledat v kontejneru, tady dostanete i u Functions.
+
+Zbývající argument pro kontejner proto není modul, ale **celý runtime**: verze PowerShellu
+(Flex Consumption podporuje jen **PowerShell 7.4**), možnost přinést si vlastní `.exe`,
+a strop doby běhu, který si nastavíte sami. `Microsoft.Graph` je meta-modul s desítkami
+sub-modulů — v `Dockerfile` v repu je jeho pin vidět a přezkoumatelný vedle skriptu.
 
 Je to tentýž princip jako `#Requires` a `-RequiredVersion` z
 [`../../day-1/toolchain-setup/`](../../day-1/toolchain-setup/), jen posunutý o vrstvu výš:
@@ -72,10 +81,16 @@ Container Apps Job k tomu dává **cron plánovač, `replicaTimeout` podle vaš�
 serverless. Cenou je, že si musíte postavit image — což pro tým, který už má repo
 a pipeline, není nic navíc.
 
+> [!NOTE] Tři vlastnosti Flex Consumption, které zaskočí při automatizaci
+> **Jedna aplikace na jeden plán**, **deployment slots nejsou podporované** a **migrace
+> existující aplikace na Flex (ani z Flexu jinam) není možná** — přechod znamená založit
+> novou aplikaci a nasadit kód znovu. Kdo plánuje hostování dopředu, ať to ví teď, ne
+> až u prvního nasazení.
+
 ## Rozhodovací osa v jedné větě
 
 > **Krátká reakce na event → Functions. Jednoduchá periodická remediace v Azure →
-> Automation Runbook. Dávka, kde záleží na verzích modulů nebo na době běhu →
+> Automation Runbook. Dávka, kde záleží na verzi runtime, na vlastních nástrojích nebo na době běhu →
 > Container Apps Job. Dosah na on-prem → scheduled task, pořád legitimní.**
 
 A pravidlo, které platí napříč: **žádná z těch variant nesmí spoléhat na interaktivní
@@ -83,8 +98,9 @@ přihlášení.** Auth matice je v [`README.md`](README.md).
 
 ## Klíčové rozlišení
 
-- **Platforma drží verzi vs vy držíte verzi** — managed dependencies vs pin v image.
-  U skriptu, který má běžet měsíce beze změny, je to ta podstatná otázka.
+- **Modul v balíčku vs modul v image vs modul na stroji** — na Flex Consumption nese moduly
+  deployment package (managed dependencies tam nejsou), u kontejneru image, u on-prem stroj.
+  Ve všech třech držíte verzi vy — u Automation accountu ji držíte **mimo repo**.
 - **Timeout, který se dá zvednout, vs strop, který nejde** — `replicaTimeout` je
   konfigurace; fair share u Automation je vlastnost služby.
 - **Scale-to-zero vs běžící železo** — Functions (Flex), Automation i Container Apps Job
@@ -95,6 +111,8 @@ přihlášení.** Auth matice je v [`README.md`](README.md).
 ## Zdroje (Microsoft)
 
 - [Azure Functions scale and hosting](https://learn.microsoft.com/en-us/azure/azure-functions/functions-scale) — timeouty a limity plánů
+- [Flex Consumption plan](https://learn.microsoft.com/en-us/azure/azure-functions/flex-consumption-plan) — doporučený serverless plán; Consumption je legacy. „Flex Consumption doesn't support managed dependencies in PowerShell."
+- [Azure Functions PowerShell developer guide](https://learn.microsoft.com/en-us/azure/azure-functions/functions-reference-powershell) — managed dependencies vs moduly v app content
 - [Jobs in Azure Container Apps](https://learn.microsoft.com/en-us/azure/container-apps/jobs) — trigger typy, `replicaTimeout`, cron
 - [Runbook execution in Azure Automation](https://learn.microsoft.com/en-us/azure/automation/automation-runbook-execution) — fair share, sandbox limity, trusted services
 - [Azure Automation limits](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/azure-subscription-service-limits#azure-automation-limits)
@@ -108,10 +126,18 @@ přihlášení.** Auth matice je v [`README.md`](README.md).
 > Consumption se ruší **30. 9. 2028** a apps na v3 runtime na Linux Consumption přestaly
 > běžet **30. 9. 2026**.
 >
-> **Tohle se dotýká kurzovního prostředí** — `environment.md` uvádí Function App na
-> Consumption plánu a [`../siem-blob-integration/`](../siem-blob-integration/) na Consumption
-> staví argument o vynucené Event Grid subscription. Před během ověřit, na jakém plánu
-> studentské Function Apps reálně vzniknou, a případně přepsat na Flex Consumption.
+> **Kurzovní prostředí je na Flex Consumption** — přepsáno 2026-09-08 v `environment.md`,
+> `scripts/README.md` a v [`../siem-blob-integration/`](../siem-blob-integration/). Ta změna
+> není kosmetická: Flex Consumption podporuje **výhradně event-based Blob trigger**, takže
+> argument o vynucené Event Grid subscription na něm platí silněji než na Consumption —
+> polling-based varianta tam neexistuje vůbec.
+>
+> Zbývá ověřovat **dostupnost Flex Consumption ve zvoleném regionu** — plán nepokrývá
+> všechny a v nepodporovaném se v portálu ani nezobrazí.
+>
+> Ověřovat i **nepodporu managed dependencies v PowerShellu** — je to dnes uvedené
+> mezi *Considerations* Flex Consumption plánu, ale je to typ omezení, které Microsoft
+> časem odstraňuje. Kdyby padlo, řádek o modulech v tabulce se mění.
 >
 > Timeout hodnoty (Consumption 5/10 min vs 30 min a neomezeno u ostatních) se mění —
 > ověřit na [functions-scale](https://learn.microsoft.com/en-us/azure/azure-functions/functions-scale).

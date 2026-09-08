@@ -20,8 +20,9 @@ pseudonymizovat identifikátory tam, kde plná hodnota není nutná k analýze. 
 Novější verze Blob Storage rozšíření pro Azure Functions (5.x+) používají **Event Grid event
 subscription** na containeru místo pollingu — funkce se spustí prakticky okamžitě při
 změně, ne až při dalším pollovacím cyklu. Toto vyžaduje **general-purpose v2 storage
-account**; na Consumption plánu je Event Grid subscription dokonce vynucená (Function
-Blob trigger na Consumption plánu nemůže fungovat na klasickém pollingu).
+account**; na **Flex Consumption** plánu, na kterém jede kurzovní prostředí, není Event Grid
+varianta volitelná optimalizace — Flex Consumption **podporuje výhradně event-based verzi
+Blob triggeru**, polling na něm neexistuje.
 
 Pro zápis do Log Analytics/Sentinel workspace slouží **Logs Ingestion API** — REST rozhraní,
 které umí zapisovat do standardních i vlastních (custom) tabulek přes **Data Collection Rule
@@ -53,7 +54,7 @@ flowchart LR
 
 ## Klíčové rozlišení
 - **Blob polling (starší, zpožděné) vs Event Grid subscription (novější, téměř okamžité)** —
-  Consumption plán vyžaduje druhou variantu.
+  Flex Consumption podporuje výhradně druhou variantu.
 - **Transformace v DCR (před uložením, KQL) vs transformace až v dotazu** — první šetří
   úložný prostor a skrývá PII už při zápisu.
 - **Retry (transientní selhání, viz [`../../day-2/graph-fundamentals/`](../../day-2/graph-fundamentals/)) vs dead-letter (trvalé selhání, needs review)**.
@@ -67,7 +68,8 @@ rule nad tabulkou, kterou lab právě naplnil, a z nálezu **incident**. Ukazuje
 u které lab jinak končí: **log odpovídá na otázku, kterou položíte; SIEM se ptá sám.**
 
 ## Zdroje (Microsoft)
-- [Tutorial: Trigger Azure Functions on blob containers using an event subscription](https://learn.microsoft.com/en-us/azure/azure-functions/functions-event-grid-blob-trigger)
+- [Tutorial: Trigger Azure Functions on blob containers using an event subscription](https://learn.microsoft.com/en-us/azure/azure-functions/functions-event-grid-blob-trigger) — „The Flex Consumption plan only supports the event-based version of the Blob Storage trigger."
+- [Flex Consumption plan](https://learn.microsoft.com/en-us/azure/azure-functions/flex-consumption-plan)
 - [Logs Ingestion API in Azure Monitor](https://learn.microsoft.com/en-us/azure/azure-monitor/logs/logs-ingestion-api-overview)
 - [Custom data ingestion and transformation in Microsoft Sentinel](https://learn.microsoft.com/en-us/azure/sentinel/data-transformation)
 - [Kusto Query Language (KQL) overview](https://learn.microsoft.com/en-us/kusto/query/?view=microsoft-fabric)

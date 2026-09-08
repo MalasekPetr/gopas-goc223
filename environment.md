@@ -36,7 +36,7 @@ samostatnou, placenou subscription připojenou k témuž tenantu.
 |---|---|
 | Azure subscription | dedikovaná kurzová subscription (instruktorský kanál) |
 | Resource group per student | `rg-goc223-<jmeno-prijmeni>` — vytváří `New-CourseStudentAzureResources.ps1` |
-| Rozsah | Storage Account (Blob, **general-purpose v2**), Function App (Consumption plan), Event Grid Topic, **Log Analytics workspace + Data Collection Rule** — dle dne (D4) |
+| Rozsah | Storage Account (Blob, **general-purpose v2**), Function App (**Flex Consumption plan**), Event Grid Topic, **Log Analytics workspace + Data Collection Rule** — dle dne (D4) |
 | Log Analytics | **sdílený workspace pro celý kurz + samostatná DCR per student** (izolace dat mezi studenty bez ceny za 25 workspaců) |
 | Role studenta | Contributor jen na vlastní resource group, ne na subscription |
 
@@ -44,7 +44,7 @@ samostatnou, placenou subscription připojenou k témuž tenantu.
 > oddělené soustavy (viz [`day-1/api-landscape/`](day-1/api-landscape/)).
 
 > [!WARNING] Ověřit k datu běhu — stav k 2026-07.
-> Azure Consumption-plan náklady jsou u tohoto rozsahu labů zanedbatelné, ale sledovat
+> Azure Flex Consumption náklady jsou u tohoto rozsahu labů zanedbatelné, ale sledovat
 > orfánní resources po předchozích bězích (`Get-AzResourceGroup -Name 'rg-goc223-*'`)
 > a mít nastavený budget alert na subscription.
 >
@@ -54,6 +54,18 @@ samostatnou, placenou subscription připojenou k témuž tenantu.
 > nebo zacyklené Function**, které umí ingestovat řádově víc. Budget alert na subscription
 > je tu proto povinný, ne doporučený. Sazby a případný bezplatný objem ověřit
 > v aktuálním Azure ceníku před během.
+
+> [!IMPORTANT] Plán je Flex Consumption, ne Consumption — změna k 2026-09
+> Consumption plan je u Azure Functions nyní **legacy** a Linux Consumption je retired;
+> pro nové serverless function apps Microsoft doporučuje **Flex Consumption**. Kurzovní
+> rozsah je proto na Flex Consumption a **není to kosmetická změna** — lab
+> v [`day-4/siem-blob-integration/`](day-4/siem-blob-integration/) na tom plánu stojí:
+> Flex Consumption podporuje **výhradně event-based Blob trigger**, takže Event Grid
+> subscription je tam vynucená, ne volitelná.
+>
+> Před během ověřit **dostupnost Flex Consumption ve zvoleném regionu** — nepokrývá
+> všechny a v nepodporovaném regionu se plán v portálu ani nezobrazí. Zdroj:
+> [Flex Consumption plan](https://learn.microsoft.com/en-us/azure/azure-functions/flex-consumption-plan).
 
 ## Student-facing — vývojářské nástroje
 
