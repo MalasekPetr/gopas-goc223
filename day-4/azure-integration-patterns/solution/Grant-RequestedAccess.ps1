@@ -217,6 +217,12 @@ function Set-RequestProcessed {
         a BEZ spousteni flow. U zapisu zpatky do seznamu, ktery cely proces spustil, to
         zabranuje dvema vecem - zaplaveni verzi a zacykleni, kdyby nad tim seznamem visel
         jeste nejaky flow.
+
+        Ma to ale dusledek, ktery je treba znat: SystemUpdate necha Modified a Modified By
+        NEDOTCENE ("are not updated and can not be set"), takze v radku zadosti neni videt,
+        ze na nej sahla automatizace. Tady to nevadi - auditni stopa lezi ve zvlastnim
+        seznamu, ne v Modified. Kdyby ale nekdo stavel detekci zmen na Modified, tenhle
+        zapis by mu unikl. Mechanismus a proc na tom zalezi: guide-copy-metadata.md.
     #>
     [CmdletBinding(SupportsShouldProcess)]
     param(

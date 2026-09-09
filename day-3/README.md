@@ -29,14 +29,20 @@ a volitelně governance nástroj (Orchestry, simulace).
 > se navrhují proti PnP.PowerShell/Graph rozhraní, viz `GLOSSARY.md`; nic povinného na něm
 > nezávisí a spouští se dle času. Běží po provisioningu, jehož artefakt používá jako cíl.
 
-> [!WARNING] Den je nad stropem: ~7,8 h povinně (470 min)
-> `graph-fundamentals` sem přišel 2026-09-08 z D2 (120 min), protože se na něj ve dni 2
-> nedostalo. **Zatím vědomě nevyřešeno** — a nejde to vyřešit přesunem: dvojice D3 + D4
-> drží dohromady **850 min** povinné látky, takže i při ideálním rozdělení vychází
-> **7,1 h na den**. Rezerva v týdnu existuje jen v D1 a D2 a tam se přesouvat nesmí.
+> [!WARNING] ~6,7 h povinně (120 + **30** + 150 + 100 = 400 min) — změřený je jeden blok ze čtyř
+> Reálný běh 2026-09-09 den odučil **podle plánu**, přestože repo na něj tehdy počítalo
+> 470 min. Staging je od té doby změřený na **30 min, jen lab**; zbylé tři bloky nesou
+> pořád původní odhady, o kterých instruktor řekl, že jsou nafouknuté. Ber 6,7 h jako
+> horní hranici, ne jako fakt.
 >
-> Reálné odlehčení znamená **ubrat 70 min**, aby se oba dny dostaly pod 6,5 h. Kandidáti
-> jsou v `CLAUDE.md` v otevřených otázkách; rozhodne se podle prvního reálného běhu D3.
+> Přesunem se to řešit nedá — rezerva týdne leží v D1 (4,9 h) a D2 (4,0 h) a tam se
+> přesouvat nesmí. Stav rekalibrace, chybějící čísla a zbývající kandidáty na zkrácení
+> drží `CLAUDE.md` v otevřených otázkách.
+>
+> **Nedořešený předpoklad:** baseline skript ze zkráceného stagingu konzumují tři laby
+> ([`provisioning-patterns`](provisioning-patterns/) krok 5 + Ověření,
+> [`migration-patterns`](migration-patterns/) a `day-4/lifecycle-compliance`). Že po
+> zkrácení na 30 min pořád stačí, **není potvrzené**.
 
 > [!NOTE] Přestavba 2026-09-08 po reálném běhu
 > Den prošel dvěma změnami. `graph-fundamentals` přišel z D2, kde se na něj nedostalo.

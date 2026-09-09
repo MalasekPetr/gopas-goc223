@@ -1,11 +1,14 @@
 # Azure integrační vzory
 
-> Typ: povinný · Den: 4 · Odhad: 40 min výklad + 90 min Lab 3 + 30 min instruktorské demo (change notifications)
+> Typ: povinný · Den: 4 · Odhad: 40 min výklad + 90 min Lab 3 + 20 min instruktorské demo (kopie dat se zachováním metadat)
 
 ## Cíle
 - Logic Apps vs Functions vs Runbooks — a kdy nic z toho, ale Power Automate flow
   ([`comparison-power-automate.md`](comparison-power-automate.md)).
 - Event/webhook subscription, change notifications.
+- **Tři update typy a to, že se vzájemně vylučují**: zachovat původní autory a časy jde
+  jen za cenu spuštění flow, a zápis, který flow nespustí, je neviditelný pro detekci
+  driftu podle `Modified` ([`guide-copy-metadata.md`](guide-copy-metadata.md)).
 - Orientace v Azure před laby dne (tenant vs subscription, RBAC vs Entra role, kde skript
   běží, kontejnery) — k přečtení předem: [`explainer-azure-orientation.md`](explainer-azure-orientation.md).
 
@@ -92,9 +95,29 @@ Pull i push strana integrace:
   dávkový CRUD sync seznamu pod aplikační identitou, registrovaný jako plánovaný task
   (scheduled/pull model). Studenti dělají celý.
 - [`lab-change-notifications-function.md`](lab-change-notifications-function.md) — Function
-  jako endpoint pro Graph change notifications (event-driven/push model). **Běží jako
-  instruktorské demo** (validation handshake + jedna notifikace, ~30 min); plné dokončení
-  vč. renewal skeletonu je samostudium dle zadání labu.
+  jako endpoint pro Graph change notifications (event-driven/push model). **Celé
+  samostudium** dle zadání labu; subscription lifecycle zůstává ve výkladu výše.
+  Instruktorské demo tohle **není** — viz poznámka o přestavbě níž.
+
+## Instruktorská dema (mimo agendu, spouštějí se na dotaz)
+
+- [`guide-elevated-op.md`](guide-elevated-op.md) — 15 min. Elevovaná operace nad
+  SharePointem pod aplikační identitou místo Power Automate flow. **Pod čí identitou
+  operace běží.**
+- [`guide-copy-metadata.md`](guide-copy-metadata.md) — 20 min. Kopie dat se zachováním
+  původního `Created`/`Modified`/`Author`/`Editor`. **Čí identitu po sobě zanechá** — a proč
+  zápis přes `SystemUpdate` neuvidí detekce driftu z
+  [`../lifecycle-compliance/`](../lifecycle-compliance/).
+
+> [!NOTE] Přestavba 2026-09-09
+> Třetím prvkem bloku bylo ~30min instruktorské demo change notifications. Nahradilo ho
+> 20min demo kopie s metadaty — z těch dvou je to jediné, které **reálně zapíše do
+> SharePointu z Functiony běžící v Azure**; handshake demo vracelo validační token
+> a logovalo. Blok se tím zkrátil o 10 min a Function App, kterou demo nasadí, je zároveň
+> ten skeleton, který si přebírá [`../siem-blob-integration/`](../siem-blob-integration/).
+>
+> Zadání labu change notifications **zůstává v repu** jako samostudium a subscription
+> lifecycle zůstává ve výkladu — vypuštěné je jen to demo.
 
 ## Zdroje (Microsoft)
 - [Integration and automation platform options in Azure](https://learn.microsoft.com/en-us/azure/azure-functions/functions-compare-logic-apps-ms-flow-webjobs)

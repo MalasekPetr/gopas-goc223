@@ -9,8 +9,12 @@ API), s minimalizací PII v logovaném schématu a ověřením přes KQL dotaz.
 
 ## Předpoklady
 
-- Function skeleton z [`../azure-integration-patterns/`](../azure-integration-patterns/) na **Flex Consumption** plánu a
-  **general-purpose v2** Storage Account v resource group studenta -- event subscription na
+- **Function App studenta** na **Flex Consumption** plánu -- zakládá ji
+  `New-CourseStudentAzureResources.ps1` do resource group studenta (viz
+  [`../../environment.md`](../../environment.md)); v bloku 1 do ní instruktor nasazuje demo
+  [`../azure-integration-patterns/guide-copy-metadata.md`](../azure-integration-patterns/guide-copy-metadata.md),
+  takže na začátku tohoto labu už je ověřené, že PowerShell Function v ní běží.
+- **General-purpose v2** Storage Account v resource group studenta -- event subscription na
   Azure Storage GPv2 vyžaduje.
 - V `host.json` **extension bundle verze `[4.0.0, 5.0.0)`** nebo novější -- Event Grid Blob
   trigger je binding z 5.x+ Storage rozšíření a se starším bundlem v projektu neexistuje.

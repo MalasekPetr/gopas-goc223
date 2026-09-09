@@ -77,27 +77,34 @@ Jediný zdroj pravdy o pořadí modulů. Složky jsou slugy; pořadí drží tat
 > `migration-patterns` a pro lab v `day-4/lifecycle-compliance` — proto staging jako blok 2.
 > Je to nejvíc znovupoužitý artefakt kurzu: jeho přesun rozbije tři laby, ne jeden.
 
-> [!WARNING] Den 3 je nad stropem: ~7,8 h povinně (120 + 100 + 150 + 100 = 470 min)
-> Vzniklo 2026-09-08 přesunem `graph-fundamentals` z D2. **Přesunem to nejde vyřešit** —
-> dvojice D3 + D4 drží dohromady **850 min** povinné látky, takže i ideální rozdělení dává
-> **7,1 h na den**. Rezerva týdne leží v D1 (4,9 h) a D2 (4,0 h), a tam se přesouvat nesmí:
-> moduly jdou jen dozadu.
+> [!WARNING] Den 3: ~6,7 h povinně (120 + **30** + 150 + 100 = 400 min) — a z toho je
+> změřený jeden blok
+> Reálný běh 2026-09-09 den odučil **podle plánu**, přestože repo na něj počítalo 470 min.
+> Staging je od té doby změřený na **30 min, jen lab** (viz jeho `instructor-notes.md`).
+> Zbylé tři bloky **měřené nejsou** — jejich čísla jsou pořád ty původní odhady, o kterých
+> instruktor řekl, že jsou nafouknuté. Ber 6,7 h jako horní hranici, ne jako fakt.
 >
-> Odlehčení proto znamená **ubrat 70 min**, aby se D3 i D4 dostaly pod 6,5 h. Kandidáti
-> jsou v `CLAUDE.md` v otevřených otázkách. Rozhodne se podle prvního reálného běhu D3;
-> prakticky odpadá jako první blok 5, který je už dnes volitelný.
+> Přesunem se to řešit nedá: dvojice D3 + D4 drží dohromady 770 min, rezerva týdne leží
+> v D1 (4,9 h) a D2 (4,0 h) a tam se přesouvat nesmí — moduly jdou jen dozadu. Stav
+> rekalibrace a zbývající kandidáty na zkrácení drží `CLAUDE.md` v otevřených otázkách.
 
 ## Den 4 — Azure integrace, SIEM a lifecycle
 
 | # | Blok | Slug | Typ |
 |---|---|---|---|
-| 1 | Azure integrační vzory *(Lab 3: dávkový sync + plánovaný task; change notifications jako instruktorské demo)* | `day-4/azure-integration-patterns` | P |
+| 1 | Azure integrační vzory *(Lab 3: dávkový sync + plánovaný task; kopie s metadaty jako instruktorské demo)* | `day-4/azure-integration-patterns` | P |
 | 2 | SIEM integrace přes Azure Blob | `day-4/siem-blob-integration` | P |
 | 3 | Lifecycle & compliance enforcement | `day-4/lifecycle-compliance` | P |
 
-> [!NOTE] ~6,3 h (160 + 120 + 100 = 380 min) — hustý den, ale uprostřed týdne, bez
-> onboarding/odchodových rizik. Change-notifications lab běží jako instruktorské demo
-> (handshake + jedna notifikace), plné dokončení je samostudium.
+> [!NOTE] ~6,2 h (150 + 120 + 100 = 370 min) — hustý den, ale uprostřed týdne, bez
+> onboarding/odchodových rizik. Change-notifications lab je **celé samostudium**;
+> subscription lifecycle zůstává ve výkladu bloku 1.
+>
+> **Přestavba 2026-09-09:** ~30min instruktorské demo change notifications nahradilo
+> **20min demo kopie s metadaty** (`guide-copy-metadata.md`). Z obou je to jediné, které
+> reálně zapíše do SharePointu z Functiony běžící v Azure — celý den přitom mluví o Azure
+> hostingu. Den se tím zkrátil o 10 min. Tím je zároveň splněný kandidát č. 1 ze seznamu
+> „ubrat 70 min", byť s reinvesticí 20 z těch 30 minut.
 >
 > **Přestavba 2026-09-08:** třetím blokem byl `staging-environments`; ten se vrátil na D3,
 > před laby, které jeho baseline skript potřebují. Výměnou sem přišel `lifecycle-compliance`

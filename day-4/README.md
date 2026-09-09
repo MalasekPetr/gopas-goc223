@@ -2,13 +2,25 @@
 
 Azure integrační vzory jako vstupní znalost pro SIEM logging pipeline a na ně navázaný
 lifecycle & compliance enforcement — den, který uzavírá provozní a governance linku
-týdne. **~6,3 h povinně.**
+týdne. **~6,2 h povinně.**
 
 | Pořadí | Blok | Slug | Typ |
 |---|---|---|---|
 | 1 | Azure integrační vzory *(Lab 3)* | [`azure-integration-patterns`](azure-integration-patterns/) | P |
 | 2 | SIEM integrace přes Azure Blob | [`siem-blob-integration`](siem-blob-integration/) | P |
 | 3 | Lifecycle & compliance enforcement | [`lifecycle-compliance`](lifecycle-compliance/) | P |
+
+> [!NOTE] Přestavba 2026-09-09 — blok 1
+> ~30min instruktorské demo change notifications nahradilo **20min demo kopie dat se
+> zachováním metadat**
+> ([`azure-integration-patterns/guide-copy-metadata.md`](azure-integration-patterns/guide-copy-metadata.md)).
+> Z obou dem je to jediné, které **reálně zapíše do SharePointu z Functiony běžící
+> v Azure** — a den je přitom celý o Azure integraci. Function App, kterou demo nasadí,
+> si navíc přebírá blok 2 pro Blob trigger.
+>
+> Bonus je vazba na blok 3: zápis přes `SystemUpdate` nechá `Modified` nedotčené, takže
+> detekce driftu postavená na `Modified` ho neuvidí. Blok 1 tu slepou skvrnu pojmenuje,
+> blok 3 na ni narazí. Zadání labu change notifications zůstává jako samostudium.
 
 > [!NOTE] Azure resource group per student (`environment.md`) se poprvé reálně používá
 > v tomto dni — ověřit provisioning před během. Log Analytics workspace a DCR pro blok 2

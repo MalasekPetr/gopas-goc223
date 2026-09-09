@@ -50,6 +50,20 @@ flowchart LR
   co nastavil vlastník webu naposledy.
 - **Site Attestation (nativní, časovaný cyklus s eskalací) vs jednorázový Site Access Review**
   (na vyžádání, detailní přehled oprávnění) — různé nástroje pro různý účel.
+- **Drift v konfiguraci vs drift v obsahu** — lab níž porovnává *nastavení* webu, kde je
+  aktuální stav vždy pravda. U *obsahu* to neplatí: `Modified` **není** spolehlivý signál
+  změny, protože automatizace umí zapsat, aniž by na něj sáhla (viz níž).
+
+> [!WARNING] `Modified` nedetekuje všechny změny — a je to zdokumentované chování
+> Zápis přes `SystemUpdate` podle dokumentace `Set-PnPListItem` **nemění `Modified`
+> ani `Modified By`** („are not updated and can not be set"). Kdo tedy postaví detekci
+> změn obsahu na dotazu *„co se změnilo od včerejška podle `Modified`"*, má v reportu
+> slepou skvrnu ve velikosti **všech automatizovaných zápisů v tenantu** — a přesně takový
+> zápis dělá i skript z bloku 1.
+>
+> Lab níž se toho netýká (porovnává sharing konfiguraci, ne položky), ale při rozšíření
+> na obsah je to první věc, která ten report rozbije. Mechanismus a demo:
+> [`../azure-integration-patterns/guide-copy-metadata.md`](../azure-integration-patterns/guide-copy-metadata.md).
 
 ## Lab
 Viz [`lab-compliance-drift.md`](lab-compliance-drift.md).
