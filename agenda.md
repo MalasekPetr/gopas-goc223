@@ -60,8 +60,8 @@ Jediný zdroj pravdy o pořadí modulů. Složky jsou slugy; pořadí drží tat
 | # | Blok | Slug | Typ |
 |---|---|---|---|
 | 1 | Microsoft Graph — inženýrské základy | `day-3/graph-fundamentals` | P |
-| 2 | Staging prostředí: DEV, TEST, PROD | `day-3/staging-environments` | P |
-| 3 | Skladba migrací *(Lab 2: fileshare → SPO dle JSON plánu + metadata)* | `day-3/migration-patterns` | P |
+| 2 | Staging prostředí: DEV, TEST, PROD *(výklad; lab volitelný)* | `day-3/staging-environments` | P |
+| 3 | Skladba migrací *(výklad; Lab 2 fileshare → SPO volitelný)* | `day-3/migration-patterns` | P |
 | 4 | Vzory automatizace zřizování | `day-3/provisioning-patterns` | P |
 | 5 | Orchestry integrace & vlastní skripty (simulace) | `day-3/opt-orchestry-integration` | V |
 
@@ -72,21 +72,40 @@ Jediný zdroj pravdy o pořadí modulů. Složky jsou slugy; pořadí drží tat
 > [!IMPORTANT] Pořadí bloků 1 a 2 plyne z předpokladů labů, ne z tématu
 > [`day-3/migration-patterns/lab-fileshare-migration.md`](day-3/migration-patterns/lab-fileshare-migration.md)
 > má retry vzory z `graph-fundamentals` ve **Předpokladech**, proto Graph otevírá den.
-> A **diff/baseline skript** ze `staging-environments` je vstupem pro lab
-> `provisioning-patterns` (krok 5 i Ověření), pro předmigrační kontrolu v
-> `migration-patterns` a pro lab v `day-4/lifecycle-compliance` — proto staging jako blok 2.
-> Je to nejvíc znovupoužitý artefakt kurzu: jeho přesun rozbije tři laby, ne jeden.
+> Staging je blok 2, protože jeho **koncept** baseline vs drift se vrací v provisioningu
+> i v `day-4/lifecycle-compliance` — ne kvůli artefaktu, viz níž.
 
-> [!WARNING] Den 3: ~6,7 h povinně (120 + **30** + 150 + 100 = 400 min) — a z toho je
-> změřený jeden blok
-> Reálný běh 2026-09-09 den odučil **podle plánu**, přestože repo na něj počítalo 470 min.
-> Staging je od té doby změřený na **30 min, jen lab** (viz jeho `instructor-notes.md`).
-> Zbylé tři bloky **měřené nejsou** — jejich čísla jsou pořád ty původní odhady, o kterých
-> instruktor řekl, že jsou nafouknuté. Ber 6,7 h jako horní hranici, ne jako fakt.
+> [!NOTE] Korektura 2026-09-09: diff/baseline skript nebyl tím, čím ho repo tvrdilo
+> Do 2026-09-09 tu stálo, že **diff/baseline skript** ze `staging-environments` je vstupem
+> tří labů a že je to „nejvíc znovupoužitý artefakt kurzu". Na tom argumentu se 2026-09-08
+> staging vrátil z D4 na D3. **Reálný běh tu vazbu nikdy nevyzkoušel:** staging se odučil
+> bez labu, takže skript nevznikl — a provisioning se přesto odučil, jen se ten krok obešel.
 >
-> Přesunem se to řešit nedá: dvojice D3 + D4 drží dohromady 770 min, rezerva týdne leží
-> v D1 (4,9 h) a D2 (4,0 h) a tam se přesouvat nesmí — moduly jdou jen dozadu. Stav
-> rekalibrace a zbývající kandidáty na zkrácení drží `CLAUDE.md` v otevřených otázkách.
+> Byla to skrytá křehkost: závislost existovala **jen jako studentský výstup**, takže
+> vypuštění jednoho volitelného labu tiše bralo vstup dvěma dalším. Oba konzumenti jsou
+> proto přeformulovaní tak, že skript **uvítají, ale nevyžadují**. Přesun stagingu na D3
+> tím zpětně ztrácí své odůvodnění; **zůstává tam ale i tak**, protože D3 je po rekalibraci
+> na 5,1 h a přesun na D4 by ho zbytečně vytáhl na 6,8 h.
+
+> [!NOTE] Den 3: **~5,1 h povinně** (120 + 40 + 45 + 100 = 305 min) + dva volitelné laby
+> Rekalibrováno 2026-09-09 podle reálného běhu, který den odučil **podle plánu**, přestože
+> repo na něj tehdy počítalo 470 min. Co se skutečně stalo: **staging bez labu** (jen
+> výklad) a **Lab 2 vypadl celý** (výklad zkrácen). Oba laby jsou proto od té doby
+> **volitelné** a povinné jádro dne je 305 min.
+>
+> `graph-fundamentals` (120) a `provisioning-patterns` (100) **změřené nejsou** — nesou
+> pořád původní odhady, o kterých instruktor řekl, že jsou nafouknuté. Reálné číslo dne
+> tedy bude spíš nižší než 5,1 h.
+>
+> **Položka „ubrat 70 min" tím padá.** D3 5,1 h a D4 6,2 h jsou oba pod stropem 6,5 h.
+> Nebyla to kapacita, byly to nafouknuté odhady plus dva laby, které se nestíhají učit.
+> Rezerva pod stropem je naopak tak velká, že se do dne vejde zkrácený Lab 2 (~75 min →
+> 6,3 h) — je proto **první v řadě**, když čas je.
+
+> [!WARNING] Den 3 nemá v povinné podobě vlastní lab kromě provisioningu
+> Cena rekalibrace. Staging lab i Lab 2 jsou volitelné, takže hands-on dne stojí na labu
+> `provisioning-patterns`. Na kurzu pro inženýry je to slabina — proto ta rezerva pod
+> stropem existuje a proto se Lab 2 (byť volitelný) drží v repu.
 
 ## Den 4 — Azure integrace, SIEM a lifecycle
 
@@ -103,11 +122,12 @@ Jediný zdroj pravdy o pořadí modulů. Složky jsou slugy; pořadí drží tat
 > **Přestavba 2026-09-09:** ~30min instruktorské demo change notifications nahradilo
 > **20min demo kopie s metadaty** (`guide-copy-metadata.md`). Z obou je to jediné, které
 > reálně zapíše do SharePointu z Functiony běžící v Azure — celý den přitom mluví o Azure
-> hostingu. Den se tím zkrátil o 10 min. Tím je zároveň splněný kandidát č. 1 ze seznamu
-> „ubrat 70 min", byť s reinvesticí 20 z těch 30 minut.
+> hostingu. Den se tím zkrátil o 10 min. Nebyl to kapacitní krok — položka „ubrat 70 min"
+> padla téhož dne rekalibrací D3 (viz den 3 výše).
 >
 > **Přestavba 2026-09-08:** třetím blokem byl `staging-environments`; ten se vrátil na D3,
-> před laby, které jeho baseline skript potřebují. Výměnou sem přišel `lifecycle-compliance`
+> tehdy kvůli labům, které jeho baseline skript měly potřebovat (odůvodnění 2026-09-09 padlo,
+> viz korektura u dne 3). Výměnou sem přišel `lifecycle-compliance`
 > z D3. Den se časově nezměnil (oba bloky 100 min) a vazba na staging teď míří správným
 > směrem, do předchozího dne. Tematicky to sedí lépe: blok 2 postaví telemetrickou
 > pipeline, blok 3 na ní staví governance pravidla.

@@ -18,11 +18,11 @@ Microsoft 365: PowerShell, pokročilá automatizace a migrace SharePoint
 
 ## Krátký popis (meta description / teaser)
 
-Praktický pětidenní kurz pokročilé automatizace a migrace SharePointu Online — PowerShell, Microsoft Graph a PnP do hloubky, dva rozsáhlé laby (fileshare migrace, provisioning), governance, Azure integrace a bezpečnost automatizovaných identit až po capstone blueprint.
+Praktický pětidenní kurz pokročilé automatizace a migrace SharePointu Online — PowerShell, Microsoft Graph a PnP do hloubky, tři rozsáhlé laby (app-only identita, provisioning, dávkový sync), governance, Azure integrace a bezpečnost automatizovaných identit až po capstone blueprint.
 
 ## Popis kurzu
 
-Kurz provede inženýry migrací a automatizace kompletním cyklem pokročilé automatizace a migrace SharePointu Online. Týden otevírá volba nástrojové strategie (PowerShell, Microsoft Graph, PnP, REST) a bezpečná identita automatizace, na ně navazuje PowerShell do hloubky se třemi produkčními moduly, čtyřmi autentizačními módy a prvním velkým labem (certifikát, app-only přihlášení, skriptované pracovní weby). Třetí den otevírá inženýrství nad Microsoft Graph — batching, delta query, throttling a klasifikaci chyb pro odolné skripty — a dál patří dvěma pilířům kurzu: skladbě migrací (wave planning, cutover taktiky, druhý velký lab: fileshare → SharePoint Online podle JSON plánu) a automatizaci zřizování přes PnP provisioning engine, doplněným o model tří prostředí DEV/TEST/PROD s detekcí driftu. Čtvrtý den propojuje SharePoint s Azure integračními vzory (Logic Apps, Functions, Runbooks, Graph change notifications), SIEM pipeline přes Azure Blob až do Log Analytics a lifecycle a compliance enforcement. Poslední den řeší správu dodaných řešení v App Catalogu, reporting oprávnění („ke kterým webům má tenhle člověk přístup") a security hardening identit automatizace a končí capstone blueprintem, který spojuje migraci, provisioning a Azure integraci do jednoho end-to-end plánu s rollbackem a předávkou do provozu.
+Kurz provede inženýry migrací a automatizace kompletním cyklem pokročilé automatizace a migrace SharePointu Online. Týden otevírá volba nástrojové strategie (PowerShell, Microsoft Graph, PnP, REST) a bezpečná identita automatizace, na ně navazuje PowerShell do hloubky se třemi produkčními moduly, čtyřmi autentizačními módy a prvním velkým labem (certifikát, app-only přihlášení, skriptované pracovní weby). Třetí den otevírá inženýrství nad Microsoft Graph — batching, delta query, throttling a klasifikaci chyb pro odolné skripty — a dál patří dvěma pilířům kurzu: skladbě migrací (předmigrační kontroly, wave planning, cutover taktiky) a automatizaci zřizování přes PnP provisioning engine, doplněným o model tří prostředí DEV/TEST/PROD s detekcí driftu. Čtvrtý den propojuje SharePoint s Azure integračními vzory (Logic Apps, Functions, Runbooks, Graph change notifications), SIEM pipeline přes Azure Blob až do Log Analytics a lifecycle a compliance enforcement. Poslední den řeší správu dodaných řešení v App Catalogu, reporting oprávnění („ke kterým webům má tenhle člověk přístup") a security hardening identit automatizace a končí capstone blueprintem, který spojuje migraci, provisioning a Azure integraci do jednoho end-to-end plánu s rollbackem a předávkou do provozu.
 
 ## Pro koho je kurz určen
 
@@ -58,22 +58,22 @@ Kurz provede inženýry migrací a automatizace kompletním cyklem pokročilé a
 ### Den 2 — Strategie, oprávnění a PowerShell
 
 - **Strategie automatizace: nástroje, identita a oprávnění** *(lab)* — orientace mezi PowerShell, Microsoft Graph, PnP a REST, návrh identity automatizace (app registrace), delegated vs application permissions a `Sites.Selected` místo generálního klíče.
-- **PowerShell do hloubky** *(Lab 1)* — tři PowerShell moduly (PnP, Graph, SPO) a čtyři autentizační módy; lab: certifikát, app-only přihlášení, skriptované vytvoření pracovních webů.
+- **PowerShell do hloubky** *(velký lab)* — tři PowerShell moduly (PnP, Graph, SPO) a čtyři autentizační módy; lab: certifikát, app-only přihlášení, skriptované vytvoření pracovních webů.
 
 > Volitelně podle vstupní úrovně skupiny: **sjednocení základů PowerShellu** (objekty v pipeline, filtrování vlevo, čtení výstupů cmdletů) — instruktor blok zařadí, když ho skupina potřebuje, aby na navazující práci se skripty stačili všichni.
 
 ### Den 3 — Graph, staging, migrace & provisioning
 
 - **Microsoft Graph — inženýrské základy** — batching, delta query, throttling a klasifikace chyb pro odolné automatizační skripty.
-- **Staging prostředí: DEV, TEST, PROD** — baseline jako deklarativní artefakt a detekce driftu mezi prostředími; baseline skript z tohoto bloku pak používají další dva laby.
-- **Skladba migrací** *(Lab 2)* — předmigrační kontroly, wave planning, cutover taktiky; lab: migrace z fileshare do SharePointu Online podle JSON plánu.
+- **Staging prostředí: DEV, TEST, PROD** — baseline jako deklarativní artefakt a detekce driftu mezi prostředími. Koncept baseline vs drift se vrací v provisioningu i v lifecycle a compliance enforcement.
+- **Skladba migrací** — předmigrační kontroly, wave planning, cutover taktiky, velké seznamy a throttling.
 - **Vzory automatizace zřizování** — PnP provisioning engine, tenant templates a parametrizace žádanek na weby.
 
 > Volitelně dle času skupiny: Orchestry integrace a vlastní skripty (simulace bez licence, návrh governance hooků proti PnP/Graph rozhraní).
 
 ### Den 4 — Azure integrace, SIEM a lifecycle
 
-- **Azure integrační vzory** *(Lab 3)* — Logic Apps vs Functions vs Runbooks, subscription lifecycle Graph change notifications; lab: dávkový sync jako plánovaný task pod aplikační identitou.
+- **Azure integrační vzory** *(velký lab)* — Logic Apps vs Functions vs Runbooks, subscription lifecycle Graph change notifications; lab: dávkový sync jako plánovaný task pod aplikační identitou.
 - **SIEM integrace přes Azure Blob** — logovací pipeline aplikace → Blob → Event Grid → Function → SIEM, KQL základy pro validaci a dashboardy.
 - **Lifecycle & compliance enforcement** — automatizace retence a citlivosti, governance sdílení, Site Attestation.
 

@@ -4,18 +4,26 @@
 
 ## Cíl
 
-Student rozšíří diff/baseline skript z [`../../day-3/staging-environments/`](../../day-3/staging-environments/) o kontrolu sharing policy driftu a napíše
-report rozlišující report-only nález od navrhované (ne automaticky provedené) remediation akce.
+Student napíše kontrolu driftu sharing policy a report, který rozlišuje report-only nález
+od navrhované (ne automaticky provedené) remediation akce. Koncept baseline a driftu je
+z výkladu [`../../day-3/staging-environments/`](../../day-3/staging-environments/); kdo má
+z jeho **volitelného** labu hotový diff skript, nabalí to na něj a ušetří si strukturu
+reportu.
 
 ## Předpoklady
 
-- Diff/baseline skript z [`../../day-3/staging-environments/`](../../day-3/staging-environments/).
+- Koncept baseline vs drift z výkladu [`../../day-3/staging-environments/`](../../day-3/staging-environments/).
+  Hotový diff skript z jeho volitelného labu je **výhoda, ne podmínka** — bez něj se
+  baseline pro tenhle lab zapíše jako pár řádků JSON (očekávaná sharing hodnota pro web),
+  což je stejně všechno, co kroky níž potřebují.
 - Sandbox web s úmyslně nastaveným sharing driftem (web-level volnější než org policy by měl
   dovolit, nebo naopak zbytečně restriktivní oproti očekávání).
 
 ## Kroky
 
-1. Rozšířit baseline z [`../../day-3/staging-environments/`](../../day-3/staging-environments/) o očekávanou hodnotu external sharing pro daný web.
+1. Zapsat baseline: očekávaná hodnota external sharing pro daný web (JSON). Kdo má diff
+   skript z [`../../day-3/staging-environments/`](../../day-3/staging-environments/),
+   rozšíří jeho baseline o tuhle hodnotu místo psaní nové.
 2. Načíst aktuální sharing nastavení webu a porovnat s baseline i s org-level policy.
 3. Report jasně rozlišuje: web odpovídá baseline / web je restriktivnější (OK, jen info) /
    web je otevřenější než dovoluje org policy (violation, nutná akce).

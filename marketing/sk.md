@@ -18,11 +18,11 @@ Microsoft 365: PowerShell, pokročilá automatizácia a migrácia SharePoint
 
 ## Krátky popis (meta description / teaser)
 
-Praktický päťdňový kurz pokročilej automatizácie a migrácie SharePointu Online — PowerShell, Microsoft Graph a PnP do hĺbky, dva rozsiahle laby (fileshare migrácia, provisioning), governance, Azure integrácia a bezpečnosť automatizovaných identít až po capstone blueprint.
+Praktický päťdňový kurz pokročilej automatizácie a migrácie SharePointu Online — PowerShell, Microsoft Graph a PnP do hĺbky, tri rozsiahle laby (app-only identita, provisioning, dávkový sync), governance, Azure integrácia a bezpečnosť automatizovaných identít až po capstone blueprint.
 
 ## Popis kurzu
 
-Kurz prevedie inžinierov migrácií a automatizácie kompletným cyklom pokročilej automatizácie a migrácie SharePointu Online. Týždeň otvára voľba nástrojovej stratégie (PowerShell, Microsoft Graph, PnP, REST) a bezpečná identita automatizácie, na ne nadväzuje PowerShell do hĺbky s tromi produkčnými modulmi, štyrmi autentizačnými módmi a prvým veľkým labom (certifikát, app-only prihlásenie, skriptované pracovné weby). Tretí deň otvára inžinierstvo nad Microsoft Graph — batching, delta query, throttling a klasifikáciu chýb pre odolné skripty — a ďalej patrí dvom pilierom kurzu: skladbe migrácií (wave planning, cutover taktiky, druhý veľký lab: fileshare → SharePoint Online podľa JSON plánu) a automatizácii zriaďovania cez PnP provisioning engine, doplneným o model troch prostredí DEV/TEST/PROD s detekciou driftu. Štvrtý deň prepája SharePoint s Azure integračnými vzormi (Logic Apps, Functions, Runbooks, Graph change notifications), SIEM pipeline cez Azure Blob až do Log Analytics a lifecycle a compliance enforcement. Posledný deň rieši správu dodaných riešení v App Catalogu, reporting oprávnení („ku ktorým webom má tento človek prístup") a security hardening identít automatizácie a končí capstone blueprintom, ktorý spája migráciu, provisioning a Azure integráciu do jedného end-to-end plánu s rollbackom a odovzdaním do prevádzky.
+Kurz prevedie inžinierov migrácií a automatizácie kompletným cyklom pokročilej automatizácie a migrácie SharePointu Online. Týždeň otvára voľba nástrojovej stratégie (PowerShell, Microsoft Graph, PnP, REST) a bezpečná identita automatizácie, na ne nadväzuje PowerShell do hĺbky s tromi produkčnými modulmi, štyrmi autentizačnými módmi a prvým veľkým labom (certifikát, app-only prihlásenie, skriptované pracovné weby). Tretí deň otvára inžinierstvo nad Microsoft Graph — batching, delta query, throttling a klasifikáciu chýb pre odolné skripty — a ďalej patrí dvom pilierom kurzu: skladbe migrácií (predmigračné kontroly, wave planning, cutover taktiky) a automatizácii zriaďovania cez PnP provisioning engine, doplneným o model troch prostredí DEV/TEST/PROD s detekciou driftu. Štvrtý deň prepája SharePoint s Azure integračnými vzormi (Logic Apps, Functions, Runbooks, Graph change notifications), SIEM pipeline cez Azure Blob až do Log Analytics a lifecycle a compliance enforcement. Posledný deň rieši správu dodaných riešení v App Catalogu, reporting oprávnení („ku ktorým webom má tento človek prístup") a security hardening identít automatizácie a končí capstone blueprintom, ktorý spája migráciu, provisioning a Azure integráciu do jedného end-to-end plánu s rollbackom a odovzdaním do prevádzky.
 
 ## Pre koho je kurz určený
 
@@ -59,22 +59,22 @@ Kurz prevedie inžinierov migrácií a automatizácie kompletným cyklom pokroč
 
 - **Stratégia automatizácie: nástroje, identita a oprávnenia** *(lab)* — orientácia medzi PowerShell, Microsoft Graph, PnP a REST, návrh identity automatizácie (app registrácia), delegated vs. application permissions a `Sites.Selected` namiesto generálneho kľúča.
 
-- **PowerShell do hĺbky** *(Lab 1)* — tri PowerShell moduly (PnP, Graph, SPO) a štyri autentizačné módy; lab: certifikát, app-only prihlásenie, skriptované vytvorenie pracovných webov.
+- **PowerShell do hĺbky** *(veľký lab)* — tri PowerShell moduly (PnP, Graph, SPO) a štyri autentizačné módy; lab: certifikát, app-only prihlásenie, skriptované vytvorenie pracovných webov.
 
 > Voliteľne podľa vstupnej úrovne skupiny: **zjednotenie základov PowerShellu** (objekty v pipeline, filtrovanie vľavo, čítanie výstupov cmdletov) — instruktor blok zaradí, keď ho skupina potrebuje, aby na nadväzujúcu prácu so skriptami stačili všetci.
 
 ### Deň 3 — Graph, staging, migrácia a provisioning
 
 - **Microsoft Graph — inžinierske základy** — batching, delta query, throttling a klasifikácia chýb pre odolné automatizačné skripty.
-- **Staging prostredie: DEV, TEST, PROD** — baseline ako deklaratívny artefakt a detekcia driftu medzi prostrediami; baseline skript z tohto bloku potom používajú ďalšie dva laby.
-- **Skladba migrácií** *(Lab 2)* — predmigračné kontroly, wave planning, cutover taktiky; lab: migrácia z fileshare do SharePointu Online podľa JSON plánu.
+- **Staging prostredie: DEV, TEST, PROD** — baseline ako deklaratívny artefakt a detekcia driftu medzi prostrediami. Koncept baseline vs drift sa vracia v provisioningu aj v lifecycle a compliance enforcement.
+- **Skladba migrácií** — predmigračné kontroly, wave planning, cutover taktiky, veľké zoznamy a throttling.
 - **Vzory automatizácie zriaďovania** — PnP provisioning engine, tenant templates a parametrizácia žiadaniek na weby.
 
 > Voliteľne podľa času skupiny: Orchestry integrácia a vlastné skripty (simulácia bez licencie, návrh governance hookov proti PnP/Graph rozhraniu).
 
 ### Deň 4 — Azure integrácia, SIEM a lifecycle
 
-- **Azure integračné vzory** *(Lab 3)* — Logic Apps vs. Functions vs. Runbooks, subscription lifecycle Graph change notifications; lab: dávkový sync ako naplánovaný task pod aplikačnou identitou.
+- **Azure integračné vzory** *(veľký lab)* — Logic Apps vs. Functions vs. Runbooks, subscription lifecycle Graph change notifications; lab: dávkový sync ako naplánovaný task pod aplikačnou identitou.
 - **SIEM integrácia cez Azure Blob** — logovacia pipeline aplikácia → Blob → Event Grid → Function → SIEM, KQL základy pre validáciu a dashboardy.
 - **Lifecycle & compliance enforcement** — automatizácia retencie a citlivosti, governance zdieľania, Site Attestation.
 

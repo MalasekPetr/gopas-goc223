@@ -18,11 +18,11 @@ Microsoft 365: PowerShell, Advanced Automation, and SharePoint Migration
 
 ## Short description (meta description / teaser)
 
-A hands-on five-day course on advanced SharePoint Online automation and migration — PowerShell, Microsoft Graph, and PnP in depth, two large hands-on labs (fileshare migration, provisioning), governance, Azure integration, and automation identity security, capped off with a capstone blueprint.
+A hands-on five-day course on advanced SharePoint Online automation and migration — PowerShell, Microsoft Graph, and PnP in depth, three large hands-on labs (app-only identity, provisioning, batch sync), governance, Azure integration, and automation identity security, capped off with a capstone blueprint.
 
 ## Course overview
 
-This course takes migration and automation engineers through the full cycle of advanced SharePoint Online automation and migration. The week opens with the tooling strategy decision (PowerShell, Microsoft Graph, PnP, REST) and secure automation identity, followed by PowerShell in depth across three production-grade modules, four authentication modes, and the first large lab (certificate, app-only sign-in, scripted work sites). Day three opens with engineering skills on Microsoft Graph - batching, delta query, throttling, and error classification for resilient scripts - and then covers the course's two pillars: migration composition (wave planning, cutover tactics, the second large lab: file share to SharePoint Online driven by a JSON plan) and provisioning automation via the PnP provisioning engine, rounded out with the DEV/TEST/PROD three-environment model and drift detection. Day four connects SharePoint with Azure integration patterns (Logic Apps, Functions, Runbooks, Graph change notifications), a SIEM pipeline from Azure Blob into Log Analytics, and lifecycle and compliance enforcement. The final day covers App Catalog lifecycle management for supplied solutions, permission reporting ("which sites can this person reach"), and security hardening for automation identities, and closes with a capstone blueprint tying migration, provisioning, and Azure integration into a single end-to-end plan with a rollback plan and an operational handoff.
+This course takes migration and automation engineers through the full cycle of advanced SharePoint Online automation and migration. The week opens with the tooling strategy decision (PowerShell, Microsoft Graph, PnP, REST) and secure automation identity, followed by PowerShell in depth across three production-grade modules, four authentication modes, and the first large lab (certificate, app-only sign-in, scripted work sites). Day three opens with engineering skills on Microsoft Graph - batching, delta query, throttling, and error classification for resilient scripts - and then covers the course's two pillars: migration composition (pre-migration checks, wave planning, cutover tactics) and provisioning automation via the PnP provisioning engine, rounded out with the DEV/TEST/PROD three-environment model and drift detection. Day four connects SharePoint with Azure integration patterns (Logic Apps, Functions, Runbooks, Graph change notifications), a SIEM pipeline from Azure Blob into Log Analytics, and lifecycle and compliance enforcement. The final day covers App Catalog lifecycle management for supplied solutions, permission reporting ("which sites can this person reach"), and security hardening for automation identities, and closes with a capstone blueprint tying migration, provisioning, and Azure integration into a single end-to-end plan with a rollback plan and an operational handoff.
 
 ## Who this course is for
 
@@ -59,22 +59,22 @@ This course takes migration and automation engineers through the full cycle of a
 
 - **Automation strategy: tools, identity, and permissions** *(lab)* — choosing between PowerShell, Microsoft Graph, PnP, and REST, designing an automation identity (app registration), delegated vs. application permissions, and `Sites.Selected` instead of a master key.
 
-- **PowerShell in depth** *(Lab 1)* — the three PowerShell modules (PnP, Graph, SPO) and four authentication modes; lab: certificate, app-only sign-in, scripted creation of work sites.
+- **PowerShell in depth** *(large lab)* — the three PowerShell modules (PnP, Graph, SPO) and four authentication modes; lab: certificate, app-only sign-in, scripted creation of work sites.
 
 > Optional, depending on the group's starting level: a **PowerShell fundamentals levelling block** (objects in the pipeline, filtering left, reading cmdlet output) — the instructor runs it when the group needs it, so nobody falls behind on the scripting work that follows.
 
 ### Day 3 — Graph, Staging, Migration & Provisioning
 
 - **Microsoft Graph — engineering basics** — batching, delta query, throttling, and error classification for resilient automation scripts.
-- **Staging environments: DEV, TEST, PROD** — baseline as a declarative artifact and drift detection between environments; the baseline script built here feeds two later labs.
-- **Migration composition** *(Lab 2)* — pre-migration checks, wave planning, cutover tactics; lab: migrating a file share to SharePoint Online driven by a JSON plan.
+- **Staging environments: DEV, TEST, PROD** — baseline as a declarative artifact and drift detection between environments. The baseline-versus-drift concept returns in provisioning and in lifecycle and compliance enforcement.
+- **Migration composition** — pre-migration checks, wave planning, cutover tactics, large lists and throttling.
 - **Provisioning automation patterns** — the PnP provisioning engine, tenant templates, and parameterizing site requests.
 
 > Optional, time permitting: Orchestry integration and custom scripts (unlicensed simulation, designing governance hooks against the PnP/Graph interface).
 
 ### Day 4 — Azure Integration, SIEM & Lifecycle
 
-- **Azure integration patterns** *(Lab 3)* — Logic Apps vs. Functions vs. Runbooks, the Graph change notifications subscription lifecycle; lab: a batch sync scheduled task running under an application identity.
+- **Azure integration patterns** *(large lab)* — Logic Apps vs. Functions vs. Runbooks, the Graph change notifications subscription lifecycle; lab: a batch sync scheduled task running under an application identity.
 - **SIEM integration via Azure Blob** — the app → Blob → Event Grid → Function → SIEM logging pipeline, KQL basics for validation and dashboards.
 - **Lifecycle & compliance enforcement** — automating retention and sensitivity, sharing governance, Site Attestation.
 

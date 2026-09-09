@@ -2,12 +2,16 @@
 
 ## Timing
 
-- **30 min, jen lab.** Ověřeno reálným během 2026-09-09: výklad se nepřednáší (je to
-  podklad k přečtení, viz `README.md`) a blok se stáhne na postavení baseline skriptu.
-  Den 3 tím vyšel podle plánu.
-- Původní odhad byl 40 min výklad + 60 min lab a **nepotvrdil se**. `lab-diff-baseline.md`
-  má u sebe pořád 60 min, protože není zaznamenané, které kroky labu se do těch 30 minut
-  reálně vešly — do doplnění tu hodnotu neber jako změřenou.
+- **40 min výklad povinně. Lab volitelný.** Ověřeno reálným během 2026-09-09: blok se
+  odučil **jako výklad a lab vypadl úplně**, a den 3 tím vyšel podle plánu.
+- Původní odhad 40 min výklad + 60 min lab jako povinné jádro se **nepotvrdil** — lab se
+  do dne nevešel. Neplánuj s ním jako s jistotou; když na něj čas je, ber ho jako bonus.
+- **Důsledek, který je potřeba znát dopředu:** baseline/diff skript, který lab vyrábí,
+  v tom běhu **nikdy nevznikl**. Laby, které ho dřív měly ve `Předpokladech`
+  ([`../provisioning-patterns/`](../provisioning-patterns/),
+  [`../../day-4/lifecycle-compliance/`](../../day-4/lifecycle-compliance/)), jsou proto
+  přeformulované tak, aby na studentském výstupu nestály. Kdo lab odučí, dá jim lepší
+  vstup; kdo ne, nerozbije je.
 
 ## Go/no-go — KLÍČOVÉ, otestovat před během
 

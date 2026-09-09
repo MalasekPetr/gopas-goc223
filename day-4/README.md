@@ -26,16 +26,19 @@ týdne. **~6,2 h povinně.**
 > v tomto dni — ověřit provisioning před během. Log Analytics workspace a DCR pro blok 2
 > musí existovat předem.
 
-> [!IMPORTANT] Blok 3 staví na baseline skriptu ze dne 3
-> [`lifecycle-compliance/lab-compliance-drift.md`](lifecycle-compliance/lab-compliance-drift.md)
-> rozšiřuje diff/baseline skript z [`../day-3/staging-environments/`](../day-3/staging-environments/)
-> o kontrolu sharing policy driftu. Studenti ho tedy mají z předchozího dne — v úvodu bloku
-> se vyplatí nechat je ověřit, že jim skript pořád běží, než na něj začnou nabalovat
-> compliance pravidla.
+> [!IMPORTANT] Blok 3 na baseline skriptu ze dne 3 **nestojí** — korektura 2026-09-09
+> Do 2026-09-09 tu stálo, že [`lifecycle-compliance/lab-compliance-drift.md`](lifecycle-compliance/lab-compliance-drift.md)
+> rozšiřuje diff/baseline skript ze [`../day-3/staging-environments/`](../day-3/staging-environments/)
+> a že ho studenti mají z předchozího dne. **Nemají.** Lab stagingu je volitelný a v reálném
+> běhu se neodučil, takže ten skript nikdy nevznikl.
+>
+> Lab bloku 3 je proto přeformulovaný: baseline si zapíše jako pár řádků JSON (očekávaná
+> sharing hodnota pro web), což je stejně všechno, co potřebuje. Kdo skript z D3 má, nabalí
+> to na něj a ušetří si strukturu reportu — je to **výhoda, ne podmínka**.
 
 > [!NOTE] Přestavba 2026-09-08
-> Blok 3 byl `staging-environments`; ten se vrátil na **D3**, před laby, které jeho baseline
-> skript potřebují. Výměnou sem přišel `lifecycle-compliance` z D3 — den se tím časově
+> Blok 3 byl `staging-environments`; ten se vrátil na **D3** (tehdy kvůli labům, které jeho baseline
+> skript měly potřebovat — to odůvodnění 2026-09-09 padlo, viz výše). Výměnou sem přišel `lifecycle-compliance` z D3 — den se tím časově
 > nezměnil (oba bloky jsou 100 min) a vazba na staging je teď správným směrem, tedy
 > do předchozího dne.
 >

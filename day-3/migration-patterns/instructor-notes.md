@@ -2,8 +2,14 @@
 
 ## Timing
 
-- 45 min výklad + 105 min lab (druhý velký lab kurzu, nejdelší blok dne — plán v JSON
-  vyžaduje diskuzi, exekuce má reálné čekací časy).
+- **45 min výklad povinně. Lab 2 volitelný (105 min).** Ověřeno reálným během 2026-09-09:
+  blok se odučil jako **zkrácený výklad a lab vypadl celý**.
+- Původní tvar 45 + 105 min jako povinné jádro se **nepotvrdil** a instruktor očekává, že
+  Lab 2 bude vypadávat i dál. Marketing ho proto od 2026-09-09 **neslibuje** — kdyby se
+  vrátil jako pevná součást, je nutné to tam doplnit zpátky.
+- **Lab 2 je ale první v řadě, když je čas.** Den 3 má v povinné podobě 305 min (5,1 h),
+  takže pod stropem 6,5 h zbývá rezerva; zkrácená verze labu (~75 min, plán v JSON dodaný
+  rozpracovaný, studenti doplní jen metadata mapping) se do dne vejde na 6,3 h.
 
 ## Go/no-go — KLÍČOVÉ, otestovat před během
 

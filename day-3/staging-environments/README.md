@@ -1,6 +1,6 @@
 # Staging prostředí: DEV, TEST, PROD
 
-> Typ: povinný · Den: 3 · Odhad: **30 min — jen lab** (ověřeno reálným během 2026-09-09); výklad je podklad k přečtení, nepřednáší se
+> Typ: povinný · Den: 3 · Odhad: **40 min výklad** (povinné jádro) + **volitelný lab 60 min** — ověřeno reálným během 2026-09-09
 
 ## Cíle
 - Role tenantů/prostředí a bezpečné nasazování změn.
@@ -9,11 +9,15 @@
 
 ## Výklad
 
-> [!NOTE] Výklad se na běhu nepřednáší — je to podklad k přečtení
-> Reálný běh 2026-09-09 odučil tenhle blok za **30 minut jako čistý lab** a výklad vypustil;
-> den 3 tím vyšel podle plánu. Text níž proto zůstává jako **referenční podklad** —
-> studenti si ho čtou, instruktor ho neprochází. Nahlas musí padnout dvě věty: **co je
-> baseline** a **co je drift**. Zbytek je k dohledání a vrací se k tomu lab.
+> [!IMPORTANT] Výklad je povinné jádro bloku, lab je volitelný
+> Reálný běh 2026-09-09 odučil tenhle blok **jako výklad a lab vypustil úplně** — a den 3
+> tím vyšel podle plánu. Tvar bloku je proto: **40 min výklad povinně**, lab
+> [`lab-diff-baseline.md`](lab-diff-baseline.md) při časové rezervě nebo jako samostudium.
+>
+> Plánujte podle toho i výklad: koncepty **baseline** a **drift** musí odejít z bloku
+> pochopené i u toho, kdo lab nikdy nespustí, protože se k nim vrací
+> [`../provisioning-patterns/`](../provisioning-patterns/) i
+> [`../../day-4/lifecycle-compliance/`](../../day-4/lifecycle-compliance/).
 
 ### Role DEV/TEST/PROD
 Změna (nová šablona webu, upravené sloupce, nové oprávnění) se nejdřív ověří v DEV, pak

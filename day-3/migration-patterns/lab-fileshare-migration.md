@@ -1,6 +1,6 @@
 # Lab · Migrace fileshare → SPO dle JSON plánu, včetně metadat
 
-> Odhad: 105 min · Režim: živý tenant (Windows PowerShell 5.x pro SPMT část)
+> Odhad: 105 min · **Volitelný** · Režim: živý tenant (Windows PowerShell 5.x pro SPMT část)
 
 ## Cíl
 

@@ -1,6 +1,6 @@
 # Skladba migrací
 
-> Typ: povinný · Den: 3 · Odhad: 45 min výklad + 105 min Lab 2
+> Typ: povinný · Den: 3 · Odhad: **45 min výklad** (povinné jádro) + **volitelný Lab 2, 105 min** — ověřeno reálným během 2026-09-09
 
 ## Cíle
 - Předmigrační kontroly a plánování.
