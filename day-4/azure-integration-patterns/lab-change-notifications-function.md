@@ -8,9 +8,25 @@ Student má Azure Function jako endpoint pro Graph change notification subscript
 zpracování validačního tokenu při vytvoření a alespoň skeleton pro obnovu subscription
 před expirací.
 
+> [!IMPORTANT] Od 2026-09-09 je tenhle lab **celé samostudium** — a to mění, kudy se dělá
+> Dřív handshake odvykládal instruktor jako demo a samostudium byl jen renewal. Demo bylo
+> vyměněné za [`guide-copy-metadata.md`](guide-copy-metadata.md), takže je teď na
+> studentovi celý lab. Dvě věci, které z toho plynou:
+>
+> - **Kroky 1-3 potřebují kurzovní prostředí**: Function App v resource group studenta
+>   a **veřejně dostupný endpoint** (Graph si na něj musí zavolat s validačním tokenem).
+>   Po skončení kurzu ta resource group nemusí existovat. Kdo chce lab v téhle podobě,
+>   ať ho udělá **během týdne v rezervě**, ne až doma.
+> - **Mimo kurzovní prostředí berte jako hlavní cestu Fallback** (nahraný payload) —
+>   není to náhradní varianta, je to jediná, která bez veřejného endpointu projde.
+>   Renewal skeleton, tedy krok 4, je stejně ta část s trvalou hodnotou: naváže se na
+>   `subscriptionExpirationDateTime` z payloadu úplně stejně jako z živé notifikace.
+
 ## Předpoklady
 
-- Azure resource group per student (`environment.md`), Function App.
+- Azure resource group per student (`environment.md`), Function App — **jen pro kroky 1-3
+  a jen v kurzovním prostředí**, viz poznámka výše.
+- **Veřejně dostupný endpoint** funkce; bez něj validační handshake projít nemůže.
 - App registrace s Graph permission pro sledovaný resource (např. `Sites.Read.All`).
 
 > Volání Graphu ve funkci pište přes `Invoke-RestMethod`, ne přes modul `Microsoft.Graph`.
