@@ -1,6 +1,6 @@
 # Staging prostředí: DEV, TEST, PROD
 
-> Typ: povinný · Den: 3 · Odhad: 40 min výklad + 60 min lab
+> Typ: povinný · Den: 3 · Odhad: **30 min — jen lab** (ověřeno reálným během 2026-09-09); výklad je podklad k přečtení, nepřednáší se
 
 ## Cíle
 - Role tenantů/prostředí a bezpečné nasazování změn.
@@ -8,6 +8,12 @@
 - Automatizace baseline a diffů.
 
 ## Výklad
+
+> [!NOTE] Výklad se na běhu nepřednáší — je to podklad k přečtení
+> Reálný běh 2026-09-09 odučil tenhle blok za **30 minut jako čistý lab** a výklad vypustil;
+> den 3 tím vyšel podle plánu. Text níž proto zůstává jako **referenční podklad** —
+> studenti si ho čtou, instruktor ho neprochází. Nahlas musí padnout dvě věty: **co je
+> baseline** a **co je drift**. Zbytek je k dohledání a vrací se k tomu lab.
 
 ### Role DEV/TEST/PROD
 Změna (nová šablona webu, upravené sloupce, nové oprávnění) se nejdřív ověří v DEV, pak

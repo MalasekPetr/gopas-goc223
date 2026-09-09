@@ -2,7 +2,12 @@
 
 ## Timing
 
-- 40 min výklad + 60 min lab.
+- **30 min, jen lab.** Ověřeno reálným během 2026-09-09: výklad se nepřednáší (je to
+  podklad k přečtení, viz `README.md`) a blok se stáhne na postavení baseline skriptu.
+  Den 3 tím vyšel podle plánu.
+- Původní odhad byl 40 min výklad + 60 min lab a **nepotvrdil se**. `lab-diff-baseline.md`
+  má u sebe pořád 60 min, protože není zaznamenané, které kroky labu se do těch 30 minut
+  reálně vešly — do doplnění tu hodnotu neber jako změřenou.
 
 ## Go/no-go — KLÍČOVÉ, otestovat před během
 

@@ -2,6 +2,16 @@
 
 > Odhad: 60 min · Režim: simulace | živý tenant
 
+> [!NOTE] Odhad 60 min není potvrzený — reálný běh stihl celý blok za 30 min
+> Běh 2026-09-09 vypustil výklad a lab odučil ve zbylém čase. **Které z kroků níž se do
+> toho vešly v plném rozsahu, zaznamenané není** — plánujte podle 30 min na blok.
+>
+> Když se krátí, kroky **1-3 se krátit nesmí**: vyrábějí ten baseline skript, na kterém
+> stojí lab v [`../provisioning-patterns/`](../provisioning-patterns/) (krok 5 a Ověření)
+> i lab v [`../../day-4/lifecycle-compliance/`](../../day-4/lifecycle-compliance/).
+> Prvním kandidátem na zkrácení je proto **krok 4** — pozor ale, že na něm visí třetí
+> položka v `Ověření`, takže s ním odpadá i ta.
+
 ## Cíl
 
 Student má skript, který porovná aktuální stav webu proti deklarativní baseline (site script
