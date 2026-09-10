@@ -32,6 +32,24 @@
 
 - **Projít celý lab jednou nanečisto**, včetně Azure části. Rozbití dědění oprávnění na
   položce ani portálové cesty se před skupinou improvizovat nedají.
+- **ZMĚŘIT, která per-site úroveň stačí na `Set-PnPListItemPermission`.** Krok 7b je
+  **plánovaný náraz**: lab dá aplikaci `Write`, ono to spadne na `Access denied`, a student
+  pak zvyšuje `Manage` → `FullControl`, dokud to neprojde. Ta didaktika je správná — least
+  privilege se hledá odspodu — ale **ty nesmíš být ten, kdo to v sále zjišťuje poprvé.**
+  25 lidí bisektujících oprávnění naživo je katastrofa. Projdi to předem a **poznamenej si
+  výsledek**. Očekávání: `Write` nestačí (dává jen čtení a změnu obsahu), `FullControl`
+  stačí. **Jestli projde už `Manage`, je to lepší odpověď a patří do labu jako fakt** —
+  dopiš ji tam.
+
+> [!NOTE] Proč to v labu není napsané dopředu
+> Protože mapování rolí `Sites.Selected` na SharePoint permission levels dokumentace
+> neuvádí dost přesně a **nedá se poctivě tvrdit bez měření**. Lab proto nechává studenta,
+> aby to zjistil — a je to zároveň nejlepší lekce o least privilege, jakou ten blok má.
+>
+> Do 2026-09-10 tam stálo „`Write` je minimum, které úlohu splní". To byl **nepodložený
+> odhad autora** a je opravený. Poučení pro celý repo: u oprávnění nepsat „stačí X", dokud
+> to někdo nespustil.
+
 - **Interní názvy polí.** Sloupec vytvořený jako „Request Status" má interní název
   `Request_x0020_Status` a skript ho nenajde. Je to nejčastější důvod, proč lab nejede,
   a chybová hláška na to neukáže. V labu je proto `Get-PnPField ... | Select InternalName`

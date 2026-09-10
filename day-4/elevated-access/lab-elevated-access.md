@@ -146,31 +146,72 @@ Set-PnPListPermission -Identity "Audit pristupu" -Group $members.Title -AddRole 
 
 ### Krok 4 — Podívejte se, co vaše aplikace umí
 
-**Co děláme:** ověříme, co má app registrace z D2 přidělené.
+**Co děláme:** zjistíme, **na které weby** vaše aplikace z D2 opravdu má přístup.
 
-**Proč:** protože za chvíli pod ní pustíte operaci, kterou žadatel sám nesmí. Musíte
-vědět, co přesně jí dovolujete — a `Sites.Selected` je záměrně to nejužší, co úlohu splní.
+**Proč:** protože za chvíli pod ní pustíte operaci, kterou žadatel sám nesmí. A protože
+tohle je nejlepší moment na to, aby vám došlo, co `Sites.Selected` znamená: aplikace má
+to oprávnění nakonsentované od D2, ale **přístup má jen tam, kde jí ho někdo výslovně dal.**
+
+**Skriptem (PnP):**
+
+```powershell
+Connect-PnPOnline -Url "https://<tenant>.sharepoint.com/sites/<web>" `
+  -ClientId <client-id> -Interactive
+
+# Kdo vsechno ma pristup na TENTO web
+Get-PnPEntraIDAppSitePermission
+
+# Nebo naopak: co ma tahle konkretni aplikace
+Get-PnPEntraIDAppSitePermission -AppIdentity <client-id>
+```
+
+Měl by tam být jeden záznam s právem **`Read`** — ten, který jste si udělal v D2. Krok 5
+ho povýší na `Write`, takže si ten výpis **schovejte pro porovnání**.
+
+> [!NOTE] Proč se sem připojujeme `-Interactive` a ne app-only certifikátem
+> Ten výpis je administrátorská operace — dokumentace u ní uvádí Graph
+> `Sites.FullControl.All`. Vaše aplikace má `Sites.Selected`, takže **sama sebe vypsat
+> neumí**. Připojujete se tedy jako člověk (jste GA), a je to hezká ilustrace toho, že
+> *spravovat* oprávnění a *používat* je jsou dvě různé role.
 
 **Ručně:** Entra → App registrations → vaše aplikace → **API permissions**. Uvidíte
 `Sites.Selected` jako **Application** permission se zeleným consentem.
 
-**Skriptem:**
-
-```powershell
-Connect-MgGraph -Scopes "Application.Read.All"
-$sp = Get-MgServicePrincipal -Filter "appId eq '<client-id>'"
-Get-MgServicePrincipalAppRoleAssignment -ServicePrincipalId $sp.Id |
-    Select-Object AppRoleId, ResourceDisplayName
-```
+> [!IMPORTANT] Ty dva pohledy nejsou totéž — a v tom je celá lekce
+>
+> | Kde se koukáte | Co uvidíte |
+> |---|---|
+> | **Entra → API permissions** | že aplikace **smí** `Sites.Selected`, nakonsentované |
+> | **`Get-PnPEntraIDAppSitePermission`** | na které weby to **reálně platí** |
+>
+> Po samotném consentu je první seznam plný a druhý **prázdný**. Přesně proto se tomu
+> oprávnění říká *Selected* — a přesně proto je krok 5 samostatný krok.
+>
+> PnP na kontrolu první tabulky (app role assignments v Entra) cmdlet **nemá** — na to
+> je portál nebo `Get-MgServicePrincipalAppRoleAssignment` z Microsoft.Graph. V tomhle
+> labu ale stačí portál, protože ten consent jste dělal v D2 a jen ho potvrzujete.
 
 ### Krok 5 — Dát aplikaci jeden jediný web
 
 **Co děláme:** povýšíme per-site grant z D2 z `Read` na `Write`.
 
 **Proč:** `Sites.Selected` po consentu **nedává přístup nikam** — to je celý její smysl.
-Teprve tímto krokem aplikace dostane jeden konkrétní web. A `Write` je minimum, které
-úlohu splní: přidělení role na položce je zápisová operace. `Read` nestačí,
-`FullControl` je zbytečný.
+Teprve tímto krokem aplikace dostane jeden konkrétní web.
+
+**A proč `Write` a ne hned něco vyššího:** protože least privilege se dělá odspodu.
+Začnete na nejužší úrovni, o které si myslíte, že by mohla stačit, a **necháte se vyvrátit**.
+Dokumentace popisuje čtyři úrovně takhle:
+
+| Role | Co podle dokumentace dává |
+|---|---|
+| `Read` | čtení metadat a obsahu |
+| `Write` | čtení a **změnu** metadat a obsahu |
+| `Manage` | čtení a změnu metadat a obsahu **a správu webu** |
+| `FullControl` | plnou kontrolu nad webem a jeho obsahem |
+
+Přidělení přístupu k položce vypadá jako „změna obsahu", takže `Write` je rozumný první
+odhad. **V kroku 7 uvidíte, jestli byl správný.** Nepřeskakujte to — právě ten náraz je
+na tomhle labu to, co si odnesete.
 
 > [!IMPORTANT] Ručně to nejde — a to je samo o sobě informace
 > Per-site grant pro `Sites.Selected` **nemá v portálu žádné UI**. Není to opomenutí
@@ -181,13 +222,13 @@ Teprve tímto krokem aplikace dostane jeden konkrétní web. A `Write` je minimu
 Connect-PnPOnline -Url "https://<tenant>.sharepoint.com/sites/<web>" `
   -ClientId <client-id> -Interactive
 
-Grant-PnPAzureADAppSitePermission -AppId <client-id> `
+Grant-PnPEntraIDAppSitePermission -AppId <client-id> `
   -DisplayName "<jmeno-prijmeni>-course-app" `
   -Site "https://<tenant>.sharepoint.com/sites/<web>" `
   -Permissions Write
 
 # Overit
-Get-PnPAzureADAppSitePermission
+Get-PnPEntraIDAppSitePermission
 ```
 
 ---
@@ -264,8 +305,51 @@ Invoke-AccessRequestQueue -RequestListTitle 'Zadosti o pristup' `
 > Když si nejste jistí, kde stojíte: `Get-Location`. A `Resolve-Path ./Grant-RequestedAccess.ps1`
 > vám řekne, jestli tam ten soubor podle PowerShellu je.
 
-Zkontrolujte **v SharePointu**, ne jen ve výstupu: uživatel má u dokumentu roli, řádek
-je `Granted` a v auditu je záznam.
+### Krok 7b — Narazíte, a to je záměr
+
+`-WhatIf` prošel bez chyby — a to je falešný klid, protože **nic nezapsal**. Naostro
+dostanete na `Set-PnPListItemPermission` chybu o přístupu (`Access denied`,
+`UnauthorizedAccessException`) a řádek žádosti skončí jako `Failed`.
+
+**Co se stalo:** přidělení role na položce **rozbíjí dědění oprávnění** a zakládá na ní
+nové role assignment. To není „změna obsahu" — to je **správa oprávnění**. A `Write` podle
+tabulky v kroku 5 dává jen čtení a změnu metadat a obsahu.
+
+**Jak to opravit — a hlavně jak najít nejužší úroveň, která to splní.** Nezvyšujte hned
+na maximum. Vezměte `PermissionId` z výpisu, který jste si schoval v kroku 4, a **zvyšujte
+po jednom stupni**:
+
+```powershell
+Connect-PnPOnline -Url "https://<tenant>.sharepoint.com/sites/<web>" `
+  -ClientId <client-id> -Interactive
+
+# PermissionId je v tom vypisu z kroku 4
+$perm = Get-PnPEntraIDAppSitePermission -AppIdentity <client-id>
+
+# Zkusit Manage
+Set-PnPEntraIDAppSitePermission -PermissionId $perm.Id -Permissions Manage
+```
+
+Pusťte skript znovu. **Pokud to pořád neprojde, zvyšte na `FullControl`** a zkuste ještě
+raz. Do `Ověření` si poznamenejte, **která úroveň to nakonec byla** — to je odpověď, kterou
+z labu odnášíte, ne ta, kterou jsem vám napsal dopředu.
+
+> [!IMPORTANT] Least privilege není nejužší *název*, ale nejužší *rozsah, který úlohu splní*
+> Tenhle krok je nepříjemný a proto je v labu. U operace, která přiděluje oprávnění, skončí
+> hledání **vysoko** — pravděpodobně až na `FullControl`, protože správa oprávnění je přesně
+> to, co „plná kontrola" znamená. Kdo tvrdí, že to jde s `Write`, to neměřil.
+>
+> **A tady je ta věc, kterou si nesmíte splést:** to, co jste právě získali, není nízká
+> *úroveň* oprávnění, ale **úzký rozsah**. `FullControl` na **jeden web** je nesrovnatelně
+> lepší než `Sites.FullControl.All` na **celý tenant** — a to druhé je přesně to, čemu se
+> tenhle blok vyhýbá. Vítězství je v tom `Sites.Selected`, ne v té roli.
+>
+> Zpětná vazba na D2: v [`../../day-2/automation-strategy/`](../../day-2/automation-strategy/)
+> jste si napsal, že „least privilege je nejužší rozsah, který úlohu splní, ne nejužší
+> název". Teď víte, proč tam to slovo *splní* je.
+
+Teprve když projde, zkontrolujte **v SharePointu**, ne jen ve výstupu: uživatel má
+u dokumentu roli, řádek je `Granted` a v auditu je záznam.
 
 > [!IMPORTANT] Zastavte se tu na chvíli a podívejte se, co držíte v ruce
 > Právě jste odstranili dvě ze tří věcí z kroku 1: **žádné klikání** a **stopa v auditu**.
@@ -383,7 +467,7 @@ tentokrát na `AppId` managed identity:
 Connect-PnPOnline -Url "https://<tenant>.sharepoint.com/sites/<web>" `
   -ClientId <client-id> -Interactive
 
-Grant-PnPAzureADAppSitePermission -AppId $mi.AppId `
+Grant-PnPEntraIDAppSitePermission -AppId $mi.AppId `
   -DisplayName "aa-goc223-<jmeno-prijmeni>" `
   -Site "https://<tenant>.sharepoint.com/sites/<web>" -Permissions Write
 ```
@@ -517,9 +601,11 @@ Invoke-Pester ./Grant-RequestedAccess.Tests.ps1
 
 - [ ] Krok 1: umíte popsat, kolik kliknutí ruční přidělení stálo a co po něm nezůstalo.
 - [ ] Skript na notebooku přidělí přístup **bez interaktivního přihlášení** (krok 6-7).
+- [ ] **Umíte říct, která per-site úroveň to nakonec splnila** a proč `Write` nestačila
+      (krok 7b). Tohle je nejdůležitější věta, kterou si z části 3-4 odnášíte.
 - [ ] `-WhatIf` neprovede ani jeden zápis.
 - [ ] Runbook v Azure udělá **totéž**, a v jeho těle **není žádný secret** (krok 11).
-- [ ] Managed identity má **vlastní** per-site grant — `Get-PnPAzureADAppSitePermission`
+- [ ] Managed identity má **vlastní** per-site grant — `Get-PnPEntraIDAppSitePermission`
       vrací dvě aplikace, ne jednu (krok 10).
 - [ ] Rozvrh existuje a runbook je **publikovaný** (krok 12).
 - [ ] Žádost s cizí adresou v `RequesterEmail` skončí `Rejected` a je v auditu (krok 13).
@@ -547,7 +633,7 @@ Invoke-Pester ./Grant-RequestedAccess.Tests.ps1
 - [Az.Automation](https://learn.microsoft.com/en-us/powershell/module/az.automation/) — `New-AzAutomationAccount`, `New-AzAutomationModule`, `Import-AzAutomationRunbook`, `Publish-AzAutomationRunbook`, `Start-AzAutomationRunbook`, `Get-AzAutomationJobOutput`, `New-AzAutomationSchedule`, `Register-AzAutomationScheduledRunbook`
 - [Connect-PnPOnline](https://pnp.github.io/powershell/cmdlets/Connect-PnPOnline.html) — `-ManagedIdentity` funguje v Automation Runbookech; certifikát je `-Thumbprint`
 - [Set-PnPListItemPermission](https://pnp.github.io/powershell/cmdlets/Set-PnPListItemPermission.html) — cmdlet, kterým se elevovaná operace provádí
-- [Grant-PnPAzureADAppSitePermission](https://pnp.github.io/powershell/cmdlets/Grant-PnPAzureADAppSitePermission.html) — per-site grant pro `Sites.Selected`
+- [Grant-PnPEntraIDAppSitePermission](https://pnp.github.io/powershell/cmdlets/Grant-PnPEntraIDAppSitePermission.html) — per-site grant pro `Sites.Selected`
 
 ## Stav produktu / delta
 

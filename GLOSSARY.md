@@ -70,7 +70,7 @@ Alternativa k PowerShellu pro vývojářské týmy: **Graph JS SDK** (`@microsof
 | **Certificate (app-only)** | dávkové operace, produkční automatizace | Bez promptu; cert thumbprint + ClientId + TenantId |
 | **Managed identity** | Azure-hosted automatizace (Functions, Runbooks) | Žádný spravovaný secret/cert — identita vázaná na Azure resource |
 
-**`Sites.Selected`** — aplikační oprávnění pro SharePoint, které samo o sobě **nedává přístup nikam**; consent je první krok, per-site grant (`Grant-PnPAzureADAppSitePermission`) druhý. Nelze jím ale vypsat weby tenantu ani web založit — provisioning a discovery jsou tenant-scoped a vyžadují `Sites.FullControl.All`. Pravidlo: least privilege = nejužší rozsah, **který úlohu splní**, ne nejužší název. Detail: [`day-2/automation-strategy/`](day-2/automation-strategy/).
+**`Sites.Selected`** — aplikační oprávnění pro SharePoint, které samo o sobě **nedává přístup nikam**; consent je první krok, per-site grant (`Grant-PnPEntraIDAppSitePermission`) druhý. Nelze jím ale vypsat weby tenantu ani web založit — provisioning a discovery jsou tenant-scoped a vyžadují `Sites.FullControl.All`. Pravidlo: least privilege = nejužší rozsah, **který úlohu splní**, ne nejužší název. Detail: [`day-2/automation-strategy/`](day-2/automation-strategy/).
 
 **Least privilege princip:** aplikační oprávnění (application permissions) se udělují na úrovni celého tenantu — každé navíc je rozšíření útočné plochy. Preferovat delegated tam, kde to dává smysl, a u app-only vždy sepsat přesný seznam permissions s odůvodněním (viz [`day-5/security-hardening/`](day-5/security-hardening/)).
 

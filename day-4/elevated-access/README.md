@@ -129,7 +129,7 @@ a k němu **17 testů**.
 
 - [Guide to cloud flow sharing and permissions](https://learn.microsoft.com/en-us/power-automate/guide-to-cloud-flow-sharing-permissions) — run-only vs co-owner, „the flow uses the owner's privilege"
 - [Set-PnPListItemPermission](https://pnp.github.io/powershell/cmdlets/Set-PnPListItemPermission.html) — cmdlet, kterým se elevovaná operace provádí
-- [Grant-PnPAzureADAppSitePermission](https://pnp.github.io/powershell/cmdlets/Grant-PnPAzureADAppSitePermission.html) — per-site grant pro `Sites.Selected`
+- [Grant-PnPEntraIDAppSitePermission](https://pnp.github.io/powershell/cmdlets/Grant-PnPEntraIDAppSitePermission.html) — per-site grant pro `Sites.Selected`
 - [Connect-PnPOnline](https://pnp.github.io/powershell/cmdlets/Connect-PnPOnline.html) — `-ManagedIdentity`, `-Thumbprint`
 
 ## Stav produktu / delta
@@ -140,8 +140,11 @@ a k němu **17 testů**.
 > Je to nosný argument celého bloku — kdyby Microsoft zavedl skutečnou elevaci bez vazby
 > na vlastníka, tři důsledky v `comparison-power-automate.md` se mění.
 >
-> Názvy PnP cmdletů pro per-site grant a parametry `Set-PnPListItemPermission` se mezi
-> verzemi modulu měnily — ověřit proti [pnp.github.io/powershell](https://pnp.github.io/powershell/).
+> **PnP přejmenoval `*AzureAD*` cmdlety na `*EntraID*`** — materiál používá nové názvy
+> (`Grant-PnPEntraIDAppSitePermission`, `Get-PnPEntraIDAppSitePermission`). Na starší
+> verzi modulu platí staré. Ověřit před během:
+> `Get-Command -Module PnP.PowerShell *SitePermission*`. Totéž pro parametry
+> `Set-PnPListItemPermission`.
 >
 > **Licencování Power Automate v tomhle modulu schválně nikde není** — mění se nejčastěji
 > z celého materiálu. Před během ověřit, jestli argument o nákladech pořád platí ve tvaru,

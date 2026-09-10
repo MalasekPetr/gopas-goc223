@@ -130,7 +130,7 @@ flowchart TD
   B --> C{Ktere opravneni?}
   C -->|Sites.FullControl.All| D[Pristup ke vsem webum<br/>ihned]
   C -->|Sites.Selected| E[Pristup nikam]
-  E -->|Grant-PnPAzureADAppSitePermission<br/>per web| F[Pristup jen k vyjmenovanym webum]
+  E -->|Grant-PnPEntraIDAppSitePermission<br/>per web| F[Pristup jen k vyjmenovanym webum]
 ```
 
 ### Kdy `Sites.Selected` nestačí — least privilege, které funguje
@@ -166,7 +166,7 @@ Get-MgServicePrincipalAppRoleAssignment -ServicePrincipalId <sp-object-id>
 Get-MgOauth2PermissionGrant -Filter "clientId eq '<sp-object-id>'"
 
 # u Sites.Selected: kterym webum aplikace skutecne rozumi
-Get-PnPAzureADAppSitePermission -AppIdentity <client-id>
+Get-PnPEntraIDAppSitePermission -AppIdentity <client-id>
 ```
 
 Rozdíl mezi požadovaným a uděleným je běžný nález auditu — typicky proto, že někdo

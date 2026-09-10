@@ -83,7 +83,7 @@ dostane certifikát, v D5 projde auditem.
 10. **Ověřit, že aplikace nevidí nic.** Vypsat weby, ke kterým má aplikace přístup:
 
     ```powershell
-    Get-PnPAzureADAppSitePermission -AppIdentity <client-id>
+    Get-PnPEntraIDAppSitePermission -AppIdentity <client-id>
     ```
 
     Výstup je prázdný. **To je správné chování, ne chyba** — a je to celý smysl
@@ -94,12 +94,12 @@ dostane certifikát, v D5 projde auditem.
     ```powershell
     Connect-PnPOnline -Url "https://<tenant>.sharepoint.com/sites/<vas-web>" `
       -ClientId <client-id> -Interactive
-    Grant-PnPAzureADAppSitePermission -AppId <client-id> `
+    Grant-PnPEntraIDAppSitePermission -AppId <client-id> `
       -DisplayName "<jmeno-prijmeni>-course-app" -Site "https://<tenant>.sharepoint.com/sites/<vas-web>" `
       -Permissions Read
     ```
 
-12. **Ověřit rozdíl.** Znovu `Get-PnPAzureADAppSitePermission` — teď je tam jeden web.
+12. **Ověřit rozdíl.** Znovu `Get-PnPEntraIDAppSitePermission` — teď je tam jeden web.
     Aplikace má stále přesně jedno application oprávnění, ale rozsah se změnil z „nic"
     na „tenhle jeden web".
 
@@ -121,7 +121,7 @@ dostane certifikát, v D5 projde auditem.
       **application** oprávnění.
 - [ ] Student umí ukázat, že mezi krokem 9 a 10 přibylo oprávnění, ale **nepřibyl přístup**,
       a vysvětlit proč.
-- [ ] `Get-PnPAzureADAppSitePermission` po kroku 11 vrací právě jeden web.
+- [ ] `Get-PnPEntraIDAppSitePermission` po kroku 11 vrací právě jeden web.
 - [ ] Student umí říct, ve které záložce (Delegated vs Application) oprávnění přidal
       a co by se stalo, kdyby ho přidal do té druhé.
 - [ ] Zdůvodnění z kroku 13 je v commit message.
@@ -130,10 +130,11 @@ dostane certifikát, v D5 projde auditem.
 
 - Pokud studentovi nefunguje vlastní účet (MFA/licence nedořešené z onboardingu), pracuje ve
   dvojici se sousedem nad jeho app registrací a vlastní si založí po vyřešení účtu o přestávce.
-- **`Grant-PnPAzureADAppSitePermission` neexistuje nebo má jiné parametry**: názvy PnP
-  cmdletů pro per-site grant se mezi verzemi měnily — ověřit
-  `Get-Command -Module PnP.PowerShell *SitePermission*`. Alternativa je Graph:
-  `POST /sites/{siteId}/permissions`.
+- **`Grant-PnPEntraIDAppSitePermission` neexistuje**: PnP ty cmdlety **přejmenoval
+  z `*AzureAD*` na `*EntraID*`** (dřív `Grant-PnPAzureADAppSitePermission`). Na starší
+  verzi modulu proto platí starý název — ověřit, co máte, přes
+  `Get-Command -Module PnP.PowerShell *SitePermission*`. Alternativa nezávislá na
+  verzi je Graph: `POST /sites/{siteId}/permissions`.
 - **Chybí oprávnění ke čtení service principalů**: kroky 7 a 9 lze nahradit portálovým
   pohledem (Enterprise applications → Permissions). Pointa je porovnat stav před a po,
   ne konkrétní cmdlet.
