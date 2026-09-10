@@ -34,7 +34,7 @@ a migrace (Lab 2) jsou od rekalibrace 2026-09-09 **volitelné** — viz čísla 
 > `graph-fundamentals` (120) a `provisioning-patterns` (100) **změřené nejsou** — nesou
 > pořád původní odhady, o kterých instruktor řekl, že jsou nafouknuté.
 >
-> **Položka „ubrat 70 min" padá:** D3 5,1 h, D4 6,2 h, oba pod stropem 6,5 h. Nebyla to
+> **Položka „ubrat 70 min" padá:** D3 5,1 h, D4 6,5 h, oba do stropu 6,5 h. Nebyla to
 > kapacita, byly to nafouknuté odhady plus dva laby, které se nestíhají učit.
 
 > [!WARNING] V povinné podobě nemá den vlastní lab kromě provisioningu
@@ -50,8 +50,8 @@ a migrace (Lab 2) jsou od rekalibrace 2026-09-09 **volitelné** — viz čísla 
 >
 > Závislost existovala **jen jako studentský výstup**, takže vypuštění jednoho labu tiše
 > bralo vstup dvěma dalším. Oba konzumenti jsou proto přeformulovaní tak, že skript
-> **uvítají, ale nevyžadují**. Staging na D3 přesto zůstává — přesun na D4 by ho vytáhl
-> na 6,8 h a ničemu by neposloužil.
+> **uvítají, ale nevyžadují**. Staging na D3 přesto zůstává — přesun na D4 by ho po jeho
+> přestavbě 2026-09-10 vytáhl na 7,2 h a ničemu by neposloužil.
 
 > [!NOTE] Přestavba 2026-09-08 po reálném běhu
 > Den prošel dvěma změnami. `graph-fundamentals` přišel z D2, kde se na něj nedostalo.

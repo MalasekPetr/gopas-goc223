@@ -74,7 +74,8 @@ This course takes migration and automation engineers through the full cycle of a
 
 ### Day 4 — Azure Integration, SIEM & Lifecycle
 
-- **Azure integration patterns** *(large lab)* — Logic Apps vs. Functions vs. Runbooks, the Graph change notifications subscription lifecycle; lab: a batch sync scheduled task running under an application identity.
+- **Azure integration patterns** *(large lab)* — Logic Apps vs. Functions vs. Runbooks, the Graph change notifications subscription lifecycle; lab: an idempotent batch sync under an application identity, plus a step-by-step walkthrough of getting a script into Azure and running it there.
+- **Elevated access: self-service permission requests** *(lab)* — the most commonly built SharePoint automation of all: a user requests access and an application identity grants it. A two-stage authorization gate, `Sites.Selected` narrowed to a single site, audited rejections - and deployment to Azure without a single password.
 - **SIEM integration via Azure Blob** — the app → Blob → Event Grid → Function → SIEM logging pipeline, KQL basics for validation and dashboards.
 - **Lifecycle & compliance enforcement** — automating retention and sensitivity, sharing governance, Site Attestation.
 

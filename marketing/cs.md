@@ -73,7 +73,8 @@ Kurz provede inženýry migrací a automatizace kompletním cyklem pokročilé a
 
 ### Den 4 — Azure integrace, SIEM a lifecycle
 
-- **Azure integrační vzory** *(velký lab)* — Logic Apps vs Functions vs Runbooks, subscription lifecycle Graph change notifications; lab: dávkový sync jako plánovaný task pod aplikační identitou.
+- **Azure integrační vzory** *(velký lab)* — Logic Apps vs Functions vs Runbooks, subscription lifecycle Graph change notifications; lab: idempotentní dávkový sync pod aplikační identitou; krok za krokem, jak skript dostat do Azure a spustit ho tam.
+- **Elevovaný přístup: self-service žádost o oprávnění** *(lab)* — nejčastěji stavěná automatizace nad SharePointem: uživatel požádá o přístup, aplikační identita mu ho přidělí. Dvoustupňová autorizační brána, `Sites.Selected` zúžený na jeden web, auditované zamítnutí — a nasazení do Azure bez jediného hesla.
 - **SIEM integrace přes Azure Blob** — logovací pipeline aplikace → Blob → Event Grid → Function → SIEM, KQL základy pro validaci a dashboardy.
 - **Lifecycle & compliance enforcement** — automatizace retence a citlivosti, governance sdílení, Site Attestation.
 

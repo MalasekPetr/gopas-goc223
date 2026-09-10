@@ -3,29 +3,36 @@
 Azure integrační vzory jako vstupní znalost, na ni navázaná **elevovaná operace nad
 SharePointem, kterou si studenti postaví a nasadí**, SIEM logging pipeline a lifecycle
 & compliance enforcement — den, který uzavírá provozní a governance linku týdne.
-**~7,7 h povinně** — nad stropem, viz poznámka o přestavbě 2026-09-10 níž.
+**~6,5 h povinně.**
 
 | Pořadí | Blok | Slug | Typ |
 |---|---|---|---|
-| 1 | Azure integrační vzory *(Lab 3)* | [`azure-integration-patterns`](azure-integration-patterns/) | P |
+| 1 | Azure integrační vzory *(výklad + tutorial nasazení; Lab 3, 45 min)* | [`azure-integration-patterns`](azure-integration-patterns/) | P |
 | 2 | **Elevovaný přístup: self-service žádost o oprávnění** *(lab)* | [`elevated-access`](elevated-access/) | P |
 | 3 | SIEM integrace přes Azure Blob | [`siem-blob-integration`](siem-blob-integration/) | P |
 | 4 | Lifecycle & compliance enforcement | [`lifecycle-compliance`](lifecycle-compliance/) | P |
 
-> [!IMPORTANT] Přestavba 2026-09-10 — nový blok 2, a den je nad stropem
-> **Elevovaný přístup dostal vlastní modul** ([`elevated-access/`](elevated-access/),
-> 30 min výklad + 60 min lab) a stojí hned za výkladovým Azure blokem. Do té doby to bylo
-> 15min instruktorské demo uvnitř bloku 1.
+> [!IMPORTANT] Přestavba 2026-09-10 — den přestal být akademický a vejde se do stropu
+> **Důvod:** den 4 mluvil o Azure hostingu a identitách celý den, ale studenti si nic
+> nepostavili — a v celém repu nebyl **jediný postup, jak skript do Azure dostat**.
 >
-> **Důvod:** den 4 byl v reálném nasazení příliš akademický — mluvil o hostingu
-> a identitách a studenti si nic nepostavili. Elevovaná operace nad SharePointem byla
-> přitom nejkonkrétnější věc dne. Ke stejnému účelu vznikl v bloku 1
-> [`azure-integration-patterns/tutorial-script-to-azure.md`](azure-integration-patterns/tutorial-script-to-azure.md) —
-> krok-za-krokem, jak dostat skript do Azure a spustit ho tam. Nic takového v repu nebylo.
+> **Co přišlo:**
+> - **Blok 2** [`elevated-access/`](elevated-access/) (30 výklad + 60 lab) — plnohodnotný
+>   modul se step-by-step labem o 8 krocích. Do té doby to bylo 15min demo uvnitř bloku 1.
+> - **Tutorial** [`azure-integration-patterns/tutorial-script-to-azure.md`](azure-integration-patterns/tutorial-script-to-azure.md)
+>   — krok za krokem přes Automation Runbook. Lab bloku 2 ho v kroku 8 použije.
 >
-> **Cena:** D4 = 150 + 90 + 120 + 100 = **460 min / 7,7 h**, strop 6,5 h. Vědomé
-> rozhodnutí, ale **něco musí odejít** — nejpravděpodobněji zkrátit Lab 3 (dávkový sync)
-> v bloku 1, který se s labem bloku 2 tematicky překrývá. Rozhodne reálný běh D4.
+> **Čím se zaplatilo — 70 min z bloku 1 (150 → 80):**
+> - **Lab 3: 90 → 45 min.** Registrace do Task Scheduleru odešla do bloku 2, kde se táž
+>   věc dělá **v Azure**. Task Scheduler na učebním image bývá blokovaný policy, takže
+>   to byl krok s nejvyšší mírou selhání. Zůstalo jádro: delta přes business klíč
+>   a idempotence.
+> - **Demo kopie s metadaty: -20 min z povinného odhadu.** README ho označovalo za „mimo
+>   agendu" a přitom se počítalo do 150 — to byl rozpor, ne rozhodnutí. Demo zůstává,
+>   spouští se na dotaz.
+> - **Výklad: 40 → 35 min.** Srovnání Runbook vs Function je teď v tutoriálu.
+>
+> **Výsledek: 80 + 90 + 120 + 100 = 390 min = 6,5 h**, přesně na stropu.
 
 > [!NOTE] Přestavba 2026-09-09 — blok 1
 > ~30min instruktorské demo change notifications nahradilo **20min demo kopie dat se

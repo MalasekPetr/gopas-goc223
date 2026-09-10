@@ -85,7 +85,7 @@ Jediný zdroj pravdy o pořadí modulů. Složky jsou slugy; pořadí drží tat
 > vypuštění jednoho volitelného labu tiše bralo vstup dvěma dalším. Oba konzumenti jsou
 > proto přeformulovaní tak, že skript **uvítají, ale nevyžadují**. Přesun stagingu na D3
 > tím zpětně ztrácí své odůvodnění; **zůstává tam ale i tak**, protože D3 je po rekalibraci
-> na 5,1 h a přesun na D4 by ho zbytečně vytáhl na 6,8 h.
+> na 5,1 h a přesun na D4 by ho po jeho přestavbě 2026-09-10 vytáhl na 7,2 h.
 
 > [!NOTE] Den 3: **~5,1 h povinně** (120 + 40 + 45 + 100 = 305 min) + dva volitelné laby
 > Rekalibrováno 2026-09-09 podle reálného běhu, který den odučil **podle plánu**, přestože
@@ -97,7 +97,7 @@ Jediný zdroj pravdy o pořadí modulů. Složky jsou slugy; pořadí drží tat
 > pořád původní odhady, o kterých instruktor řekl, že jsou nafouknuté. Reálné číslo dne
 > tedy bude spíš nižší než 5,1 h.
 >
-> **Položka „ubrat 70 min" tím padá.** D3 5,1 h a D4 6,2 h jsou oba pod stropem 6,5 h.
+> **Položka „ubrat 70 min" tím padá.** D3 je na 5,1 h; D4 se po přestavbě 2026-09-10 drží na 6,5 h.
 > Nebyla to kapacita, byly to nafouknuté odhady plus dva laby, které se nestíhají učit.
 > Rezerva pod stropem je naopak tak velká, že se do dne vejde zkrácený Lab 2 (~75 min →
 > 6,3 h) — je proto **první v řadě**, když čas je.
@@ -111,20 +111,26 @@ Jediný zdroj pravdy o pořadí modulů. Složky jsou slugy; pořadí drží tat
 
 | # | Blok | Slug | Typ |
 |---|---|---|---|
-| 1 | Azure integrační vzory *(Lab 3: dávkový sync + plánovaný task; kopie s metadaty jako instruktorské demo)* | `day-4/azure-integration-patterns` | P |
+| 1 | Azure integrační vzory *(výklad + tutorial nasazení do Azure; Lab 3 dávkový sync 45 min)* | `day-4/azure-integration-patterns` | P |
 | 2 | **Elevovaný přístup: self-service žádost o oprávnění** *(lab)* | `day-4/elevated-access` | P |
 | 3 | SIEM integrace přes Azure Blob | `day-4/siem-blob-integration` | P |
 | 4 | Lifecycle & compliance enforcement | `day-4/lifecycle-compliance` | P |
 
-> [!WARNING] Den 4 je nad stropem: ~7,7 h povinně (150 + **90** + 120 + 100 = 460 min)
-> Vzniklo **2026-09-10** přidáním bloku 2 (`elevated-access`, 30 výklad + 60 lab).
-> **Vědomé rozhodnutí, ne omyl:** den 4 byl v reálném nasazení příliš akademický — mluvil
-> o hostingu a identitách a studenti si nic nepostavili. Elevovaný přístup byl přitom
-> nejkonkrétnější věc dne a živořil jako 15min demo uvnitř bloku 1.
+> [!NOTE] ~6,5 h povinně (80 + 90 + 120 + 100 = 390 min) — přestavěno 2026-09-10
+> Den 4 byl v reálném nasazení **příliš akademický**: mluvil o Azure hostingu a identitách
+> a studenti si nic nepostavili. Přestavba to řeší a **vejde se do stropu**:
 >
-> **Něco z dne musí odejít.** Nejpravděpodobnější kandidát je zkrátit **Lab 3** (dávkový
-> sync, 90 min) v bloku 1 — s labem bloku 2 se tematicky překrývá, oba jsou „napiš skript
-> pod aplikační identitou". Rozhodne se podle reálného běhu D4; stav v `CLAUDE.md`.
+> **Přišel blok 2** [`day-4/elevated-access`](day-4/elevated-access/) (30 výklad + 60 lab)
+> — plnohodnotný modul s step-by-step labem, který postaví elevovanou operaci
+> a nasadí ji do Azure. Do té doby to bylo 15min demo uvnitř bloku 1.
+> **A přišel tutorial** `tutorial-script-to-azure.md` v bloku 1 — krok za krokem, jak
+> dostat skript do Azure a spustit ho tam. Nic takového v repu nebylo, přitom o tom byl
+> celý den.
+>
+> **Zaplaceno 70 min z bloku 1** (150 → 80): Lab 3 zkrácen 90 → 45 min (registrace do
+> Task Scheduleru odešla do bloku 2, kde se dělá v Azure), demo kopie s metadaty vyjmuto
+> z povinného odhadu (README ho už označovalo „mimo agendu" a přitom se počítalo — rozpor),
+> výklad 40 → 35 min (srovnání Runbook vs Function je teď v tutoriálu).
 
 > [!NOTE] Change-notifications lab je **celé samostudium**; subscription lifecycle
 > zůstává ve výkladu bloku 1.

@@ -1,6 +1,6 @@
 # Azure integrační vzory
 
-> Typ: povinný · Den: 4 · Odhad: 40 min výklad + 90 min Lab 3 + 20 min instruktorské demo (kopie dat se zachováním metadat)
+> Typ: povinný · Den: 4 · Odhad: 35 min výklad + 45 min Lab 3 = **80 min** (instruktorské demo kopie s metadaty je mimo agendu)
 
 ## Cíle
 - Logic Apps vs Functions vs Runbooks — a kdy nic z toho, ale Power Automate flow
@@ -91,9 +91,9 @@ flowchart TD
 ## Laby
 Pull i push strana integrace:
 
-- [`lab-batch-sync-task.md`](lab-batch-sync-task.md) — třetí velký lab kurzu: idempotentní
-  dávkový CRUD sync seznamu pod aplikační identitou, registrovaný jako plánovaný task
-  (scheduled/pull model). Studenti dělají celý.
+- [`lab-batch-sync-task.md`](lab-batch-sync-task.md) — **45 min**: idempotentní
+  dávkový CRUD sync seznamu pod aplikační identitou přes business klíč
+  (scheduled/pull model). Plánovaný běh dělá blok 2 v Azure, ne tenhle lab.
 - [`lab-change-notifications-function.md`](lab-change-notifications-function.md) — Function
   jako endpoint pro Graph change notifications (event-driven/push model). **Celé
   samostudium** dle zadání labu; subscription lifecycle zůstává ve výkladu výše.

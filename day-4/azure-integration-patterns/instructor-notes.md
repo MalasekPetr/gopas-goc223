@@ -2,9 +2,22 @@
 
 ## Timing
 
-- 40 min výklad + 90 min lab (batch sync, třetí velký lab kurzu) + **20 min instruktorské
-  demo kopie s metadaty** ([`guide-copy-metadata.md`](guide-copy-metadata.md)) = 150 min.
-  Batch sync nikdy nekrátit — je to povinné jádro dne.
+- **35 min výklad + 45 min Lab 3 = 80 min.** Demo kopie s metadaty
+  ([`guide-copy-metadata.md`](guide-copy-metadata.md), 20 min) je **mimo agendu** —
+  spouští se na dotaz.
+- **Zkráceno 2026-09-10 ze 150 na 80 min**, aby se do dne vešel nový blok 2
+  ([`../elevated-access/`](../elevated-access/)). Tři škrty:
+  - **Lab 3: 90 → 45 min.** Registrace do Task Scheduleru (bývalé kroky 5-6) odešla
+    do bloku 2, kde se stejná věc dělá **v Azure**. Task Scheduler na učebním image
+    bývá blokovaný policy, takže to byl krok s nejvyšší mírou selhání. Zůstalo jádro:
+    **delta přes business klíč a idempotence.**
+  - **Demo kopie s metadaty: -20 min z povinného odhadu.** README ho označovalo za
+    „mimo agendu" a přitom se počítalo do 150 — to byl rozpor, ne rozhodnutí.
+  - **Výklad: 40 → 35 min.** Srovnání Runbook vs Function je teď v
+    [`tutorial-script-to-azure.md`](tutorial-script-to-azure.md), takže ho výklad
+    nemusí probírat dvakrát.
+- **Idempotenci v Labu 3 nekrátit** (krok 4). Je to jediné ověření, které se nedá obejít
+  výmluvou, a studenti rádi odevzdají „smaž vše a nahraj znovu".
 - **Změna 2026-09-09:** to místo držel ~30min demo change notifications. Vyměněno, blok se
   tím zkrátil o 10 min. Důvod: z obou dem jen kopie s metadaty **reálně zapíše do
   SharePointu z Functiony běžící v Azure** — handshake demo vracelo token a logovalo,

@@ -10,11 +10,16 @@
 - Lab **nekrátit pod krok 7** (zamítnutí). Kroky 1-6 postaví funkční přidělení, ale teprve
   krok 7 dokáže, že to není generální klíč — a to je celá pointa bloku.
 
-> [!IMPORTANT] Kapacita dne 4 tím jde nad strop
-> D4 = 150 + **90** + 120 + 100 = **460 min / 7,7 h**, strop je 6,5 h. Vědomé rozhodnutí
-> 2026-09-10: praktičnost přednější. Ale **něco z dne musí odejít** — kandidáti
-> a stav v `CLAUDE.md`. Nejpravděpodobnější je zkrátit Lab 3 (batch sync, 90 min) v bloku 1,
-> který se s tímhle labem tematicky překrývá: oba jsou „napiš skript pod aplikační identitou".
+> [!NOTE] Kapacita dne je vyřešená — zaplatil to blok 1
+> D4 = 80 + **90** + 120 + 100 = **390 min / 6,5 h**, přesně na stropu. Těch 90 minut se
+> vzalo z bloku 1: **Lab 3 zkrácen 90 → 45 min**, protože jeho registrace do Task
+> Scheduleru se s **krokem 8** tohohle labu překrývala — a tady se táž věc dělá v Azure,
+> kam plánovaný běh v tomhle kurzu patří. Zbytek úspory je demo kopie s metadaty vyjmuté
+> z povinného odhadu a 5 min výkladu.
+>
+> Praktický důsledek pro tebe: **studenti přijdou z bloku 1 se sync skriptem, který nikde
+> neběží.** Krok 8 je pro ně první nasazení do Azure vůbec, takže si na něj nechej čas
+> a nezkracuj ho — je to ta věc, kvůli které celá přestavba dne vznikla.
 
 ## Go/no-go — KLÍČOVÉ, otestovat před během
 
