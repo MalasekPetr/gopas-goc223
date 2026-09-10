@@ -28,7 +28,7 @@
 ## Go/no-go — KLÍČOVÉ, otestovat před během
 
 - **Kopie s metadaty** ([`guide-copy-metadata.md`](guide-copy-metadata.md)) je **demo na
-  20 min** a jde do agendy místo dema change notifications. Před během: založit zdrojový
+  20 min** MIMO agendu, spouští se na dotaz. Před během: založit zdrojový
   a cílový seznam, **nechat pár položek založit jinými účty a před demem to ověřit** —
   pointa je vidět jen na položkách, které mají v `Created By` někoho jiného než tebe.
   A ty účty musí být i v site user information listu **cílového** webu, jinak fáze 2 spadne.
@@ -42,11 +42,14 @@
 - Kdo bude ukazovat i samostudijní lab change notifications, potřebuje navíc **veřejně
   dostupný endpoint** (Graph validation handshake) a měl by den předem zkusit celý flow —
   subscription lifecycle detaily (min/max expirace) se mohou lišit dle verze Graph API.
-- Pro batch sync lab: připravit zdrojové datasety `v1`/`v2` (CSV/JSON, fiktivní data) a
-  distribuovat na učební stroje; ověřit, že Task Scheduler není na image učebny zablokovaný
-  policy (jinak rovnou aktivovat Fallback z labu).
-- Ověřit, že studenti mají funkční cert identitu z D1 — batch sync lab na ní stojí; kdo ji
+- Pro Lab 3: připravit zdrojové datasety `v1`/`v2` (CSV/JSON, fiktivní data) a distribuovat
+  na učební stroje. **Task Scheduler už lab nepotřebuje** — ta část odešla do bloku 2.
+- Ověřit, že studenti mají funkční cert identitu z **D2** — Lab 3 i celý blok 2 na ní stojí; kdo ji
   nemá, opravit před blokem.
+- **Na dotaz „a jak se runbooky verzují?" mít připravený** [`explainer-runbook-cicd.md`](explainer-runbook-cicd.md).
+  Padne skoro vždycky. Pointa: nativní source control integration umí publikovat na commit,
+  ale **jen pro PowerShell 5.1 runbooky** — na runtime 7.2 s PnP.PowerShell nedosáhne,
+  a sync joby navíc nepodporují MFA, které kurzový tenant vynucuje. Cesta je pipeline.
 - Pro skupiny bez Azure zkušeností poslat den předem
   [`explainer-azure-orientation.md`](explainer-azure-orientation.md) jako pre-read
   (tenant vs subscription, RBAC vs Entra role, kde skript běží) — den je nejhustší v kurzu
@@ -71,9 +74,9 @@
   vrátit `validationToken` jako plain text, jinak vytvoření subscription selže s chybou.
 - Nezaměňovat expiraci access tokenu (~1h) s expirací subscription (dny) — to je časté
   nedorozumění vedoucí ke zbytečné komplikaci renewal logiky.
-- U batch sync labu tvrdě kontrolovat idempotenci (druhý běh = 0 změn) — studenti rádi
-  odevzdají "smaž vše a nahraj znovu", což ověřením projít nesmí; a žádný secret v definici
-  tasku (zkontrolovat namátkou `Export-ScheduledTask` XML).
+- U Labu 3 tvrdě kontrolovat idempotenci (druhý běh = 0 změn) — studenti rádi
+  odevzdají "smaž vše a nahraj znovu", což ověřením projít nesmí; a žádný secret ve
+  skriptu.
 
 ## Vazby
 

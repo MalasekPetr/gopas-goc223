@@ -9,6 +9,7 @@
 - **Tři update typy a to, že se vzájemně vylučují**: zachovat původní autory a časy jde
   jen za cenu spuštění flow, a zápis, který flow nespustí, je neviditelný pro detekci
   driftu podle `Modified` ([`guide-copy-metadata.md`](guide-copy-metadata.md)).
+- **Runbooky z repa** místo klikání v portálu — a proč nativní source control integration na náš runtime nedosáhne ([`explainer-runbook-cicd.md`](explainer-runbook-cicd.md)).
 - Orientace v Azure před laby dne (tenant vs subscription, RBAC vs Entra role, kde skript
   běží, kontejnery) — k přečtení předem: [`explainer-azure-orientation.md`](explainer-azure-orientation.md).
 
@@ -46,7 +47,7 @@ plánovaného běhu nesmí spoléhat na interaktivní přihlášení):
 | Azure — reakce na event | Function (timer / event trigger) | **managed identity** | žádný spravovaný secret — identita vázaná na resource |
 | Azure — periodická remediace | Automation Runbook | **managed identity** | dtto; pozor, runbook **neprojde** firewallem na Key Vaultu |
 | Azure — dávka s vlastním runtime | **Container Apps Job** (cron, UTC) | **managed identity** | dtto; moduly zapečené v image, scale-to-zero |
-| CI/CD pipeline | pipeline scheduler | certifikát / federated credentials | pipeline secret store (Key Vault-backed), nikdy repo |
+| CI/CD pipeline | pipeline scheduler | certifikát / **federated credentials** | pipeline secret store (Key Vault-backed), nikdy repo — a jak z repa nasazovat runbooky: [`explainer-runbook-cicd.md`](explainer-runbook-cicd.md) |
 
 Ta tabulka odpovídá na otázku *„kde bydlí credential"*. Druhá otázka — *„co to udělá
 s PowerShellovým skriptem"* (jak se dovnitř dostanou moduly, kdo drží jejich verzi, jaký je
@@ -106,8 +107,13 @@ Pull i push strana integrace:
   triviálním skriptu, část B (15 min) ho napojí na SharePoint přes managed identitu
   a zřídí web ze šablony. Vede přes **Automation Runbook**, ne Function — packaging
   `PnP.PowerShell` do deployment package je to, co první nasazení zabije.
-- Blok 2 [`../elevated-access/`](../elevated-access/) na tenhle postup staví: jeho lab ho
+- Blok 2 [`../elevated-access/`](../elevated-access/) na tenhle postup staví: jeho lab
   v části 5 jede tutéž cestu na elevované operaci.
+- [`explainer-runbook-cicd.md`](explainer-runbook-cicd.md) — **k přečtení předem nebo po
+  bloku.** Tutorial nasazuje z portálu a z Az cmdletů; tenhle soubor odpovídá na „a jak to
+  dělá inženýr, ne klikač". Native *Source Control Integration* umí publikovat na commit,
+  ale **podporuje jen PowerShell 5.1** — na runbook s `PnP.PowerShell` (runtime 7.2) tedy
+  nedosáhne. Cesta je vlastní pipeline, a je lepší i tam, kde by native fungovalo.
 
 ## Instruktorské demo (mimo agendu, spouští se na dotaz)
 
