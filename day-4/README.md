@@ -1,14 +1,31 @@
 # Den 4 — Azure integrace, SIEM a lifecycle
 
-Azure integrační vzory jako vstupní znalost pro SIEM logging pipeline a na ně navázaný
-lifecycle & compliance enforcement — den, který uzavírá provozní a governance linku
-týdne. **~6,2 h povinně.**
+Azure integrační vzory jako vstupní znalost, na ni navázaná **elevovaná operace nad
+SharePointem, kterou si studenti postaví a nasadí**, SIEM logging pipeline a lifecycle
+& compliance enforcement — den, který uzavírá provozní a governance linku týdne.
+**~7,7 h povinně** — nad stropem, viz poznámka o přestavbě 2026-09-10 níž.
 
 | Pořadí | Blok | Slug | Typ |
 |---|---|---|---|
 | 1 | Azure integrační vzory *(Lab 3)* | [`azure-integration-patterns`](azure-integration-patterns/) | P |
-| 2 | SIEM integrace přes Azure Blob | [`siem-blob-integration`](siem-blob-integration/) | P |
-| 3 | Lifecycle & compliance enforcement | [`lifecycle-compliance`](lifecycle-compliance/) | P |
+| 2 | **Elevovaný přístup: self-service žádost o oprávnění** *(lab)* | [`elevated-access`](elevated-access/) | P |
+| 3 | SIEM integrace přes Azure Blob | [`siem-blob-integration`](siem-blob-integration/) | P |
+| 4 | Lifecycle & compliance enforcement | [`lifecycle-compliance`](lifecycle-compliance/) | P |
+
+> [!IMPORTANT] Přestavba 2026-09-10 — nový blok 2, a den je nad stropem
+> **Elevovaný přístup dostal vlastní modul** ([`elevated-access/`](elevated-access/),
+> 30 min výklad + 60 min lab) a stojí hned za výkladovým Azure blokem. Do té doby to bylo
+> 15min instruktorské demo uvnitř bloku 1.
+>
+> **Důvod:** den 4 byl v reálném nasazení příliš akademický — mluvil o hostingu
+> a identitách a studenti si nic nepostavili. Elevovaná operace nad SharePointem byla
+> přitom nejkonkrétnější věc dne. Ke stejnému účelu vznikl v bloku 1
+> [`azure-integration-patterns/tutorial-script-to-azure.md`](azure-integration-patterns/tutorial-script-to-azure.md) —
+> krok-za-krokem, jak dostat skript do Azure a spustit ho tam. Nic takového v repu nebylo.
+>
+> **Cena:** D4 = 150 + 90 + 120 + 100 = **460 min / 7,7 h**, strop 6,5 h. Vědomé
+> rozhodnutí, ale **něco musí odejít** — nejpravděpodobněji zkrátit Lab 3 (dávkový sync)
+> v bloku 1, který se s labem bloku 2 tematicky překrývá. Rozhodne reálný běh D4.
 
 > [!NOTE] Přestavba 2026-09-09 — blok 1
 > ~30min instruktorské demo change notifications nahradilo **20min demo kopie dat se

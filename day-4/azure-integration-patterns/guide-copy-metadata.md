@@ -2,7 +2,7 @@
 
 Postup pro nasazení [`solution/Copy-ListContent.ps1`](solution/Copy-ListContent.ps1) —
 kopie položek mezi seznamy, která zachová původní `Created`, `Modified`, `Author`
-a `Editor`. Sesterský materiál k [`guide-elevated-op.md`](guide-elevated-op.md): tam šlo
+a `Editor`. Sesterský materiál k [`../elevated-access/lab-elevated-access.md`](../elevated-access/lab-elevated-access.md): tam šlo
 o to, **pod čí identitou** operace běží, tady o to, **čí identitu po sobě zanechá**.
 
 Je to **instruktorské demo**, ne studentský lab. Odhad 20 minut, nasazuje se jako
@@ -90,7 +90,7 @@ které u migrace chce vidět zadavatel — *kolik kopií má věrnou metadatovou
 ## Krok 3 — Připojení a nasazení
 
 Managed identity, bez tajemství na disku (`Sites.Selected` + per-site `Write` grant se
-uděluje stejně jako v [`guide-elevated-op.md`](guide-elevated-op.md), krok 2):
+uděluje stejně jako v [`../elevated-access/lab-elevated-access.md`](../elevated-access/lab-elevated-access.md), krok 2):
 
 ```powershell
 Connect-PnPOnline -Url $env:SITE_URL -ManagedIdentity

@@ -1,7 +1,7 @@
 # Comparison · Power Automate flow vs vlastní app-only skript
 
 Doplněk k [`README.md`](README.md). Srovnání hostingů v
-[`comparison-scheduled-runtimes.md`](comparison-scheduled-runtimes.md) řeší, **kde** skript
+[`comparison-scheduled-runtimes.md`](../azure-integration-patterns/comparison-scheduled-runtimes.md) řeší, **kde** skript
 běží. Tenhle soubor řeší otázku, která na kurzu padne skoro vždycky: **„a proč to nenapsat
 v Power Automate?"**
 
@@ -19,7 +19,7 @@ identitou to běží**.
 | **automatizaci, kterou vlastní tým, ne člověk** — přežije odchod autora, běží pod aplikační identitou | **app-only skript** |
 | **operaci nad tisíci weby nebo položkami** s throttling-aware retry a měřitelnou propustností | **app-only skript** |
 | **auditní stopu, kterou vidí i zadavatel** a která leží ve vašem seznamu, ne v běhové historii flow | **app-only skript** |
-| **elevaci oprávnění s kontrolou, kdo o ni smí požádat** | **app-only skript** ([`guide-elevated-op.md`](guide-elevated-op.md)) |
+| **elevaci oprávnění s kontrolou, kdo o ni smí požádat** | **app-only skript** ([`lab-elevated-access.md`](lab-elevated-access.md)) |
 
 Pointa není „Power Automate je špatný". Pointa je, že **první dvě řádky jsou pro flow
 a zbytek ne** — a rozhodující je ta třetí.

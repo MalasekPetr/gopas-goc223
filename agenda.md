@@ -112,12 +112,22 @@ Jediný zdroj pravdy o pořadí modulů. Složky jsou slugy; pořadí drží tat
 | # | Blok | Slug | Typ |
 |---|---|---|---|
 | 1 | Azure integrační vzory *(Lab 3: dávkový sync + plánovaný task; kopie s metadaty jako instruktorské demo)* | `day-4/azure-integration-patterns` | P |
-| 2 | SIEM integrace přes Azure Blob | `day-4/siem-blob-integration` | P |
-| 3 | Lifecycle & compliance enforcement | `day-4/lifecycle-compliance` | P |
+| 2 | **Elevovaný přístup: self-service žádost o oprávnění** *(lab)* | `day-4/elevated-access` | P |
+| 3 | SIEM integrace přes Azure Blob | `day-4/siem-blob-integration` | P |
+| 4 | Lifecycle & compliance enforcement | `day-4/lifecycle-compliance` | P |
 
-> [!NOTE] ~6,2 h (150 + 120 + 100 = 370 min) — hustý den, ale uprostřed týdne, bez
-> onboarding/odchodových rizik. Change-notifications lab je **celé samostudium**;
-> subscription lifecycle zůstává ve výkladu bloku 1.
+> [!WARNING] Den 4 je nad stropem: ~7,7 h povinně (150 + **90** + 120 + 100 = 460 min)
+> Vzniklo **2026-09-10** přidáním bloku 2 (`elevated-access`, 30 výklad + 60 lab).
+> **Vědomé rozhodnutí, ne omyl:** den 4 byl v reálném nasazení příliš akademický — mluvil
+> o hostingu a identitách a studenti si nic nepostavili. Elevovaný přístup byl přitom
+> nejkonkrétnější věc dne a živořil jako 15min demo uvnitř bloku 1.
+>
+> **Něco z dne musí odejít.** Nejpravděpodobnější kandidát je zkrátit **Lab 3** (dávkový
+> sync, 90 min) v bloku 1 — s labem bloku 2 se tematicky překrývá, oba jsou „napiš skript
+> pod aplikační identitou". Rozhodne se podle reálného běhu D4; stav v `CLAUDE.md`.
+
+> [!NOTE] Change-notifications lab je **celé samostudium**; subscription lifecycle
+> zůstává ve výkladu bloku 1.
 >
 > **Přestavba 2026-09-09:** ~30min instruktorské demo change notifications nahradilo
 > **20min demo kopie s metadaty** (`guide-copy-metadata.md`). Z obou je to jediné, které

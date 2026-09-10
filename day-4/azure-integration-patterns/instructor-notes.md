@@ -14,16 +14,6 @@
 
 ## Go/no-go — KLÍČOVÉ, otestovat před během
 
-- **Elevovaná operace místo Power Automate** ([`guide-elevated-op.md`](guide-elevated-op.md))
-  je **volitelné demo na 15 min**, které se pouští, až když padne dotaz na Power Automate.
-  Agenda se kvůli němu neposouvá. Před během: založit oba seznamy, udělit `Sites.Selected`
-  na demo web a **projít celý postup jednou nanečisto** — rozbití dědění oprávnění na
-  položce se před skupinou improvizovat nedá.
-- Pokud na demo není čas ani chuť, stačí pustit
-  [`solution/Grant-RequestedAccess.Tests.ps1`](solution/Grant-RequestedAccess.Tests.ps1).
-  Dva testy (`zamitne zadost za nekoho jineho`, `s -WhatIf neprovede ani jeden zapis`)
-  sdělí celou pointu za třicet sekund.
-
 - **Kopie s metadaty** ([`guide-copy-metadata.md`](guide-copy-metadata.md)) je **demo na
   20 min** a jde do agendy místo dema change notifications. Před během: založit zdrojový
   a cílový seznam, **nechat pár položek založit jinými účty a před demem to ověřit** —
@@ -55,12 +45,7 @@
 - **U Power Automate nesklouznout do hanění.** Studenti tam mají postavené věci, které
   fungují, a materiál to říká výslovně: flow dělá interakci s člověkem, skript dělá
   privilegovanou operaci. Kdo z bloku odejde s dojmem „Power Automate je špatný", odnesl
-  si opak toho, co je v [`comparison-power-automate.md`](comparison-power-automate.md).
-- **Nejsilnější moment dema je zamítnutá žádost, ne úspěšná.** Založit řádek, kde
-  `RequesterEmail` je někdo jiný než zakladatel, a nechat skript odpovědět. Teprve tím je
-  vidět, že aplikační identita s právem na celý web není generální klíč — autorizace je
-  v kódu a zamítnutí se auditovalo.
-
+  si opak toho, co je v [`comparison-power-automate.md`](../elevated-access/comparison-power-automate.md).
 - **U kopie s metadaty nezačínat cmdletem.** Nejsilnější moment není `-UpdateType`, ale
   otázka „a jak se tenhle zápis projeví ve vašem compliance reportu?" — odpověď je, že
   zápis přes `SystemUpdate` nechá `Modified` nedotčené, takže **detekce driftu podle

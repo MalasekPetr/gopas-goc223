@@ -1,0 +1,68 @@
+# Instructor notes — Elevovaný přístup
+
+## Timing
+
+- **30 min výklad + 60 min lab = 90 min.** Blok 2 dne 4, hned za výkladovým Azure blokem.
+- **Nový modul od 2026-09-10.** Do té doby to bylo 15min instruktorské demo uvnitř bloku 1
+  (`guide-elevated-op.md`). Důvod přestavby: den 4 byl v reálném nasazení **příliš
+  akademický** — mluvil o hostingu a identitách a studenti si nic nepostavili. Tohle je
+  nejkonkrétnější věc celého dne, tak dostala vlastní blok a poctivý step-by-step lab.
+- Lab **nekrátit pod krok 7** (zamítnutí). Kroky 1-6 postaví funkční přidělení, ale teprve
+  krok 7 dokáže, že to není generální klíč — a to je celá pointa bloku.
+
+> [!IMPORTANT] Kapacita dne 4 tím jde nad strop
+> D4 = 150 + **90** + 120 + 100 = **460 min / 7,7 h**, strop je 6,5 h. Vědomé rozhodnutí
+> 2026-09-10: praktičnost přednější. Ale **něco z dne musí odejít** — kandidáti
+> a stav v `CLAUDE.md`. Nejpravděpodobnější je zkrátit Lab 3 (batch sync, 90 min) v bloku 1,
+> který se s tímhle labem tematicky překrývá: oba jsou „napiš skript pod aplikační identitou".
+
+## Go/no-go — KLÍČOVÉ, otestovat před během
+
+- **Projít celý lab jednou nanečisto.** Rozbití dědění oprávnění na položce se před
+  skupinou improvizovat nedá.
+- **Založit oba seznamy na demo webu** a zkontrolovat **interní** názvy polí
+  (`Get-PnPField -List ... | Select Title, InternalName`) — sloupec vytvořený jako
+  „Request Status" má interní název `Request_x0020_Status` a skript ho nenajde. Je to
+  nejčastější důvod, proč lab studentovi nejede, a chybová hláška na to neukáže.
+- **Udělit `Sites.Selected` per-site grant** a ověřit ho `Get-PnPAzureADAppSitePermission`.
+- **Zajistit druhý testovací účet** pro krok 7, nebo studenty předem spárovat do dvojic.
+  Bez toho nejde odučit nejdůležitější ověření. Fallback (cizí adresa v `RequesterEmail`
+  u vlastního řádku) je v labu, ale je slabší — nevidí se na něm, že brána chrání
+  před **jiným člověkem**.
+- **Ověřit, že audit seznam má Members jen čtení.** Studenti to přeskakují a pak nechápou,
+  proč je to v `Ověření`.
+- Pro krok 8 platí go/no-go z
+  [`../azure-integration-patterns/tutorial-script-to-azure.md`](../azure-integration-patterns/tutorial-script-to-azure.md) —
+  hlavně že v Automation accountu je vidět blazena **Modules** (jinak účet používá Runtime
+  environments) a že import `PnP.PowerShell` je hotový **před** blokem, ne během něj.
+
+## Tripwires
+
+- **Nejsilnější moment je zamítnutá žádost, ne úspěšná.** Nechte studenty nejdřív uvidět,
+  jak jim to přidělí přístup — a pak je pošlete na krok 7. Ten kontrast dělá tu lekci.
+- **U Power Automate nesklouznout do hanění.** Studenti tam mají postavené věci, které
+  fungují. Materiál to říká výslovně: flow dělá interakci s člověkem, skript dělá
+  privilegovanou operaci. Kdo z bloku odejde s dojmem „Power Automate je špatný", odnesl
+  si opak toho, co je v [`comparison-power-automate.md`](comparison-power-automate.md).
+  Pomáhá zmínit, že **service principal jako vlastník kritických flow doporučuje sám
+  Microsoft** — je to tatáž aplikační identita, jen s vrstvou Power Platform navíc.
+- **Dvoustupňová brána: nenechat je postavit jen jeden stupeň.** Typická odevzdávka má
+  kontrolu v kódu a otevřený seznam, nebo zamčený seznam a žádnou kontrolu. Ptejte se
+  „a co se stane, když ti řádek založí někdo jiný z tenantu?"
+- **`-WhatIf` není formalita.** Kdo ho přeskočí a má překlep v `TargetItemId`, rozbije
+  dědění oprávnění na cizí položce. V labu je to krok 5 schválně před krokem 6.
+- Studenti si pletou **zobrazovaný a interní název pole** — viz go/no-go výše.
+
+## Vazby
+
+- Zpět: app registrace a `Sites.Selected` z
+  [`../../day-2/automation-strategy/`](../../day-2/automation-strategy/), certifikátová
+  identita z [`../../day-2/powershell-deep-dive/`](../../day-2/powershell-deep-dive/).
+- Zpět: nasazení do Azure řeší
+  [`../azure-integration-patterns/tutorial-script-to-azure.md`](../azure-integration-patterns/tutorial-script-to-azure.md)
+  z bloku 1 — tenhle blok ho jen použije, neopakuje ho.
+- Dopředu: disciplína audit seznamu (retence, neměnnost, Members jen čtení) se dotahuje
+  v [`../lifecycle-compliance/`](../lifecycle-compliance/).
+- Dopředu: `-SystemUpdate`, kterým skript zapisuje stav žádosti, nechá `Modified`
+  nedotčené — a to je slepá skvrna detekce driftu, viz
+  [`../azure-integration-patterns/guide-copy-metadata.md`](../azure-integration-patterns/guide-copy-metadata.md).

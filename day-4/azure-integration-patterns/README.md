@@ -4,7 +4,7 @@
 
 ## Cíle
 - Logic Apps vs Functions vs Runbooks — a kdy nic z toho, ale Power Automate flow
-  ([`comparison-power-automate.md`](comparison-power-automate.md)).
+  ([`comparison-power-automate.md`](../elevated-access/comparison-power-automate.md)).
 - Event/webhook subscription, change notifications.
 - **Tři update typy a to, že se vzájemně vylučují**: zachovat původní autory a časy jde
   jen za cenu spuštění flow, a zápis, který flow nespustí, je neviditelný pro detekci
@@ -31,8 +31,8 @@ Runbook jako druhý krok.
 > platforma umí, nýbrž **pod čí identitou to běží**: elevace v Power Automate se dělá
 > sdílením flow, kde konektor zůstane na vlastníkovi, takže automatizace visí na osobním
 > účtu. Srovnání a nasaditelná náhrada:
-> [`comparison-power-automate.md`](comparison-power-automate.md)
-> a [`guide-elevated-op.md`](guide-elevated-op.md).
+> [`comparison-power-automate.md`](../elevated-access/comparison-power-automate.md)
+> a [`../elevated-access/lab-elevated-access.md`](../elevated-access/lab-elevated-access.md).
 
 ### Plánované běhy: on-premise vs Azure — a auth bez člověka
 Čtvrtá varianta vedle Azure trojice je klasický **on-premise server s Task Schedulerem** —
@@ -99,11 +99,18 @@ Pull i push strana integrace:
   samostudium** dle zadání labu; subscription lifecycle zůstává ve výkladu výše.
   Instruktorské demo tohle **není** — viz poznámka o přestavbě níž.
 
-## Instruktorská dema (mimo agendu, spouštějí se na dotaz)
+## Tutorial
 
-- [`guide-elevated-op.md`](guide-elevated-op.md) — 15 min. Elevovaná operace nad
-  SharePointem pod aplikační identitou místo Power Automate flow. **Pod čí identitou
-  operace běží.**
+- [`tutorial-script-to-azure.md`](tutorial-script-to-azure.md) — **krok za krokem, jak
+  dostat skript do Azure a spustit ho tam.** Část A (10 min) dokáže celou cestu na
+  triviálním skriptu, část B (15 min) ho napojí na SharePoint přes managed identitu
+  a zřídí web ze šablony. Vede přes **Automation Runbook**, ne Function — packaging
+  `PnP.PowerShell` do deployment package je to, co první nasazení zabije.
+- Blok 2 [`../elevated-access/`](../elevated-access/) na tenhle postup staví: jeho lab ho
+  v kroku 8 použije a neopakuje.
+
+## Instruktorské demo (mimo agendu, spouští se na dotaz)
+
 - [`guide-copy-metadata.md`](guide-copy-metadata.md) — 20 min. Kopie dat se zachováním
   původního `Created`/`Modified`/`Author`/`Editor`. **Čí identitu po sobě zanechá** — a proč
   zápis přes `SystemUpdate` neuvidí detekce driftu z
