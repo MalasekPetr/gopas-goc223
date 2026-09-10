@@ -30,10 +30,10 @@
   „Request Status" má interní název `Request_x0020_Status` a skript ho nenajde. Je to
   nejčastější důvod, proč lab studentovi nejede, a chybová hláška na to neukáže.
 - **Udělit `Sites.Selected` per-site grant** a ověřit ho `Get-PnPAzureADAppSitePermission`.
-- **Zajistit druhý testovací účet** pro krok 7, nebo studenty předem spárovat do dvojic.
-  Bez toho nejde odučit nejdůležitější ověření. Fallback (cizí adresa v `RequesterEmail`
-  u vlastního řádku) je v labu, ale je slabší — nevidí se na něm, že brána chrání
-  před **jiným člověkem**.
+- **Lab si vystačí s jedním účtem** — nic nepárovat do dvojic, nic nezřizovat. Krok 7
+  vyrábí neshodu `RequesterEmail` vs `Author` tím, že student napíše do pole cizí adresu.
+  (Do 2026-09-10 lab druhý účet vyžadoval; vyhozeno záměrně — na první seznámení
+  s technologií to zesložiťovalo něco, co jde ukázat jedním řádkem.)
 - **Ověřit, že audit seznam má Members jen čtení.** Studenti to přeskakují a pak nechápou,
   proč je to v `Ověření`.
 - Pro krok 8 platí go/no-go z

@@ -17,8 +17,8 @@ Proč tuhle cestu a co za ni platíte: [`comparison-power-automate.md`](comparis
 - Vlastní web a v něm knihovna dokumentů s alespoň jedním dokumentem.
 - PnP.PowerShell a certifikátová identita z
   [`../../day-2/powershell-deep-dive/`](../../day-2/powershell-deep-dive/).
-- **Druhý testovací účet** (nebo kolega vedle vás) — bez něj nejde ověřit ta nejdůležitější
-  věc: že se žádost za někoho jiného zamítne.
+
+Druhý účet **nepotřebujete** — celý lab včetně ověření brány projde z vašeho vlastního.
 
 > [!IMPORTANT] Nic z tohohle nepatří do repa jako literál
 > Tenant ID, ClientId, thumbprint ani URL webu se nikam nekomitují — jsou to parametry
@@ -120,13 +120,21 @@ Spusťte totéž bez `-WhatIf`. Pak zkontrolujte **v SharePointu**, ne jen ve v�
 
 Tady se pozná, jestli jste postavili bránu, nebo generální klíč.
 
-Nechte **druhý účet** (nebo kolegu) založit řádek, kde `RequesterEmail` je **někdo jiný**
-než ten, kdo řádek zakládá. Spusťte skript.
+Založte **další vlastní řádek**, ale do `RequesterEmail` napište **cizí adresu** — třeba
+`nekdo.jiny@contoso.com`. `Author` tedy budete vy, `RequesterEmail` někdo jiný. Spusťte
+skript.
 
 Musí se stát tři věci:
+
 1. přístup se **nepřidělí**,
 2. řádek dostane `Rejected` a v `DecisionNote` důvod,
 3. **v auditu je záznam** — ne prázdno.
+
+> [!NOTE] Invariant, který jste právě vynutili
+> **Žádost musí přijít od toho, pro koho je.** Bez toho by kdokoli, kdo umí založit řádek,
+> uměl přidělit přístup komukoli jinému — třeba externímu hostu, který o nic nepožádal.
+> Nepotřebujete na to druhý účet: rozhoduje neshoda `RequesterEmail` s `Author`, a tu
+> vyrobíte z jednoho účtu tím, že do pole napíšete cizí adresu.
 
 Pak to samé s `RequestedRole` = `Full Control` (mimo povolenou sadu) a s knihovnou mimo
 `AllowedLibraryTitle`. Aplikace na ten web technicky právo má — a stejně to nesmí projít.
@@ -201,9 +209,10 @@ Invoke-Pester ./solution/Grant-RequestedAccess.Tests.ps1
   per-site grant se mezi verzemi měnily — ověřit
   `Get-Command -Module PnP.PowerShell *SitePermission*`. Alternativa je Graph
   `POST /sites/{siteId}/permissions`.
-- **Nemáte druhý účet** (krok 7): založte řádek sami, ale `RequesterEmail` vyplňte na
-  cizí adresu. `Author` bude vy, `RequesterEmail` někdo jiný — brána to zamítne ze stejného
-  důvodu a ověření projde.
+- **Máte druhý účet a chcete jít dál** (nad rámec labu): nechte ho založit řádek s vaší
+  adresou v `RequesterEmail`. Zamítne se ze stejného důvodu, jen z druhé strany — a je na
+  tom vidět, že brána chrání i vás před tím, aby vám někdo „přidělil" přístup, o který
+  jste nežádali.
 - **Nedostanete se do Azure** (krok 8): kroky 1-7 jsou jádro labu a stojí samy. Plánovaný
   běh se dá ukázat i lokálně přes `Register-ScheduledTask`, jako v Labu 3.
 - **Není čas na celý lab**: pusťte jen Pester testy. `zamitne zadost za nekoho jineho`
