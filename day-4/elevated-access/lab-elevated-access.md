@@ -33,6 +33,31 @@ identitu nemusíte nikde mít.
 
 Druhý účet nepotřebujete. Vše projde z vašeho vlastního.
 
+## Nastavte si tohle jednou a pak už jen kopírujte
+
+Všechny příkazy v labu používají tyhle proměnné. Nastavte je **na začátku** a do konce
+labu se k nim nevracejte — tím zmizí nejčastější zdroj chyb, kdy se člověk v jednom kroku
+připojí jako jedna aplikace a grant udělá jiné:
+
+```powershell
+$siteUrl    = "https://<tenant>.sharepoint.com/sites/<web>"
+$clientId   = "<client-id vasi app registrace z D2>"
+$thumbprint = "<thumbprint certifikatu z D2>"
+$tenantName = "<tenant>.onmicrosoft.com"
+
+# Nazvy seznamu, ktere zalozite v casti 2
+$requestList   = "Zadosti o pristup"
+$auditList     = "Audit pristupu"
+$targetLibrary = "Dokumenty"
+```
+
+> [!TIP] Thumbprint si nevypisujte z hlavy
+> 
+> ```powershell
+> Get-ChildItem Cert:\CurrentUser\My |
+>     Select-Object Subject, Thumbprint, NotAfter
+> ```
+
 ---
 
 ## Část 1 — Nejdřív to udělejte rukama (5 min)
@@ -86,29 +111,29 @@ název `Request_x0020_Status` a skript ho nenajde).
 **Skriptem:**
 
 ```powershell
-Connect-PnPOnline -Url "https://<tenant>.sharepoint.com/sites/<web>" `
-  -ClientId <client-id> -Interactive
+Connect-PnPOnline -Url $siteUrl `
+  -ClientId $clientId -Interactive
 
-New-PnPList -Title "Zadosti o pristup" -Template GenericList
+New-PnPList -Title $requestList -Template GenericList
 
-Add-PnPField -List "Zadosti o pristup" -DisplayName "RequestStatus" -InternalName "RequestStatus" `
+Add-PnPField -List $requestList -DisplayName "RequestStatus" -InternalName "RequestStatus" `
   -Type Choice -Choices "Pending","Granted","Rejected","Failed" -AddToDefaultView
-Add-PnPField -List "Zadosti o pristup" -DisplayName "RequesterEmail" -InternalName "RequesterEmail" `
+Add-PnPField -List $requestList -DisplayName "RequesterEmail" -InternalName "RequesterEmail" `
   -Type Text -AddToDefaultView
-Add-PnPField -List "Zadosti o pristup" -DisplayName "TargetLibrary" -InternalName "TargetLibrary" `
+Add-PnPField -List $requestList -DisplayName "TargetLibrary" -InternalName "TargetLibrary" `
   -Type Text -AddToDefaultView
-Add-PnPField -List "Zadosti o pristup" -DisplayName "TargetItemId" -InternalName "TargetItemId" `
+Add-PnPField -List $requestList -DisplayName "TargetItemId" -InternalName "TargetItemId" `
   -Type Number -AddToDefaultView
-Add-PnPField -List "Zadosti o pristup" -DisplayName "RequestedRole" -InternalName "RequestedRole" `
+Add-PnPField -List $requestList -DisplayName "RequestedRole" -InternalName "RequestedRole" `
   -Type Choice -Choices "Read","Contribute" -AddToDefaultView
-Add-PnPField -List "Zadosti o pristup" -DisplayName "DecisionNote" -InternalName "DecisionNote" `
+Add-PnPField -List $requestList -DisplayName "DecisionNote" -InternalName "DecisionNote" `
   -Type Note
 ```
 
 **Ověřte si interní názvy**, ať vás to nezradí až v kroku 7:
 
 ```powershell
-Get-PnPField -List "Zadosti o pristup" | Select-Object Title, InternalName
+Get-PnPField -List $requestList | Select-Object Title, InternalName
 ```
 
 ### Krok 3 — Seznam auditu, do kterého nikdo nesmí zapisovat
@@ -126,18 +151,18 @@ Inheriting Permissions** a skupině **Members** změňte úroveň na **Read**.
 **Skriptem:**
 
 ```powershell
-New-PnPList -Title "Audit pristupu" -Template GenericList
+New-PnPList -Title $auditList -Template GenericList
 
-Add-PnPField -List "Audit pristupu" -DisplayName "Requester"  -InternalName "Requester"  -Type Text -AddToDefaultView
-Add-PnPField -List "Audit pristupu" -DisplayName "Outcome"    -InternalName "Outcome"    -Type Text -AddToDefaultView
-Add-PnPField -List "Audit pristupu" -DisplayName "Detail"     -InternalName "Detail"     -Type Note
-Add-PnPField -List "Audit pristupu" -DisplayName "ProcessedU" -InternalName "ProcessedU" -Type Text -AddToDefaultView
+Add-PnPField -List $auditList -DisplayName "Requester"  -InternalName "Requester"  -Type Text -AddToDefaultView
+Add-PnPField -List $auditList -DisplayName "Outcome"    -InternalName "Outcome"    -Type Text -AddToDefaultView
+Add-PnPField -List $auditList -DisplayName "Detail"     -InternalName "Detail"     -Type Note
+Add-PnPField -List $auditList -DisplayName "ProcessedU" -InternalName "ProcessedU" -Type Text -AddToDefaultView
 
 # Rozbit dedeni a nechat clenum jen cteni
-Set-PnPList -Identity "Audit pristupu" -BreakRoleInheritance -CopyRoleAssignments
+Set-PnPList -Identity $auditList -BreakRoleInheritance -CopyRoleAssignments
 $members = Get-PnPGroup | Where-Object { $_.Title -like "*Members*" }
-Set-PnPListPermission -Identity "Audit pristupu" -Group $members.Title -RemoveRole "Edit"
-Set-PnPListPermission -Identity "Audit pristupu" -Group $members.Title -AddRole "Read"
+Set-PnPListPermission -Identity $auditList -Group $members.Title -RemoveRole "Edit"
+Set-PnPListPermission -Identity $auditList -Group $members.Title -AddRole "Read"
 ```
 
 ---
@@ -155,14 +180,14 @@ to oprávnění nakonsentované od D2, ale **přístup má jen tam, kde jí ho n
 **Skriptem (PnP):**
 
 ```powershell
-Connect-PnPOnline -Url "https://<tenant>.sharepoint.com/sites/<web>" `
-  -ClientId <client-id> -Interactive
+Connect-PnPOnline -Url $siteUrl `
+  -ClientId $clientId -Interactive
 
 # Kdo vsechno ma pristup na TENTO web
 Get-PnPEntraIDAppSitePermission
 
 # Nebo naopak: co ma tahle konkretni aplikace
-Get-PnPEntraIDAppSitePermission -AppIdentity <client-id>
+Get-PnPEntraIDAppSitePermission -AppIdentity $clientId
 ```
 
 Měl by tam být jeden záznam s právem **`Read`** — ten, který jste si udělal v D2. Krok 5
@@ -219,12 +244,12 @@ na tomhle labu to, co si odnesete.
 > aplikaci**. Právě proto se to dělá skriptem nebo Graph API.
 
 ```powershell
-Connect-PnPOnline -Url "https://<tenant>.sharepoint.com/sites/<web>" `
-  -ClientId <client-id> -Interactive
+Connect-PnPOnline -Url $siteUrl `
+  -ClientId $clientId -Interactive
 
-Grant-PnPEntraIDAppSitePermission -AppId <client-id> `
+Grant-PnPEntraIDAppSitePermission -AppId $clientId `
   -DisplayName "<jmeno-prijmeni>-course-app" `
-  -Site "https://<tenant>.sharepoint.com/sites/<web>" `
+  -Site $siteUrl `
   -Permissions Write
 
 # Overit
@@ -243,16 +268,41 @@ Get-PnPEntraIDAppSitePermission
 že se neotevře žádné okno s přihlášením.
 
 ```powershell
-Connect-PnPOnline -Url "https://<tenant>.sharepoint.com/sites/<web>" `
-  -ClientId $env:CLIENT_ID -Tenant "<tenant>.onmicrosoft.com" `
-  -Thumbprint $env:CERT_THUMBPRINT
+Connect-PnPOnline -Url $siteUrl `
+  -ClientId $clientId -Tenant $tenantName `
+  -Thumbprint $thumbprint
 ```
 
-Parametr je `-Thumbprint`, **ne** `-CertificateThumbprint`. Ověřte, že opravdu nejste vy:
+Parametr je `-Thumbprint`, **ne** `-CertificateThumbprint`.
+
+**Teď to ověřte, než pustíte cokoli dalšího.** Tři řádky, které vám ušetří půl hodiny
+hádání v kroku 7:
 
 ```powershell
+# 1. Nejsem to ja? (app-only nema CurrentUser jako clovek)
 Get-PnPProperty -ClientObject (Get-PnPWeb) -Property CurrentUser
+
+# 2. Pripojen jako KTERA aplikace a na KTERY web?
+Get-PnPConnection | Select-Object Url, ClientId
+
+# 3. Ma prave TENHLE ClientId grant na prave TENHLE web?
+Get-PnPEntraIDAppSitePermission
 ```
+
+> [!WARNING] `Unauthorized` v kroku 7 má skoro vždy jednu ze tří příčin
+> A všechny tři odhalí ty tři příkazy výše — proto tu jsou.
+>
+> | Symptom | Příčina | Kde to opravit |
+> |---|---|---|
+> | `Unauthorized` už na **čtení** seznamu žádostí | **připojen jako jiná aplikace**, než která má grant — `ClientId` z bodu 2 nesouhlasí s tím z kroku 5 | krok 6 |
+> | `Unauthorized`, `ClientId` souhlasí, grant existuje | aplikace **nemá v Entra nakonsentovanou app roli** `Sites.Selected` — per-site grant sám o sobě token neopravňuje | krok 4, ručně v portálu |
+> | `Unauthorized`, vše souhlasí, ale jiná URL | grant je na **jiném webu**, než na který jste připojen | krok 5 |
+>
+> **`Unauthorized` není totéž jako `Access denied`.** *Unauthorized* znamená, že token
+> to právo nenese **vůbec** — špatná aplikace nebo chybějící app role. *Access denied*
+> znamená správnou identitu s **nedostatečnou úrovní** — to je krok 7b. Když má aplikace
+> na web `FullControl` a přesto dostáváte `Unauthorized`, problém je **o vrstvu výš** než
+> per-site grant a zvyšování role ho nevyřeší.
 
 ### Krok 7 — Nechat skript udělat to, co jste v kroku 1 klikali
 
@@ -283,12 +333,12 @@ protože skript už máte u sebe:
 . ./Grant-RequestedAccess.ps1
 
 # Nasucho - vypise, co by se stalo, a nezapise nic
-Invoke-AccessRequestQueue -RequestListTitle 'Zadosti o pristup' `
-  -AuditListTitle 'Audit pristupu' -AllowedLibraryTitle 'Dokumenty' -WhatIf
+Invoke-AccessRequestQueue -RequestListTitle $requestList `
+  -AuditListTitle $auditList -AllowedLibraryTitle $targetLibrary -WhatIf
 
 # Naostro
-Invoke-AccessRequestQueue -RequestListTitle 'Zadosti o pristup' `
-  -AuditListTitle 'Audit pristupu' -AllowedLibraryTitle 'Dokumenty'
+Invoke-AccessRequestQueue -RequestListTitle $requestList `
+  -AuditListTitle $auditList -AllowedLibraryTitle $targetLibrary
 ```
 
 > [!NOTE] Co dělá ta první tečka — a proč bez ní nic nefunguje
@@ -334,11 +384,11 @@ na maximum. Vezměte `PermissionId` z výpisu, který jste si schoval v kroku 4,
 po jednom stupni**:
 
 ```powershell
-Connect-PnPOnline -Url "https://<tenant>.sharepoint.com/sites/<web>" `
-  -ClientId <client-id> -Interactive
+Connect-PnPOnline -Url $siteUrl `
+  -ClientId $clientId -Interactive
 
 # PermissionId je v tom vypisu z kroku 4
-$perm = Get-PnPEntraIDAppSitePermission -AppIdentity <client-id>
+$perm = Get-PnPEntraIDAppSitePermission -AppIdentity $clientId
 
 # Zkusit Manage
 Set-PnPEntraIDAppSitePermission -PermissionId $perm.Id -Permissions Manage
@@ -478,12 +528,12 @@ s `ResourceId` = `$spo.Id` a `AppRoleId` z výpisu výše. Nakonec **druhý per-
 tentokrát na `AppId` managed identity:
 
 ```powershell
-Connect-PnPOnline -Url "https://<tenant>.sharepoint.com/sites/<web>" `
-  -ClientId <client-id> -Interactive
+Connect-PnPOnline -Url $siteUrl `
+  -ClientId $clientId -Interactive
 
 Grant-PnPEntraIDAppSitePermission -AppId $mi.AppId `
   -DisplayName "aa-goc223-<jmeno-prijmeni>" `
-  -Site "https://<tenant>.sharepoint.com/sites/<web>" -Permissions Write
+  -Site $siteUrl -Permissions Write
 ```
 
 ### Krok 11 — Runbook a první běh v Azure
@@ -534,10 +584,10 @@ Publish-AzAutomationRunbook -ResourceGroupName $rg -AutomationAccountName $aa `
 
 $job = Start-AzAutomationRunbook -ResourceGroupName $rg -AutomationAccountName $aa `
   -Name "Grant-Access" -Parameters @{
-      SiteUrl = "https://<tenant>.sharepoint.com/sites/<web>"
-      RequestList = "Zadosti o pristup"
-      AuditList = "Audit pristupu"
-      AllowedLibrary = "Dokumenty"
+      SiteUrl = $siteUrl
+      RequestList = $requestList
+      AuditList = $auditList
+      AllowedLibrary = $targetLibrary
   }
 
 Get-AzAutomationJobOutput -ResourceGroupName $rg -AutomationAccountName $aa `
