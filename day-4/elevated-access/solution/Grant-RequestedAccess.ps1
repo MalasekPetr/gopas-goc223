@@ -213,7 +213,7 @@ function Set-RequestProcessed {
     .SYNOPSIS
         Oznaci radek zadosti jako zpracovany.
     .DESCRIPTION
-        -SystemUpdate je tu zamerne: podle dokumentace PnP meni polozku BEZ verzovani
+        -UpdateType SystemUpdate je tu zamerne: podle dokumentace PnP meni polozku BEZ verzovani
         a BEZ spousteni flow. U zapisu zpatky do seznamu, ktery cely proces spustil, to
         zabranuje dvema vecem - zaplaveni verzi a zacykleni, kdyby nad tim seznamem visel
         jeste nejaky flow.
@@ -223,6 +223,11 @@ function Set-RequestProcessed {
         ze na nej sahla automatizace. Tady to nevadi - auditni stopa lezi ve zvlastnim
         seznamu, ne v Modified. Kdyby ale nekdo stavel detekci zmen na Modified, tenhle
         zapis by mu unikl. Mechanismus a proc na tom zalezi: guide-copy-metadata.md.
+
+        POZOR NA SYNTAXI, PnP ji ma u dvou cmdletu jinou:
+          Set-PnPListItem           -> JEN -UpdateType SystemUpdate (switch -SystemUpdate NEEXISTUJE)
+          Set-PnPListItemPermission -> switch -SystemUpdate existuje
+        Zamena vyhodi "A parameter cannot be found that matches parameter name SystemUpdate".
     #>
     [CmdletBinding(SupportsShouldProcess)]
     param(
@@ -238,7 +243,7 @@ function Set-RequestProcessed {
     }
 
     if ($PSCmdlet.ShouldProcess("$RequestListTitle / $RequestId", "Nastavit stav $Status")) {
-        Set-PnPListItem -List $RequestListTitle -Identity $RequestId -Values $values -SystemUpdate | Out-Null
+        Set-PnPListItem -List $RequestListTitle -Identity $RequestId -Values $values -UpdateType SystemUpdate | Out-Null
     }
 }
 

@@ -22,7 +22,9 @@ BeforeAll {
     function Get-PnPListItem { param($List, $Query, $Identity, $PageSize) }
     function Set-PnPListItemPermission { param($List, $Identity, $User, $AddRole, [switch] $SystemUpdate) }
     function Add-PnPListItem { param($List, $Values) }
-    function Set-PnPListItem { param($List, $Identity, $Values, [switch] $SystemUpdate) }
+    # Set-PnPListItem ma JEN -UpdateType (string). Switch -SystemUpdate neexistuje - kdyby
+    # ho skript pouzil, na zivem PnP by spadl. Stub ho proto zamerne NEDEKLARUJE.
+    function Set-PnPListItem { param($List, $Identity, $Values, [string] $UpdateType) }
 
     # Pomocnik: napodobi radek zadosti tak, jak ho vraci PnP (hodnoty ve FieldValues).
     function New-FakeRequest {
@@ -167,11 +169,11 @@ Describe 'Invoke-AccessRequestQueue' {
         Should -Not -Invoke Set-PnPListItem
     }
 
-    It 'stav zadosti zapisuje se -SystemUpdate, aby nespoustel flow a neverzoval' {
+    It 'stav zadosti zapisuje s -UpdateType SystemUpdate, aby nespoustel flow a neverzoval' {
         Mock Get-PnPListItem { New-FakeRequest }
         Invoke-AccessRequestQueue @script:StdArgs | Out-Null
 
-        Should -Invoke Set-PnPListItem -Times 1 -Exactly -ParameterFilter { $SystemUpdate }
+        Should -Invoke Set-PnPListItem -Times 1 -Exactly -ParameterFilter { $UpdateType -eq 'SystemUpdate' }
     }
 
     It 'selhani jedne zadosti nezastavi frontu a oznaci ji jako Failed' {

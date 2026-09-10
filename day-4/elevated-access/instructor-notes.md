@@ -105,6 +105,6 @@
   za deset minut.
 - Dopředu: disciplína audit seznamu (retence, neměnnost, Members jen čtení) se dotahuje
   v [`../lifecycle-compliance/`](../lifecycle-compliance/).
-- Dopředu: `-SystemUpdate`, kterým skript zapisuje stav žádosti, nechá `Modified`
+- Dopředu: `-UpdateType SystemUpdate`, kterým skript zapisuje stav žádosti, nechá `Modified`
   nedotčené — slepá skvrna detekce driftu, viz
   [`../azure-integration-patterns/guide-copy-metadata.md`](../azure-integration-patterns/guide-copy-metadata.md).

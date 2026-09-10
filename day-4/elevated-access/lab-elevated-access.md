@@ -646,7 +646,8 @@ Invoke-Pester ./Grant-RequestedAccess.Tests.ps1
 - [Manage modules in Azure Automation](https://learn.microsoft.com/en-us/azure/automation/shared-resources/modules) — Browse from Gallery, runtime version, Runtime environment
 - [Az.Automation](https://learn.microsoft.com/en-us/powershell/module/az.automation/) — `New-AzAutomationAccount`, `New-AzAutomationModule`, `Import-AzAutomationRunbook`, `Publish-AzAutomationRunbook`, `Start-AzAutomationRunbook`, `Get-AzAutomationJobOutput`, `New-AzAutomationSchedule`, `Register-AzAutomationScheduledRunbook`
 - [Connect-PnPOnline](https://pnp.github.io/powershell/cmdlets/Connect-PnPOnline.html) — `-ManagedIdentity` funguje v Automation Runbookech; certifikát je `-Thumbprint`
-- [Set-PnPListItemPermission](https://pnp.github.io/powershell/cmdlets/Set-PnPListItemPermission.html) — cmdlet, kterým se elevovaná operace provádí
+- [Set-PnPListItemPermission](https://pnp.github.io/powershell/cmdlets/Set-PnPListItemPermission.html) — cmdlet, kterým se elevovaná operace provádí; má **switch** `-SystemUpdate`
+- [Set-PnPListItem](https://pnp.github.io/powershell/cmdlets/Set-PnPListItem.html) — pozor, tady `-SystemUpdate` **jako switch neexistuje**, jen `-UpdateType SystemUpdate`
 - [Grant-PnPEntraIDAppSitePermission](https://pnp.github.io/powershell/cmdlets/Grant-PnPEntraIDAppSitePermission.html) — per-site grant pro `Sites.Selected`
 
 ## Stav produktu / delta

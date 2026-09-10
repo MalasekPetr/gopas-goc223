@@ -198,6 +198,16 @@ První šest bodů odpovídá testům v
 > během. Kdyby PnP přidal typ, který umí nastavit `Modified` **a** nespustí flow, fork
 > výše přestane platit a demo se zkrátí na jeden odstavec.
 >
-> Starší parametr `-SystemUpdate` existuje vedle `-UpdateType SystemUpdate` a dělá totéž;
-> `Grant-RequestedAccess.ps1` používá jeho zkrácenou formu. Kdyby se jeden z nich přestal
-> podporovat, opravit obě místa.
+> **PnP má pro tentýž pojem u dvou cmdletů jinou syntaxi — nespoléhat na analogii.**
+> Ověřeno 2026-09-10 proti dokumentaci:
+>
+> | Cmdlet | Jak se SystemUpdate zapíše |
+> |---|---|
+> | `Set-PnPListItem` | **jen `-UpdateType SystemUpdate`** — switch `-SystemUpdate` **neexistuje** |
+> | `Set-PnPListItemPermission` | **switch `-SystemUpdate`** existuje („Update the item permissions without creating a new version or triggering MS Flow.") |
+>
+> Záměna vyhodí `A parameter cannot be found that matches parameter name 'SystemUpdate'`.
+> Do 2026-09-10 tu stálo, že „starší parametr `-SystemUpdate` existuje vedle `-UpdateType`
+> a dělá totéž" — **to bylo špatně** a `Grant-RequestedAccess.ps1` na tom kvůli mně reálně
+> spadl. Před během ověřit u **každého** cmdletu zvlášť:
+> `Get-Help Set-PnPListItem -Full`.

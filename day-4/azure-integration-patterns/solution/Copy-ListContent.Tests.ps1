@@ -25,7 +25,8 @@ BeforeAll {
     # -UpdateType je STRING, ne switch - na tom stoji polovina testu nize.
     function Get-PnPListItem { param($List, $PageSize, $Query, $Identity) }
     function Add-PnPListItem { param($List, $Values, $Folder, $Batch) }
-    function Set-PnPListItem { param($List, $Identity, $Values, [string] $UpdateType, [switch] $SystemUpdate) }
+    # Pozor: Set-PnPListItem ma JEN -UpdateType. Switch -SystemUpdate neexistuje.
+    function Set-PnPListItem { param($List, $Identity, $Values, [string] $UpdateType) }
 
     # Pomocnik: napodobi radek tak, jak ho vraci PnP (hodnoty ve FieldValues).
     function New-FakeItem {
