@@ -291,7 +291,21 @@ Invoke-AccessRequestQueue -RequestListTitle 'Zadosti o pristup' `
   -AuditListTitle 'Audit pristupu' -AllowedLibraryTitle 'Dokumenty'
 ```
 
-> [!IMPORTANT] Tečka v `. ./skript.ps1` neznamená „vedle skriptu", ale „v aktuální složce"
+> [!NOTE] Co dělá ta první tečka — a proč bez ní nic nefunguje
+> `. ./Grant-RequestedAccess.ps1` obsahuje **dvě tečky, které spolu nemají nic společného.**
+> První je **operátor dot-source**: spustí skript **ve vašem scope**. Druhá je součást
+> **cesty** (`.` = aktuální složka).
+>
+> Bez toho operátoru by se skript spustil v **child scope**, ten by se po jeho skončení
+> zahodil — a s ním i všechny funkce, které nadefinoval. Na dalším řádku byste dostal
+> `Invoke-AccessRequestQueue : The term ... is not recognized`, přestože skript zjevně
+> proběhl. `Grant-RequestedAccess.ps1` je totiž **knihovna funkcí bez vlastního těla**;
+> dot-source je to, co z ní dělá něco použitelného.
+>
+> Podrobně, včetně rozdílu proti `&` a `./`:
+> [`../../day-2/opt-powershell-basics/`](../../day-2/opt-powershell-basics/).
+
+> [!IMPORTANT] Ta druhá tečka neznamená „vedle skriptu", ale „v aktuální složce"
 > `./` se vyhodnocuje proti **aktuálnímu pracovnímu adresáři** (`Get-Location`), ne proti
 > umístění souboru. Když tedy dot-source spustíte odjinud, než kde soubor leží, dostanete
 > `The term '.\Grant-RequestedAccess.ps1' is not recognized` — a to i když ten soubor

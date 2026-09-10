@@ -5,6 +5,12 @@
 - 40 min výklad + 20 min cvičení. **Hard stop na 60 minutách** — viz tripwires.
 - Den 2 je bez tohoto bloku na 4,0 h, s ním na 5,0 h. Prostor tedy je; nebezpečí není
   v rozpočtu dne, ale v tom, že se blok rozteče.
+- **Sekce `. ./skript.ps1` (dot-source) je od 2026-09-10 poslední ve výkladu — a když se
+  krátí, krátí se jako poslední, ne první.** Doplněna po reálném běhu D4, kde student
+  zkopíroval referenční řešení k sobě a dot-source mu přestal fungovat. Do té doby to
+  v repu nebylo vysvětlené **nikde**, přitom se to používá od D2 dál každý den.
+  Nejrychlejší varianta, když čas tlačí: nakreslit ty dvě tečky, říct jednu větu
+  o child scope, a odkázat na text. **Dvě minuty, které ušetří patnáct.**
 
 ## Rozhodnutí, jestli blok pustit
 

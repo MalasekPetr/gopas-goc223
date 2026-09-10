@@ -10,6 +10,8 @@
 - Rozpoznat čtyři pasti, na kterých v tomto kurzu reálně padají skripty: unwrapping polí,
   `Format-*` v pipeline, non-terminating chyba a porovnání s `$null`.
 - Sáhnout po `-WhatIf`, než se cokoli pustí na živý tenant.
+- Umět **použít skript, který vám někdo dal** — a vědět, co dělá ta první tečka
+  v `. ./skript.ps1` a proč bez ní funkce ze skriptu zmizí.
 
 > [!NOTE] Tenhle blok se nespouští vždy
 > Je to **záchranná síť**, ne plnohodnotný blok. Jede jen tehdy, když se u labu bloku 1
@@ -131,6 +133,54 @@ Remove-PnPListItem -List "Dokumenty" -Identity 42 -WhatIf
 > sekce parametrů) — ne předpokládejte. Absence `-WhatIf` je sama o sobě signál, že si
 > ten příkaz máte nejdřív zkusit na sandboxu.
 
+### Jak použít skript, který vám někdo dal: `. ./skript.ps1`
+
+V každém dni kurzu dostanete referenční řešení jako `.ps1`. Spouští se takhle — a ta
+syntaxe vypadá jako překlep, protože **ty dvě tečky spolu nemají nic společného**:
+
+```text
+.  ./solution/Grant-RequestedAccess.ps1
+^  ^
+|  +-- soucast CESTY: "." = aktualni slozka
++----- OPERATOR dot-source
+```
+
+**První tečka je operátor.** Říká „spusť ten skript **v mém scope**, ne ve vlastním".
+
+Bez ní se skript spustí v **child scope**, který se po jeho skončení zahodí — a s ním
+všechno, co v něm vzniklo:
+
+| Zápis | Kde to běží | Co po něm zůstane |
+|---|---|---|
+| `. ./script.ps1` | **v aktuálním scope** | funkce a proměnné **přežijí** |
+| `& ./script.ps1` | v child scope | nic |
+| `./script.ps1` | v child scope | nic |
+
+Proto se referenční řešení v tomhle kurzu dot-sourcují: jsou to **knihovny funkcí** bez
+vlastního těla. Kdybyste je spustil normálně, funkce by se nadefinovaly v child scope,
+ten by se zahodil a hned na dalším řádku byste dostal `The term '...' is not recognized`.
+
+> [!IMPORTANT] Dot-source není `import` — je to spuštění
+> Všechno na nejvyšší úrovni toho souboru se **provede**. U čisté knihovny funkcí je to
+> bezpečné (proto jsou solution skripty v repu psané tak, že nemají tělo), ale u cizího
+> skriptu si tím pouštíte kód do vlastní session. **Přečtěte si ho, než ho dot-sourcujete.**
+
+**Druhá tečka je kus cesty.** `./solution/...` znamená „relativně k tomu, kde právě
+stojím". A `./` tam **musí** být: PowerShell odmítá spustit skript z aktuální složky podle
+holého jména — `Grant-RequestedAccess.ps1` bez `./` hledá v `$env:PATH` a skončí na
+„is not recognized". Je to bezpečnostní rozhodnutí: jinak by stačilo podstrčit vám `ls.ps1`
+do složky, do které vejdete.
+
+> [!WARNING] Dvě tečky bez mezery jsou něco úplně jiného
+> `. ./` je operátor a cesta. `../` je **nadřazená složka**. Chybějící mezera z toho udělá
+> jiný soubor — a hláška o tom nic neřekne.
+>
+> A pozor na to, k čemu se `.` v cestě vztahuje: k **aktuálnímu pracovnímu adresáři**
+> (`Get-Location`), ne k umístění souboru. Když skript spustíte odjinud, než kde leží,
+> nenajde se. Uvnitř skriptu se to řeší `$PSScriptRoot` (složka toho skriptu), ale
+> **v konzoli `$PSScriptRoot` neexistuje** — tam pomůže `Get-Location` a
+> `Resolve-Path ./skript.ps1`.
+
 ### Dvě drobnosti, které matou
 
 **Uvozovky.** `'jednoduché'` je literál, `"dvojité"` expanduje proměnné. Microsoft
@@ -151,6 +201,12 @@ přirozené zalomení není; nikdy ne zpětné lomítko, to je z bashe.
 - **Terminating vs non-terminating chyba** — jen první zastaví běh a jde ji chytit
   `try/catch`; druhou je nutné povýšit `-ErrorAction Stop`.
 - **`'literál'` vs `"$expanze"`** — jednoduché uvozovky nic neparsují.
+- **Dot-source (`. ./s.ps1`) vs spuštění (`./s.ps1`)** — první nechá funkce a proměnné
+  v aktuálním scope, druhé je zahodí spolu s child scope. U knihovny funkcí je to rozdíl
+  mezi „mám to k dispozici" a „not recognized".
+- **`. ./` (operátor + cesta) vs `../` (nadřazená složka)** — rozhoduje jedna mezera.
+- **`.` v cestě (aktuální pracovní adresář) vs `$PSScriptRoot` (složka skriptu)** — v konzoli
+  existuje jen první.
 - **`$null` vlevo vs vpravo** — vpravo od `-eq` u pole dostanete filtrovaný seznam, ne
   pravdivostní hodnotu.
 
