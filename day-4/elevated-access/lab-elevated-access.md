@@ -221,10 +221,25 @@ Get-PnPProperty -ClientObject (Get-PnPWeb) -Property CurrentUser
 v `TargetItemId` znamená rozbité oprávnění na cizí položce.
 
 Založte řádek: `RequesterEmail` = váš e-mail, `TargetLibrary` = vaše knihovna,
-`TargetItemId` = ID dokumentu, `RequestedRole` = `Read`. Pak:
+`TargetItemId` = ID dokumentu, `RequestedRole` = `Read`.
+
+**Nejdřív si připravte pracovní složku** podle konvence z
+[`../../day-1/onboarding/ways-of-working.md`](../../day-1/onboarding/ways-of-working.md)
+a zkopírujte si do ní oba soubory řešení:
 
 ```powershell
-. ./solution/Grant-RequestedAccess.ps1
+# <cesta-k-repu> je misto, kam jste si repozitar naklonoval
+Set-Location "<cesta-k-repu>/<jmeno-prijmeni>"
+
+Copy-Item "<cesta-k-repu>/day-4/elevated-access/solution/Grant-RequestedAccess.ps1" .
+Copy-Item "<cesta-k-repu>/day-4/elevated-access/solution/Grant-RequestedAccess.Tests.ps1" .
+```
+
+Teprve teď dot-source a spuštění — všimněte si, že cesta **neobsahuje `solution/`**,
+protože skript už máte u sebe:
+
+```powershell
+. ./Grant-RequestedAccess.ps1
 
 # Nasucho - vypise, co by se stalo, a nezapise nic
 Invoke-AccessRequestQueue -RequestListTitle 'Zadosti o pristup' `
@@ -234,6 +249,20 @@ Invoke-AccessRequestQueue -RequestListTitle 'Zadosti o pristup' `
 Invoke-AccessRequestQueue -RequestListTitle 'Zadosti o pristup' `
   -AuditListTitle 'Audit pristupu' -AllowedLibraryTitle 'Dokumenty'
 ```
+
+> [!IMPORTANT] Tečka v `. ./skript.ps1` neznamená „vedle skriptu", ale „v aktuální složce"
+> `./` se vyhodnocuje proti **aktuálnímu pracovnímu adresáři** (`Get-Location`), ne proti
+> umístění souboru. Když tedy dot-source spustíte odjinud, než kde soubor leží, dostanete
+> `The term '.\Grant-RequestedAccess.ps1' is not recognized` — a to i když ten soubor
+> v repu prokazatelně je.
+>
+> **Uvnitř skriptu** se tenhle problém řeší `$PSScriptRoot` (cesta ke složce toho skriptu) —
+> přesně tak to dělá `Grant-RequestedAccess.Tests.ps1`, který si své řešení najde jako
+> `. $PSScriptRoot/Grant-RequestedAccess.ps1`. Proto testy fungují odkudkoli, ale interaktivní
+> dot-source ne: **v konzoli `$PSScriptRoot` neexistuje.**
+>
+> Když si nejste jistí, kde stojíte: `Get-Location`. A `Resolve-Path ./Grant-RequestedAccess.ps1`
+> vám řekne, jestli tam ten soubor podle PowerShellu je.
 
 Zkontrolujte **v SharePointu**, ne jen ve výstupu: uživatel má u dokumentu roli, řádek
 je `Granted` a v auditu je záznam.
@@ -396,7 +425,7 @@ Pak **Save** a **Test pane** → vyplňte parametry → **Start**.
 $rg = "rg-goc223-<jmeno-prijmeni>"
 $aa = "aa-goc223-<jmeno-prijmeni>"
 
-Get-Content ./solution/Grant-RequestedAccess.ps1, ./runbook-body.ps1 |
+Get-Content ./Grant-RequestedAccess.ps1, ./runbook-body.ps1 |
     Set-Content ./Grant-Access.ps1
 
 Import-AzAutomationRunbook -ResourceGroupName $rg -AutomationAccountName $aa `
@@ -479,7 +508,7 @@ Další dvě podmínky — role mimo povolenou sadu a knihovna mimo rozsah — j
 testy, není potřeba je proklikávat:
 
 ```powershell
-Invoke-Pester ./solution/Grant-RequestedAccess.Tests.ps1
+Invoke-Pester ./Grant-RequestedAccess.Tests.ps1
 ```
 
 ---

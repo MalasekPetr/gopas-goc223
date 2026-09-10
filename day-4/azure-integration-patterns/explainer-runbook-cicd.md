@@ -96,18 +96,28 @@ Dva cmdlety, které už znáte z [`tutorial-script-to-azure.md`](tutorial-script
 jen spuštěné v CI po úspěšných testech:
 
 ```powershell
+# 0. Cesty odvodit od korenu repa, ne od aktualni slozky. V CI nikdy nespolehat
+#    na to, kde runner stoji - relativni "./" se vyhodnocuje proti pracovnimu
+#    adresari, ne proti umisteni skriptu.
+$repo   = $env:GITHUB_WORKSPACE ?? $env:BUILD_SOURCESDIRECTORY ?? (Get-Location).Path
+$module = Join-Path $repo 'day-4/elevated-access'
+$out    = Join-Path $repo 'out'
+
 # 1. Testy. Kdyz spadnou, dal se nejde - tohle je cely rozdil proti native syncu.
-Invoke-Pester ./solution/Grant-RequestedAccess.Tests.ps1 -CI
+Invoke-Pester (Join-Path $module 'solution/Grant-RequestedAccess.Tests.ps1') -CI
 
 # 2. Sestavit runbook. Runbook nema disk, takze knihovna funkci a volaci blok
 #    se musi slepit do jednoho souboru.
-New-Item -ItemType Directory -Force ./out | Out-Null
-Get-Content ./solution/Grant-RequestedAccess.ps1, ./runbook-body.ps1 |
-    Set-Content ./out/Grant-Access.ps1
+New-Item -ItemType Directory -Force $out | Out-Null
+# runbook-body.ps1 je ten volaci blok z labu (param + Connect-PnPOnline -ManagedIdentity
+# + Invoke-AccessRequestQueue). V realnem projektu lezi v repu vedle reseni.
+Get-Content (Join-Path $module 'solution/Grant-RequestedAccess.ps1'), `
+            (Join-Path $module 'runbook-body.ps1') |
+    Set-Content (Join-Path $out 'Grant-Access.ps1')
 
 # 3. Nahrat a publikovat
 Import-AzAutomationRunbook -ResourceGroupName $env:RG -AutomationAccountName $env:AA `
-  -Name "Grant-Access" -Type PowerShell -Path ./out/Grant-Access.ps1 -Force
+  -Name "Grant-Access" -Type PowerShell -Path (Join-Path $out "Grant-Access.ps1") -Force
 
 Publish-AzAutomationRunbook -ResourceGroupName $env:RG -AutomationAccountName $env:AA `
   -Name "Grant-Access"
