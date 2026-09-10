@@ -99,10 +99,31 @@ ten už máte odučený z bloku 1, takže tady se řeší jen ta privilegovaná 
 
 ## Lab
 
-[`lab-elevated-access.md`](lab-elevated-access.md) — postavíte dva seznamy, zúžíte
-oprávnění na jeden web, spustíte operaci nejdřív s `-WhatIf`, pak naostro, a nakonec
-ji necháte běžet v Azure. Referenční řešení
-[`solution/Grant-RequestedAccess.ps1`](solution/Grant-RequestedAccess.ps1) + **17 testů**.
+[`lab-elevated-access.md`](lab-elevated-access.md) — **13 kroků v šesti částech**, každý
+s vysvětlením *co* a *proč*, a kde to jde, tak **ručně i skriptem**. Linka labu je
+záměrně tahle:
+
+1. **Přidělte přístup rukama** (5 min) — spočítejte kliknutí a všimněte si, že po tom
+   nezůstala žádná stopa.
+2. **Terén v SharePointu** (10 min) — seznam žádostí a audit, do kterého uživatelé nesmí.
+3. **Identita, která není člověk** (15 min) — app registrace a zúžení na jeden web.
+4. **Skript na notebooku** (10 min) — funguje, ale **držíte certifikát**.
+5. **Totéž v Azure** (20 min) — Automation account, managed identity, runbook, rozvrh.
+   Certifikát zmizel. **To je pointa celého bloku.**
+6. **Jedna podmínka v kódu** (5 min) — protože aplikace teď smí víc než člověk.
+
+Referenční řešení: [`solution/Grant-RequestedAccess.ps1`](solution/Grant-RequestedAccess.ps1)
+a k němu **17 testů**.
+
+> [!IMPORTANT] Nejdůležitější není ta autorizační brána, ale rozdíl mezi částí 4 a 5
+> Na notebooku se skript hlásí certifikátem, který musíte uložit, chránit a vyměňovat.
+> V Azure se hlásí `-ManagedIdentity` a **v celém runbooku není žádný secret**. Přesto
+> provede tutéž privilegovanou operaci.
+>
+> **Nezmizel principál — zmizel secret.** Identita pořád existuje v Entra, pořád má roli
+> a per-site grant. Co zmizelo, je cokoli, co se dá zkopírovat nebo poslat mailem. Tohle
+> je celá odpověď na otázku, k čemu je Azure jako platforma pro app-only skripty — a pro
+> skupinu, která Azure nikdy nepoužila, je to ta věta, se kterou má z bloku odejít.
 
 ## Zdroje (Microsoft a PnP)
 

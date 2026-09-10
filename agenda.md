@@ -112,7 +112,7 @@ Jediný zdroj pravdy o pořadí modulů. Složky jsou slugy; pořadí drží tat
 | # | Blok | Slug | Typ |
 |---|---|---|---|
 | 1 | Azure integrační vzory *(výklad + tutorial nasazení do Azure; Lab 3 dávkový sync 45 min)* | `day-4/azure-integration-patterns` | P |
-| 2 | **Elevovaný přístup: self-service žádost o oprávnění** *(lab)* | `day-4/elevated-access` | P |
+| 2 | **Elevovaný přístup: self-service žádost o oprávnění** *(step-by-step lab, 13 kroků)* | `day-4/elevated-access` | P |
 | 3 | SIEM integrace přes Azure Blob | `day-4/siem-blob-integration` | P |
 | 4 | Lifecycle & compliance enforcement | `day-4/lifecycle-compliance` | P |
 

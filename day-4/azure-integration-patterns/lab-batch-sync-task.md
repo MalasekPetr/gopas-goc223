@@ -11,7 +11,7 @@ CRUD operace nad SPO seznamem s metadaty a běží čistě pod **aplikační ide
 > [!NOTE] Zkráceno 2026-09-10 z 90 na 45 min — a plánování odešlo do bloku 2
 > Lab dřív končil registrací do **Task Scheduleru** (kroky 5-6). Ta část se přesunula
 > do [`../elevated-access/lab-elevated-access.md`](../elevated-access/lab-elevated-access.md),
-> krok 8, kde se stejná věc dělá **v Azure** přes
+> část 5, kde se stejná věc dělá **v Azure** přes
 > [`tutorial-script-to-azure.md`](tutorial-script-to-azure.md) — tedy tam, kam plánovaný
 > běh v tomhle kurzu patří. Task Scheduler na učebním image navíc bývá zablokovaný policy,
 > takže to byl krok s nejvyšší mírou selhání a nejmenším výnosem.

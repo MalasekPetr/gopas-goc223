@@ -107,7 +107,7 @@ Pull i push strana integrace:
   a zřídí web ze šablony. Vede přes **Automation Runbook**, ne Function — packaging
   `PnP.PowerShell` do deployment package je to, co první nasazení zabije.
 - Blok 2 [`../elevated-access/`](../elevated-access/) na tenhle postup staví: jeho lab ho
-  v kroku 8 použije a neopakuje.
+  v části 5 jede tutéž cestu na elevované operaci.
 
 ## Instruktorské demo (mimo agendu, spouští se na dotaz)
 

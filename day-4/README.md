@@ -18,9 +18,10 @@ SharePointem, kterou si studenti postaví a nasadí**, SIEM logging pipeline a l
 >
 > **Co přišlo:**
 > - **Blok 2** [`elevated-access/`](elevated-access/) (30 výklad + 60 lab) — plnohodnotný
->   modul se step-by-step labem o 8 krocích. Do té doby to bylo 15min demo uvnitř bloku 1.
+>   modul se step-by-step labem o **13 krocích v šesti částech** (ručně -> certifikát -> nic).
+>   Do té doby to bylo 15min demo uvnitř bloku 1.
 > - **Tutorial** [`azure-integration-patterns/tutorial-script-to-azure.md`](azure-integration-patterns/tutorial-script-to-azure.md)
->   — krok za krokem přes Automation Runbook. Lab bloku 2 ho v kroku 8 použije.
+>   — krok za krokem přes Automation Runbook na neutrálním skriptu. Lab bloku 2 jede tutéž cestu v části 5.
 >
 > **Čím se zaplatilo — 70 min z bloku 1 (150 → 80):**
 > - **Lab 3: 90 → 45 min.** Registrace do Task Scheduleru odešla do bloku 2, kde se táž
