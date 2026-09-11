@@ -109,7 +109,8 @@ Pull i push strana integrace:
 - [`lab-change-notifications-function.md`](lab-change-notifications-function.md) — Function
   jako endpoint pro Graph change notifications (event-driven/push model). **Celé
   samostudium** dle zadání labu; subscription lifecycle zůstává ve výkladu výše.
-  Instruktorské demo tohle **není** — viz poznámka o přestavbě níž.
+  Instruktorské demo tohle **není** — to je kopie s metadaty
+  ([`guide-copy-metadata.md`](guide-copy-metadata.md)).
 
 ## Tutorial
 
@@ -132,16 +133,6 @@ Pull i push strana integrace:
   původního `Created`/`Modified`/`Author`/`Editor`. **Čí identitu po sobě zanechá** — a proč
   zápis přes `SystemUpdate` neuvidí detekce driftu z
   [`../lifecycle-compliance/`](../lifecycle-compliance/).
-
-> [!NOTE] Přestavba 2026-09-09
-> Třetím prvkem bloku bylo ~30min instruktorské demo change notifications. Nahradilo ho
-> 20min demo kopie s metadaty — z těch dvou je to jediné, které **reálně zapíše do
-> SharePointu z Functiony běžící v Azure**; handshake demo vracelo validační token
-> a logovalo. Blok se tím zkrátil o 10 min a Function App, kterou demo nasadí, je zároveň
-> ten skeleton, který si přebírá [`../siem-blob-integration/`](../siem-blob-integration/).
->
-> Zadání labu change notifications **zůstává v repu** jako samostudium a subscription
-> lifecycle zůstává ve výkladu — vypuštěné je jen to demo.
 
 ## Zdroje (Microsoft)
 - [Integration and automation platform options in Azure](https://learn.microsoft.com/en-us/azure/azure-functions/functions-compare-logic-apps-ms-flow-webjobs)

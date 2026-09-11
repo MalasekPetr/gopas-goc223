@@ -5,6 +5,117 @@ Jediný zdroj pravdy pro nástroje, API a konvence používané v GOC223. Všech
 > [!WARNING] Ověřit k datu běhu — stav k 2026-07.
 > Throttling limity, verze PowerShell modulů a Azure ceny se mění po měsících. Před každým během projet položky s tímto markerem.
 
+## Rejstřík zkratek
+
+Kompletní seznam zkratek, které se v materiálech kurzu objevují. Pravidlo z
+[`CONVENTIONS.md`](CONVENTIONS.md): **každá zkratka se na každé stránce při prvním použití
+rozepíše.** Tenhle rejstřík je záložní záchrana pro čtenáře, který na stránku přišel
+odkazem zprostředka, a zároveň závazný zdroj toho, jak se která zkratka rozepisuje.
+
+Nové zkratky do textu přidávat **jen zároveň s řádkem tady**.
+
+### Identita a autentizace
+
+| Zkratka | Plné znění | Jednou větou |
+|---|---|---|
+| **ACS** | Azure Access Control Services | Autentizace starých SharePoint Add-ins. V Microsoft 365 vypnutá — mrtvá vrstva. |
+| **CA** | Conditional Access | Podmíněný přístup: pravidla, za jakých okolností se přihlášení povolí. |
+| **CAE** | Continuous Access Evaluation | Průběžné přehodnocování platnosti tokenu, místo čekání na jeho expiraci. |
+| **FIC** | Federated Identity Credential | Důvěra mezi identitou a cizím vydavatelem tokenů; umožní běh bez uloženého tajemství. |
+| **FIDO2** | (standard, nerozepisuje se) | Přihlášení hardwarovým klíčem bez hesla. |
+| **GA** | Global Administrator | Nejvyšší role v Entra tenantu. **Pozor: nedává automaticky přístup do Azure.** |
+| **HSM** | Hardware Security Module | Zařízení, ze kterého privátní klíč nelze vyexportovat. |
+| **MFA** | Multi-Factor Authentication | Vícefaktorové ověření (druhý faktor k heslu). |
+| **MI** | Managed Identity | Identita přidělená Azure zdroji; nemá tajemství, které by šlo ukrást. |
+| **MSAL** | Microsoft Authentication Library | Knihovna, přes kterou aplikace získávají tokeny. |
+| **PAT** | Personal Access Token | Token místo hesla pro přístup ke Gitu a podobným službám. |
+| **PIN** | Personal Identification Number | Číselný kód k odemčení klíče nebo karty. |
+| **PIV** | Personal Identity Verification | Standard pro certifikáty na čipové kartě; slot `9a` je ten pro přihlášení. |
+| **PUK** | PIN Unblock Key | Kód, kterým se odemkne karta zablokovaná chybným PIN. |
+| **RBAC** | Role-Based Access Control | Přístup přes role přiřazené na scope. V Azure oddělené od Entra rolí. |
+| **SSO** | Single Sign-On | Jedno přihlášení pro víc aplikací. |
+| **UPN** | User Principal Name | Přihlašovací jméno uživatele ve tvaru e-mailu. |
+| **WAM** | Web Account Manager | Windows komponenta, která drží přihlášení pro aplikace. |
+
+### API, protokoly a formáty
+
+| Zkratka | Plné znění | Jednou větou |
+|---|---|---|
+| **API** | Application Programming Interface | Rozhraní, kterým jedna aplikace volá druhou. |
+| **CAML** | Collaborative Application Markup Language | Dotazovací jazyk SharePointu v XML; v `Get-PnPListItem -Query`. |
+| **CSOM** | Client-Side Object Model | Starší .NET rozhraní k SharePointu; PnP PowerShell na něm stojí. |
+| **CRUD** | Create, Read, Update, Delete | Čtyři základní operace nad daty. |
+| **DER**, **PEM**, **PFX**, **CER** | (formáty certifikátů) | Kódování a obaly certifikátů a klíčů — viz sekce Formáty. |
+| **GUID** | Globally Unique Identifier | 128bitový identifikátor, např. `7518f849-...`. |
+| **JSOM** | JavaScript Object Model | Odložené JavaScriptové rozhraní SharePointu. |
+| **JSON** | JavaScript Object Notation | Textový formát pro strukturovaná data. |
+| **KQL** | Kusto Query Language | Dotazovací jazyk Log Analytics a Sentinelu; jen pro čtení. |
+| **REST** | Representational State Transfer | Sloh webových API nad HTTP metodami (`GET`, `POST`, `PATCH`). |
+| **SOAP** | Simple Object Access Protocol | Starší XML protokol; v SharePointu nahrazený REST. |
+| **URI**, **URL** | Uniform Resource Identifier / Locator | Adresa zdroje. |
+| **UTF-8**, **BOM** | Unicode Transformation Format / Byte Order Mark | Kódování textu a značka na začátku souboru; rozhoduje o diakritice v CSV. |
+| **XML**, **YAML**, **CSV** | (formáty) | Značkovací a datové formáty. |
+
+### Azure a provozní prostředí
+
+| Zkratka | Plné znění | Jednou větou |
+|---|---|---|
+| **ACI** | Azure Container Instances | Spustí kontejner jedním příkazem, účtuje po sekundách. |
+| **ACR** | Azure Container Registry | Místo, kde bydlí vlastní obrazy kontejnerů. |
+| **CRON**, **NCRONTAB** | (zápis plánu) | Zápis intervalu pro opakovaný běh; NCRONTAB je varianta v Azure Functions. |
+| **DCE** | Data Collection Endpoint | Vstupní bod pro zápis do Azure Monitoru; od 3/2024 už není potřeba samostatně. |
+| **DCR** | Data Collection Rule | Pravidlo zápisu do Log Analytics; umí transformovat data **před** uložením. |
+| **PAYG** | Pay-As-You-Go | Předplatné placené podle spotřeby; **nemá spending limit**. |
+| **RG** | Resource Group | Krabice na související Azure zdroje a jednotka úklidu. |
+| **SKU** | Stock Keeping Unit | Velikost/varianta zdroje, která určuje cenu a limity. |
+| **SLA** | Service Level Agreement | Smluvně zaručená dostupnost služby. |
+| **VM** | Virtual Machine | Virtuální stroj. |
+
+### Bezpečnost a governance
+
+| Zkratka | Plné znění | Jednou větou |
+|---|---|---|
+| **APT** | Advanced Persistent Threat | Dlouhodobý cílený útok, ne jednorázový incident. |
+| **DLP** | Data Loss Prevention | Pravidla proti odtečení citlivých dat. |
+| **GDPR** | General Data Protection Regulation | Evropská ochrana osobních údajů. |
+| **HIPAA** | Health Insurance Portability and Accountability Act | Americká regulace zdravotních dat. |
+| **PII** | Personally Identifiable Information | Osobní údaje; v logech minimalizovat už na zdroji. |
+| **SIEM** | Security Information and Event Management | Sbírá a **koreluje** logy z celé organizace. Šířka. |
+| **SOAR** | Security Orchestration, Automation and Response | Automatizuje reakci na to, co SIEM vynesl. |
+| **UEBA** | User and Entity Behavior Analytics | Hlídá vzorce chování; insider threat a ukradené účty. |
+| **XDR** | Extended Detection and Response | Vyšetřovací **hloubka** k jednomu zdroji. |
+
+### SharePoint, migrace a nástroje kurzu
+
+| Zkratka | Plné znění | Jednou větou |
+|---|---|---|
+| **CLI** | Command-Line Interface | Nástroj ovládaný z příkazové řádky. |
+| **CI**, **CD** | Continuous Integration / Continuous Delivery | Automatický build a nasazení při změně v repozitáři. |
+| **DAG** | Data Access Governance | Reporty SharePoint Advanced Managementu o tom, kdo kam vidí. |
+| **EXO** | Exchange Online | |
+| **GUI** | Graphical User Interface | Klikací rozhraní, tedy portál. |
+| **ISE** | Integrated Scripting Environment | Starý editor Windows PowerShellu; **jen 5.1**, neudržovaný. |
+| **MCP** | Model Context Protocol | Rozhraní, kterým se k modelu připojují nástroje a data. |
+| **SAM** | SharePoint Advanced Management | Placené doplňkové governance funkce pro SPO. |
+| **SDK** | Software Development Kit | Sada knihoven a nástrojů pro vývoj proti službě. |
+| **SEO** | Search Engine Optimization | |
+| **SMAT** | SharePoint Migration Assessment Tool | Posoudí on-premises farmu před migrací. |
+| **SPFx** | SharePoint Framework | Model pro vývoj rozšíření SPO. |
+| **SPMT** | SharePoint Migration Tool | Migrační nástroj Microsoftu; **vyžaduje Windows PowerShell 5.x**. |
+| **SPO** | SharePoint Online | |
+| **UI** | User Interface | Uživatelské rozhraní. |
+| **VS Code** | Visual Studio Code | Editor, ve kterém kurz pracuje. |
+
+### Jednotky a zkratky v číslech
+
+| Zkratka | Plné znění |
+|---|---|
+| **GB**, **TB** | gigabajt, terabajt |
+| **GB-s** | gigabajt-sekunda — jednotka účtování serverless compute |
+| **RU/s** | Request Units per second — propustnost Cosmos DB |
+| **UTC** | Coordinated Universal Time |
+| **EUR**, **USD**, **CZK** | eura, dolary, koruny |
+
 ## PowerShell moduly (tři, ne jeden)
 
 Kurz na rozdíl od administrátorských kurzů pokrývá všechny tři paralelně a učí, kdy který — to je nosný teaching point [`day-2/powershell-deep-dive/`](day-2/powershell-deep-dive/) a [`day-2/automation-strategy/`](day-2/automation-strategy/).

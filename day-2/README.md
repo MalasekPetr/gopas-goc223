@@ -33,13 +33,3 @@ projde auditem.
 > mini-lab „tři podpisy zápisu" ([`powershell-deep-dive/lab-write-identities.md`](powershell-deep-dive/lab-write-identities.md), 25 min)
 > a demo hardware klíče ([`powershell-deep-dive/demo-yubikey.md`](powershell-deep-dive/demo-yubikey.md), 30 min).
 
-> [!NOTE] Přestavba 2026-09-08 po reálném běhu
-> `graph-fundamentals` odešel na **D3**, protože se na něj ve dni 2 nedostalo — den skončil
-> po bloku o PowerShellu. Zároveň přibyl volitelný blok 2 se základy jazyka: reálný běh
-> ukázal, že část skupiny je potřebuje, a bez nich se blok 3 pro takovou skupinu odučit nedá.
->
-> Starší změny (2026-09-07): `automation-strategy` přišel z D1, kde se na něj nedostalo,
-> a **sloučil se s bývalým blokem `permissions-consent`** — oba mluvily o least privilege
-> a jejich laby pracovaly na téže app registraci. `staging-environments` odešlo na D4 na
-> místo vypuštěné Clarity. Weby `-dev/-test/-prod` z Labu 1 tedy staging používá až ve
-> čtvrtek.

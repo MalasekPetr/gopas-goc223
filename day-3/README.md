@@ -20,7 +20,7 @@ a migrace (Lab 2) jsou od rekalibrace 2026-09-09 **volitelné** — viz čísla 
 > - **Staging je blok 2**, protože jeho **koncept** baseline vs drift se vrací
 >   v [`provisioning-patterns/`](provisioning-patterns/) i v
 >   [`../day-4/lifecycle-compliance/`](../day-4/lifecycle-compliance/). Jde o výklad, ne
->   o artefakt — jeho lab je volitelný a nic na jeho výstupu nestojí (viz korektura níž).
+>   o artefakt — jeho lab je volitelný a nic na jeho výstupu nestojí.
 
 > [!NOTE] Orchestry blok je volitelná simulace/koncept (bez živé licence) — integrační body
 > se navrhují proti PnP.PowerShell/Graph rozhraní, viz `GLOSSARY.md`; nic povinného na něm
@@ -42,20 +42,3 @@ a migrace (Lab 2) jsou od rekalibrace 2026-09-09 **volitelné** — viz čísla 
 > Rezerva pod stropem je ale dost velká na zkrácený Lab 2 (~75 min → 6,3 h), takže je
 > **první v řadě**, když čas je.
 
-> [!NOTE] Korektura 2026-09-09: baseline skript nebyl tím, čím ho repo tvrdilo
-> Do 2026-09-09 tu stálo, že diff/baseline skript ze [`staging-environments`](staging-environments/)
-> je vstupem tří labů — a na tom argumentu se staging 2026-09-08 vrátil z D4 sem. **Reálný
-> běh tu vazbu nikdy nevyzkoušel:** staging se odučil bez labu, skript nevznikl, a
-> provisioning se přesto odučil — jen se ten krok obešel.
->
-> Závislost existovala **jen jako studentský výstup**, takže vypuštění jednoho labu tiše
-> bralo vstup dvěma dalším. Oba konzumenti jsou proto přeformulovaní tak, že skript
-> **uvítají, ale nevyžadují**. Staging na D3 přesto zůstává — přesun na D4 by ho po jeho
-> přestavbě 2026-09-10 vytáhl na 7,2 h a ničemu by neposloužil.
-
-> [!NOTE] Přestavba 2026-09-08 po reálném běhu
-> Den prošel dvěma změnami. `graph-fundamentals` přišel z D2, kde se na něj nedostalo.
-> `staging-environments` se vrátil ze D4 sem — tehdy s odůvodněním, že jeho baseline
-> skript potřebují tři laby; **to odůvodnění o den později padlo** (viz korektura výše),
-> ale blok tu zůstává, protože kapacitně to tak vychází lépe. Výměnou za něj odešel
-> `lifecycle-compliance` na D4, kde navazuje na SIEM.
