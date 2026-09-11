@@ -101,7 +101,7 @@ pravidla se stanou trvalými instrukcemi agenta a vkládání končí. Cesta
 odnesete.
 
 Kurzovní agent **Scripting Advisor** je hotový výsledek téhle cesty a máte ho celý
-k dispozici: instrukce, capabilities, MCP akci i testovací otázky v
+k dispozici: instrukce, capabilities, akci Model Context Protocol (MCP) i testovací otázky v
 [`agent-scripting-advisor/`](agent-scripting-advisor/), architekturu v
 [`explainer-declarative-agent.md`](explainer-declarative-agent.md). Porovnejte si jeho
 `instruction.txt` s blokem výše — je to tentýž druh pravidel, jen o řád propracovanější.

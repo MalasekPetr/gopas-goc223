@@ -140,7 +140,7 @@ Tady se to zadrhává, tak pomalu. Managed identita po vzniku **nemá žádná p
 správně. Potřebuje dvě věci:
 
 **1. Aplikační roli `Sites.Selected`** na SharePointu. Přiřazuje se service principalu té
-identity přes Microsoft Graph. **Nevypisujte GUID z hlavy** — najděte si ho:
+identity přes Microsoft Graph. **Nevypisujte GUID (globálně unikátní identifikátor) z hlavy** — najděte si ho:
 
 ```powershell
 Connect-MgGraph -Scopes "AppRoleAssignment.ReadWrite.All","Application.Read.All"

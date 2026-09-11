@@ -5,7 +5,7 @@
 ## Cíl
 
 Student napíše **idempotentní sync skript**: čte zdrojová data (CSV/JSON), dávkově provádí
-CRUD operace nad SPO seznamem s metadaty a běží čistě pod **aplikační identitou**
+operace CRUD (create, read, update, delete) nad seznamem SharePoint Online (SPO) s metadaty a běží čistě pod **aplikační identitou**
 (certifikát z D2, žádný prompt).
 
 ## Předpoklady

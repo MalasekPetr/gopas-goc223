@@ -84,7 +84,7 @@ flowchart TD
 Tahle sekce řeší, jak se o **správu odběru** postarat. Otázka, která jí předchází — jestli
 vůbec push chceme, nebo stačí plánovaný běh — má vlastní stránku:
 [`comparison-event-reaction.md`](comparison-event-reaction.md). Na příkladu jednoho
-SharePoint seznamu porovnává event handler (v SPO neexistuje), webhook a CRON včetně
+SharePoint seznamu porovnává event handler (v SPO neexistuje), webhook a plánovaný běh (CRON) včetně
 nákladů a rizik. Nosný závěr: notifikace neobsahuje obsah změny, takže **pull zůstává
 pod push variantou v obou případech**.
 
@@ -104,7 +104,7 @@ pod push variantou v obou případech**.
 Pull i push strana integrace:
 
 - [`lab-batch-sync-task.md`](lab-batch-sync-task.md) — **45 min**: idempotentní
-  dávkový CRUD sync seznamu pod aplikační identitou přes business klíč
+  dávkový sync (CRUD) seznamu pod aplikační identitou přes business klíč
   (scheduled/pull model). Plánovaný běh dělá blok 2 v Azure, ne tenhle lab.
 - [`lab-change-notifications-function.md`](lab-change-notifications-function.md) — Function
   jako endpoint pro Graph change notifications (event-driven/push model). **Celé

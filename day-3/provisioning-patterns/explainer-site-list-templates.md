@@ -11,7 +11,7 @@ jak šablonovat **jednotlivý seznam** a **kdy JSON nestačí a nastupuje PnP š
 
 Než se začne hledat řešení z roku 2013: **„Save site as template" (`.wsp`)** na moderních
 webech není a nebude, stejně jako **`.stp` šablony seznamů**. V migračních projektech se
-na ně naráží pravidelně — zdrojová farma je jimi plná a v SPO pro ně neexistuje přímý
+na ně naráží pravidelně — zdrojová farma je jimi plná a v SharePoint Online (SPO) pro ně neexistuje přímý
 protějšek (souvislosti: [`../migration-patterns/explainer-legacy-layers.md`](../migration-patterns/explainer-legacy-layers.md)).
 Dnešní ekvivalenty jsou právě site script / list design nebo PnP šablona.
 
@@ -51,7 +51,7 @@ Invoke-PnPSiteDesign -Identity <design-id> -WebUrl <url>
 ```
 
 > [!IMPORTANT] Názvosloví
-> **„site design" → „site template"** v UI a dokumentaci, cmdlety ale zůstaly
+> **„site design" → „site template"** v rozhraní a dokumentaci, cmdlety ale zůstaly
 > `*-SPOSiteDesign` / `*-PnPSiteDesign`. Když někdo řekne „site design", jde o totéž.
 
 Limity, které je nutné znát předem: **100 site scriptů a 100 site templates na tenant**

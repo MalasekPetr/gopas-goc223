@@ -39,10 +39,10 @@ const site = await client.api("/sites/root").get();
 ## Kdy zvolit TS/Node místo PowerShellu
 
 - Tým je primárně vývojářský (TS je domácí jazyk) a skripty žijí vedle aplikačního kódu.
-- Cíl běhu je Node prostředí — Azure Function (TS), CI pipeline s node image (viz
+- Cíl běhu je Node prostředí — Azure Function (TS), CI pipeline (continuous integration) s node image (viz
   [`../../day-1/vscode-copilot-env/explainer-runtime-environments.md`](../../day-1/vscode-copilot-env/explainer-runtime-environments.md)).
 - Návaznost na SPFx ([`../../day-5/app-catalog-lifecycle/`](../../day-5/app-catalog-lifecycle/)) —
-  stejný jazyk a tooling pro webparty i automatizaci. CLI for Microsoft 365 je sám Node/TS,
+  stejný jazyk a tooling pro webparty i automatizaci. nástroj příkazové řádky CLI for Microsoft 365 je sám Node/TS,
   takže tahle cesta je "to samé o vrstvu níž".
 
 Kdy naopak zůstat u PowerShellu: admin-orientované úlohy s hotovými cmdlety (PnP provisioning,

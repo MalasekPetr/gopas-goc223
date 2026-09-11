@@ -26,7 +26,7 @@ vytvoření** — prostor nikdy nevznikne bez governance nastavení, "dodatečn�
 ### Hooky a integrace s vlastním kódem
 Koncepčně: **pre-provision hook** validuje žádost dřív, než cokoli vznikne (kontrola názvu,
 oprávněnosti žadatele), **post-provision hook** provádí akce po vzniku prostoru (notifikace,
-zápis do externího CMDB, spuštění vlastního PnP skriptu pro doplňkovou konfiguraci, kterou
+zápis do externí databáze konfigurací (CMDB, Configuration Management Database), spuštění vlastního PnP skriptu pro doplňkovou konfiguraci, kterou
 vendor šablona nepokrývá). Toto je integrační bod, kde vlastní PnP.PowerShell/Graph kód ([`../provisioning-patterns/`](../provisioning-patterns/))
 doplňuje vendor platformu tam, kde je specifický požadavek zákazníka mimo standardní šablonu.
 
@@ -34,7 +34,7 @@ doplňuje vendor platformu tam, kde je specifický požadavek zákazníka mimo s
 Attestace vlastníků (pravidelné potvrzení "tento prostor pořád existuje z důvodu X, vlastník
 je pořád Y"), sensitivity labeling při vzniku, sprawl reporting (přehled neaktivních/duplicitních
 prostorů) — koncepty, které v [`../lifecycle-compliance/`](../../day-4/lifecycle-compliance/) uvidíme jako nativní Microsoft funkce (Site Attestation v
-rámci SharePoint Advanced Management) — Orchestry a nativní SAM řeší podobný problém, srovnání
+rámci SharePoint Advanced Management) — Orchestry a nativní SAM (SharePoint Advanced Management) řeší podobný problém, srovnání
 je součástí labu.
 
 ```mermaid

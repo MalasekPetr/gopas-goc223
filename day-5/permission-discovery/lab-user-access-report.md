@@ -4,7 +4,7 @@
 
 ## Cíl
 
-Student má skript, který pro zadaný UPN vrátí seznam webů s **cestou, kterou přístup
+Student má skript, který pro zadané uživatelské jméno (UPN) vrátí seznam webů s **cestou, kterou přístup
 vede** — a na vlastní oči vidí rozdíl mezi verzí, která rozbaluje Entra skupiny, a verzí,
 která je míjí.
 
@@ -143,7 +143,7 @@ která je míjí.
 - **Časový skluz**: vypustit část D (kroky 7-8). Části B a C ne — kontrast mezi krokem 3
   a 6 je jediný důvod, proč lab existuje.
 
-> [!NOTE] SAM část je demo, ne lab
+> [!NOTE] Část o SharePoint Advanced Managementu (SAM) je demo, ne lab
 > Report *Site permissions for users* běží **1× za 30 dní** a tenant jich unese 5 —
 > 25 studentů ho spustit nemůže. Instruktor ho ukáže na plátně (nebo ze screenshotů,
 > pokud kurzovní tenant SAM nemá) a porovná jeho výstup s výstupem vašeho skriptu.

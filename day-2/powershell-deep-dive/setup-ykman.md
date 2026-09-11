@@ -5,7 +5,7 @@
 
 ## Co je `ykman`
 
-Nástroj příkazové řádky (CLI) od Yubica pro konfiguraci YubiKey: sloty PIV (Personal Identity Verification), FIDO2, jednorázové kódy OTP (One-Time Password), a kódy PIN a PUK (PIN Unblock Key). Existuje
+Nástroj příkazové řádky (CLI) od Yubica pro konfiguraci YubiKey: sloty PIV (Personal Identity Verification), FIDO2 (Fast Identity Online), jednorázové kódy OTP (One-Time Password), a kódy PIN a PUK (PIN Unblock Key). Existuje
 i grafický **YubiKey Manager**, ale skriptovat jde jen CLI — a v kurzu, který je
 o automatizaci, dává smysl jen ta cesta.
 

@@ -65,7 +65,7 @@ v jedné minutě. Migrace technicky proběhla, auditní hodnota obsahu je nulov�
 ## Krok 1 — Dva seznamy a business klíč
 
 Zdroj a cíl. Nutná podmínka je **pole s věcným významem**, podle kterého kopie pozná, co už
-v cíli je — evidenční číslo, UPN, číslo smlouvy:
+v cíli je — evidenční číslo, uživatelské jméno (UPN), číslo smlouvy:
 
 | Interní název | Typ | Poznámka |
 |---|---|---|
@@ -96,7 +96,7 @@ uděluje stejně jako v [`../elevated-access/lab-elevated-access.md`](../elevate
 Connect-PnPOnline -Url $env:SITE_URL -ManagedIdentity
 ```
 
-Timer trigger, **NCRONTAB v UTC** (`TZ` ani `WEBSITE_TIME_ZONE` na Flexu nefungují):
+Timer trigger, **zápis NCRONTAB v UTC** (`TZ` ani `WEBSITE_TIME_ZONE` na Flexu nefungují):
 
 ```powershell
 param($Timer)

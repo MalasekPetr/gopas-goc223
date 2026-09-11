@@ -7,7 +7,7 @@ a **throttling** (limit rychlosti volání).
 
 ## 1. List view threshold = 5000
 
-**Není to strop velikosti seznamu.** SPO seznam může mít miliony položek. 5000 je limit
+**Není to strop velikosti seznamu.** Seznam v SharePoint Online (SPO) může mít miliony položek. 5000 je limit
 na to, kolik položek smí **jeden dotaz projít**, než ho server odmítne — chrání sdílenou
 databázi před uzamčením řádků kvůli jednomu nešikovnému dotazu. **V SharePoint Online
 se nedá zvýšit** (na rozdíl od on-premises, kde šlo okno posunout).
@@ -37,7 +37,7 @@ Get-PnPField -List "Dokumenty" |
 Set-PnPField -List "Dokumenty" -Identity "Stav" -Values @{ Indexed = $true }
 ```
 
-V UI: *Nastavení seznamu → Indexované sloupce* (tam se dělá i **složený index** —
+V klikacím rozhraní: *Nastavení seznamu → Indexované sloupce* (tam se dělá i **složený index** —
 primární + sekundární sloupec pro dvojici filtrů, která se používá pořád).
 
 Co je dobré vědět předem:
@@ -95,7 +95,7 @@ Základ (429, závazné `Retry-After`, transientní vs permanentní chyby) je v
   ho. Rychlejší je jedna sekvenční dávka než pět zablokovaných vláken.
 - **Dávkové API místo N volání**: `New-PnPBatch` / `Invoke-PnPBatch` u zápisů,
   `$batch` v Graphu (max 20 requestů) — méně volání znamená méně throttlingu.
-- **Dekorace user agenta**: Microsoft u vlastních volání do SPO/CSOM žádá identifikaci
+- **Dekorace user agenta**: Microsoft u vlastních volání do SPO a CSOM (Client-Side Object Model) žádá identifikaci
   aplikace ve tvaru `NONISV|<organizace>|<NazevAplikace>/1.0` — nedekorovaný provoz je
   throttlován agresivněji. PnP.PowerShell si dekorovaný user agent nastavuje sám;
   u přímých REST volání je potřeba ho doplnit:

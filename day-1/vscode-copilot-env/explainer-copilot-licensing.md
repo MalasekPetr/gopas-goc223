@@ -40,7 +40,7 @@ v Microsoft 365 admin centru:
 
 Role, které to smí spravovat: Global administrator, Billing administrator, **AI
 administrator**, Global reader (jen čtení). Pro least-privilege je správná volba **AI
-administrator nebo Billing administrator**, ne GA — přesně ta úvaha, kterou kurz vede
+administrator nebo Billing administrator**, ne Global administrator (GA) — přesně ta úvaha, kterou kurz vede
 u app registrací ([`../../day-2/automation-strategy/`](../../day-2/automation-strategy/)).
 
 Spotřeba se účtuje **přes Azure meter na připojené subscription**; sledovat se dá
@@ -54,7 +54,7 @@ v M365 admin centru na stránce Cost Management i v Azure Cost Management.
   tenant a nákladová odpovědnost se rozplyne.
 - **Vypnutí je odpojení policy**, ne mazání agentů — rychlá brzda, když spotřeba
   vyskočí.
-- Náklady sledovat **před** rozhodnutím o plných licencích: typický důvod, proč PAYG
+- Náklady sledovat **před** rozhodnutím o plných licencích: typický náklad pay-as-you-go (PAYG) důvod, proč PAYG
   zapnout, je zjistit reálný vzorec využití.
 
 ## Klíčové rozlišení

@@ -11,7 +11,7 @@ provisioningu, s explicitním rollback plánem a předávacím runbookem.
 
 - Wave plán ([`../../day-3/migration-patterns/`](../../day-3/migration-patterns/)), provisioning
   artefakt ([`../../day-3/provisioning-patterns/`](../../day-3/provisioning-patterns/)), Azure
-  integrační/SIEM blueprint ([`../../day-4/azure-integration-patterns/`](../../day-4/azure-integration-patterns/) a
+  blueprint integrace a SIEM ([`../../day-4/azure-integration-patterns/`](../../day-4/azure-integration-patterns/) a
   [`../../day-4/siem-blob-integration/`](../../day-4/siem-blob-integration/)), hardened app
   registrace ([`../security-hardening/`](../security-hardening/)) — vlastní artefakty z celého týdne.
 

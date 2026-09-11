@@ -55,7 +55,7 @@ Skryté systémové seznamy se odfiltrují přes `Get-PnPList | Where-Object Hid
 
 Zobrazovaný název (`Title`) je pro lidi a **dá se kdykoli přejmenovat**; interní název
 (`InternalName`) vzniká při založení pole a **už se nikdy nemění** — a právě ten chtějí
-CAML dotazy, REST filtry i Graph `fieldValueSet`. Záludnost: mezera nebo diakritika
+Dotazy CAML (Collaborative Application Markup Language), REST filtry i Graph `fieldValueSet`. Záludnost: mezera nebo diakritika
 v názvu při založení se zakóduje (`Datum schválení` → `Datum_x0020_schv_x00e1_len_x00ed_`)
 — proto pole zakládat bez diakritiky a mezer a teprve pak přejmenovat zobrazovaný název.
 V migracích je to nejčastější příčina „mapování metadat nesedí".

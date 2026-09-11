@@ -47,7 +47,7 @@ dostane certifikát, v D5 projde auditem.
 5. Provést admin consent a ověřit přihlášení skrz `Connect-*` cmdlet libovolného ze tří
    modulů z [`../powershell-deep-dive/`](../powershell-deep-dive/).
 
-   > Tady consent uděláte jedním kliknutím, protože jste GA ve vlastním tenantu. V cizím
+   > Tady consent uděláte jedním kliknutím, protože jste Global administrator ve vlastním tenantu. V cizím
    > tenantu se spouští **odkazem, který si musíte složit sami** — portál ho nikde nenabízí.
    > Tvar URL, povinné parametry v2.0 endpointu a tři věci, které to shodí:
    > [`explainer-app-registrations-enterprise-apps.md`](explainer-app-registrations-enterprise-apps.md).

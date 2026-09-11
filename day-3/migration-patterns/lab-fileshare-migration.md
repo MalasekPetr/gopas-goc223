@@ -8,7 +8,7 @@ Druhý velký lab kurzu. Student navrhne migrační plán jako **JSON parametric
 (vlny, zdroje, cíle, mapování metadat), exekuuje migraci z lokálního fileshare do SPO
 knihoven přes SPMT PowerShell modul a **doplní metadata PnP skriptem** — protože SPMT
 obsah přenese, ale vlastní metadata nenaplní. Plán je verzovatelný artefakt v gitu,
-ne klikání v GUI.
+ne klikání v grafickém rozhraní (GUI).
 
 ## Předpoklady
 

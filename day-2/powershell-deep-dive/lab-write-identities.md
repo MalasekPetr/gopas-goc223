@@ -9,7 +9,7 @@
 Zapsat do téhož SharePoint seznamu třemi cestami — ručně přes UI, skriptem
 s **delegated** přihlášením a skriptem **app-only** — a na sloupci „Vytvořil"
 na vlastní oči vidět, jak se každá cesta podepisuje. Vizuální důkaz identity osy
-celého kurzu: kdo zapsal, je v SPO navždy vidět (a je to argument pro auditovatelnost
+celého kurzu: kdo zapsal, je v SharePoint Online (SPO) navždy vidět (a je to argument pro auditovatelnost
 automatizace, který se hodí i mimo učebnu).
 
 ## Předpoklady

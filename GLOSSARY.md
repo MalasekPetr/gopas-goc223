@@ -23,7 +23,7 @@ Nové zkratky do textu přidávat **jen zároveň s řádkem tady**.
 | **CAE** | Continuous Access Evaluation | Průběžné přehodnocování platnosti tokenu, místo čekání na jeho expiraci. |
 | **FIC** | Federated Identity Credential | Důvěra mezi identitou a cizím vydavatelem tokenů; umožní běh bez uloženého tajemství. |
 | **FIDO2** | (standard, nerozepisuje se) | Přihlášení hardwarovým klíčem bez hesla. |
-| **GA** | Global Administrator | Nejvyšší role v Entra tenantu. **Pozor: nedává automaticky přístup do Azure.** |
+| **GA** | Global Administrator — **nebo** General Availability | **Dva různé významy.** U rolí je to nejvyšší role v Entra tenantu (a nedává automaticky přístup do Azure); u produktů znamená „obecně dostupné", tedy opak preview. Když z věty není jasné který, rozepsat vždy. |
 | **HSM** | Hardware Security Module | Zařízení, ze kterého privátní klíč nelze vyexportovat. |
 | **MFA** | Multi-Factor Authentication | Vícefaktorové ověření (druhý faktor k heslu). |
 | **MI** | Managed Identity | Identita přidělená Azure zdroji; nemá tajemství, které by šlo ukrást. |

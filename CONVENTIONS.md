@@ -21,8 +21,13 @@ ne:   DCR může obsahovat KQL transformaci
 „Na každé stránce" znamená v každém souboru zvlášť — student čte jednotlivé stránky
 z odkazu, ne celý repozitář odshora. Rozepsat stačí jednou za soubor, ne u každého výskytu.
 
-Výjimka: zkratky, které v oboru nikdo nerozepisuje a plné znění nic nevysvětlí
-(`URL`, `API`, `JSON`, `XML`, `CSV`, `REST`, `IT`, `ID`). U všeho ostatního platí pravidlo.
+Výjimka: zkratky, které v oboru nikdo nerozepisuje a plné znění nic nevysvětlí —
+`URL`, `API`, `JSON`, `XML`, `CSV`, `REST`, `IT`, `ID`, `HTTP`, `HTML`, `SMS`, `PIN`,
+`USB`, `GB`, `MB`, `TB`, `UTC`, `VS Code`. U všeho ostatního platí pravidlo.
+
+**Pozor na zkratky s víc významy.** `GA` je Global Administrator i General Availability,
+`CA` je Conditional Access i certifikační autorita. U těch se rozepisuje **vždy**, i na
+podruhé, pokud z věty není jednoznačně jasné, o který význam jde.
 
 **Do nadpisů a do buněk tabulek se plné znění necpe** — nadpis má zůstat krátký a tabulka
 přehledná. Když je první výskyt v nadpisu, rozepíše se v **první větě textu** pod ním;

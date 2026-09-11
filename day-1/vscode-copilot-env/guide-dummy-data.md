@@ -22,8 +22,8 @@ Vystup jen cisty JSON bez komentaru.
 Varianty téhož receptu:
 
 - **CSV** — „výstup jako CSV se středníkem jako oddělovačem, první řádek hlavička";
-  uložit jako UTF-8 (viz [`../../day-2/powershell-deep-dive/explainer-formats-encoding.md`](../../day-2/powershell-deep-dive/explainer-formats-encoding.md)).
-- **Položky SPO seznamu** — schéma opsat z reálného seznamu (interní názvy polí a choice
+  uložit v kódování UTF-8, tedy Unicode Transformation Format (viz [`../../day-2/powershell-deep-dive/explainer-formats-encoding.md`](../../day-2/powershell-deep-dive/explainer-formats-encoding.md)).
+- **Položky seznamu SharePoint Online (SPO)** — schéma opsat z reálného seznamu (interní názvy polí a choice
   hodnoty zjistíte tahákem [`../../day-3/graph-fundamentals/tips-spo-api.md`](../../day-3/graph-fundamentals/tips-spo-api.md)),
   ale do promptu dát jen **strukturu**, žádná reálná data.
 - **Fileshare pro migrační lab** — „vygeneruj strom 30 cest k souborům včetně názvů
@@ -37,7 +37,7 @@ Varianty téhož receptu:
 - **Vyžádat si okrajové případy** — prázdné hodnoty, extrémně dlouhý název, znak `&`,
   datum na přelomu roku, položka přes 5000 v seznamu. Dummy data, na kterých nic
   nespadne, nic netestují.
-- **Diakritiku vyžádat explicitně** — jinak model rád generuje ASCII a UTF-8 round-trip
+- **Diakritiku vyžádat explicitně** — jinak model rád generuje jen ASCII (bez diakritiky) a UTF-8 round-trip
   nemáte čím ověřit.
 - **Zkontrolovat, že data jsou opravdu smyšlená** — projít očima, jestli se
   nevygenerovalo reálné jméno nebo firma. Výstup AI se ověřuje vždy, i tenhle.

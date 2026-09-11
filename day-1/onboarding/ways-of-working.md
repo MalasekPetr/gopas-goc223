@@ -10,7 +10,7 @@ zajišťují role. Porušení pravidla typicky rozbije práci ostatním 24 lidem
 1. **Žádné tenant-wide `Set-*` bez instruktora.** `Set-SPOTenant`, sharing policy na úrovni
    organizace, Entra tenant nastavení — jen na pokyn instruktora, nikdy "na zkoušku".
 2. **Sahej jen na svoje artefakty.** Cizí weby, app registrace, resource groups a skripty
-   jsou tabu — i když na ně jako GA technicky dosáhneš.
+   jsou tabu — i když na ně jako Global administrator (GA) technicky dosáhneš.
 3. **Nemazat a needitovat nic, co jsi nevytvořil.** Včetně "úklidu" věcí, které vypadají
    opuštěně — mohou patřit jinému studentovi nebo minulému běhu.
 
@@ -36,7 +36,7 @@ Pravidla pro číslování:
 
 ## Přístupový princip
 
-- **Licence vs. permissions vs. role** — E5 licence dává přístup k funkcím, SharePoint
+- **Licence vs. permissions vs. role** — licence E5 dává přístup k funkcím, SharePoint
   permissions řídí obsah, Entra role (GA) řídí administraci. Tři různé vrstvy, viz
   [`../../GLOSSARY.md`](../../GLOSSARY.md).
 - To, že něco *můžeš* (GA), neznamená, že to *smíš* (pravidla kurzu) — přesně tak zní

@@ -1,7 +1,7 @@
 # Explainer · Správa PowerShell modulů: scopes, pinning, PSResourceGet
 
 Deep-dive k [`README.md`](README.md). Instalace modulu není jednorázový klik — na DEV
-stanici, CI agentovi a produkčním serveru se řeší jinak, a špatná strategie aktualizací
+stanici, CI agentovi (continuous integration) a produkčním serveru se řeší jinak, a špatná strategie aktualizací
 je nejčastější příčina "včera to fungovalo".
 
 ## Instalační scope
@@ -46,7 +46,7 @@ přestala fungovat, přestože se "nic nezměnilo".
 
 - Nové moduly cílí na PS7 (EXO 3.10+ dokonce PS 7.6+); Windows PowerShell 5.1 zůstává
   relevantní jen pro legacy závislosti.
-- SPO Management Shell má v PS7 historicky quirky (`-UseWindowsPowerShell` import fallback
+- SharePoint Online (SPO) Management Shell má v PS7 historicky quirky (`-UseWindowsPowerShell` import fallback
   na některých verzích — viz tripwires v [`instructor-notes.md`](instructor-notes.md)).
 - Praktické pravidlo kurzu: **vše v PS7**, PS 5.1 jen když konkrétní modul jinak nejde.
 

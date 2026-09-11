@@ -16,7 +16,7 @@ Kdo přichází z on-premises SharePointu nebo z klasického programování, če
 
 1. **Event handler** — kód, který SharePoint zavolá v okamžiku změny, ještě než se uloží.
    Umí změnu odmítnout nebo doplnit.
-2. **Webhook** — SharePoint pošle HTTP zprávu na naši adresu, až je změna hotová.
+2. **Webhook** — SharePoint pošle HTTP požadavek na naši adresu, až je změna hotová.
 3. **Plánovaný běh (CRON)** — nikdo nám nic neposílá; náš skript se sám v daných
    intervalech podívá, co je nového.
 

@@ -99,7 +99,7 @@ je nepořádek, ne úspora času.
 - **Privátní klíč se rodí v čipu** a neexistuje operace, která ho dostane ven.
 - **Dotyk je feature pro člověka, ne pro automatizaci** — noční scheduled task s klíčem,
   u kterého nikdo nestojí, je chyba nasazení.
-- Tentýž YubiKey umí být **MFA token pro člověka** (FIDO2) i **credential aplikace** (PIV);
+- Tentýž YubiKey umí být **token pro vícefaktorové ověření (MFA)** (FIDO2) i **credential aplikace** (PIV);
   jsou to dvě nesouvisející role.
 
 ## Fallback

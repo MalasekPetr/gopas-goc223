@@ -129,7 +129,7 @@ konverzace, každý den, každým členem týmu — a kdo ho vloží jen napůl,
 nástrojem než ostatní. **Deklarativní agent je ta stejná sada pravidel zabalená do
 publikovaného artefaktu**, který se schvaluje a verzuje jako každá jiná aplikace v tenantu.
 
-Navíc přidává dvě věci, které pouhý prompt neumí. **Grounding přes MCP** — kurzovní agent
+Navíc přidává dvě věci, které pouhý prompt neumí. **Grounding přes Model Context Protocol (MCP) přes MCP** — kurzovní agent
 volá Microsoft Learn MCP server a dokumentaci si v konverzaci *čte*, místo aby ji rekonstruoval
 z vah modelu; prompt umí říct „nevymýšlej si", ale nedá modelu čím to nahradit. A **hranice,
 které nelze zapomenout** — agent nemá jedinou capability sahající na data tenantu, takže není

@@ -1,7 +1,7 @@
 # Den 1 — Onboarding, prostředí a mapa API
 
-Onboarding do sdíleného GA tenantu a pravidla práce, připravený a **ověřený** toolchain,
-mapa API nad M365 a SPO s prvním hands-on v Graph Exploreru, a vývojářské prostředí
+Onboarding do sdíleného tenantu, kde jsou všichni Global administrator a pravidla práce, připravený a **ověřený** toolchain,
+mapa API nad Microsoft 365 (M365) a SharePoint Online (SPO) s prvním hands-on v Graph Exploreru, a vývojářské prostředí
 a návyky.
 
 | Pořadí | Blok | Slug | Typ |

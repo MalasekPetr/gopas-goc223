@@ -5,7 +5,7 @@
 ## Cíl
 
 Student má funkční pipeline Blob → Event Grid → Function → Log Analytics (Logs Ingestion
-API), s minimalizací PII v logovaném schématu a ověřením přes KQL dotaz.
+API), s minimalizací osobních údajů (PII) v logovaném schématu a ověřením přes dotazy KQL dotaz.
 
 ## Předpoklady
 

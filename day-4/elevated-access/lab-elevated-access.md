@@ -728,7 +728,7 @@ Invoke-Pester ./Grant-RequestedAccess.Tests.ps1
 - **Import modulu nedobíhá** (krok 9): pokračujte krokem 10, import běží na pozadí.
   Když nedoběhne vůbec, spusťte runbook alespoň s `Write-Output` místo PnP volání —
   ověříte tím celou cestu kromě SharePointu.
-- **App role assignment selže** (krok 10): potřebuje GA nebo Privileged Role Administrator.
+- **App role assignment selže** (krok 10): potřebuje Global administrator nebo Privileged Role Administrator.
   Bez něj Azure část nedoběhne — nechte studenty spárovat s tím, komu to prošlo, ať to
   aspoň vidí.
 - **Není čas na celý lab**: části 1, 4 a 5 jsou jádro (ručně → certifikát → nic).

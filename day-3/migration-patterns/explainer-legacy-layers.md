@@ -88,7 +88,7 @@ projekt vedle přesunu obsahu**, ne detail cutoveru. Nástrojově pomůže SMAT
 
 ## Zdroje (Microsoft)
 
-- [SharePoint Add-ins and Azure ACS retirement FAQ](https://learn.microsoft.com/en-us/sharepoint/dev/sp-add-ins/add-ins-and-azure-acs-retirements-faq)
+- [SharePoint Add-ins and Azure ACS retirement FAQ (často kladené otázky)](https://learn.microsoft.com/en-us/sharepoint/dev/sp-add-ins/add-ins-and-azure-acs-retirements-faq)
 - [Azure ACS retirement in Microsoft 365](https://learn.microsoft.com/en-us/sharepoint/dev/sp-add-ins/retirement-announcement-for-azure-acs)
 - [SharePoint Add-In retirement in Microsoft 365](https://learn.microsoft.com/en-us/sharepoint/dev/sp-add-ins/retirement-announcement-for-add-ins)
 - [Allow or prevent custom script](https://learn.microsoft.com/en-us/sharepoint/allow-or-prevent-custom-script)

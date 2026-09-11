@@ -31,7 +31,7 @@ před expirací.
 
 > Volání Graphu ve funkci pište přes `Invoke-RestMethod`, ne přes modul `Microsoft.Graph`.
 > **Flex Consumption nepodporuje managed dependencies v PowerShellu**, takže modul by se
-> musel nést v deployment package -- u dvou HTTP volání (`POST` subscription, `PATCH`
+> musel nést v deployment package -- u dvou HTTP požadavcích (`POST` subscription, `PATCH`
 > renewal) je to zbytečná zátěž. Detaily:
 > [`comparison-scheduled-runtimes.md`](comparison-scheduled-runtimes.md).
 

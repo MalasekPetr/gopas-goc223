@@ -1,7 +1,7 @@
 # Explainer · Runtime prostředí: DEV stanice, kontejnery, servery
 
 Deep-dive k [`README.md`](README.md). Automatizační skript žije na třech typech strojů —
-DEV stanice, CI/kontejner, server pro plánované běhy — a každý má jiné požadavky na
+vývojová stanice, CI (continuous integration) nebo kontejner, server pro plánované běhy — a každý má jiné požadavky na
 instalaci, aktualizace a hlavně autentizaci.
 
 ## DEV stanice — reprodukovatelnost přes konfiguraci
@@ -18,7 +18,7 @@ instalaci, aktualizace a hlavně autentizaci.
 - `mcr.microsoft.com/powershell` image = čistý, reprodukovatelný PS7 runtime pro pipeline
   agenty; verze modulů se instalují v build kroku s pinem (`Install-PSResource -Version`),
   takže image je deterministická.
-- CLI for Microsoft 365 (npm balíček, bez PowerShell závislosti) sedí do `node` image —
+- Nástroj příkazové řádky CLI for Microsoft 365 (npm balíček, bez PowerShell závislosti) sedí do `node` image —
   přesně tady je jeho místo v nástrojové mapě (viz
   [`../../day-2/automation-strategy/`](../../day-2/automation-strategy/)).
 - Auth v CI: **nikdy interaktivní** — certificate (secret/cert z pipeline secret store,

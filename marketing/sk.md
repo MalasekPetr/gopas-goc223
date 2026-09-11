@@ -76,7 +76,7 @@ Kurz prevedie inžinierov migrácií a automatizácie kompletným cyklom pokroč
 
 - **Azure integračné vzory** *(veľký lab)* — Logic Apps vs. Functions vs. Runbooks, subscription lifecycle Graph change notifications; lab: idempotentný dávkový sync pod aplikačnou identitou; krok za krokom, ako skript dostať do Azure a spustiť ho tam.
 - **Elevovaný prístup: self-service žiadosť o oprávnenie** *(lab)* — najčastejšie stavaná automatizácia nad SharePointom: užívateľ požiada o prístup, aplikačná identita mu ho pridelí. Dvojstupňová autorizačná brána, `Sites.Selected` zúžený na jeden web, auditované zamietnutie — a nasadenie do Azure bez jediného hesla.
-- **SIEM integrácia cez Azure Blob** — logovacia pipeline aplikácia → Blob → Event Grid → Function → SIEM, KQL základy pre validáciu a dashboardy.
+- **SIEM integrácia cez Azure Blob** — logovacia pipeline aplikácia → Blob → Event Grid → Function → SIEM, základy KQL (Kusto Query Language) pre validáciu a dashboardy.
 - **Lifecycle & compliance enforcement** — automatizácia retencie a citlivosti, governance zdieľania, Site Attestation.
 
 ### Deň 5 — App Catalog, security hardening a capstone

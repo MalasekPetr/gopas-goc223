@@ -12,7 +12,7 @@ běží jen v tenantu, kde ho správce schválí.
 Doma studenti sahají po nástrojích jako Claude Code nebo GitHub Copilot a je to správná
 volba. Na kurzu se ale pracuje s tím, co je dostupné v učebně — a to je **Microsoft Copilot
 Chat** v rámci firemního přihlášení. Tenhle agent ukazuje, že to není omezení, ale příležitost:
-agent nad stejným chatem umí věci, na které obecná konverzace nedosáhne — **MCP konektivitu,
+agent (Model Context Protocol, MCP) nad stejným chatem umí věci, na které obecná konverzace nedosáhne — **MCP konektivitu,
 řízený grounding a guardrails, které si nese s sebou.**
 
 ## Soubory
@@ -33,7 +33,7 @@ lokální identifikátor Toolkitu, ne konfigurace.
 
 > [!IMPORTANT] Pole vydavatele
 > `manifest.json` je ponechaný **verbatim** včetně `developer`, `mpnId` a `accentColor`.
-> Při publikování pod vlastní organizací se tahle pole nahrazují — MPN ID a privacy/terms
+> Při publikování pod vlastní organizací se tahle pole nahrazují — Microsoft Partner Network (MPN) ID a privacy/terms
 > URL musí odpovídat skutečnému vydavateli, jinak validace balíčku neprojde.
 
 ## Návrhová rozhodnutí a jejich důvody

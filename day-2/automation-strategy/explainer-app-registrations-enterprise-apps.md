@@ -34,7 +34,7 @@ zákaznickém tenantu vznikne po consentu **jen service principal** (Enterprise 
 ## Admin consent URL — portál vám ji nedá
 
 Consent v cizím tenantu se spouští odkazem, který si **musíte složit sami**. Panel
-*Endpoints* v App registrations vypisuje OAuth 2.0 authorize/token, OIDC metadata a SAML
+*Endpoints* v App registrations vypisuje OAuth 2.0 authorize/token, metadata OpenID Connect (OIDC) a SAML (Security Assertion Markup Language)
 endpointy — **admin consent URL mezi nimi není**. Z portálu potřebujete jen
 **Application (client) ID**.
 
@@ -57,7 +57,7 @@ https://login.microsoftonline.com/<tenantId>/v2.0/adminconsent
 - **`scope` musí být `/.default`, pokud žádáte aplikační oprávnění.** Dynamické scopes
   (výčet konkrétních permissions) aplikační oprávnění **nezahrnou** — `/.default` říká
   „všechno, co je v *Required permissions* app registrace".
-- **`redirect_uri` se musí přesně shodovat** s některým registrovaným redirect URI.
+- **`redirect_uri` se musí přesně shodovat** s některým registrovaným redirect URI (Uniform Resource Identifier) redirect URI.
   Neshoda je nejčastější příčina selhání, které vypadá jako problém s oprávněními.
 
 > [!IMPORTANT] Tři věci, které consent v cizím tenantu shodí
@@ -139,6 +139,6 @@ flowchart LR
 > *Endpoints* v portálu admin consent URL nenabízí; kdyby ji Microsoft doplnil, zkrátit
 > tuhle sekci na odkaz.
 >
-> `signInAudienceRestrictions` je novější mechanismus — ověřit aktuální dostupnost/GA stav
+> `signInAudienceRestrictions` je novější mechanismus — ověřit aktuální dostupnost a stav obecné dostupnosti (GA, general availability)
 > a přesnou konfiguraci před demonstrací; defaulty user consent nastavení v nových tenantech
 > se v čase zpřísňují.

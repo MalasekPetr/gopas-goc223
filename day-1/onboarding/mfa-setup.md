@@ -16,7 +16,7 @@
    - Nainstalujte aplikaci (App Store / Google Play).
    - V aplikaci: Add account → Work or school account → Scan QR code.
    - Naskenujte QR kód z obrazovky a potvrďte testovací notifikaci.
-4. Alternativa bez chytrého telefonu: telefonní číslo + SMS kód (volba "I want to set up a
+4. Alternativa bez chytrého telefonu: telefonní číslo + kód v SMS zprávě (volba "I want to set up a
    different method" → Phone).
 5. Dokončete průvodce. Ověření: `https://aka.ms/mysecurityinfo` ukazuje alespoň jednu metodu.
 

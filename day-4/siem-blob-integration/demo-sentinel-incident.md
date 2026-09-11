@@ -2,7 +2,7 @@
 
 > Odhad: 20 min · Režim: **instruktorské demo** uvnitř labu · Navazuje na [`lab-siem-ingest-blueprint.md`](lab-siem-ingest-blueprint.md)
 
-Lab končí u „data dorazila, KQL to potvrdil". To je **ingest, ne SIEM**. SIEM začíná
+Lab končí u „data dorazila, dotaz KQL to potvrdil". To je **ingest, ne SIEM**. SIEM začíná
 o krok dál: pravidlo, které v datech samo najde vzorec, z něj udělá **incident** a nabídne
 vyšetřování. Tohle demo ten krok ukáže — nad tabulkou, kterou studenti právě naplnili.
 
@@ -71,9 +71,9 @@ v [`../../day-4/lifecycle-compliance/`](../lifecycle-compliance/)).
 - **Log odpovídá na otázku, kterou položíte. SIEM se ptá sám.** To je ta věta do rozpočtové
   debaty.
 - **Entity mapping není kosmetika** — bez něj vznikne upozornění, s ním vyšetřovatelný
-  incident s vazbami na účet, soubor a IP.
+  incident s vazbami na účet, soubor a IP adresu.
 - **Latence je vlastnost, ne chyba.** U audit logů je to kompromis ve prospěch úplnosti;
-  kdo staví detekci na M365 audit datech, nestaví real-time obranu, ale forenzní stopu.
+  kdo staví detekci na auditních datech Microsoft 365, nestaví real-time obranu, ale forenzní stopu.
 - Transformace v DCR (z [`README.md`](README.md)) je ta samá myšlenka o vrstvu níž:
   filtrovat a maskovat **před** uložením, ne až v dotazu.
 

@@ -121,7 +121,7 @@ zadat jako samostudium.
   stroj; jediný soubor, který se přenáší, je `.cer`.
 - SPO Management Shell v PowerShell 7 může vyžadovat
   `Import-Module Microsoft.Online.SharePoint.PowerShell -UseWindowsPowerShell`.
-- Weby vytvářet smyčkou přes `dev/test/prod`, ne 3x ručně v UI — parametrizace je návyk,
+- Weby vytvářet smyčkou přes `dev/test/prod`, ne 3x ručně v klikacím rozhraní — parametrizace je návyk,
   který se v ověření labu kontroluje.
 
 ## Zdroje (Microsoft)

@@ -48,7 +48,7 @@ Takže `git push` → sync → publish, bez jediného kliknutí. Zní to jako ho
 > běží na **runtime 7.2**, protože `PnP.PowerShell` 7.4+ vyžaduje PowerShell 7. Native
 > cesta se na něj tedy nedá použít — a není to volba, je to hranice funkce.
 
-> [!WARNING] Sync joby nepodporují MFA
+> [!WARNING] Sync joby nepodporují vícefaktorové ověření (MFA)
 > Verbatim: *„Azure Automation Jobs **do not support Multi-Factor Authentication (MFA)**."*
 > Kurzový tenant má MFA povinné (viz [`../../environment.md`](../../environment.md)),
 > takže i kdyby runtime souhlasil, narazí se tady.
@@ -93,7 +93,7 @@ vyprší. **PAT se přes portál nedá vyměnit** — jen přes REST API nebo
 ## Vlastní pipeline: co to je a proč je to i tam, kde native funguje, lepší
 
 Dva cmdlety, které už znáte z [`tutorial-script-to-azure.md`](tutorial-script-to-azure.md),
-jen spuštěné v CI po úspěšných testech:
+jen spuštěné v CI (continuous integration) po úspěšných testech:
 
 ```powershell
 # 0. Cesty odvodit od korenu repa, ne od aktualni slozky. V CI nikdy nespolehat
