@@ -130,12 +130,26 @@ function Get-UserAccess {
     foreach ($url in $SiteUrl) {
 
         try {
-            $connectArgs = @{ Url = $url; ErrorAction = 'Stop' }
+            # -ReturnConnection a pak -Connection u KAZDEHO volani. Bez toho se spoleha
+            # na ambientni pripojeni v session state PnP - a to pri praci nad vic
+            # zakaznickymi tenanty PROSAKUJE: skript sahne na "to, co je zrovna aktualni".
+            # Vyhrava posledni connect a spatny tenant to nenahlasi.
+            #
+            # Disconnect-PnPOnline se ZAMERNE nevola: v PnP 3.x nebere -Connection
+            # a shodil by ambientni spojeni misto tohohle. Pripojeni ziskana pres
+            # -ReturnConnection ambientni nejsou, takze neni co nechat viset.
+            $connectArgs = @{ Url = $url; ErrorAction = 'Stop'; ReturnConnection = $true }
             if ($ClientId) { $connectArgs['ClientId'] = $ClientId }
-            Connect-PnPOnline @connectArgs
+            $conn = Connect-PnPOnline @connectArgs
 
             # 1. Site collection admin
-            foreach ($admin in @(Get-PnPSiteCollectionAdmin -ErrorAction Stop)) {
+            #
+            # POZOR: pod app-only identitou BEZ Sites.FullControl.All vraci tenhle cmdlet
+            # PRAZDNY SEZNAM a nevyhodi chybu. Do reportu by se tim zapsalo "zadny admin",
+            # coz se cte jako NALEZ, ne jako chybejici opravneni - presne ta falesna
+            # negativa, pred kterou tenhle modul varuje. Kdo nema plnou kontrolu, ma to
+            # volani vynechat a mezeru POJMENOVAT, ne vypsat nulu.
+            foreach ($admin in @(Get-PnPSiteCollectionAdmin -Connection $conn -ErrorAction Stop)) {
                 if ($admin.LoginName -like "*$UserPrincipalName*") {
                     [pscustomobject]@{
                         UserPrincipalName = $UserPrincipalName
@@ -148,13 +162,13 @@ function Get-UserAccess {
             }
 
             # 2. a 3. Clenstvi v SharePoint skupinach
-            foreach ($group in @(Get-PnPGroup -ErrorAction Stop)) {
+            foreach ($group in @(Get-PnPGroup -Connection $conn -ErrorAction Stop)) {
 
                 # Chyba u jedne skupiny nesmi shodit cely web - typicky se
                 # nepodari precist clenstvi skupiny, na kterou nemame pravo.
                 $members = @()
                 try {
-                    $members = @(Get-PnPGroupMember -Identity $group.Id -ErrorAction Stop)
+                    $members = @(Get-PnPGroupMember -Identity $group.Id -Connection $conn -ErrorAction Stop)
                 }
                 catch {
                     Write-Verbose "Skupinu '$($group.Title)' na $url nelze precist: $($_.Exception.Message)"

@@ -30,7 +30,10 @@ která je míjí.
 
 2. Napsat `scripts/Get-UserAccess.ps1` s parametry `-UserPrincipalName` a `-SiteUrl`
    (pole, ne natvrdo). Pro každý web zjistit:
-   - je uživatel **site collection admin**? (`Get-PnPSiteCollectionAdmin`)
+   - je uživatel **site collection admin**? (`Get-PnPSiteCollectionAdmin`) — **a pozor:
+     pod app-only identitou bez `Sites.FullControl.All` vrátí tiše prázdno.** Buď
+     běžte identitou, která to přečte, nebo to volání vynechte a zapište do výstupu
+     `AdminCheck = 'nespuštěna'`. Nulu vypsat nesmíte.
    - je **přímo** členem některé SharePoint skupiny? (`Get-PnPGroup` + `Get-PnPGroupMember`)
 
    Vracet objekty s `SiteUrl`, `AccessVia` (`SiteAdmin` / `SharePointGroup:<název>`),
@@ -58,6 +61,22 @@ která je míjí.
 
 ### Část D — odolnost a výstup
 
+> [!IMPORTANT] Tři pravidla reportu, která platí i mimo tenhle lab
+> Vzato z reálného multi-tenant provozu, ne z učebnice:
+>
+> 1. **„Nedívali jsme se" ≠ „nic tam není".** Web, který nešel přečíst, patří do
+>    **samostatného seznamu** ve výstupu — nikdy se nesmí slít s webem, kde uživatel
+>    přístup opravdu nemá. První je ujištění, druhé je mezera.
+> 2. **Nedostatečné oprávnění se nesmí zobrazit jako prázdný výsledek.** To je ten případ
+>    `Get-PnPSiteCollectionAdmin` z kroku 2.
+> 3. **Každé PnP volání nese `-Connection` explicitně.** Ambientní připojení mezi
+>    zákaznickými tenanty prosakuje — a při práci nad víc tenanty je to defekt, ne pohodlí.
+>    Připojení získávejte přes `Connect-PnPOnline -ReturnConnection`; taková připojení
+>    ambientní nejsou, takže není co nechat viset.
+>
+> `Disconnect-PnPOnline` **nevolejte** — v PnP 3.x nebere `-Connection` a shodil by
+> ambientní spojení místo toho vašeho.
+
 7. Přidat do seznamu webů jednu **záměrně chybnou URL** a ověřit, že skript ji zaznamená
    a pokračuje, místo aby spadl.
 
@@ -71,9 +90,31 @@ která je míjí.
 9. Do hlavičky skriptu (`.NOTES`) zapsat **slepá místa** vlastními slovy: co tenhle report
    nevidí. Minimálně: přímá oprávnění na položkách při porušené dědičnosti a sharing links.
 
+### Část E — a kdo tam má přístup, kdo není člověk *(volitelné, 10 min)*
+
+10. Od dne 4 umíte aplikaci udělit per-site grant. Teď ho **najděte**. Pro svůj web:
+
+    ```powershell
+    Get-PnPEntraIDAppSitePermission -Connection $conn
+    ```
+
+    Přes celý tenant to jde jen web po webu — index neexistuje, stejně jako u uživatelů.
+    Referenční řešení [`solution/Get-SelectedPermissionGrant.ps1`](solution/Get-SelectedPermissionGrant.ps1)
+    to dělá včetně rozlišení **osiřelých** grantů (aplikace už v adresáři není).
+
+11. Odpovězte si na tři otázky, které z toho reportu dělají governance nástroj:
+    - Je ten grant **write nebo vyšší**?
+    - **Existuje ještě ta aplikace?**
+    - Ví o tom grantu někdo živý, nebo přežil projekt, kvůli kterému vznikl?
+
 ## Ověření
 
 - [ ] Krok 3 vrací pro souseda prázdný výsledek, krok 6 vrací `-dev` web.
+- [ ] Výstup má **samostatný seznam webů, které nešly přečíst** — a ten se nesmí plést
+      s weby, kde uživatel přístup nemá.
+- [ ] Kontrola site collection adminů buď **proběhla identitou, která to přečte**, nebo je
+      ve výstupu označená jako nespuštěná. **Nikde není vypsaná nula bez ověření.**
+- [ ] Každé PnP volání ve skriptu má `-Connection`.
 - [ ] `AccessVia` rozlišuje `SiteAdmin`, `SharePointGroup:*` a `EntraGroup:*`.
 - [ ] Skript nespadne na chybné URL a nepřístupný web je ve výstupu zaznamenaný.
 - [ ] CSV se v Excelu otevře se správnou diakritikou a rozdělené do sloupců.
