@@ -18,10 +18,9 @@ Ten poslední krok je celý smysl labu. Rozdíl mezi druhým a třetím je toti�
 **A přesně tohle si od Azure kupujete.** Ne výkon, ne dostupnost — kupujete si to, že
 identitu nemusíte nikde mít.
 
-> [!NOTE] Pro koho je to napsané
-> Pro člověka, který **Azure nikdy nepoužil**. Každý krok má napsané *co* děláme a *proč*,
-> a kde to jde, tak **ručně** i **skriptem**. Když jste v Azure doma, jeďte skriptovou
-> variantou a hotovo za dvacet minut.
+Lab je napsaný pro člověka, který **Azure nikdy nepoužil**. Každý krok říká *co* děláme
+a *proč*, a kde to jde, má ruční i skriptovou variantu. Kdo je v Azure doma, jede
+skriptovou variantou a je hotový za dvacet minut.
 
 ## Předpoklady
 
@@ -47,18 +46,18 @@ identitu nemusíte nikde mít.
 
 Druhý účet nepotřebujete. Vše projde z vašeho vlastního.
 
-> [!NOTE] Proč zrovna managed identita nesmí přes hranici tenantu — a certifikát smí
-> Je to tatáž vlastnost, jen z druhé strany. Bude se vám hodit v části 5, tak si to
-> přečtěte teď:
->
-> | | Certifikát (část 4) | Managed identita (část 5) |
-> |---|---|---|
-> | Dostane se do cizího tenantu? | **ano**, když je app multitenant, má tam admin consent a per-site grant | **ne** |
-> | Proč | certifikát je **secret** — a secret se dá vzít s sebou | **nemá secret**, není co vzít |
->
-> **To, co dělá managed identitu bezpečnou, ji dělá nepřenosnou.** Plné srovnání včetně
-> obou cest ven (certifikát v Key Vaultu, workload identity federation) je v
-> [`../azure-integration-patterns/comparison-scheduled-runtimes.md`](../azure-integration-patterns/comparison-scheduled-runtimes.md).
+Ta podmínka vypadá jako úřednický detail, ale je to důsledek jedné vlastnosti, kterou
+uvidíte v části 4 i 5 — jen z opačné strany:
+
+| | Certifikát (část 4) | Managed identita (část 5) |
+|---|---|---|
+| Dostane se do cizího tenantu? | **ano**, když je aplikace multitenantní, má tam admin consent a per-site grant | **ne** |
+| Proč | certifikát je **secret** — a secret se dá vzít s sebou | **nemá secret**, není co vzít |
+
+**To, co dělá managed identitu bezpečnou, ji dělá nepřenosnou.** Přečtěte si to teď; v části
+5 na to narazíte v praxi. Plné srovnání včetně obou cest ven (certifikát v Azure Key Vaultu,
+workload identity federation) je v
+[`../azure-integration-patterns/comparison-scheduled-runtimes.md`](../azure-integration-patterns/comparison-scheduled-runtimes.md).
 
 ## Nastavte si tohle jednou a pak už jen kopírujte
 
@@ -78,12 +77,13 @@ $auditList     = "Audit pristupu"
 $targetLibrary = "Dokumenty"
 ```
 
-> [!TIP] Thumbprint si nevypisujte z hlavy
-> 
-> ```powershell
-> Get-ChildItem Cert:\CurrentUser\My |
->     Select-Object Subject, Thumbprint, NotAfter
-> ```
+Thumbprint (odtisk certifikátu) si nevypisujte z hlavy — vypíše ho tenhle příkaz, včetně
+data expirace:
+
+```powershell
+Get-ChildItem Cert:\CurrentUser\My |
+    Select-Object Subject, Thumbprint, NotAfter
+```
 
 ---
 
@@ -220,28 +220,30 @@ Get-PnPEntraIDAppSitePermission -AppIdentity $clientId
 Měl by tam být jeden záznam s právem **`Read`** — ten, který jste si udělal v D2. Krok 5
 ho povýší na `Write`, takže si ten výpis **schovejte pro porovnání**.
 
-> [!NOTE] Proč se sem připojujeme `-Interactive` a ne app-only certifikátem
-> Ten výpis je administrátorská operace — dokumentace u ní uvádí Graph
-> `Sites.FullControl.All`. Vaše aplikace má `Sites.Selected`, takže **sama sebe vypsat
-> neumí**. Připojujete se tedy jako člověk (jste GA), a je to hezká ilustrace toho, že
-> *spravovat* oprávnění a *používat* je jsou dvě různé role.
+Všimněte si, že se tady připojujeme jako **člověk** (`-Interactive`), ne certifikátem
+aplikace. Není to nedůslednost: vypsat, kdo má na web grant, je administrátorská operace
+a dokumentace u ní uvádí `Sites.FullControl.All`. Vaše aplikace má jen `Sites.Selected`,
+takže **sama sebe vypsat neumí**. Je to první ukázka toho, že *spravovat* oprávnění
+a *používat* je jsou dvě různé role.
 
 **Ručně:** Entra → App registrations → vaše aplikace → **API permissions**. Uvidíte
 `Sites.Selected` jako **Application** permission se zeleným consentem.
 
-> [!IMPORTANT] Ty dva pohledy nejsou totéž — a v tom je celá lekce
->
-> | Kde se koukáte | Co uvidíte |
-> |---|---|
-> | **Entra → API permissions** | že aplikace **smí** `Sites.Selected`, nakonsentované |
-> | **`Get-PnPEntraIDAppSitePermission`** | na které weby to **reálně platí** |
->
-> Po samotném consentu je první seznam plný a druhý **prázdný**. Přesně proto se tomu
-> oprávnění říká *Selected* — a přesně proto je krok 5 samostatný krok.
->
-> PnP na kontrolu první tabulky (app role assignments v Entra) cmdlet **nemá** — na to
-> je portál nebo `Get-MgServicePrincipalAppRoleAssignment` z Microsoft.Graph. V tomhle
-> labu ale stačí portál, protože ten consent jste dělal v D2 a jen ho potvrzujete.
+A teď to podstatné: ty dva pohledy, které jste právě viděl, **neříkají totéž**.
+
+| Kde se koukáte | Co uvidíte |
+|---|---|
+| **Entra → API permissions** | že aplikace **smí** `Sites.Selected`, nakonsentované |
+| **`Get-PnPEntraIDAppSitePermission`** | na které weby to **reálně platí** |
+
+Po samotném consentu je první seznam plný a druhý **prázdný**. Aplikace tedy smí pracovat
+s vybranými weby, ale vybraný nemá žádný — přesně proto se tomu oprávnění říká *Selected*,
+a přesně proto je krok 5 samostatný krok.
+
+Poznámka pro toho, kdo si bude chtít ověřit i první tabulku skriptem: PnP na ni cmdlet
+**nemá**, na app role assignments v Entra je portál nebo
+`Get-MgServicePrincipalAppRoleAssignment` z modulu Microsoft.Graph. V tomhle labu stačí
+portál — consent jste dělal v D2 a jen ho potvrzujete.
 
 ### Krok 5 — Dát aplikaci jeden jediný web
 
@@ -265,10 +267,10 @@ Přidělení přístupu k položce vypadá jako „změna obsahu", takže `Write
 odhad. **V kroku 7 uvidíte, jestli byl správný.** Nepřeskakujte to — právě ten náraz je
 na tomhle labu to, co si odnesete.
 
-> [!IMPORTANT] Ručně to nejde — a to je samo o sobě informace
-> Per-site grant pro `Sites.Selected` **nemá v portálu žádné UI**. Není to opomenutí
-> Microsoftu: je to hranice mezi tím, co člověk naklikává, a tím, co se **uděluje
-> aplikaci**. Právě proto se to dělá skriptem nebo Graph API.
+Tenhle krok **nemá ruční variantu** a nehledejte ji — per-site grant pro `Sites.Selected`
+v portálu žádné rozhraní nemá. Není to opomenutí Microsoftu: je to hranice mezi tím, co
+člověk naklikává, a tím, co se **uděluje aplikaci**. Proto se to dělá skriptem nebo přes
+Graph API.
 
 ```powershell
 Connect-PnPOnline -Url $siteUrl `
@@ -368,21 +370,23 @@ Invoke-AccessRequestQueue -RequestListTitle $requestList `
   -AuditListTitle $auditList -AllowedLibraryTitle $targetLibrary
 ```
 
-> [!NOTE] Co dělá ta první tečka — a proč bez ní nic nefunguje
-> `. ./Grant-RequestedAccess.ps1` obsahuje **dvě tečky, které spolu nemají nic společného.**
-> První je **operátor dot-source**: spustí skript **ve vašem scope**. Druhá je součást
-> **cesty** (`.` = aktuální složka).
->
-> Bez toho operátoru by se skript spustil v **child scope**, ten by se po jeho skončení
-> zahodil — a s ním i všechny funkce, které nadefinoval. Na dalším řádku byste dostal
-> `Invoke-AccessRequestQueue : The term ... is not recognized`, přestože skript zjevně
-> proběhl. `Grant-RequestedAccess.ps1` je totiž **knihovna funkcí bez vlastního těla**;
-> dot-source je to, co z ní dělá něco použitelného.
->
-> Podrobně, včetně rozdílu proti `&` a `./`:
-> [`../../day-2/opt-powershell-basics/`](../../day-2/opt-powershell-basics/).
+Ten první řádek, `. ./Grant-RequestedAccess.ps1`, obsahuje **dvě tečky, které spolu nemají
+nic společného** — a stojí za to je rozlišit, protože každá umí selhat jinak.
 
-> [!IMPORTANT] Ta druhá tečka neznamená „vedle skriptu", ale „v aktuální složce"
+První tečka je **operátor dot-source**. Znamená „spusť ten skript ve *mém* prostředí, ne ve
+svém vlastním". Druhá tečka je součást **cesty** a znamená „aktuální složka".
+
+Proč je ten operátor nutný: bez něj se skript spustí ve vlastním, odděleném prostředí
+(child scope), které se po jeho skončení zahodí — a s ním i všechny funkce, které skript
+nadefinoval. Na dalším řádku byste pak dostal `Invoke-AccessRequestQueue : The term ... is
+not recognized`, přestože skript zjevně proběhl bez chyby. `Grant-RequestedAccess.ps1` je
+totiž **knihovna funkcí bez vlastního těla**; dot-source je to, co z ní dělá něco
+použitelného. Podrobně, včetně rozdílu proti `&` a `./`:
+[`../../day-2/opt-powershell-basics/`](../../day-2/opt-powershell-basics/).
+
+A u té druhé tečky je past, na kterou se v reálném běhu naráží:
+
+> [!WARNING] `./` znamená „v aktuální složce", ne „vedle skriptu" — a chybová hláška to zamlčí
 > `./` se vyhodnocuje proti **aktuálnímu pracovnímu adresáři** (`Get-Location`), ne proti
 > umístění souboru. Když tedy dot-source spustíte odjinud, než kde soubor leží, dostanete
 > `The term '.\Grant-RequestedAccess.ps1' is not recognized` — a to i když ten soubor
@@ -428,50 +432,49 @@ Pusťte skript znovu. **Pokud to pořád neprojde, zvyšte na `FullControl`** a 
 raz. Do `Ověření` si poznamenejte, **která úroveň to nakonec byla** — to je odpověď, kterou
 z labu odnášíte, ne ta, kterou jsem vám napsal dopředu.
 
-> [!IMPORTANT] Least privilege není nejužší *název*, ale nejužší *rozsah, který úlohu splní*
-> Tenhle krok je nepříjemný a proto je v labu. U operace, která přiděluje oprávnění, skončí
-> hledání **vysoko** — pravděpodobně až na `FullControl`, protože správa oprávnění je přesně
-> to, co „plná kontrola" znamená. Kdo tvrdí, že to jde s `Write`, to neměřil.
->
-> **A tady je ta věc, kterou si nesmíte splést:** to, co jste právě získali, není nízká
-> *úroveň* oprávnění, ale **úzký rozsah**. `FullControl` na **jeden web** je nesrovnatelně
-> lepší než `Sites.FullControl.All` na **celý tenant** — a to druhé je přesně to, čemu se
-> tenhle blok vyhýbá. Vítězství je v tom `Sites.Selected`, ne v té roli.
->
-> Zpětná vazba na D2: v [`../../day-2/automation-strategy/`](../../day-2/automation-strategy/)
-> jste si napsal, že „least privilege je nejužší rozsah, který úlohu splní, ne nejužší
-> název". Teď víte, proč tam to slovo *splní* je.
+Ten krok je nepříjemný a právě proto je v labu. U operace, která přiděluje oprávnění,
+skončí hledání **vysoko** — pravděpodobně až na `FullControl`, protože správa oprávnění je
+přesně to, co „plná kontrola" znamená.
+
+A tady je věc, kterou si nesmíte splést. To, co jste právě získal, není nízká **úroveň**
+oprávnění, ale **úzký rozsah**. `FullControl` na *jeden web* je nesrovnatelně lepší než
+`Sites.FullControl.All` na *celý tenant* — a to druhé je přesně to, čemu se tenhle blok
+vyhýbá. Vítězství je v tom `Sites.Selected`, ne v té roli.
+
+V [`../../day-2/automation-strategy/`](../../day-2/automation-strategy/) jste si napsal, že
+least privilege je nejužší rozsah, **který úlohu splní**, ne nejužší název. Teď víte, proč
+tam to slovo *splní* je.
 
 Teprve když projde, zkontrolujte **v SharePointu**, ne jen ve výstupu: uživatel má
 u dokumentu roli, řádek je `Granted` a v auditu je záznam.
 
-> [!IMPORTANT] Zastavte se tu na chvíli a podívejte se, co držíte v ruce
-> Právě jste odstranili dvě ze tří věcí z kroku 1: **žádné klikání** a **stopa v auditu**.
-> Ale ta operace pořád stojí na **certifikátu ve vašem úložišti**. Ten certifikát:
->
-> - musíte někam uložit a chránit,
-> - jednou vyprší a někdo ho musí vyměnit,
-> - když se dostane jinam, dostane se s ním i identita,
-> - a **na serveru, kde to má běžet každou noc, ho musíte mít taky.**
->
-> To je ten problém, který řeší Azure. Jdeme na to.
+Zastavte se tu na chvíli a podívejte se, co držíte v ruce. Právě jste odstranil dvě ze tří
+věcí z kroku 1: **žádné klikání** a **stopa v auditu**. Ta operace ale pořád stojí na
+certifikátu ve vašem úložišti — a ten certifikát:
+
+- musíte někam uložit a chránit,
+- jednou vyprší a někdo ho musí vyměnit,
+- když se dostane jinam, dostane se s ním i identita,
+- a **na serveru, kde to má běžet každou noc, ho musíte mít taky.**
+
+To je ten problém, který řeší Azure. Jdeme na to.
 
 ---
 
 ## Část 5 — Přenést to do Azure: identita, kterou nemáte kde nechat (20 min)
 
-> [!IMPORTANT] Než začnete: ověřte, že Azure a SharePoint jsou v témže tenantu
-> Tohle je ta podmínka z `Předpokladů`. Když nesedí, poznáte to až v kroku 10 hláškou
-> o nenalezeném service principálu — a to už budete mít hotovou půlku části 5.
->
-> ```powershell
-> Connect-AzAccount
-> (Get-AzContext).Tenant.Id          # tenant Azure subscription
-> Get-PnPConnection | Select-Object Url   # web, na kterem jste delal casti 1-4
-> ```
->
-> Tenant ID SharePointu zjistíte v Entra → **Overview**, nebo z libovolného
-> `Connect-MgGraph` výpisu. **Musí se rovnat.**
+Než začnete, ověřte tu podmínku z `Předpokladů` — že Azure a SharePoint jsou v témže
+tenantu. Když nesedí, poznáte to až v kroku 10 hláškou o nenalezeném service principálu,
+a do té doby budete mít hotovou půlku části 5:
+
+```powershell
+Connect-AzAccount
+(Get-AzContext).Tenant.Id                # tenant Azure subscription
+Get-PnPConnection | Select-Object Url    # web, na kterem jste delal casti 1-4
+```
+
+Tenant ID SharePointu zjistíte v Entra → **Overview**, nebo z libovolného
+`Connect-MgGraph` výpisu. Musí se rovnat.
 
 ### Krok 8 — Automation account
 
@@ -499,10 +502,9 @@ New-AzAutomationAccount -ResourceGroupName "rg-goc223-<jmeno-prijmeni>" `
 (dokumentace: *„By default, a system-assigned managed identity is enabled for the
 Automation account"*). Když tam není, přepněte ji tady a uložte.
 
-> [!NOTE] Co se právě stalo, i když to není vidět
-> Vznikl vám v Entra nový **service principal** — identita, která patří té Azure službě.
-> Nemá heslo, nemá certifikát, nemá kde se přihlásit. Existuje jen dokud existuje ten
-> Automation account.
+Tím se stalo něco, co na obrazovce nevidíte: vznikl vám v Entra nový **service principal**,
+tedy identita patřící té Azure službě. Nemá heslo, nemá certifikát, nemá kde se přihlásit —
+a existuje jen tak dlouho, dokud existuje ten Automation account.
 
 ### Krok 9 — Dostat PnP.PowerShell dovnitř
 
@@ -665,17 +667,16 @@ Register-AzAutomationScheduledRunbook -ResourceGroupName $rg -AutomationAccountN
 Rozvrh v Automation má **vlastní časovou zónu**, kterou zvolíte — na rozdíl od NCRONTAB
 u Azure Functions timeru, který je vždycky v UTC.
 
-> [!IMPORTANT] Tady je pointa celého labu — přečtěte si to nahlas
-> Podívejte se na tělo runbooku. **Není v něm certifikát, heslo, ClientId ani thumbprint.**
-> Jen `Connect-PnPOnline -ManagedIdentity`. A přesto právě provedl operaci, kterou žadatel
-> sám provést nesmí.
->
-> **Nezmizel principál — zmizel secret.** Ta identita pořád existuje v Entra, pořád má
-> přiřazenou roli a per-site grant, a kdo má Contributor na téhle resource group, ten pod
-> ní umí runbook spustit. Co zmizelo, je **cokoli, co se dá zkopírovat, vyexportovat nebo
-> poslat mailem.**
->
-> A to je celá odpověď na otázku, k čemu je Azure jako platforma pro app-only skripty.
+A tady je pointa celého labu. Podívejte se na tělo runbooku: **není v něm certifikát, heslo,
+ClientId ani thumbprint.** Jen `Connect-PnPOnline -ManagedIdentity`. A přesto právě provedl
+operaci, kterou žadatel sám provést nesmí.
+
+Důležité je pojmenovat to přesně: **nezmizel principál, zmizel secret.** Ta identita pořád
+existuje v Entra, pořád má přiřazenou roli i per-site grant, a kdo má Contributor na téhle
+resource group, ten pod ní umí runbook spustit. Co zmizelo, je **cokoli, co se dá
+zkopírovat, vyexportovat nebo poslat mailem.**
+
+To je celá odpověď na otázku, k čemu je Azure jako platforma pro app-only skripty.
 
 ---
 

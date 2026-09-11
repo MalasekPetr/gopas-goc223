@@ -123,7 +123,7 @@ tří testů:
 | Test | Callout | Příklad |
 |---|---|---|
 | 1. **Currency-marker** — fakt s krátkou životností (cena, limit, verze, preview) | `[!WARNING] Ověřit k datu běhu` | retirement certifikace, ceny Azure |
-| 2. **Tiché selhání** — špatný výsledek **bez chybové hlášky** | `[!WARNING]` | `Get-PnPSiteCollectionAdmin` vrátí app-only identitě prázdno místo chyby |
+| 2. **Tiché nebo lživé selhání** — špatný výsledek bez chybové hlášky, **nebo hláška, která ukazuje na jinou příčinu, než jaká nastala** | `[!WARNING]` | `Get-PnPSiteCollectionAdmin` vrátí app-only identitě prázdno místo chyby; `./` se vyhodnocuje proti aktuální složce, ale hláška tvrdí, že soubor neexistuje |
 | 3. **Předpoklad, bez kterého lab nedojede** | `[!IMPORTANT]` | Azure subscription a SharePoint musí být ve stejném tenantu |
 
 Plus `[!IMPORTANT] Názvosloví` pro přejmenování API (viz Currency-markery níž).
@@ -141,6 +141,10 @@ Plus `[!IMPORTANT] Názvosloví` pro přejmenování API (viz Currency-markery n
 
 Praktický strop, který z těch testů vychází: **do tří callloutů na stránku**. Víc
 znamená, že se do rámečků dostal výklad.
+
+U dlouhých dokumentů se strop počítá **na sekci `##`, ne na soubor** — u labu na šest částí
+je sedm callloutů v pořádku, protože čtenář má na obrazovce vždycky jen jeden. Rozhodující
+je, jestli rámeček v okolí textu vyčnívá, ne jeho absolutní počet.
 
 V `instructor-notes.md` strop neplatí — ty čte lektor cíleně a hledá v nich právě
 tripwires.
