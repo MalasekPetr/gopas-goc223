@@ -25,13 +25,40 @@ identitu nemusíte nikde mít.
 
 ## Předpoklady
 
+> [!IMPORTANT] Všechno v JEDNOM tenantu — a je to ten, ke kterému je připojená Azure subscription
+> Web, seznamy, app registrace i Automation account musí být **v témže tenantu**. Není to
+> pohodlí, je to tvrdá podmínka části 5:
+>
+> **Automation account v sobě vytvoří managed identitu, a ta vznikne jako service principál
+> v tenantu té subscription.** Nedá se „nakonsentovat" jinam. Když tedy seznamy založíte
+> v jiném tenantu, než kde máte Azure, **nebude komu dát `Sites.Selected`** a část 5
+> se nedá dokončit.
+>
+> Pro kurz to platí samo — subscription je připojená k témuž tenantu jako účty studentů
+> (viz [`../../environment.md`](../../environment.md)). **Kdo si to zkouší doma přes víc
+> tenantů, ať si to ověří dřív, než založí první seznam.**
+
 - App registrace z [`../../day-2/automation-strategy/`](../../day-2/automation-strategy/)
   se `Sites.Selected` a udělený admin consent.
 - Certifikátová identita z [`../../day-2/powershell-deep-dive/`](../../day-2/powershell-deep-dive/).
-- Vlastní web s knihovnou dokumentů a alespoň jedním dokumentem.
+- Vlastní web s knihovnou dokumentů a alespoň jedním dokumentem — **v tenantu Azure
+  subscription**, viz výše.
 - Vlastní Azure resource group `rg-goc223-<jmeno-prijmeni>` (viz [`../../environment.md`](../../environment.md)).
 
 Druhý účet nepotřebujete. Vše projde z vašeho vlastního.
+
+> [!NOTE] Proč zrovna managed identita nesmí přes hranici tenantu — a certifikát smí
+> Je to tatáž vlastnost, jen z druhé strany. Bude se vám hodit v části 5, tak si to
+> přečtěte teď:
+>
+> | | Certifikát (část 4) | Managed identita (část 5) |
+> |---|---|---|
+> | Dostane se do cizího tenantu? | **ano**, když je app multitenant, má tam admin consent a per-site grant | **ne** |
+> | Proč | certifikát je **secret** — a secret se dá vzít s sebou | **nemá secret**, není co vzít |
+>
+> **To, co dělá managed identitu bezpečnou, ji dělá nepřenosnou.** Plné srovnání včetně
+> obou cest ven (certifikát v Key Vaultu, workload identity federation) je v
+> [`../azure-integration-patterns/comparison-scheduled-runtimes.md`](../azure-integration-patterns/comparison-scheduled-runtimes.md).
 
 ## Nastavte si tohle jednou a pak už jen kopírujte
 
@@ -429,6 +456,19 @@ u dokumentu roli, řádek je `Granted` a v auditu je záznam.
 ---
 
 ## Část 5 — Přenést to do Azure: identita, kterou nemáte kde nechat (20 min)
+
+> [!IMPORTANT] Než začnete: ověřte, že Azure a SharePoint jsou v témže tenantu
+> Tohle je ta podmínka z `Předpokladů`. Když nesedí, poznáte to až v kroku 10 hláškou
+> o nenalezeném service principálu — a to už budete mít hotovou půlku části 5.
+>
+> ```powershell
+> Connect-AzAccount
+> (Get-AzContext).Tenant.Id          # tenant Azure subscription
+> Get-PnPConnection | Select-Object Url   # web, na kterem jste delal casti 1-4
+> ```
+>
+> Tenant ID SharePointu zjistíte v Entra → **Overview**, nebo z libovolného
+> `Connect-MgGraph` výpisu. **Musí se rovnat.**
 
 ### Krok 8 — Automation account
 

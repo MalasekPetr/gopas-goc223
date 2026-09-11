@@ -116,8 +116,12 @@ Jediný zdroj pravdy o pořadí modulů. Složky jsou slugy; pořadí drží tat
 | 3 | SIEM integrace přes Azure Blob | `day-4/siem-blob-integration` | P |
 | 4 | Lifecycle & compliance enforcement | `day-4/lifecycle-compliance` | P |
 
-> [!NOTE] ~6,5 h povinně (80 + 90 + 120 + 100 = 390 min) — přestavěno 2026-09-10
-> Den 4 byl v reálném nasazení **příliš akademický**: mluvil o Azure hostingu a identitách
+> [!NOTE] ~6,5 h povinně (80 + 90 + 120 + 100 = 390 min) — **ověřeno reálným během 2026-09-10**
+> **Den vyšel podle plánu.** Je to zatím **jediný den, u kterého odhad sedl** — D1, D2 i D3
+> se po reálném běhu musely přepočítávat. Přestavba téhož rána (níž) se tedy potvrdila
+> i časově, nejen obsahově.
+>
+> Den 4 byl do té doby **příliš akademický**: mluvil o Azure hostingu a identitách
 > a studenti si nic nepostavili. Přestavba to řeší a **vejde se do stropu**:
 >
 > **Přišel blok 2** [`day-4/elevated-access`](day-4/elevated-access/) (30 výklad + 60 lab)

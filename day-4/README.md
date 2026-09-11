@@ -3,7 +3,7 @@
 Azure integrační vzory jako vstupní znalost, na ni navázaná **elevovaná operace nad
 SharePointem, kterou si studenti postaví a nasadí**, SIEM logging pipeline a lifecycle
 & compliance enforcement — den, který uzavírá provozní a governance linku týdne.
-**~6,5 h povinně.**
+**~6,5 h povinně** — ověřeno reálným během 2026-09-10, den vyšel podle plánu.
 
 | Pořadí | Blok | Slug | Typ |
 |---|---|---|---|

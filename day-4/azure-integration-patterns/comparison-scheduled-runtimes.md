@@ -40,7 +40,7 @@ přihlášení.** Auth matice je v [`README.md`](README.md).
 | Spustí `.exe` / subprocess | ano | **ne** (Azure sandbox) | **ano** | ano | ano |
 | Auditní stopa | Application Insights | historie jobů v Automation | **historie jobů v Automation** | 100 posledních exekucí | žádná, musíte si ji napsat |
 
-## Tři věci, které rozhodují víc než tabulka
+## Čtyři věci, které rozhodují víc než tabulka
 
 ### 1. Fair share u Automation je 3 hodiny a job se NEVRÁTÍ
 
@@ -114,6 +114,56 @@ a pipeline, není nic navíc.
 > novou aplikaci a nasadit kód znovu. Kdo plánuje hostování dopředu, ať to ví teď, ne
 > až u prvního nasazení.
 
+### 4. Přes hranici tenantu se managed identita nedostane
+
+Tohle v tabulkách výše není a u zákazníka rozhoduje častěji než strop doby běhu — zvlášť
+když spravujete víc tenantů najednou.
+
+**Managed identita je service principál tenantu, ke kterému je připojená ta subscription.**
+Dokumentace: *„A service principal of a special type is created in Microsoft Entra ID for
+the identity. The service principal is tied to the lifecycle of that Azure resource."*
+Nedá se „nakonsentovat" jinam — a nejde to obejít, protože **není co přenést**.
+
+Certifikátová app registrace se naopak dostane všude, kde ji pustí. „Pustí" znamená tři
+věci, a všechny tři musí platit:
+
+1. app registrace je **multitenant** (jinak jen domovský tenant),
+2. v cílovém tenantu proběhl **admin consent** → vznikl tam service principál,
+3. tam má `Sites.Selected` **a** per-site grant.
+
+#### Čtyři cesty a co která stojí
+
+| Cesta | Existuje secret? | Přes tenanty? | Co drží co |
+|---|---|---|---|
+| **Managed identita přímo** | **ne** | **ne** | MI je identita i přístup |
+| **Certifikát** (cert store / deployment package) | ano, u vás | ano | certifikát je identita i přístup |
+| **MI → Key Vault → certifikát** | **ano, v trezoru** | ano | MI otevře trezor, certifikát jede k zákazníkovi |
+| **MI jako federated credential (FIC)** na app registraci | **ne** | ano | MI dokazuje běh, app registrace drží přístup |
+
+Poslední řádek je na ose „kolik secretů existuje" nejlepší a Microsoft ho tak i formuluje:
+*„Whenever an Entra ID app is required, this is the recommended way to be credential-free."*
+Cena je **limit 20 federated credentials na aplikaci** a nutnost nastavit tu důvěru.
+
+Key Vault má proti federaci dvě výhody: **žádný limit** a funguje **s čímkoli, co umí vzít
+certifikát** — tedy i s klientem, který federaci neumí nebo ho nemáte pod kontrolou.
+
+> [!WARNING] Kombinace „Automation Runbook + Key Vault" se ale sama vylučuje
+> Runbook v cloud sandboxu **neprojde firewallem na Key Vaultu** — Automation není
+> „trusted Microsoft service", takže ho nepustí ani volba *allow trusted Microsoft
+> services* (viz rozhodovací tabulka v [`README.md`](README.md)).
+>
+> A Key Vault, ve kterém držíte certifikáty k zákaznickým tenantům, je **přesně ten trezor,
+> který síťově omezit chcete**. Takže buď otevřený vault (u tohohle obsahu ne), nebo
+> **Hybrid Runbook Worker** či **Function s VNet integrací** místo cloud runbooku.
+>
+> Tohle je nejlepší příklad toho, proč se hosting a identita nedají rozhodovat odděleně:
+> volba runtime tady **zneplatní** jinak správnou volbu úložiště pro credential.
+
+> [!NOTE] Praktický vzor pro multi-tenant provoz
+> **MI drží identitu běhu, app registrace drží přístup k zákazníkovi.** Ať už to slepíte
+> federací (lepší) nebo certifikátem v Key Vaultu (univerzálnější), tahle dělba je ta
+> správná — managed identita se nikdy nepokouší být identitou v cizím tenantu.
+
 ## Automation jako control plane, ne jako runtime
 
 Hybrid Runbook Worker mění to, **co v Automation kupujete**. Skript neběží v Azure sandboxu,
@@ -181,6 +231,11 @@ Provozní vlastnosti, které je nutné znát dopředu:
   platíte stroj.
 - **Sandbox vs vlastní runtime** — Azure sandbox neumí `.exe` ani jiný .NET; kontejner
   i Hybrid Worker umí, co si do nich dáte.
+- **Identita vázaná na resource vs identita, kterou lze vzít s sebou** — managed
+  identita nemá secret, a proto ji **nelze přenést do cizího tenantu**. Certifikát
+  přenést lze, protože secret je. U jednoho tenantu vyhrává MI, u víc tenantů je
+  odpověď **MI jako federated credential na app registraci** (bez secretu), nebo
+  certifikát v Key Vaultu (univerzálnější, ale secret existuje).
 
 ## Zdroje (Microsoft)
 
@@ -191,6 +246,9 @@ Provozní vlastnosti, které je nutné znát dopředu:
 - [Runbook execution in Azure Automation](https://learn.microsoft.com/en-us/azure/automation/automation-runbook-execution) — fair share, sandbox limity, trusted services
 - [Azure Automation Hybrid Runbook Worker overview](https://learn.microsoft.com/en-us/azure/automation/automation-hybrid-runbook-worker) — pět scénářů, extension-based V2, nezávislost na fair share, chování při restartu stroje
 - [Azure Automation limits](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/azure-subscription-service-limits#azure-automation-limits)
+- [Managed identities for Azure resources](https://learn.microsoft.com/en-us/entra/identity/managed-identities-azure-resources/overview) — service principál vázaný na životní cyklus resource; managed identita jako federated credential na Entra ID aplikaci (limit 20 FIC)
+- [Configure an application to trust a managed identity](https://learn.microsoft.com/en-us/entra/workload-id/workload-identity-federation-config-app-trust-managed-identity) — cesta přes hranici tenantu bez secretu
+- [Connect-PnPOnline](https://pnp.github.io/powershell/cmdlets/Connect-PnPOnline.html) — `-CertificateBase64Encoded` pro certifikát vytažený z Key Vaultu; `-Tenant` je u certifikátových cest povinný
 - [Integration and automation platform options in Azure](https://learn.microsoft.com/en-us/azure/azure-functions/functions-compare-logic-apps-ms-flow-webjobs)
 
 ## Stav produktu / delta
