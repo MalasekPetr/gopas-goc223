@@ -10,7 +10,7 @@
 `microsoft-365-pokrocila-automatizacia-a-migracia-sharepoint_goc223`
 
 > [!NOTE] Poznámka pre editora
-> Slug sa nemení — nie je potrebné nastavovať redirect, zachováva sa existujúca SEO história.
+> Slug sa nemení — nie je potrebné nastavovať redirect, zachováva sa existujúca SEO (search engine optimization) história.
 
 ## Titulok kurzu
 
@@ -44,13 +44,13 @@ Kurz prevedie inžinierov migrácií a automatizácie kompletným cyklom pokroč
 - úroveň: pokročilí
 
 > [!NOTE] Poznámka pre editora
-> Cena zámerne vynechaná — doplní ju obchodné oddelenie GOPAS priamo v CMS/cenníku.
+> Cena zámerne vynechaná — doplní ju obchodné oddelenie GOPAS priamo v redakčnom systéme (CMS)/cenníku.
 
 ## Osnova kurzu
 
 ### Deň 1 — Onboarding, prostredie a mapa API
 
-- **Onboarding & pravidlá práce** — vstup do zdieľaného cvičného tenantu, registrácia MFA a pravidlá bezpečnej spolupráce väčšieho počtu administrátorov v jednom prostredí.
+- **Onboarding & pravidlá práce** — vstup do zdieľaného cvičného tenantu, registrácia viacfaktorového overenia (MFA) a pravidlá bezpečnej spolupráce väčšieho počtu administrátorov v jednom prostredí.
 - **Toolchain skriptera** *(lab)* — PowerShell 7, Node a nástroj příkazové řádky CLI for Microsoft 365, rozšírenia VS Code a správa verzií; výstupom je vlastný overovací skript, ktorý povie, čo na stroji chýba.
 - **Mapa API nad Microsoft 365 (M365) a SharePoint Online (SPO)** *(cvičenie)* — Azure, Entra ID, Microsoft Graph a SPO REST v jednej mape, mŕtve vrstvy a ich náhrady; každý účastník si sám zavolá prvé Graph dotazy v Graph Exploreri.
 - **Inžinierske prostredie, VS Code a Copilot** *(lab)* — VS Code ako pracovný nástroj pre automatizáciu, hygiena Git repozitára a zodpovedné použitie Microsoft Copilot Chatu pri písaní skriptov.

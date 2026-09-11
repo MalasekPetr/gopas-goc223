@@ -24,6 +24,10 @@ z odkazu, ne celý repozitář odshora. Rozepsat stačí jednou za soubor, ne u 
 Výjimka: zkratky, které v oboru nikdo nerozepisuje a plné znění nic nevysvětlí
 (`URL`, `API`, `JSON`, `XML`, `CSV`, `REST`, `IT`, `ID`). U všeho ostatního platí pravidlo.
 
+**Do nadpisů a do buněk tabulek se plné znění necpe** — nadpis má zůstat krátký a tabulka
+přehledná. Když je první výskyt v nadpisu, rozepíše se v **první větě textu** pod ním;
+u tabulky v odstavci, který ji uvádí nebo na ni navazuje.
+
 Úplný seznam je v [`GLOSSARY.md`](GLOSSARY.md) v sekci **Rejstřík zkratek** — nové
 zkratky do textu přidávat jen zároveň s řádkem v rejstříku.
 

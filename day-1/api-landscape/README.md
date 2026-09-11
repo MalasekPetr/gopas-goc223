@@ -42,10 +42,10 @@ s M365 tenant a identitu, ale má **oddělený billing** (subscription) a odděl
 
 ### Časová osa: proč je krajina takhle rozdělená
 Dnešní dvojice Graph + SPO REST je výsledek generační výměny, ne návrhu na zelené louce.
-Postupně zemřely: SOAP web services (`_vti_bin/*.asmx`), JSOM, sandbox solutions s kódem,
+Postupně zemřely: SOAP (Simple Object Access Protocol) web services (`_vti_bin/*.asmx`), JSOM (JavaScript Object Model), sandbox solutions s kódem,
 **SharePoint Add-ins + Azure ACS** (v Microsoft 365 vypnuté 2. 4. 2026) a „JS injection"
 (JSLink, Script Editor — custom script je od 11/2024 vynucovaně vypnutý). Na straně
-PowerShellu totéž: MSOnline a AzureAD moduly jsou mrtvé, PnP a Graph SDK žijí.
+PowerShellu totéž: MSOnline a AzureAD moduly jsou mrtvé, PnP a Graph SDK (software development kit) žijí.
 
 Dvě ponaučení, která nesou celý kurz: (1) **moduly a vrstvy umírají, REST API zůstává** —
 kdo rozumí principu pod nástrojem, řešení přepíše; (2) prostředí zákazníků jsou mrtvých
@@ -76,7 +76,7 @@ flowchart TD
 - **Tenant (identita + M365 služby) vs Azure subscription (billing + resources)** — jeden
   tenant může mít 0 i N subscriptions; náš kurz má tenant zdarma a subscription placenou.
 - **Entra admin role (Global admin) vs Azure RBAC (Contributor na resource group)** — dvě
-  různé autorizační soustavy; GA v tenantu automaticky neznamená přístup k Azure resources.
+  různé autorizační soustavy; Global administrator v tenantu automaticky neznamená přístup k Azure resources.
 - **Graph (jednotná brána, moderní) vs SPO REST v1/CSOM (starší, širší SPO pokrytí)** —
   ne konkurence, ale doplněk; PnP je wrapper nad oběma.
 - **Mrtvá vrstva vs podporovaná náhrada** — Add-ins/ACS, JSOM, MSOnline a AzureAD moduly
@@ -89,7 +89,7 @@ zavolá `/me`, `$select` a seznamy jednoho webu přes Graph i přes SPO REST, a 
 odpovědi.
 
 > [!NOTE] Formáty odpovědí
-> JSON je v tomto kurzu předpokládaná znalost; kdo si chce doplnit UTF-8 disciplínu
+> JSON je v tomto kurzu předpokládaná znalost; kdo si chce doplnit disciplínu kódování UTF-8 (Unicode Transformation Format)
 > a export do CSV pro Excel (česká diakritika), má to v
 > [`../../day-2/powershell-deep-dive/explainer-formats-encoding.md`](../../day-2/powershell-deep-dive/explainer-formats-encoding.md).
 

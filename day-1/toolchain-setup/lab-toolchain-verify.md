@@ -41,7 +41,7 @@ který kdykoli řekne, co chybí — a dá se předat kolegovi.
 
    Zavřít a znovu otevřít PowerShell 7.
 
-3. Nainstalovat Node 22 LTS a nastavit ho jako výchozí:
+3. Nainstalovat Node 22 LTS (verze s dlouhou podporou) a nastavit ho jako výchozí:
 
    ```powershell
    fnm install 22
@@ -62,13 +62,13 @@ který kdykoli řekne, co chybí — a dá se předat kolegovi.
    Install-Module Microsoft.Online.SharePoint.PowerShell -Scope CurrentUser -Force
    ```
 
-   Poslední řádek je **SPO Management Shell** — třetí z kurzovní trojice modulů
-   (PnP / Graph / SPO). Potřebujete ho pro tenant-wide nastavení mimo rozsah PnP a pro DAG reporty
+   Poslední řádek je **SharePoint Online (SPO) Management Shell** — třetí z kurzovní trojice modulů
+   (PnP / Graph / SPO). Potřebujete ho pro tenant-wide nastavení mimo rozsah PnP a pro reporty Data Access Governance (DAG) reporty
    SharePoint Advanced Management ([`../../day-5/permission-discovery/`](../../day-5/permission-discovery/)).
    V PowerShellu 7 může jeho import vyžadovat `-UseWindowsPowerShell` — detail
    v [`../../day-2/powershell-deep-dive/explainer-module-management.md`](../../day-2/powershell-deep-dive/explainer-module-management.md).
 
-5. CLI for Microsoft 365 (proto je na stroji Node):
+5. Nástroj příkazové řádky CLI for Microsoft 365 (proto je na stroji Node):
 
    ```powershell
    npm install -g @pnp/cli-microsoft365

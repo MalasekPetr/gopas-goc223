@@ -10,7 +10,7 @@
 `microsoft-365-advanced-automation-and-sharepoint-migration_goc223`
 
 > [!NOTE] Editor note
-> Slug unchanged — no redirect needed, preserves existing SEO history.
+> Slug unchanged — no redirect needed, preserves existing SEO (search engine optimization) history.
 
 ## Course title
 
@@ -44,15 +44,15 @@ This course takes migration and automation engineers through the full cycle of a
 - Level: advanced
 
 > [!NOTE] Editor note
-> Price intentionally omitted — GOPAS sales fills it in directly in the CMS/price list.
+> Price intentionally omitted — GOPAS sales fills it in directly in the content management system (CMS) and price list.
 
 ## Course outline
 
 ### Day 1 — Onboarding, Environment & API Map
 
-- **Onboarding & working rules** — entry into the shared training tenant, MFA registration, and rules for safely collaborating with a larger group of administrators in one environment.
-- **The scripter's toolchain** *(lab)* — PowerShell 7, Node, and CLI for Microsoft 365, VS Code extensions, and version management; the deliverable is your own verification script that reports what the machine is missing.
-- **API map across M365 and SPO** *(exercise)* — Azure, Entra ID, Microsoft Graph, and SPO REST on one map, dead layers and their replacements; every participant makes their own first Graph calls in Graph Explorer.
+- **Onboarding & working rules** — entry into the shared training tenant, multi-factor authentication (MFA) registration, and rules for safely collaborating with a larger group of administrators in one environment.
+- **The scripter's toolchain** *(lab)* — PowerShell 7, Node, and the CLI for Microsoft 365 command-line tool, VS Code extensions, and version management; the deliverable is your own verification script that reports what the machine is missing.
+- **API map across Microsoft 365 (M365) and SharePoint Online (SPO)** *(exercise)* — Azure, Entra ID, Microsoft Graph, and SPO REST on one map, dead layers and their replacements; every participant makes their own first Graph calls in Graph Explorer.
 - **Engineering environment, VS Code, and Copilot** *(lab)* — VS Code as the working tool for automation, Git repository hygiene, and responsible use of Microsoft Copilot Chat when writing scripts.
 
 ### Day 2 — Strategy, Permissions & PowerShell
@@ -93,7 +93,7 @@ Participants leave with their own end-to-end blueprint for migrating and provisi
 ## Pre-publish checklist for the editor
 
 - [ ] Fill in the course price (GOPAS sales).
-- [ ] Verify current Azure PAYG / Flex Consumption costs for the Day 4 labs and the availability/lifespan of the M365 Developer Program tenant.
+- [ ] Verify current Azure pay-as-you-go (PAYG) and Flex Consumption costs for the Day 4 labs and the availability/lifespan of the M365 Developer Program tenant.
 - [ ] Verify the current status of the AZ-204 certification (planned retirement 2026-07-31) and its AI-200 replacement before mentioning next-step study paths in promotional material.
 - [ ] Verify the minimum toolchain versions (PowerShell for PnP, Node for CLI for Microsoft 365) before they go into the text.
 - [ ] Check that no "Editor note" block was left copied into the published text.

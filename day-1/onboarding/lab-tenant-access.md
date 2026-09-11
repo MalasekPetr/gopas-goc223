@@ -4,14 +4,14 @@
 
 ## Cíl
 
-Student se přihlásí, zaregistruje MFA, ověří přiřazenou licenci i roli Global administrator
+Student se přihlásí, zaregistruje vícefaktorové ověření (MFA), ověří přiřazenou licenci i roli Global administrator
 a potvrdí, že rozumí pravidlům práce ve sdíleném tenantu.
 
 ## Předpoklady
 
 - Účet `jmeno.prijmeni@cloudedu.cz` + heslo (rozdané na začátku).
-- Vlastní telefon (Microsoft Authenticator) nebo mobilní číslo pro SMS — nutné pro MFA.
-- Přiřazená licence Microsoft 365 E5 Developer + role Global administrator.
+- Vlastní telefon (Microsoft Authenticator) nebo mobilní číslo pro SMS zprávy — nutné pro MFA.
+- Přiřazená licence Microsoft 365 E5 Developer (nejvyšší plán, vývojářská varianta) + role Global administrator.
 
 ## Kroky
 
@@ -28,7 +28,7 @@ a potvrdí, že rozumí pravidlům práce ve sdíleném tenantu.
 ## Ověření
 
 - [ ] MFA zaregistrováno — `https://aka.ms/mysecurityinfo` ukazuje alespoň jednu metodu.
-- [ ] Student vidí M365 admin center a svou roli Global administrator.
+- [ ] Student vidí M365 admin center (správcovské centrum Microsoft 365) a svou roli Global administrator.
 - [ ] Existuje web `/sites/<jmeno-prijmeni>-dev` pojmenovaný dle konvence.
 - [ ] Student umí říct tři tvrdá pravidla z `ways-of-working.md` (kontrola instruktorem
       namátkou u 3-4 studentů).

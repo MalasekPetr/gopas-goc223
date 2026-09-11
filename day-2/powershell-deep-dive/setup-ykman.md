@@ -5,7 +5,7 @@
 
 ## Co je `ykman`
 
-CLI od Yubica pro konfiguraci YubiKey: PIV sloty, FIDO2, OTP, PIN a PUK. Existuje
+Nástroj příkazové řádky (CLI) od Yubica pro konfiguraci YubiKey: sloty PIV (Personal Identity Verification), FIDO2, jednorázové kódy OTP (One-Time Password), a kódy PIN a PUK (PIN Unblock Key). Existuje
 i grafický **YubiKey Manager**, ale skriptovat jde jen CLI — a v kurzu, který je
 o automatizaci, dává smysl jen ta cesta.
 
@@ -20,7 +20,7 @@ ykman list
 Po instalaci **otevřít nové okno terminálu**, jinak se změna `PATH` neprojeví — stejná
 past jako v [`../../day-1/toolchain-setup/`](../../day-1/toolchain-setup/).
 
-`ykman list` musí vypsat připojený klíč. Pokud nevypíše nic, klíč není v USB nebo ho
+`ykman list` musí vypsat připojený klíč. Pokud nevypíše nic, klíč není v portu USB nebo ho
 drží jiná aplikace (typicky běžící relace prohlížeče s otevřeným FIDO promptem).
 
 ## Než začnete cokoli mazat
