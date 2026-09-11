@@ -1,4 +1,4 @@
-# Toolchain skriptera: PowerShell 7, Node a CLI
+# Toolchain skriptera: PowerShell 7, Node a nástroje příkazové řádky (CLI)
 
 > Typ: povinný · Den: 1 · Odhad: 15 min výklad + 30 min lab (20 min, pokud je učebna předinstalovaná)
 
@@ -18,7 +18,7 @@
 |---|---|---|
 | **Runtime** | PowerShell 7, Node.js | na stroj, přes `winget`/správce verzí |
 | **Globální nástroj** | CLI for Microsoft 365, PSScriptAnalyzer, Pester | na uživatele (`-Scope CurrentUser`, `npm -g`) |
-| **Doménový modul** | PnP.PowerShell, Microsoft.Graph, SPO Management Shell | tamtéž; kurz používá všechny tři a učí, kdy který |
+| **Doménový modul** | PnP.PowerShell, Microsoft.Graph, SharePoint Online (SPO) Management Shell | tamtéž; kurz používá všechny tři a učí, kdy který |
 | **Projektová závislost** | moduly a balíčky, které skript vyžaduje | do repa (`#Requires`, `package.json`) |
 
 Pravidlo: **co skript potřebuje k běhu, patří do repa, ne do hlavy admina.** Globálně se
@@ -42,7 +42,7 @@ přeinstalovat — a to typicky zjistíte u zákazníka, ne doma. **fnm** (Fast 
 víc verzí vedle sebe a přepíná mezi nimi podle souboru `.node-version` v repozitáři: vejdete
 do složky projektu a jste na správné verzi, aniž byste na to museli myslet.
 
-> [!NOTE] Microsoft doporučuje jen „nainstaluj Node LTS"
+> [!NOTE] Microsoft doporučuje jen „nainstaluj Node LTS" (Long-Term Support, verze s dlouhou podporou)
 > Správce verzí je **naše** doporučení, ne převzaté z dokumentace. Odůvodnění je provozní
 > (víc projektů s různými požadavky na jednom stroji), ne technické — kdo má na stroji
 > jediný projekt, vystačí si s instalátorem.
@@ -50,7 +50,7 @@ do složky projektu a jste na správné verzi, aniž byste na to museli myslet.
 ### Ověřování patří do skriptu, ne do hlavy
 Seznam „co má být nainstalované" v hlavě nebo v e-mailu je nespolehlivý. Ověřovací skript,
 který vypíše verze a řekne, co chybí, je artefakt, který se dá poslat kolegovi, spustit
-v CI a přiložit k dokumentaci projektu. Přesně to student v labu vyrobí.
+v CI (continuous integration) a přiložit k dokumentaci projektu. Přesně to student v labu vyrobí.
 
 ```mermaid
 flowchart LR

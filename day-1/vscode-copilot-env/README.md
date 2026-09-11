@@ -14,10 +14,10 @@
 - Vědět, co je v Copilotu součástí stávajícího předplatného a kde začíná měřená spotřeba —
   viz [`explainer-copilot-licensing.md`](explainer-copilot-licensing.md).
 - Rozumět tomu, **z čeho se skládá deklarativní agent** a proč umí věci, na které obecný chat
-  nedosáhne (MCP grounding, vynucené guardrails) — viz
+  nedosáhne (grounding přes Model Context Protocol, vynucené guardrails) — viz
   [`explainer-declarative-agent.md`](explainer-declarative-agent.md) a kompletní zdrojový kód
   kurzovního agenta v [`agent-scripting-advisor/`](agent-scripting-advisor/).
-- Rozumět třem runtime prostředím automatizace (DEV stanice, kontejner/CI, server) — viz
+- Rozumět třem runtime prostředím automatizace (vývojová stanice, kontejner nebo CI pipeline (continuous integration), server) — viz
   [`explainer-runtime-environments.md`](explainer-runtime-environments.md).
 
 ## Výklad
@@ -80,7 +80,7 @@ Co ty dva nástroje v úlohách vlastně dělají a proč jsou v automatizaci na
 tenantem důležitější než u běžné aplikace — **nemáte rollback, takže se celý rozpočet na
 kvalitu utrácí před prvním spuštěním**: [`explainer-quality-gates.md`](explainer-quality-gates.md).
 
-### PowerShell extension — náhrada za ISE
+### PowerShell extension — náhrada za ISE (Integrated Scripting Environment)
 VS Code s **PowerShell extension** je Microsoftem doporučené prostředí pro vývoj PowerShell
 skriptů — a jediné podporované pro PowerShell 7. **Windows PowerShell ISE** stále existuje,
 ale není aktivně vyvíjené a **umí jen Windows PowerShell 5.1** — pro tento kurz (PS7-first,

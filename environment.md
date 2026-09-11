@@ -7,16 +7,16 @@ Referenční údaje o prostředí, na které se odkazují laby.
 > (tenant ID, admin účet, jmenný seznam účastníků, app registrace se secrety/certifikáty,
 > Azure subscription ID) jsou drženy mimo repo, v instruktorském kanálu.
 
-## Student-facing — M365 tenant
+## Student-facing — tenant Microsoft 365 (M365)
 
 | Položka | Hodnota |
 |---|---|
 | Tenant | M365 Developer tenant (Microsoft 365 Developer Program) |
 | Přihlašovací doména | `cloudedu.cz` |
 | Účty studentů | `jmeno.prijmeni@cloudedu.cz` (bez diakritiky), max. 25 účtů |
-| Licence | Microsoft 365 **E5 Developer** |
+| Licence | Microsoft 365 **E5 Developer** (nejvyšší plán, vývojářská varianta) |
 | Role | **Global administrator** — všichni studenti (viz [`day-1/onboarding/ways-of-working.md`](day-1/onboarding/ways-of-working.md)) |
-| Hesla | přidělena na začátku kurzu, MFA povinné při prvním přihlášení |
+| Hesla | přidělena na začátku kurzu, vícefaktorové ověření (MFA) povinné při prvním přihlášení |
 
 > [!NOTE] Všichni studenti jsou Global administrátoři jednoho sdíleného tenantu — izolaci
 > nezajišťují role, ale pravidla a naming konvence (`ways-of-working.md`). Tenant je zdarma
@@ -37,10 +37,10 @@ samostatnou, placenou subscription připojenou k témuž tenantu.
 | Azure subscription | dedikovaná kurzová subscription (instruktorský kanál) |
 | Resource group per student | `rg-goc223-<jmeno-prijmeni>` — vytváří `New-CourseStudentAzureResources.ps1` |
 | Rozsah | Storage Account (Blob, **general-purpose v2**), Function App (**Flex Consumption plan**), Event Grid Topic, **Log Analytics workspace + Data Collection Rule** — dle dne (D4) |
-| Log Analytics | **sdílený workspace pro celý kurz + samostatná DCR per student** (izolace dat mezi studenty bez ceny za 25 workspaců) |
+| Log Analytics | **sdílený workspace pro celý kurz + samostatná Data Collection Rule (DCR) per student** (izolace dat mezi studenty bez ceny za 25 workspaců) |
 | Role studenta | Contributor jen na vlastní resource group, ne na subscription |
 
-> [!NOTE] Global administrator v tenantu ≠ přístup k Azure — Entra role a Azure RBAC jsou
+> [!NOTE] Global administrator v tenantu ≠ přístup k Azure — Entra role a Azure RBAC (Role-Based Access Control) jsou
 > oddělené soustavy (viz [`day-1/api-landscape/`](day-1/api-landscape/)).
 
 > [!WARNING] Ověřit k datu běhu — stav k 2026-07.
@@ -73,7 +73,7 @@ samostatnou, placenou subscription připojenou k témuž tenantu.
 |---|---|
 | VS Code | poslední stabilní verze, rozšíření **PowerShell** (`ms-vscode.powershell`) + Azure Functions |
 | PowerShell | **PowerShell 7.4+** vedle Windows PowerShell 5.1 (PnP PowerShell 7.4.0 vyžaduje) |
-| Node.js | aktuální LTS (**Node 22**), instalovaný přes **fnm** — jediný důvod je CLI for Microsoft 365 (npm balíček); viz [`day-1/toolchain-setup/`](day-1/toolchain-setup/) |
+| Node.js | **Node 22**, tedy aktuální verze s dlouhou podporou (LTS, Long-Term Support), instalovaná přes **fnm** — jediný důvod je nástroj CLI for Microsoft 365 (npm balíček); viz [`day-1/toolchain-setup/`](day-1/toolchain-setup/) |
 | AI asistent | **Microsoft Copilot Chat** — v prohlížeči pod kurzovním účtem; žádná samostatná licence se nekupuje |
 | Agent kurzu | **Scripting Advisor** — deklarativní agent poskytnutý autorem kurzu, publikovaný v tenantu (ne v Agent Store). Zdrojový kód a architektura: [`day-1/vscode-copilot-env/agent-scripting-advisor/`](day-1/vscode-copilot-env/agent-scripting-advisor/) |
 | Git | instaluje se v bloku [`day-1/toolchain-setup/`](day-1/toolchain-setup/); `user.name`/`user.email` si student nastaví tam |
@@ -90,7 +90,7 @@ samostatnou, placenou subscription připojenou k témuž tenantu.
 > odpojení policy.
 >
 > Kurzovní agent **Scripting Advisor** je postavený tak, aby do téhle kategorie nespadl:
-> nemá **žádnou capability nad daty tenantu**, jen WebSearch a MCP akci. Zda deklarovaná
+> nemá **žádnou capability nad daty tenantu**, jen WebSearch a akci Model Context Protocol (MCP). Zda deklarovaná
 > MCP akce zařazení mění, dokumentace neříká — **ověřit na řádku agenta v Copilot Credits
 > reportu před během** (Reports > Usage > Microsoft Copilot > Credits). Dokud to není
 > ověřeno, agent jede jako instruktorské demo na jednom sedadle.

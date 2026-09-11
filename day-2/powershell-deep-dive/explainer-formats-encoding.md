@@ -1,18 +1,20 @@
 # Explainer · Formáty dat a UTF-8: JSON, YAML, XML, CSV bez nehod
 
 Deep-dive k [`README.md`](README.md). Automatizační skript je z velké části **přesun dat
+
+Zkratky v nadpisu: **UTF-8** je Unicode Transformation Format, **YAML** je rekurzivní vtip: YAML Ain't Markup Language.
 mezi formáty** — Graph vrátí JSON, migrační plán je CSV, PnP šablona je XML, pipeline je
 YAML. Tenhle explainer neučí formáty od nuly; řeší **role každého z nich v automatizaci
-M365** a jedno téma, které v českém prostředí spolehlivě rozbíjí výstupy: **kódování**.
+Microsoft 365 (M365)** a jedno téma, které v českém prostředí spolehlivě rozbíjí výstupy: **kódování**.
 
 ## Role formátů v automatizaci M365
 
 | Formát | Kde ho potkáte | Co s ním děláme |
 |---|---|---|
 | **JSON** | odpovědi Graph/REST, site scripty a list designy, `tasks.json`, column/view formatting, vstupní plány labů | čteme i píšeme (`ConvertFrom-Json` / `ConvertTo-Json`) |
-| **XML** | PnP provisioning šablony, CAML dotazy, starší SPO REST (ATOM) | čteme a upravujeme; nepíšeme od nuly |
+| **XML** | PnP provisioning šablony, dotazy CAML (Collaborative Application Markup Language), starší SharePoint Online (SPO) REST (ATOM) | čteme a upravujeme; nepíšeme od nuly |
 | **CSV** | migrační mapování, inventury, reporty pro zadavatele | `Import-Csv` / `Export-Csv` — můstek k Excelu |
-| **YAML** | definice CI/CD pipeline, devcontainer/konfigurace | čteme; odsazení nese význam (mezery, nikdy tabulátor) |
+| **YAML** | definice CI/CD pipeline (continuous integration a delivery), devcontainer/konfigurace | čteme; odsazení nese význam (mezery, nikdy tabulátor) |
 
 Praktická poznámka k CAML a XML: v migracích se s nimi potkáte i tam, kde byste nechtěli —
 starý skript zákazníka, exportovaná šablona, definice pole. Nutná úroveň je „přečtu,
@@ -29,7 +31,7 @@ Pravidla, aby přežila celou cestu:
 2. **PowerShell 7 má UTF-8 jako default, Windows PowerShell 5.1 ne.** Ve skriptech proto
    psát kódování **explicitně** (`-Encoding utf8`), i když to v PS7 vypadá zbytečně:
    skript se dřív nebo později spustí pod 5.1 — typicky v migračním nástroji, který
-   běží jen tam (SPMT PowerShell modul, ShareGate modul; viz
+   běží jen tam (modul SharePoint Migration Tool, SPMT, ShareGate modul; viz
    [`../../day-3/migration-patterns/explainer-migration-tools.md`](../../day-3/migration-patterns/explainer-migration-tools.md)).
 3. **CSV pro Excel = `utf8BOM`**:
 
@@ -37,7 +39,7 @@ Pravidla, aby přežila celou cestu:
    $report | Export-Csv .\inventura.csv -Encoding utf8BOM -UseCulture -NoTypeInformation
    ```
 
-   Bez BOM otevře český Excel soubor jako ANSI a z „Nováková" je „NovÃ¡kovÃ¡".
+   Bez značky BOM (Byte Order Mark) otevře český Excel soubor v kódování ANSI a z „Nováková" je „NovÃ¡kovÃ¡".
    `-UseCulture` navíc respektuje středník jako oddělovač českého prostředí. Tohle je
    nejčastější kódovací nehoda v praxi — a v reportu pro zadavatele nejviditelnější.
 4. **JSON šablon čtěte s explicitním kódováním**:

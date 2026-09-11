@@ -51,12 +51,12 @@ drží, si ho přečte**; podpis brání změnám, ne čtení.
 | Symptom | Příčina | Oprava |
 |---|---|---|
 | `AADSTS700016` (no application found) | `Connect-PnPOnline` bez `-ClientId` — PnP od 9/2024 nemá výchozí | doplnit `-ClientId` vlastní app registrace |
-| `AADSTS7000218` (must contain client_assertion or client_secret) | device code / flow bez redirect URI a vypnutý fallback *Allow public client flows* | app registrace → *Authentication → Settings* → přepnout na *Yes* (viz [`README.md`](README.md), public vs confidential client) |
-| „The provided certificate is not of type **RSA**" | ECC certifikát — MSAL/Entra podporuje pro certifikátové app-only přihlášení RSA podpisy | vygenerovat RSA 2048 klíč + cert, vyměnit `.cer` na app registraci (**nový thumbprint!**) |
+| `AADSTS7000218` (must contain client_assertion or client_secret) | device code / flow bez redirect URI (Uniform Resource Identifier) a vypnutý fallback *Allow public client flows* | app registrace → *Authentication → Settings* → přepnout na *Yes* (viz [`README.md`](README.md), public vs confidential client) |
+| „The provided certificate is not of type **RSA**" | Certifikát ECC (Elliptic Curve Cryptography) — MSAL (Microsoft Authentication Library) a Entra podporuje pro certifikátové app-only přihlášení RSA podpisy | vygenerovat RSA 2048 klíč + cert, vyměnit `.cer` na app registraci (**nový thumbprint!**) |
 | Připojení projde, ale **`Unauthorized`** s prázdnou odpovědí na první cmdlet | token bez rolí — typicky oprávnění přidané jako **Delegated** místo **Application** (app-only delegated oprávnění ignoruje), nebo chybí admin consent | *API permissions* → SharePoint → **Application** → potřebné oprávnění → **Grant admin consent**; pak **nové připojení** (starý token roli nedostane) |
 | Totéž — a Application permission „tam je" | consent udělen **po** připojení; token v paměti je starý | `Disconnect-PnPOnline` / nová konzole a připojit znovu; počítat s 1–2 min propagace |
 | `403 Forbidden` (ne 401) | token role má, ale nestačí na operaci (čtecí role vs zápis) | porovnat `roles` v tokenu s potřebou cmdletu; rozšíření zdůvodnit — najde ho audit v [`../../day-5/security-hardening/`](../../day-5/security-hardening/) |
-| Cert v `Cert:\CurrentUser\My` je, ale `HasPrivateKey` = `False` | ve store je jen veřejná část (import `.cer` místo párování s klíčem), nebo cert z čipové karty bez spárování | přegenerovat pár (`New-SelfSignedCertificate`), u smart card / HSM ověřit minidriver a propagaci certifikátu |
+| Cert v `Cert:\CurrentUser\My` je, ale `HasPrivateKey` = `False` | ve store je jen veřejná část (u HSM, Hardware Security Module, to je normální stav) (import `.cer` místo párování s klíčem), nebo cert z čipové karty bez spárování | přegenerovat pár (`New-SelfSignedCertificate`), u smart card / HSM ověřit minidriver a propagaci certifikátu |
 | „**Access was denied because of a security violation**" (žádný `AADSTS…`) | **lokální** krypto chyba — podpis privátním klíčem neproběhl, požadavek nikdy neodešel: klíč na čipové kartě čekal na dotyk/PIN a vypršel, nebo se PIN dialog nemá kde zobrazit (integrovaný terminál editoru) | spustit v samostatné konzoli, potvrdit PIN/dotyk, a izolovat podpis od MSAL (test níže) |
 
 ### Izolace podpisu — funguje vůbec klíč?
@@ -79,7 +79,7 @@ $rsa.SignData([byte[]](1..32), 'SHA256', 'Pkcs1') | Out-Null   # u HW klice: PIN
 
 - **Stejná slova, dvě API**: SharePoint delegated oprávnění se jmenuje
   `AllSites.FullControl`, SharePoint application `Sites.FullControl.All` — a Graph má
-  taky `Sites.FullControl.All`, které ale pro SPO REST volání (`Get-PnPWeb`,
+  taky `Sites.FullControl.All`, které ale pro volání SharePoint Online (SPO) REST (`Get-PnPWeb`,
   `Get-PnPTenantSite`) nepomůže. Vždy kontrolovat **API + Type + Status** (zelená
   fajfka), ne jen jméno.
 - **Token žije v paměti připojení**: každá změna oprávnění nebo consentu se projeví až

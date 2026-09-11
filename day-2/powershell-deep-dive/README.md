@@ -3,13 +3,13 @@
 > Typ: povinný · Den: 2 · Odhad: 45 min výklad + 90 min Lab 1
 
 ## Cíle
-- Moduly: PnP.PowerShell, Microsoft.Graph, SPO Management Shell — rozdíly a použití.
+- Moduly: PnP.PowerShell, Microsoft.Graph, SharePoint Online (SPO) Management Shell — rozdíly a použití.
 - Autentizace: interaktivní, device code, certifikát, managed identity.
 - Správa modulů v čase: scopes, version pinning, PSResourceGet — viz
   [`explainer-module-management.md`](explainer-module-management.md).
 - Ověřit po každém připojení, **kdo jsem a co smím** (connection → token → reálné volání),
   a umět rozplést typické chyby — viz [`troubleshooting-auth.md`](troubleshooting-auth.md).
-- Vědomě pracovat s formáty a kódováním na hranici skript/soubor (UTF-8, CSV pro Excel) —
+- Vědomě pracovat s formáty a kódováním na hranici skript/soubor (UTF-8, tedy Unicode Transformation Format, a CSV pro Excel) —
   viz [`explainer-formats-encoding.md`](explainer-formats-encoding.md).
 
 ## Výklad
@@ -17,25 +17,25 @@
 ### Tři PowerShell moduly
 **PnP.PowerShell** je community-driven modul s nejširším pokrytím SharePoint Online (weby,
 listy, provisioning šablony, branding) — stovky cmdletů, běží kdekoli (Windows/Mac/Linux/Azure
-Function/Runbook). **Microsoft.Graph** je oficiální PowerShell SDK generovaný přímo ze schématu
-Microsoft Graph API — pokrývá identity, skupiny, Teams a cokoli napříč M365, co SPO moduly
+Function/Runbook). **Microsoft.Graph** je oficiální PowerShell SDK (software development kit) generovaný přímo ze schématu
+Microsoft Graph API — pokrývá identity, skupiny, Teams a cokoli napříč Microsoft 365 (M365), co SPO moduly
 neřeší. Modul je rozdělen na desítky submodulů (`Microsoft.Graph.Users`, `Microsoft.Graph.Sites`
 atd.), takže lze instalovat jen potřebnou část. **SPO Management Shell**
 (`Microsoft.Online.SharePoint.PowerShell`) je oficiální tenant-admin modul pro nastavení
 mimo rozsah PnP — typicky `Set-SPOTenant` a nejnovější preview nastavení, která často
 přistanou v SPO modulu dřív než v PnP ekvivalentu. Konkrétně, co tím jde vypnout a co je
 naopak jen kosmetika, je v [`comparison-spo-switches.md`](comparison-spo-switches.md);
-SPO modul je zároveň jediná cesta k DAG reportům SharePoint Advanced Management
+SPO modul je zároveň jediná cesta k reportům Data Access Governance (DAG) SharePoint Advanced Management
 ([`../../day-5/permission-discovery/`](../../day-5/permission-discovery/)).
 
 ### Autentizační módy
-- **Interaktivní** — `-Interactive` (PnP) otevře webový dialog / WAM prompt s MFA flow; vhodné
+- **Interaktivní** — `-Interactive` (PnP) otevře webový dialog nebo prompt Web Account Manageru (WAM) s vícefaktorovým ověřením (MFA); vhodné
   pro ad-hoc práci na vlastním stroji.
 - **Device code** — dvoukrokový flow pro headless/omezená zařízení: aplikace vygeneruje kód,
   uživatel ho zadá na jiném zařízení přes browser a projde běžnou autentizací včetně MFA;
   nevyžaduje client secret. Dostupné jen pro **public client** aplikace — tedy ty, které
   běží na zařízení uživatele a neudrží tajemství, takže se prokazuje jen uživatel.
-  Technický detail, který ušetří hodinu ladění: device code **nemá redirect URI**, takže
+  Technický detail, který ušetří hodinu ladění: device code **nemá redirect URI (Uniform Resource Identifier)**, takže
   Entra typ klienta nepozná z platformy a sáhne po fallbacku — přepínači *Authentication →
   Allow public client flows* (`isFallbackPublicClient`). Vypnutý fallback = `AADSTS7000218`.
   Interaktivního přihlášení se přepínač **netýká** — tam typ vyplývá z redirect URI
@@ -100,19 +100,19 @@ drží, přečte si ho** — podpis brání změnám, ne čtení. Když krok 3 s
   flows; certifikátový app-only = confidential. Jedna app registrace může podporovat obojí.
 
 ## Volitelné demo
-Hardware klíč (YubiKey/PIV) jako credential aplikace — [`demo-yubikey.md`](demo-yubikey.md),
+Hardware klíč (YubiKey nebo jiná karta se standardem PIV, Personal Identity Verification) jako credential aplikace — [`demo-yubikey.md`](demo-yubikey.md),
 30 min, spouštět jen při reálné rezervě. Nástroje pro samostudium: [`setup-ykman.md`](setup-ykman.md).
 
 ## Lab
 Viz [`lab-cert-auth-sites.md`](lab-cert-auth-sites.md) — první velký lab kurzu: certifikát,
 bezpečné uložení, app-only přihlášení, skriptované vytvoření pracovních webů a unified
 connect wrapper. Volitelně navazuje [`lab-write-identities.md`](lab-write-identities.md) —
-mini-lab „tři podpisy zápisu" (UI vs delegated vs app-only ve sloupci Vytvořil), při skluzu
+mini-lab „tři podpisy zápisu" (přes rozhraní vs delegated vs app-only ve sloupci Vytvořil), při skluzu
 zadat jako samostudium.
 
 ## Tipy
 - **Tahák na troubleshooting připojení**: [`troubleshooting-auth.md`](troubleshooting-auth.md)
-  — tři úrovně důkazu, tabulka symptomů (`AADSTS700016`, `AADSTS7000218`, „not of type RSA",
+  — tři úrovně důkazu, tabulka symptomů (`AADSTS700016`, `AADSTS7000218`, „not of type RSA" (Rivest-Shamir-Adleman),
   401 s prázdnou odpovědí = past Delegated vs Application) a proč se po každé změně consentu
   připojovat znovu.
 - Instalaci tří modulů spustit hned na začátku bloku na pozadí — na pomalejší síti zabere

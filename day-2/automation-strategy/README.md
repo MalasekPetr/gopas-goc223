@@ -26,15 +26,15 @@ zůstane, dokud ji někdo vědomě neodebere.
 ## Výklad
 
 ### PowerShell vs Graph vs PnP vs REST
-Tři PowerShell moduly z GLOSSARY.md (PnP.PowerShell, Microsoft.Graph, SPO Management Shell) jsou
-wrappery nad dvěma REST rozhraními — Microsoft Graph a SharePoint REST/CSOM. Rozhodovací otázka
+Tři PowerShell moduly z GLOSSARY.md (PnP.PowerShell, Microsoft.Graph, SharePoint Online (SPO) Management Shell) jsou
+wrappery nad dvěma REST rozhraními — Microsoft Graph a SharePoint REST/CSOM (Client-Side Object Model). Rozhodovací otázka
 není "PowerShell nebo REST", ale "wrapper, nebo přímé volání": moduly šetří boilerplate
 (auth, paging, serializace), přímé REST volání dává plnou kontrolu tam, kde modul nemá cmdlet
 pro potřebnou operaci nebo kde je nutná jemná kontrola nad chybovými stavy (viz [`../graph-fundamentals/`](../../day-3/graph-fundamentals/)).
 
-Vedle PowerShell trojice mapa obsahuje dva doplňky s úzkou rolí: **CLI for Microsoft 365**
-(npm/Node, bez PowerShell závislosti) pro CI/CD pipeline a skriptování mimo PowerShell — ne jako obecnou
-alternativu PnP pro administraci; a **TypeScript/Node cestu** (Graph JS SDK + PnPjs) pro
+Vedle PowerShell trojice mapa obsahuje dva doplňky s úzkou rolí: **CLI for Microsoft 365** (command-line interface)
+(npm/Node, bez PowerShell závislosti) pro CI/CD pipeline (continuous integration a delivery) a skriptování mimo PowerShell — ne jako obecnou
+alternativu PnP pro administraci; a **TypeScript/Node cestu** (Graph JS SDK (software development kit) + PnPjs) pro
 vývojářské týmy — detail v [`explainer-typescript-graph.md`](explainer-typescript-graph.md).
 Širší mapa modulů mimo fokus kurzu (Exchange, Teams, Entra, Power Platform) a jejich
 evoluce je v [`../../GLOSSARY.md`](../../GLOSSARY.md) — klíčová pointa: **moduly umírají

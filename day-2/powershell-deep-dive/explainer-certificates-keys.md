@@ -4,6 +4,8 @@ Deep-dive k [`README.md`](README.md) a k [`lab-cert-auth-sites.md`](lab-cert-aut
 který certifikát vyrábí. Odpovídá na tři otázky, které se v praxi pletou: **co je v tom
 souboru**, **kde certifikát bydlí** a **kdy už software certifikát nestačí**.
 
+Tři přípony v nadpisu jsou formáty souborů s certifikátem. **CER** je prostě zkratka slova *certificate*; **PEM** je Privacy-Enhanced Mail a **PFX** Personal Information Exchange — obojí jsou historické názvy, které dnes o obsahu souboru nic neříkají. Co v kterém skutečně je, ukazuje tabulka v sekci *Formáty souborů*.
+
 ## Pár klíčů — jediné, o co jde
 
 Certifikátová autentizace stojí na dvojici klíčů: **privátní** (prokazuji se jím, nesmí
@@ -15,9 +17,9 @@ dostane **jen veřejnou část** — proto se nahrává `.cer` a nikdy `.pfx`.
 
 | Soubor | Obsah | Smí opustit stroj? |
 |---|---|---|
-| `.cer` / `.crt` (DER binárně, nebo Base64) | jen veřejný klíč + metadata | ano — tohle se nahrává do Entra |
+| `.cer` / `.crt` (kódování DER, Distinguished Encoding Rules, binárně — nebo Base64) | jen veřejný klíč + metadata | ano — tohle se nahrává do Entra |
 | `.pem` | textová obálka `-----BEGIN…-----`; může nést certifikát, privátní klíč, nebo obojí | podle obsahu! `BEGIN PRIVATE KEY` = nikdy |
-| `.pfx` / `.p12` (PKCS#12) | certifikát **včetně privátního klíče**, chráněný heslem | jen řízený přenos (import na server), nikdy mailem, chatem ani do repa |
+| `.pfx` / `.p12` (PKCS#12, Public-Key Cryptography Standards) | certifikát **včetně privátního klíče**, chráněný heslem | jen řízený přenos (import na server), nikdy mailem, chatem ani do repa |
 
 PEM je jen Base64 zápis s hlavičkou — tentýž certifikát může existovat jako `.cer`
 i `.pem`. Na Windows převažuje DER/PFX + úložiště certifikátů, na Linuxu, macOS
@@ -29,13 +31,13 @@ PowerShell 7 je multiplatformní, takže je potřeba znát obojí.
 
 Dvě oddělené soustavy — a záměna je častá příčina „na mém stroji to jede, pod taskem ne":
 
-| Scope | GUI | PowerShell | Kdy |
+| Scope | Klikací rozhraní (GUI) | PowerShell | Kdy |
 |---|---|---|---|
 | Uživatel | `certmgr.msc` | `Cert:\CurrentUser\My` | interaktivní práce, laby |
 | Počítač | `certlm.msc` (vyžaduje admina) | `Cert:\LocalMachine\My` | scheduled task pod servisním účtem |
 
 Jazyková past: složka, které české GUI říká **Osobní**, se v PowerShellu jmenuje **`My`**.
-Struktura je vždy *scope → store*: vedle `My` existují `Root` (důvěryhodné kořenové CA —
+Struktura je vždy *scope → store*: vedle `My` existují `Root` (důvěryhodné kořenové certifikační autority, CA —
 nesahat) a `CA` (zprostředkující). Úložiště je v PowerShellu obyčejný „disk":
 
 ```powershell
@@ -54,7 +56,7 @@ zkopírování; ne pojistka proti adminovi stroje.
 |---|---|---|
 | Client secret | řetězec v konfiguraci/skriptu | jen dočasně; ze všech variant nejhorší |
 | Software certifikát (NonExportable) | cert store stroje | scheduled task on-prem, vývojová stanice |
-| Hardware klíč (čipová karta / PIV, HSM) | vyhrazený čip, klíč z něj nejde dostat | credential s vysokými právy používaný **člověkem** (admin, konzultant napříč tenanty) |
+| Hardware klíč (čipová karta se standardem PIV, nebo HSM — Hardware Security Module) | vyhrazený čip, klíč z něj nejde dostat | credential s vysokými právy používaný **člověkem** (admin, konzultant napříč tenanty) |
 | Azure Key Vault | HSM jako služba | automatizace běžící v Azure, sdílené credentialy s auditem |
 | Managed identity | žádný spravovaný credential | automatizace na Azure resource — cílový stav |
 
@@ -78,7 +80,7 @@ tuhle vlastnost mění z dohody na fyzikální fakt.
 2. **Neexistuje operace, která by ho z čipu dostala ven.** Není to zakázané — čip to
    neumí. To je celý rozdíl proti `NonExportable`.
 3. Podpis se provádí **uvnitř čipu**: aplikace pošle data k podpisu, čip vrátí podpis.
-   Volitelně až po zadání PIN a **fyzickém dotyku** klíče.
+   Volitelně až po zadání kódu PIN a **fyzickém dotyku** klíče.
 4. Windows minidriver certifikát z čipu promítne do cert store, takže
    `Connect-PnPOnline -Thumbprint <thumb>` funguje **beze změny jediného znaku** —
    jen podpis proběhne v hardwaru místo v softwaru.
@@ -102,7 +104,7 @@ tváří jako smart card. Tentýž princip, jen jiný formfaktor, mají HSM a v 
 bezpečnostní vylepšení** — v 03:00 u něj nikdo nestojí. Pravidlo: *hardware klíč patří
 k člověku, bezobslužná automatizace patří na managed identity.*
 
-### MFA token vs PIV credential — tentýž klíč, dvě různé role
+### Token pro vícefaktorové ověření (MFA) vs credential PIV — tentýž klíč, dvě různé role
 
 YubiKey jste v [`../../day-1/onboarding/mfa-setup.md`](../../day-1/onboarding/mfa-setup.md)
 mohli potkat jako **druhý faktor při přihlášení člověka**. Tady drží **credential
@@ -110,7 +112,7 @@ aplikace**. Je to stejný kus hardwaru ve dvou nesouvisejících rolích:
 
 | | Přihlášení člověka | Credential aplikace |
 |---|---|---|
-| Protokol | FIDO2 / WebAuthn (passkey) | PIV (smart card) |
+| Protokol | FIDO2 (Fast Identity Online) / WebAuthn (passkey) | PIV (smart card) |
 | Co prokazuje | že u klávesnice je konkrétní člověk | že volající je konkrétní aplikace |
 | Kde se registruje | Entra → Authentication methods uživatele | app registrace → Certificates |
 | Nahrazuje | heslo | client secret |
@@ -162,6 +164,6 @@ z labu → přihlášení s dotykem): [`demo-yubikey.md`](demo-yubikey.md).
 
 ## Stav produktu / delta
 > [!WARNING] Ověřit k datu běhu — stav k 2026-09.
-> Podporované algoritmy a délky klíčů pro certifikátové app-only přihlášení (dnes RSA),
+> Podporované algoritmy a délky klíčů pro certifikátové app-only přihlášení (dnes RSA, Rivest-Shamir-Adleman),
 > stejně jako doporučená doba platnosti certifikátu, se mění — ověřit v dokumentaci
 > certificate credentials před během.

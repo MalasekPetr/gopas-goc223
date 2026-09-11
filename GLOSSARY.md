@@ -106,6 +106,50 @@ Nové zkratky do textu přidávat **jen zároveň s řádkem tady**.
 | **UI** | User Interface | Uživatelské rozhraní. |
 | **VS Code** | Visual Studio Code | Editor, ve kterém kurz pracuje. |
 
+### Licence, role a obchodní zkratky
+
+| Zkratka | Plné znění | Jednou větou |
+|---|---|---|
+| **E5** | (název licenčního plánu) | Nejvyšší plán Microsoft 365; kurz jede na **E5 Developer**. |
+| **IPU** | In-Product Usage | Metrika využití produktu v Partner Center. |
+| **ISV** | Independent Software Vendor | Nezávislý dodavatel softwaru. |
+| **M365** | Microsoft 365 | Zkracovat jen tam, kde už plné znění na stránce bylo. |
+| **MCT** | Microsoft Certified Trainer | |
+| **MPN** | Microsoft Partner Network | Dnes Microsoft AI Cloud Partner Program. |
+
+### Kryptografie, formáty a protokoly navíc
+
+| Zkratka | Plné znění | Jednou větou |
+|---|---|---|
+| **AADSTS** | (prefix chybových kódů Entra) | Číslo za ním identifikuje konkrétní chybu přihlášení. |
+| **ANSI**, **ASCII** | American National Standards Institute / American Standard Code for Information Interchange | Znakové sady; ASCII je 7bitová podmnožina. |
+| **ARM** | Azure Resource Manager | Vrstva, přes kterou se zakládají a spravují Azure zdroje. |
+| **DLL** | Dynamic-Link Library | Knihovna, kterou .NET nahrává za běhu. |
+| **DSC** | Desired State Configuration | Deklarativní konfigurace stroje. |
+| **ECC** | Elliptic Curve Cryptography | Kryptografie na eliptických křivkách; kratší klíče než RSA. |
+| **FIDO**, **FIDO2** | Fast Identity Online | Standardy pro přihlášení bez hesla. |
+| **HTML**, **HTTP** | HyperText Markup Language / Transfer Protocol | |
+| **IP** | Internet Protocol | V kurzu typicky „IP adresa" u firewallů. |
+| **LTS** | Long-Term Support | Verze s dlouhou podporou; u Node.js volba pro kurz. |
+| **OIDC** | OpenID Connect | Autentizační vrstva nad OAuth 2.0. |
+| **OTP** | One-Time Password | Jednorázový kód. |
+| **PKCS** | Public-Key Cryptography Standards | Rodina standardů; `PKCS#12` je formát `.pfx`. |
+| **RSA** | Rivest–Shamir–Adleman | Klasický algoritmus s veřejným klíčem. |
+| **SAML** | Security Assertion Markup Language | Starší federační protokol. |
+| **SQL** | Structured Query Language | |
+| **USB** | Universal Serial Bus | U hardwarových klíčů. |
+| **VSIX** | (formát rozšíření pro VS Code) | Balíček rozšíření editoru. |
+| **WSL2** | Windows Subsystem for Linux 2 | Podmínka pro Docker Desktop a Podman na Windows. |
+
+### Ostatní
+
+| Zkratka | Plné znění |
+|---|---|
+| **CMDB** | Configuration Management Database |
+| **CMS** | Content Management System |
+| **FAQ** | Frequently Asked Questions |
+| **SMS** | Short Message Service |
+
 ### Jednotky a zkratky v číslech
 
 | Zkratka | Plné znění |
