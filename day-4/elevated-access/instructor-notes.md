@@ -37,9 +37,12 @@
   pak zvyšuje `Manage` → `FullControl`, dokud to neprojde. Ta didaktika je správná — least
   privilege se hledá odspodu — ale **ty nesmíš být ten, kdo to v sále zjišťuje poprvé.**
   25 lidí bisektujících oprávnění naživo je katastrofa. Projdi to předem a **poznamenej si
-  výsledek**. Očekávání: `Write` nestačí (dává jen čtení a změnu obsahu), `FullControl`
-  stačí. **Jestli projde už `Manage`, je to lepší odpověď a patří do labu jako fakt** —
-  dopiš ji tam.
+  výsledek**.
+  - **`Write` nestačí — POTVRZENO reálným během 2026-09-10.** Náraz v kroku 7b je tedy
+    jistý, ne hypotéza; plánuj s ním.
+  - **Která úroveň to nakonec splnila, zaznamenané ale NENÍ.** Až to změříš, dopiš to
+    do labu jako fakt — a když projde už `Manage`, je to lepší odpověď než `FullControl`
+    a patří tam místo očekávání.
 
 > [!NOTE] Proč to v labu není napsané dopředu
 > Protože mapování rolí `Sites.Selected` na SharePoint permission levels dokumentace

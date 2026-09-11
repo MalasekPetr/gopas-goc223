@@ -402,6 +402,9 @@ Invoke-AccessRequestQueue -RequestListTitle $requestList `
 dostanete na `Set-PnPListItemPermission` chybu o přístupu (`Access denied`,
 `UnauthorizedAccessException`) a řádek žádosti skončí jako `Failed`.
 
+**Potvrzeno reálným během 2026-09-10: `Write` skutečně nestačí.** Náraz je tedy jistý, ne
+hypotéza — plánujte s ním.
+
 **Co se stalo:** přidělení role na položce **rozbíjí dědění oprávnění** a zakládá na ní
 nové role assignment. To není „změna obsahu" — to je **správa oprávnění**. A `Write` podle
 tabulky v kroku 5 dává jen čtení a změnu metadat a obsahu.
