@@ -13,7 +13,7 @@ end-to-end blueprintu. **~5,7–6,7 h.**
 | 4 | Výkon, náklady & capstone | [`performance-cost-capstone`](performance-cost-capstone/) | P |
 
 > [!NOTE] Blok 2 je vstupem do bloku 3 — hardening začíná tím, že víte, kdo co má.
-> Jeho SAM část je **instruktorské demo** (report běží 1× za 30 dní, tenant jich unese 5),
+> Jeho část o SharePoint Advanced Management (SAM) je **instruktorské demo** (report běží 1× za 30 dní, tenant jich unese 5),
 > a pokud kurzovní tenant nemá SAM licenci, jede ze screenshotů.
 
 > [!NOTE] Capstone je poslední blok kurzu — vyžaduje dokončené artefakty z D2 (migrace),

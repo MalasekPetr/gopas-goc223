@@ -1,4 +1,4 @@
-# Explainer · Azure orientace: subscription, RBAC a kde skript vlastně běží
+# Explainer · Azure orientace: subscription, oprávnění (RBAC) a kde skript vlastně běží
 
 Vstupní srovnání úrovní před laby tohoto dne — určeno i k přečtení předem. Odpovídá na
 tři otázky, které rozhodují dřív, než se napíše první řádek Function kódu: **kdo tam
@@ -9,7 +9,7 @@ vůbec smí**, **kde skript poběží** a **co to znamená pro credentialy**.
 **Entra tenant** je adresář identit (uživatelé, skupiny, app registrace, role).
 **Azure subscription** je fakturační a provozní kontejner pro cloudové zdroje, *připojený*
 k tenantu. Z toho plyne věta, která šetří hodiny zmatku: **Global administrator v tenantu
-nemá automaticky žádný přístup k Azure.** Entra role a Azure RBAC jsou oddělené soustavy.
+nemá automaticky žádný přístup k Azure.** Entra role a Azure RBAC (Role-Based Access Control) jsou oddělené soustavy.
 
 Hierarchie: subscription → **resource group** (logická krabice na související zdroje,
 jednotka úklidu a účtování) → **resource** (Function App, Storage Account, Key Vault…).
@@ -84,14 +84,14 @@ Rozpočet sám o sobě není ani jedno z toho.
 | Azure Functions / Automation | pravidelný běh bez vlastního železa | **managed identity** — žádný spravovaný secret |
 | Container Instances (ACI) | jednorázový nebo dávkový běh | managed identity, případně federated credentials |
 | Container Apps Job | plánovaný běh v kontejneru, scale-to-zero | managed identity |
-| CI/CD pipeline | build, test, nasazení skriptů | federated credentials / cert z Key Vaultu |
+| CI/CD pipeline (continuous integration a delivery) | build, test, nasazení skriptů | federated credentials / cert z Key Vaultu |
 
 Pointa žebříku: čím výš, tím **méně tajemství leží na discích** — managed identity nemá
 co ukrást ani co zapomenout zrotovat. Srovnání plánovačů a rozhodovací osa pro tento
 kurz jsou v [`README.md`](README.md).
 
 > [!NOTE] Kde žebřík neplatí
-> **Migrační exekuce se po něm nedá posunout nahoru.** SPMT i ShareGate vyžadují Windows
+> **Migrační exekuce se po něm nedá posunout nahoru.** SharePoint Migration Tool (SPMT) i ShareGate vyžadují Windows
 > PowerShell 5.x, agenti Migration Manageru jsou Windows služba — žádná Linux Function,
 > žádný `mcr.microsoft.com/powershell` kontejner. Do Azure jde přesunout jen *stroj*,
 > ne runtime. Proč a co z toho plyne pro plánování vln:
@@ -102,7 +102,7 @@ kurz jsou v [`README.md`](README.md).
 Kontejner je zabalený běhový svět (OS knihovny + runtime + nástroje), který se všude
 spustí stejně. Image `mcr.microsoft.com/powershell` obsahuje PowerShell 7 na Linuxu —
 tentýž skript z labů v něm běží beze změny, jen bez `Cert:` provideru (na Linuxu
-neexistuje, proto PEM). **Devcontainer** (`devcontainer.json` v repu) dá týmu identické
+neexistuje, proto formát PEM). **Devcontainer** (`devcontainer.json` v repu) dá týmu identické
 vývojové prostředí ve VS Code — navazuje na runtime prostředí z
 [`../../day-1/vscode-copilot-env/explainer-runtime-environments.md`](../../day-1/vscode-copilot-env/explainer-runtime-environments.md).
 
@@ -137,13 +137,13 @@ přidá kontejneru managed identitu — pak v něm neběží žádný secret ani
 
 ## Klíčové rozlišení
 
-- **Entra role vs Azure RBAC vs M365 licence** — tři oddělené soustavy; GA != přístup
+- **Entra role vs Azure RBAC vs licence Microsoft 365** — tři oddělené soustavy; Global administrator != přístup
   do Azure, licence != oprávnění.
 - **Resource group jako jednotka úklidu** — co vznikne spolu, ať zmizí spolu; základ
   nákladové hygieny (a podmínka cleanupu po kurzu).
 - **Managed identity vs certifikát** — obojí app-only; managed identity jen na Azure
   resourcech, zato bez čehokoli, co jde ukrást nebo zapomenout zrotovat.
-- **Kontejner vs VM** — kontejner nese běhové prostředí procesu, ne celý OS; startuje
+- **Kontejner vs virtuální stroj (VM)** — kontejner nese běhové prostředí procesu, ne celý OS; startuje
   v sekundách a je definovaný souborem v repu.
 
 ## Tipy
@@ -152,7 +152,7 @@ přidá kontejneru managed identitu — pak v něm neběží žádný secret ani
   řešit teprve, až se budou image **stavět**.
 - ACI vždy uklidit (`az container delete`); zapomenutý kontejner s `--restart-policy Always`
   běží věčně. Dema nikdy do produkční resource group.
-- Na Windows vyžadují Docker Desktop i Podman **WSL2** — instalace znamená restart
+- Na Windows vyžadují Docker Desktop i Podman **WSL2** (Windows Subsystem for Linux) — instalace znamená restart
   stroje; nepouštět se do ní pět minut před tím, než je potřeba.
 - Docker Desktop je pro větší organizace placený; Podman toto omezení nemá a příkazy
   jsou stejné.

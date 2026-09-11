@@ -8,7 +8,7 @@
 - Velké seznamy, verze, throttling, zpoždění vyhledávání.
 - Nástrojová mapa migrace: SPMT (+ PS modul), Migration Manager, 3rd-party (ShareGate a spol.)
   — viz [`explainer-migration-tools.md`](explainer-migration-tools.md).
-- Assessment mrtvých vrstev na zdroji (Add-ins/ACS, custom script, `.wsp`/`.stp` šablony) —
+- Assessment mrtvých vrstev na zdroji (Add-ins s autentizací Azure ACS, custom script, `.wsp`/`.stp` šablony) —
   co v cíli nemá kam přistát: [`explainer-legacy-layers.md`](explainer-legacy-layers.md).
 
 ## Výklad
@@ -59,7 +59,7 @@ flowchart LR
 
 ## Lab
 Viz [`lab-fileshare-migration.md`](lab-fileshare-migration.md) — druhý velký lab kurzu:
-migrace z on-prem fileshare do SPO knihoven řízená JSON plánem (vlny, cíle, mapování
+migrace z on-prem fileshare do knihoven SharePoint Online (SPO) řízená JSON plánem (vlny, cíle, mapování
 metadat), exekuce přes SPMT PS modul, doplnění metadat PnP skriptem.
 
 ## Zdroje (Microsoft)

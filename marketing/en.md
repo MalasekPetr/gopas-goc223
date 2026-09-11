@@ -36,7 +36,7 @@ This course takes migration and automation engineers through the full cycle of a
 - PowerShell basics — if you are unsure, the course levels these up at the start of day two when the group needs it
 - Experience administering SharePoint Online
 - Azure fundamentals (resource groups, identity)
-- Beneficial: JSON/REST literacy, experience with migration tools (SPMT, ShareGate, and similar)
+- Beneficial: JSON/REST literacy, experience with migration tools (SharePoint Migration Tool, ShareGate, and similar)
 
 ## Format and duration
 

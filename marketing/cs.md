@@ -10,7 +10,7 @@
 `microsoft-365-pokrocila-automatizace-a-migrace-sharepoint_goc223`
 
 > [!NOTE] Pro editora
-> Slug se nemění — beze změny zůstává i stávající SEO historie, není potřeba nastavovat redirect.
+> Slug se nemění — beze změny zůstává i stávající SEO historie (search engine optimization), není potřeba nastavovat redirect.
 
 ## Titulek kurzu
 
@@ -22,7 +22,7 @@ Praktický pětidenní kurz pokročilé automatizace a migrace SharePointu Onlin
 
 ## Popis kurzu
 
-Kurz provede inženýry migrací a automatizace kompletním cyklem pokročilé automatizace a migrace SharePointu Online. Týden otevírá volba nástrojové strategie (PowerShell, Microsoft Graph, PnP, REST) a bezpečná identita automatizace, na ně navazuje PowerShell do hloubky se třemi produkčními moduly, čtyřmi autentizačními módy a prvním velkým labem (certifikát, app-only přihlášení, skriptované pracovní weby). Třetí den otevírá inženýrství nad Microsoft Graph — batching, delta query, throttling a klasifikaci chyb pro odolné skripty — a dál patří dvěma pilířům kurzu: skladbě migrací (předmigrační kontroly, wave planning, cutover taktiky) a automatizaci zřizování přes PnP provisioning engine, doplněným o model tří prostředí DEV/TEST/PROD s detekcí driftu. Čtvrtý den propojuje SharePoint s Azure integračními vzory (Logic Apps, Functions, Runbooks, Graph change notifications), SIEM pipeline přes Azure Blob až do Log Analytics a lifecycle a compliance enforcement. Poslední den řeší správu dodaných řešení v App Catalogu, reporting oprávnění („ke kterým webům má tenhle člověk přístup") a security hardening identit automatizace a končí capstone blueprintem, který spojuje migraci, provisioning a Azure integraci do jednoho end-to-end plánu s rollbackem a předávkou do provozu.
+Kurz provede inženýry migrací a automatizace kompletním cyklem pokročilé automatizace a migrace SharePointu Online. Týden otevírá volba nástrojové strategie (PowerShell, Microsoft Graph, PnP, REST) a bezpečná identita automatizace, na ně navazuje PowerShell do hloubky se třemi produkčními moduly, čtyřmi autentizačními módy a prvním velkým labem (certifikát, app-only přihlášení, skriptované pracovní weby). Třetí den otevírá inženýrství nad Microsoft Graph — batching, delta query, throttling a klasifikaci chyb pro odolné skripty — a dál patří dvěma pilířům kurzu: skladbě migrací (předmigrační kontroly, wave planning, cutover taktiky) a automatizaci zřizování přes PnP provisioning engine, doplněným o model tří prostředí DEV/TEST/PROD s detekcí driftu. Čtvrtý den propojuje SharePoint s Azure integračními vzory (Logic Apps, Functions, Runbooks, Graph change notifications), pipeline do systému SIEM (Security Information and Event Management) přes Azure Blob až do Log Analytics a lifecycle a compliance enforcement. Poslední den řeší správu dodaných řešení v App Catalogu, reporting oprávnění („ke kterým webům má tenhle člověk přístup") a security hardening identit automatizace a končí capstone blueprintem, který spojuje migraci, provisioning a Azure integraci do jednoho end-to-end plánu s rollbackem a předávkou do provozu.
 
 ## Pro koho je kurz určen
 
@@ -36,7 +36,7 @@ Kurz provede inženýry migrací a automatizace kompletním cyklem pokročilé a
 - Základy PowerShellu — pokud si nejste jistí, kurz je na začátku druhého dne v případě potřeby sjednotí
 - Zkušenost se správou SharePoint Online
 - Základy Azure (resource groups, identity)
-- Výhodou: znalost JSON/REST, zkušenost s migračními nástroji (SPMT, ShareGate a podobné)
+- Výhodou: znalost JSON/REST, zkušenost s migračními nástroji (SharePoint Migration Tool, ShareGate a podobné)
 
 ## Formát a délka
 
@@ -44,15 +44,15 @@ Kurz provede inženýry migrací a automatizace kompletním cyklem pokročilé a
 - úroveň: pokročilí
 
 > [!NOTE] Pro editora
-> Cena záměrně vynechána — doplní ji obchodní oddělení GOPAS přímo v CMS/ceníku.
+> Cena záměrně vynechána — doplní ji obchodní oddělení GOPAS přímo v redakčním systému (CMS) a ceníku.
 
 ## Osnova kurzu
 
 ### Den 1 — Onboarding, prostředí a mapa API
 
-- **Onboarding & pravidla práce** — vstup do sdíleného cvičného tenantu, registrace MFA a pravidla bezpečné spolupráce většího počtu administrátorů v jednom prostředí.
-- **Toolchain skriptera** *(lab)* — PowerShell 7, Node a CLI for Microsoft 365, VS Code rozšíření a správa verzí; výstupem je vlastní ověřovací skript, který řekne, co na stroji chybí.
-- **Mapa API nad M365 a SPO** *(cvičení)* — Azure, Entra ID, Microsoft Graph a SPO REST v jedné mapě, mrtvé vrstvy a jejich náhrady; každý účastník si sám zavolá první Graph dotazy v Graph Exploreru.
+- **Onboarding & pravidla práce** — vstup do sdíleného cvičného tenantu, registrace vícefaktorového ověření (MFA) a pravidla bezpečné spolupráce většího počtu administrátorů v jednom prostředí.
+- **Toolchain skriptera** *(lab)* — PowerShell 7, Node a nástroj příkazové řádky CLI for Microsoft 365, VS Code rozšíření a správa verzí; výstupem je vlastní ověřovací skript, který řekne, co na stroji chybí.
+- **Mapa API nad Microsoft 365 (M365) a SharePoint Online (SPO)** *(cvičení)* — Azure, Entra ID, Microsoft Graph a SPO REST v jedné mapě, mrtvé vrstvy a jejich náhrady; každý účastník si sám zavolá první Graph dotazy v Graph Exploreru.
 - **Inženýrské prostředí, VS Code a Copilot** *(lab)* — VS Code jako pracovní nástroj pro automatizaci, hygiena Git repozitáře a zodpovědné použití Microsoft Copilot Chatu při psaní skriptů.
 
 ### Den 2 — Strategie, oprávnění a PowerShell
@@ -92,7 +92,7 @@ Kurz provede inženýry migrací a automatizace kompletním cyklem pokročilé a
 ## Před publikací — kontrolní seznam pro editora
 
 - [ ] Doplnit cenu kurzu (obchodní oddělení GOPAS).
-- [ ] Ověřit aktuální PAYG / Flex Consumption náklady Azure labů dne 4 a dostupnost/životnost M365 Developer Program tenantu.
+- [ ] Ověřit aktuální ceny pay-as-you-go (PAYG) / Flex Consumption náklady Azure labů dne 4 a dostupnost/životnost M365 Developer Program tenantu.
 - [ ] Ověřit aktuální stav certifikace AZ-204 (plánovaný konec 31. 7. 2026) a její náhrady AI-200, než se cesty dalšího studia zmíní v propagačních materiálech.
 - [ ] Ověřit minimální verze toolchainu (PowerShell pro PnP, Node pro CLI for Microsoft 365) před uvedením do textu.
 - [ ] Zkontrolovat, že žádný blok „Pro editora" nezůstal zkopírovaný do publikovaného textu.

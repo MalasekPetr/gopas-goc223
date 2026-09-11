@@ -13,7 +13,7 @@ Tenhle blok je o obrácení dotazu a o tom, proč je to těžší, než vypadá.
 - Vyjmenovat **všechny cesty**, kterými se člověk dostane k obsahu — a poznat, které
   z nich naivní skript minul.
 - Napsat reverzní report „co vidí uživatel X" a vědět, co je jeho **slepá místa**.
-- Rozhodnout mezi vlastním skriptem a **SAM DAG reportem** podle licence, rozsahu a limitů.
+- Rozhodnout mezi vlastním skriptem a **reportem Data Access Governance (DAG) ze SharePoint Advanced Management (SAM)** podle licence, rozsahu a limitů.
 - Odlišit **snapshot** od živého dotazu a vědět, čemu odpovídá číslo v reportu.
 
 ## Výklad
@@ -99,7 +99,7 @@ na uživatele, a ze stejného důvodu: **index neexistuje.**
 
 #### `Sites.Selected` už dávno není jediný
 
-Model se rozrostl a je to jeden z mála případů, kdy se oprávnění v M365 vyvíjejí směrem
+Model se rozrostl a je to jeden z mála případů, kdy se oprávnění v Microsoft 365 (M365) vyvíjejí směrem
 **k větší granularitě**. Dokumentace to formuluje takhle:
 
 > „Initially, Sites.Selected existed to restrict an application's access to a single site

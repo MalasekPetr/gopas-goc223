@@ -9,8 +9,8 @@ Jediný zdroj pravdy o pořadí modulů. Složky jsou slugy; pořadí drží tat
 | # | Blok | Slug | Typ |
 |---|---|---|---|
 | 1 | Onboarding & pravidla práce | `day-1/onboarding` | P |
-| 2 | Toolchain skriptera: PowerShell 7, Node a CLI *(lab)* | `day-1/toolchain-setup` | P |
-| 3 | Mapa API nad M365 a SPO *(cvičení Graph Explorer)* | `day-1/api-landscape` | P |
+| 2 | Toolchain skriptera: PowerShell 7, Node a nástroje příkazové řádky (CLI) *(lab)* | `day-1/toolchain-setup` | P |
+| 3 | Mapa API nad Microsoft 365 (M365) a SharePoint Online (SPO) *(cvičení Graph Explorer)* | `day-1/api-landscape` | P |
 | 4 | Inženýrské prostředí, VS Code a Copilot *(lab)* | `day-1/vscode-copilot-env` | P |
 
 **~4,9 h povinně** (295 min: onboarding 120 + toolchain 45 + mapa API 45 + VS Code/Copilot
@@ -44,7 +44,7 @@ slabá v základech PowerShellu — což se pozná už u labu bloku 1. Pustit ho
 dopoledne druhého dne, ne dopředu; den se tím prodlouží o hodinu a pořád zůstane pod
 stropem. Bez něj se blok 3 pro takovou skupinu odučit nedá.
 
-Volitelné demo hardwarového klíče (YubiKey/PIV, +30 min) a mini-lab „tři podpisy zápisu"
+Volitelné demo hardwarového klíče (YubiKey se standardem PIV, +30 min) a mini-lab „tři podpisy zápisu"
 (+25 min) uvnitř bloku 3 — jen při reálné rezervě.
 
 ## Den 3 — Graph, staging, migrace & provisioning
@@ -65,7 +65,7 @@ Volitelné demo hardwarového klíče (YubiKey/PIV, +30 min) a mini-lab „tři 
 > [`day-3/migration-patterns/lab-fileshare-migration.md`](day-3/migration-patterns/lab-fileshare-migration.md)
 > má retry vzory z `graph-fundamentals` ve **Předpokladech**, proto Graph otevírá den.
 > Staging je blok 2, protože jeho **koncept** baseline vs drift se vrací v provisioningu
-> i v `day-4/lifecycle-compliance` — ne kvůli artefaktu, viz níž.
+> i v `day-4/lifecycle-compliance` — ne kvůli artefaktu; jeho lab je volitelný a nic na jeho výstupu nestojí.
 
 **~5,1 h povinně** (120 + 40 + 45 + 100 = 305 min) plus dva volitelné laby: lab stagingu
 a Lab 2 (fileshare → SPO). Rezerva pod stropem je dost velká, aby se do dne vešel zkrácený
@@ -89,7 +89,8 @@ podle instruktora nafouknuté. Reálné číslo dne bude spíš nižší než 5,
 | 4 | Lifecycle & compliance enforcement | `day-4/lifecycle-compliance` | P |
 
 **~6,5 h povinně** (80 + 90 + 120 + 100 = 390 min). Jediný den, u kterého odhad sedl při
-reálném běhu — D1, D2 i D3 se musely přepočítávat.
+reálném běhu — D1, D2 i D3 se musely přepočítávat. **SIEM** v názvu bloku 3 je Security
+Information and Event Management.
 
 Blok 1 obsahuje kromě výkladu **tutorial `tutorial-script-to-azure.md`**: krok za krokem,
 jak dostat skript do Azure a spustit ho tam. Blok 2 jede tutéž cestu ve svém labu.
@@ -108,8 +109,9 @@ z Functiony běžící v Azure.
 | 3 | Security hardening & least privilege | `day-5/security-hardening` | P |
 | 4 | Výkon, náklady & capstone *(elastický blok 60–120 min)* | `day-5/performance-cost-capstone` | P |
 
-> [!NOTE] **~5,7–6,7 h.** Volnější závěr zůstal jen zčásti: vypuštění vývoje SPFx ubralo
-> 45 min, nový blok 2 (reporting oprávnění) přidal 75. Studenti občas odcházejí o 1–2 h dřív —
-> proto je blok 2 před hardeningem, ne za ním, a capstone zůstává elastický.
-> Capstone je elastický — při zkrácení se prezentace mění na pair-share a konsolidace na
-> jednostránkový blueprint; jádro (propojení artefaktů + rollback plán) zůstává vždy.
+**~5,7-6,7 h.** Volnější závěr zůstal jen zčásti: vypuštění vývoje SharePoint Frameworku
+(SPFx) ubralo 45 min, nový blok 2 (reporting oprávnění) přidal 75. Studenti občas odcházejí
+o 1-2 h dřív — proto je blok 2 před hardeningem, ne za ním.
+
+Capstone je elastický: při zkrácení se prezentace mění na pair-share a konsolidace na
+jednostránkový blueprint. Jádro, tedy propojení artefaktů a rollback plán, zůstává vždy.

@@ -2,7 +2,7 @@
 
 Doplněk k [`README.md`](README.md). Žebřík v [`explainer-azure-orientation.md`](explainer-azure-orientation.md)
 řadí možnosti podle toho, **kolik tajemství leží na discích**. Tenhle soubor je řadí podle
-jiné osy: **co to udělá s PowerShellovým skriptem**, který má běžet opakovaně nad M365.
+jiné osy: **co to udělá s PowerShellovým skriptem**, který má běžet opakovaně nad Microsoft 365 (M365).
 
 Ta osa je jiná, protože u PowerShellu rozhodují věci, které u C# Functions nikoho netrápí —
 jak se do runtime dostanou moduly, jestli je jejich verze pod vaší kontrolou, a jestli
@@ -34,7 +34,7 @@ přihlášení.** Auth matice je v [`README.md`](README.md).
 | Jak se dovnitř dostanou moduly | **v app content** (deployment package) — Flex Consumption managed dependencies **nepodporuje** | import do Automation accountu | `Install-Module` na workeru | **zapečené v image** | `Install-Module` na stroji |
 | Kdo drží verzi modulu | vy, v deployment package | vy, ale mimo repo | vy, na stroji | **vy, v `Dockerfile` v repu** | vy, ručně |
 | Strop doby běhu | 30 min default, **neomezeno** (Flex/Premium/Dedicated) | **3 h — fair share**, job je zastaven | **žádný — fair share se nevztahuje** | `replicaTimeout` (nastavíte v sekundách) | žádný |
-| Plánovač | timer trigger (NCRONTAB, **UTC** — `TZ`/`WEBSITE_TIME_ZONE` na Flexu nefunguje) | Automation schedule | **Automation schedule, centrálně** | **cron výraz, 5 polí, v UTC** | Task Scheduler (lokální čas) |
+| Plánovač | timer trigger (zápis NCRONTAB, vždy v **UTC** — `TZ`/`WEBSITE_TIME_ZONE` na Flexu nefunguje) | Automation schedule | **Automation schedule, centrálně** | **cron výraz, 5 polí, v UTC** | Task Scheduler (lokální čas) |
 | Cena při nečinnosti | 0 (Flex Consumption) | 0 | běžící stroj | **0 — scale-to-zero** | běžící železo |
 | Credential | managed identity | managed identity | managed identity stroje + Automation credential store | managed identity | certifikát v machine store |
 | Spustí `.exe` / subprocess | ano | **ne** (Azure sandbox) | **ano** | ano | ano |
@@ -61,13 +61,13 @@ elevaci a v jednom sandboxu může běžet **až 10 jobů, které se navzájem o
 `Disconnect-AzAccount` v jednom runbooku odpojí **všechny ostatní joby ve stejném sandboxu**.
 
 Pro tenhle kurz to má konkrétní důsledek: **migrační nástroje do Azure sandboxu nepatří.**
-SPMT je desktop aplikace s PowerShell modulem nad Windows PowerShellem 5.x
+SharePoint Migration Tool (SPMT) je desktopová aplikace s PowerShell modulem nad Windows PowerShellem 5.x
 (viz [`../../day-3/migration-patterns/explainer-migration-tools.md`](../../day-3/migration-patterns/explainer-migration-tools.md)),
 což sandbox neumí ani spustit. Pokud chcete migrační nástroj řídit z Automation, je to
 rovnou volba Hybrid Workeru.
 
 > [!IMPORTANT] Azure Firewall na Key Vaultu zablokuje runbook v sandboxu
-> Zapnutý firewall na **Azure Storage, Key Vault nebo Azure SQL** blokuje přístup
+> Zapnutý firewall na **Azure Storage, Key Vault nebo Azure SQL** (Structured Query Language) blokuje přístup
 > z Automation runbooků — **a to i se zapnutou výjimkou „allow trusted Microsoft services",
 > protože Automation na seznamu trusted services není.**
 >
@@ -135,7 +135,7 @@ věci, a všechny tři musí platit:
 
 | Cesta | Existuje secret? | Přes tenanty? | Co drží co |
 |---|---|---|---|
-| **Managed identita přímo** | **ne** | **ne** | MI je identita i přístup |
+| **Managed identita přímo** | **ne** | **ne** | managed identita (MI) je identita i přístup |
 | **Certifikát** (cert store / deployment package) | ano, u vás | ano | certifikát je identita i přístup |
 | **MI → Key Vault → certifikát** | **ano, v trezoru** | ano | MI otevře trezor, certifikát jede k zákazníkovi |
 | **MI jako federated credential (FIC)** na app registraci | **ne** | ano | MI dokazuje běh, app registrace drží přístup |
@@ -167,7 +167,7 @@ certifikát** — tedy i s klientem, který federaci neumí nebo ho nemáte pod 
 ## Automation jako control plane, ne jako runtime
 
 Hybrid Runbook Worker mění to, **co v Automation kupujete**. Skript neběží v Azure sandboxu,
-ale na **vašem stroji** — Azure VM, on-prem serveru nebo stroji připojeném přes **Azure Arc**.
+ale na **vašem stroji** — Azure VM (virtuálním stroji), on-prem serveru nebo stroji připojeném přes **Azure Arc**.
 Automation zůstává řídicí vrstvou: rozvrh, credential store, historie jobů, identita.
 
 Je to jediná varianta v celé tabulce, kde **control plane a runtime nejsou tatáž věc**.

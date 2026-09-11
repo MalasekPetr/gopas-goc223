@@ -23,8 +23,10 @@ batchingem ([`../../day-3/graph-fundamentals/`](../../day-3/graph-fundamentals/)
 requestů.
 
 ### Náklady logování a asynchronní fan-out
-Logovací náklady ([`../../day-4/siem-blob-integration/`](../../day-4/siem-blob-integration/)) rostou s objemem a granularitou — batching zápisů a DCR
-transformace před uložením (filtrování, ne log-everything-then-filter) drží náklady dolů.
+Logovací náklady ([`../../day-4/siem-blob-integration/`](../../day-4/siem-blob-integration/))
+rostou s objemem a granularitou. Držet je dole pomáhají dvě věci: dávkování zápisů
+a transformace v Data Collection Rule (DCR) ještě **před** uložením — tedy filtrovat hned,
+ne logovat všechno a filtrovat až v dotazu.
 Asynchronní fan-out (jeden trigger → N paralelních dílčích úloh, např. per-web migrace v
 rámci jedné vlny z [`../../day-3/migration-patterns/`](../../day-3/migration-patterns/)) škáluje propustnost, ale musí respektovat throttling limity ([`../../day-3/graph-fundamentals/`](../../day-3/graph-fundamentals/))
 per cíl, ne jen agregátně.
@@ -38,7 +40,7 @@ Kvantitativní protějšek je [`solution/Get-HostingCost.ps1`](solution/Get-Host
 tahá sazby živě z **Azure Retail Prices API**, což je *anonymní* endpoint: nepotřebuje
 přihlášení, subscription ani token, takže se dá spustit i na stroji bez Azure přístupu.
 
-Výsledek pro **noční skript** (30 běhů po 10 minutách, 10 MB logu na běh):
+Výsledek pro **noční skript** (30 běhů po 10 minutách, 10 MB (megabajtů) logu na běh):
 
 | Varianta | EUR / měsíc | Proč |
 |---|---|---|

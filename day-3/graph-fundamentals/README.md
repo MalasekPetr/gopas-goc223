@@ -9,7 +9,7 @@
 ## Výklad
 
 ### Batching (`$batch`)
-JSON batching kombinuje až 20 jednotlivých requestů do jednoho HTTP volání
+JSON batching kombinuje až 20 jednotlivých requestů do jednoho HTTP požadavku
 (`POST /$batch`) a snižuje počet round-tripů. Odpověď má vlastní pole `responses` s
 individuálním status kódem pro každý dílčí request — **HTTP 200 na úrovni batch odpovědi
 neznamená, že uspěly všechny dílčí requesty**. Každý request v batchi se navíc vyhodnocuje
@@ -27,7 +27,7 @@ změnilo od X", webhook = "informuj mě hned, až se něco změní".
 ### Throttling (429) — řízení
 Graph vrací HTTP 429 s hlavičkou `Retry-After` v sekundách — to číslo je závazné, ne
 orientační. Nezkracovat, nezkoušet dřív "pro jistotu" — předčasný retry throttling jen
-prodlouží. Pokud `Retry-After` chybí, použít exponenciální backoff. Graph SDK už mají vestavěné
+prodlouží. Pokud `Retry-After` chybí, použít exponenciální backoff. Klientské knihovny Graphu (SDK, software development kit) už mají vestavěné
 retry handlery řešící `Retry-After` nebo výchozí backoff politiku — ne psát vlastní retry smyčku
 od nuly, pokud SDK toto řeší.
 
@@ -51,7 +51,7 @@ flowchart TD
 ### Velké seznamy a throttling ve velkém
 Throttling z Graphu je jen jedna polovina; druhou potkáte, jakmile skript opustí testovací
 data. **List view threshold 5000** není strop velikosti seznamu ani throttling — je to limit
-na to, kolik položek smí projít **jeden dotaz**, a v SPO se nedá zvýšit. Nástroj, jak se pod
+na to, kolik položek smí projít **jeden dotaz**, a v SharePoint Online (SPO) se nedá zvýšit. Nástroj, jak se pod
 něj vejít, je **indexovaný sloupec** (limit 20 na seznam, nelze u vícehodnotových
 a počítaných sloupců). Pravidlo do praxe: **filtruj na serveru, ber po stránkách, na velký
 seznam nikdy nesahej „celý"** (`Get-PnPListItem | Where-Object …` je anti-pattern).

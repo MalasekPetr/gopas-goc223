@@ -1,14 +1,18 @@
-# SIEM integrace přes Azure Blob
+# Integrace se SIEM přes Azure Blob
 
 > Typ: povinný · Den: 4 · Odhad: 45 min výklad + 75 min lab
 
+**SIEM** je Security Information and Event Management — systém, který sbírá logy z celé
+organizace a hledá v nich souvislosti. Co přesně to znamená a s čím se to plete, řeší
+hned první sekce výkladu.
+
 ## Cíle
-- Vědět, **co SIEM je a s čím se plete** (SOAR, XDR, UEBA) — a která z jeho čtyř fází je
+- Vědět, **co SIEM je a s čím se plete** (SOAR, XDR, UEBA — rozepsané níž v sekci o jejich rozdílech) — a která z jeho čtyř fází je
   vaše odpovědnost.
-- Logovací strategie: schéma, minimalizace PII, retence.
+- Logovací strategie: schéma, minimalizace osobních údajů (PII, Personally Identifiable Information), retence.
 - Pipeline: app › Blob › Event Grid › Function › SIEM.
 - Náklady a spolehlivost (batching, retry, dead-letter).
-- KQL základy pro validaci a dashboardy.
+- Základy dotazovacího jazyka KQL (Kusto Query Language) pro validaci a dashboardy.
 
 ## Výklad
 
@@ -53,8 +57,8 @@ Jednou větou: **SIEM dává šířku, XDR hloubku, SOAR automatizuje reakci, UE
 
 #### Typické použití — a proč vás zajímá to druhé
 
-- detekce a odezva na hrozby (insider threat, APT, útoky přes víc domén),
-- **compliance a regulatorní reporting** (HIPAA, GDPR),
+- detekce a odezva na hrozby (insider threat, APT (Advanced Persistent Threat), útoky přes víc domén),
+- **compliance a regulatorní reporting** (HIPAA pro zdravotní data, GDPR pro osobní údaje),
 - forenzní analýza a rekonstrukce cesty útoku.
 
 Ten prostřední bod je ten, kvůli kterému tenhle blok stojí v kurzu o automatizaci
@@ -73,7 +77,7 @@ níž — a odsud jde do SIEM.
 
 ### Logovací schéma a minimalizace PII
 Strukturované (JSON) logy s konzistentním schématem — usnadňuje pozdější KQL dotazy i
-transformace. PII (UPN, e-maily, jména) minimalizovat na zdroji, ne až v SIEM — hash nebo
+transformace. Osobní údaje (uživatelská jména UPN, e-maily, jména osob) minimalizovat na zdroji, ne až v SIEM — hash nebo
 pseudonymizovat identifikátory tam, kde plná hodnota není nutná k analýze. Retence logů se
 řeší nezávisle na retenci zdrojových dat (viz [`../../day-4/lifecycle-compliance/`](../lifecycle-compliance/)) — jiné compliance požadavky.
 

@@ -36,7 +36,7 @@ Kurz prevedie inžinierov migrácií a automatizácie kompletným cyklom pokroč
 - Základy PowerShellu — ak si nie ste istí, kurz ich na začiatku druhého dňa v prípade potreby zjednotí
 - Skúsenosť so správou SharePoint Online
 - Základy Azure (resource groups, identita)
-- Výhodou: znalosť JSON/REST, skúsenosť s migračnými nástrojmi (SPMT, ShareGate a podobné)
+- Výhodou: znalosť JSON/REST, skúsenosť s migračnými nástrojmi (SharePoint Migration Tool, ShareGate a podobné)
 
 ## Formát a dĺžka
 
@@ -51,8 +51,8 @@ Kurz prevedie inžinierov migrácií a automatizácie kompletným cyklom pokroč
 ### Deň 1 — Onboarding, prostredie a mapa API
 
 - **Onboarding & pravidlá práce** — vstup do zdieľaného cvičného tenantu, registrácia MFA a pravidlá bezpečnej spolupráce väčšieho počtu administrátorov v jednom prostredí.
-- **Toolchain skriptera** *(lab)* — PowerShell 7, Node a CLI for Microsoft 365, rozšírenia VS Code a správa verzií; výstupom je vlastný overovací skript, ktorý povie, čo na stroji chýba.
-- **Mapa API nad M365 a SPO** *(cvičenie)* — Azure, Entra ID, Microsoft Graph a SPO REST v jednej mape, mŕtve vrstvy a ich náhrady; každý účastník si sám zavolá prvé Graph dotazy v Graph Exploreri.
+- **Toolchain skriptera** *(lab)* — PowerShell 7, Node a nástroj příkazové řádky CLI for Microsoft 365, rozšírenia VS Code a správa verzií; výstupom je vlastný overovací skript, ktorý povie, čo na stroji chýba.
+- **Mapa API nad Microsoft 365 (M365) a SharePoint Online (SPO)** *(cvičenie)* — Azure, Entra ID, Microsoft Graph a SPO REST v jednej mape, mŕtve vrstvy a ich náhrady; každý účastník si sám zavolá prvé Graph dotazy v Graph Exploreri.
 - **Inžinierske prostredie, VS Code a Copilot** *(lab)* — VS Code ako pracovný nástroj pre automatizáciu, hygiena Git repozitára a zodpovedné použitie Microsoft Copilot Chatu pri písaní skriptov.
 
 ### Deň 2 — Stratégia, oprávnenia a PowerShell

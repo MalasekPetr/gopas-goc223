@@ -1,5 +1,7 @@
 # Explainer · Migrační nástroje: SPMT, Migration Manager, ShareGate a spol.
 
+(Plná znění zkratek nástrojů jsou v tabulce hned níž — **SPMT** je SharePoint Migration Tool, **SMAT** je SharePoint Migration Assessment Tool.)
+
 Deep-dive k [`README.md`](README.md). Wave plán a limity jsou nástrojově nezávislé — ale
 exekuce potřebuje konkrétní nástroj. Mapa: dva Microsoft nástroje zdarma, jeden assessment
 nástroj a komerční 3rd-party liga.
@@ -10,12 +12,12 @@ nástroj a komerční 3rd-party liga.
 |---|---|---|
 | **SPMT** (SharePoint Migration Tool) | Desktop klient — SharePoint Server 2010-2019, file shares → SPO/OneDrive/Teams | On-prem SharePoint zdroje a menší/přímé file-share migrace z jednoho stroje |
 | **Migration Manager** | Cloud orchestrace v SharePoint admin centru; nainstalovaní agenti dělají discovery a přenos, admin centrum drží tasky/stav/reporty | Větší file-share projekty (agent-based škálování napříč lokalitami) a cloud zdroje (Box, Dropbox, Google Workspace, Egnyte). **Ne** pro on-prem SharePoint weby — tam Microsoft odkazuje na SPMT |
-| **SMAT** (SharePoint Migration Assessment Tool) | Command-line scan on-prem farmy před migrací | Assess & remediate fáze (viz README) — najde problémy dřív, než začne přenos |
+| **SMAT** (SharePoint Migration Assessment Tool) | Scan z příkazové řádky on-prem farmy před migrací | Assess & remediate fáze (viz README) — najde problémy dřív, než začne přenos |
 
 ## SPMT PowerShell modul — skriptovatelná exekuce
 
 `Microsoft.SharePoint.MigrationTool.PowerShell` se instaluje **spolu s desktop SPMT**
-(ne z PowerShell Gallery — DLL se kopírují do `%userprofile%\Documents\WindowsPowerShell\Modules`).
+(ne z PowerShell Gallery — knihovny DLL se kopírují do `%userprofile%\Documents\WindowsPowerShell\Modules`).
 Cmdlet pipeline kopíruje wave-plan logiku z labu:
 
 ```powershell
@@ -48,7 +50,7 @@ učí žebřík dospělosti automatizace: čím výš, tím míň železa a taje
 | Nástroj | Kde běží | Proč to nejde jinam |
 |---|---|---|
 | **SPMT** (desktop i PS modul) | Windows stroj s **Windows PowerShell 5.x + .NET Framework 4.6.2** | v PowerShellu 7 modul neběží → žádná Linux Function, žádný `mcr.microsoft.com/powershell` kontejner |
-| **Migration Manager** | jeden nebo více **počítačů či VM** s nainstalovaným agentem | agent je Windows služba, ne cloudová komponenta; orchestrace je v cloudu, **přenos ne** |
+| **Migration Manager** | jeden nebo více **počítačů či virtuálních strojů (VM)** s nainstalovaným agentem | agent je Windows služba, ne cloudová komponenta; orchestrace je v cloudu, **přenos ne** |
 | **ShareGate** | Windows stroj, PowerShell 3.0+ | PS7 nepodporován (viz tripwire výše) |
 
 Praktický důsledek: „migraci hodíme do Azure Functions" nefunguje. Co **do Azure hodit
@@ -62,7 +64,7 @@ smysl víc než stanice v kanceláři, protože data netečou přes firemní lin
   a Microsoft požaduje **minimálně 150 GB volného místa**, u velkých objemů víc.
   Tohle je nejčastější důvod, proč vlna spadne v polovině.
 - **Účet**: servisní účet s **Read** na zdroj a SharePoint/OneDrive admin na cíl.
-  **Third-party MFA není podporované** (Microsoft MFA ano) — u zákazníka s cizím
+  **Cizí nástroj pro vícefaktorové ověření (MFA) není podporovaný** (Microsoft MFA ano) — u zákazníka s cizím
   MFA providerem je to blocker, na který se přijde pozdě.
 - **Počet agentů — méně je víc.** Microsoft doporučuje **nejmenší počet agentů, který
   vlnu stihne v požadovaném okně**. Víc agentů znamená vyšší API request rate a tím

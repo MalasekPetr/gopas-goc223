@@ -77,4 +77,4 @@ Viz [`lab-compliance-drift.md`](lab-compliance-drift.md).
 ## Stav produktu / delta
 - Ověřit k datu běhu — Site Attestation vyžaduje SharePoint Advanced Management licenci (viz
   ekvivalent produktu v GOC224 GLOSSARY, dva licenční modely); ověřit, zda kurzový tenant má
-  SAM licenci aktivní pro živou demonstraci, jinak jen simulace na screenshotech.
+  licenci SharePoint Advanced Management (SAM) aktivní pro živou demonstraci, jinak jen simulace na screenshotech.
