@@ -23,6 +23,58 @@ platí beze změny — jen se místo API permissions přiřazují role na co nej
 Vzor pro kurz: student = Contributor jen na vlastní resource group, ne na subscription
 (viz [`../../environment.md`](../../environment.md)).
 
+## Finanční ohraničení — co Azure zastaví a co jen ohlásí
+
+Subscription je fakturační kontejner, takže druhá otázka po „kdo tam smí" je „kolik to
+může stát, když se něco pokazí". Odpověď překvapí skoro každého, kdo přichází z licenčního
+světa Microsoft 365: **Azure v běžném komerčním předplatném nemá žádný vypínač, který by
+utrácení zastavil.** Licence v Microsoft 365 je strop sama o sobě — koupím 50 licencí,
+51. člověk se nepřihlásí. Azure se účtuje podle spotřeby a spotřeba žádnou horní hranici
+nemá.
+
+Nástroje se dělí na tři druhy podle toho, co skutečně dělají:
+
+| Nástroj | Co dělá | Zastaví útratu? |
+|---|---|---|
+| **Budget** v Microsoft Cost Management | pošle e-mail nebo spustí automatizaci při dosažení procenta rozpočtu | **ne** |
+| **Spending limit** | vypne nasazené služby při vyčerpání kreditu | ano, ale **jen u předplatných s kreditem** |
+| **Kvóta konkrétní služby** (např. denní strop ingestu logů) | zastaví danou službu | ano, v mezích té jedné služby |
+| **Azure Policy** | zakáže drahý zdroj **založit** | preventivně, spotřebu neřeší |
+
+> [!IMPORTANT] Budget je hlásič, ne jistič
+> Dokumentace Microsoftu to říká bez obalu: *„Notifications are triggered when the budget
+> thresholds are exceeded. **Resources aren't affected, and your consumption isn't
+> stopped.**"* Navíc platí, že *„cost and usage data is typically available within 8-24
+> hours and budgets are evaluated against these costs every 24 hours"* — než alert doletí,
+> může být o den spotřeby víc. Kdo si založí rozpočet a považuje se za chráněného, chráněný
+> není.
+
+**Spending limit** (vypnutí služeb při vyčerpání kreditu) existuje jen u předplatných
+s kreditem — Azure free account, Visual Studio, Azure for Students. U pay-as-you-go a
+u commitment plánů ho portál vůbec nenabídne: *„The spending limit isn't available for
+subscriptions with commitment plans or with pay-as-you-go pricing."* Vlastní výši nastavit
+nelze: *„Custom spending limits aren't available."*
+
+Co tedy zbývá pro reálný provoz:
+
+1. **Kvóty na úrovni konkrétní služby** — jediné, co opravdu zastaví. Pro tento kurz je
+   podstatný **denní strop ingestu (daily cap)** na Log Analytics workspace, kam ústí
+   pipeline z [`../siem-blob-integration/`](../siem-blob-integration/). Podrobně a s jeho
+   háčky v [`../../day-5/performance-cost-capstone/`](../../day-5/performance-cost-capstone/).
+2. **Azure Policy** — povolené velikosti strojů (SKU), povolené regiony, zákaz drahých typů
+   zdrojů. Nehlídá spotřebu, ale nedovolí drahou věc vůbec založit.
+3. **Resource group jako jednotka úklidu.** Nejúčinnější strop pro kurzovní a demo
+   prostředí je pořád ten nejjednodušší: co vzniklo spolu, ať zmizí spolu.
+
+```powershell
+# Jediny spolehlivy "strop" pro demo prostredi: smazat celou resource group
+az group delete -n "rg-<jmeno-prijmeni>-demo" --yes --no-wait
+```
+
+Pro kurz z toho plyne konkrétní pořadí: **Policy** brání založit drahou věc, **budget**
+varuje, **kvóta** zastaví jednu službu, a **smazání resource group** ukončí všechno.
+Rozpočet sám o sobě není ani jedno z toho.
+
 ## Kde skript běží — žebřík dospělosti automatizace
 
 | Kde | Kdy stačí | Credentials |
@@ -108,6 +160,8 @@ přidá kontejneru managed identitu — pak v něm neběží žádný secret ani
 ## Zdroje (Microsoft)
 
 - [Azure fundamental concepts](https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/considerations/fundamental-concepts)
+- [Tutorial: Create and manage budgets](https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/tutorial-acm-create-budgets) — „Resources aren't affected, and your consumption isn't stopped."; latence dat 8-24 h
+- [Azure spending limit](https://learn.microsoft.com/en-us/azure/cost-management-billing/manage/spending-limit) — není u pay-as-you-go ani u commitment plánů; vlastní výši nelze nastavit
 - [What is Azure role-based access control (RBAC)?](https://learn.microsoft.com/en-us/azure/role-based-access-control/overview)
 - [Managed identities for Azure resources](https://learn.microsoft.com/en-us/entra/identity/managed-identities-azure-resources/overview)
 - [Azure Container Instances — quickstart (Azure CLI)](https://learn.microsoft.com/en-us/azure/container-instances/container-instances-quickstart)

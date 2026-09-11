@@ -7,6 +7,35 @@ Závazná pravidla pro psaní materiálů GOC223. Cíl: konzistence napříč mo
 - **Obsah**: čeština.
 - **Cesty a názvy souborů/složek**: angličtina, `kebab-case`.
 
+### Zkratky
+
+**Každá zkratka se na každé stránce při prvním použití rozepíše** — buď zkratka
+s plným zněním v závorce, nebo plné znění se zkratkou v závorce:
+
+```md
+ano:  SIEM (Security Information and Event Management) sbírá logy z celé organizace
+ano:  Data Collection Rule (DCR) umí data transformovat už při zápisu
+ne:   DCR může obsahovat KQL transformaci
+```
+
+„Na každé stránce" znamená v každém souboru zvlášť — student čte jednotlivé stránky
+z odkazu, ne celý repozitář odshora. Rozepsat stačí jednou za soubor, ne u každého výskytu.
+
+Výjimka: zkratky, které v oboru nikdo nerozepisuje a plné znění nic nevysvětlí
+(`URL`, `API`, `JSON`, `XML`, `CSV`, `REST`, `IT`, `ID`). U všeho ostatního platí pravidlo.
+
+Úplný seznam je v [`GLOSSARY.md`](GLOSSARY.md) v sekci **Rejstřík zkratek** — nové
+zkratky do textu přidávat jen zároveň s řádkem v rejstříku.
+
+### Výkladový registr
+
+Materiál čte inženýr, který danou technologii **vidí první den**. Proto platí:
+
+- **Každá `###` sekce začíná jednou obyčejnou větou o tom, co ta věc je a proč ho
+  zajímá** — až potom smí přijít termín, který v textu ještě nebyl vysvětlený.
+- Definice před zkratkou, zkratka před detailem, detail před výjimkou.
+- Nepsat „trivialita", „samozřejmě", „jak víme" — čtenář to neví, jinak by kurz nečetl.
+
 ## Struktura modulu
 
 Jeden modul = jedna složka. Slug složky, ne pořadové číslo. Volitelné moduly mají prefix `opt-`.
@@ -80,6 +109,41 @@ Lineage a breaking changes:
 > [!IMPORTANT] Názvosloví
 > <starý název/API> → <aktuální název/API>. V dokumentaci/UI se může objevit staré jméno.
 ```
+
+## Callouty — co smí být v rámečku
+
+Callout (`> [!NOTE]`, `> [!WARNING]`, `> [!IMPORTANT]`, `> [!TIP]`) je zvýraznění.
+Zvýraznění funguje jen dokud je vzácné: stránka s deseti rámečky nemá zvýrazněné nic
+a student je začne přeskakovat všechny — včetně toho jednoho, který ho měl zachránit.
+
+**Ve studentských souborech** (`README.md`, `lab-*.md`, `explainer-*`, `comparison-*`,
+`guide-*`, `exercise-*`) smí být callout **jen** když projde alespoň jedním z těchto
+tří testů:
+
+| Test | Callout | Příklad |
+|---|---|---|
+| 1. **Currency-marker** — fakt s krátkou životností (cena, limit, verze, preview) | `[!WARNING] Ověřit k datu běhu` | retirement certifikace, ceny Azure |
+| 2. **Tiché selhání** — špatný výsledek **bez chybové hlášky** | `[!WARNING]` | `Get-PnPSiteCollectionAdmin` vrátí app-only identitě prázdno místo chyby |
+| 3. **Předpoklad, bez kterého lab nedojede** | `[!IMPORTANT]` | Azure subscription a SharePoint musí být ve stejném tenantu |
+
+Plus `[!IMPORTANT] Názvosloví` pro přejmenování API (viz Currency-markery níž).
+
+**Všechno ostatní jde do běžného textu, do tabulky, nebo pryč.** Konkrétně:
+
+- **Historie změn kurzu nepatří studentům vůbec.** „Přestavba 2026-09-09", „Zkráceno
+  z 90 na 45 min", „Korektura po reálném běhu" — student neví, jaká byla předchozí
+  verze, a je mu to lhostejné. Tohle žije v `instructor-notes.md`.
+- **Meta-komentář o materiálu** („pro koho je to napsané", „proč to vysvětlujeme
+  takhle") — buď je to součást výkladu, nebo to nikdo nepotřebuje.
+- **Doporučení a kontext** („hodí se vědět", „v praxi se dělá") — to je výklad. Napsat
+  ho jako větu v odstavci, kde stejně patří.
+- Chyba, která **zahlásí sama sebe**, callout nepotřebuje — student ji uvidí v konzoli.
+
+Praktický strop, který z těch testů vychází: **do tří callloutů na stránku**. Víc
+znamená, že se do rámečků dostal výklad.
+
+V `instructor-notes.md` strop neplatí — ty čte lektor cíleně a hledá v nich právě
+tripwires.
 
 ## Delta sekce
 

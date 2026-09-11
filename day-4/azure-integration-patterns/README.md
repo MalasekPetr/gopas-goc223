@@ -81,6 +81,13 @@ flowchart TD
   E -->|Ne| G[Zpracovat notifikaci]
 ```
 
+Tahle sekce řeší, jak se o **správu odběru** postarat. Otázka, která jí předchází — jestli
+vůbec push chceme, nebo stačí plánovaný běh — má vlastní stránku:
+[`comparison-event-reaction.md`](comparison-event-reaction.md). Na příkladu jednoho
+SharePoint seznamu porovnává event handler (v SPO neexistuje), webhook a CRON včetně
+nákladů a rizik. Nosný závěr: notifikace neobsahuje obsah změny, takže **pull zůstává
+pod push variantou v obou případech**.
+
 ## Klíčové rozlišení
 - **Logic Apps (orchestrace, konektory, no PowerShell nativně) vs Functions (kód, plná
   kontrola) vs Runbooks (jednoduché scheduled PowerShell úlohy)**.
@@ -88,6 +95,10 @@ flowchart TD
   typu)** — dvě nezávislé věci, obě je nutné hlídat.
 - **Delta query (pull, [`../../day-3/graph-fundamentals/`](../../day-3/graph-fundamentals/)) vs change notifications (push, zde)** — push vyžaduje správu
   subscription lifecycle, pull ne.
+- **Synchronní (*-ing*) vs asynchronní (*-ed*) reakce na změnu** — v SharePoint Online
+  existuje jen druhá. Změnu nelze odmítnout před uložením a žádná náhrada za remote event
+  receivery nevznikla. Podrobně i s náklady:
+  [`comparison-event-reaction.md`](comparison-event-reaction.md).
 
 ## Laby
 Pull i push strana integrace:

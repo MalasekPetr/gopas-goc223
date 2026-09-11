@@ -78,6 +78,71 @@ běhu za to zaplatíte.
 > sazbu ve výstupu **označí jako derivovanou**. Číslo bez dohledatelného původu nepatří
 > do nabídky zákazníkovi.
 
+### Zastropování útraty — co Azure opravdu zastaví
+
+Předchozí tabulka končí nepříjemným zjištěním: jedna chybně nastavená Data Collection Rule
+(DCR) stojí víc než desetinásobek nejdražšího compute. Otázka, která z toho přirozeně plyne,
+je „dá se v Azure nastavit, že víc než X se utratit nesmí". Základní orientaci
+v nástrojích má [`../../day-4/azure-integration-patterns/explainer-azure-orientation.md`](../../day-4/azure-integration-patterns/explainer-azure-orientation.md);
+tady jde o tu část, která se týká peněz, a o její háčky.
+
+Odpověď je nepříjemná: **jistič v Azure neexistuje.** Budget v Microsoft Cost Management
+je hlásič — *„Resources aren't affected, and your consumption isn't stopped."* Spending
+limit, který služby skutečně vypne, je k dispozici jen u předplatných s kreditem:
+*„The spending limit isn't available for subscriptions with commitment plans or with
+pay-as-you-go pricing."* Vlastní hodnotu nastavit nelze vůbec (*„Custom spending limits
+aren't available."*). U komerčního předplatného tedy zbývají tři částečné nástroje.
+
+#### 1. Denní strop ingestu (daily cap) na Log Analytics
+
+Tohle je jediný skutečný strop, který se v tomto kurzu týká té nejdražší položky — ingestu
+logů. Zastaví *„collection of billable log data for tables in the Analytics or Basic table
+plans for the rest of a 24-hour period"*. Má ale tři vlastnosti, které se musí říct nahlas,
+protože každá z nich umí zaskočit:
+
+| Háček | Co to znamená |
+|---|---|
+| **Nezastaví přesně na hodnotě** | *„The daily cap can't stop data collection at precisely the specified cap level and some excess data is expected... If data is collected above the cap, it's still billed."* Přestřelené množství se **účtuje**. |
+| **Tabulky v plánu Auxiliary strop neřeší** | *„Tables in the Auxiliary table plan are not subject to any daily cap."* |
+| **Po dosažení stropu jste slepí** | Sběr se zastaví — a to je u bezpečnostní pipeline z [`../../day-4/siem-blob-integration/`](../../day-4/siem-blob-integration/) rozhodnutí, ne detail. |
+
+Ten třetí bod je u kurzu o SIEM (Security Information and Event Management) nejdůležitější
+a Microsoft ho formuluje ostře: *„When the daily cap is met, you are effectively blind to
+the current state of your monitored environment and no collecting potentially critical
+events that might be needed later."* Strop na ingestu bezpečnostních logů je tedy
+**volba mezi nákladovým a bezpečnostním rizikem**. Doporučení Microsoftu je jednoznačné:
+strop je záchranná brzda proti nečekanému nárůstu, **ne nástroj pro řízení nákladů** —
+na to je transformace v DCR, tedy filtrovat před zápisem. Praktický postup: nastavit strop
+vysoko, a k němu alert na hodnotu **pod** stropem, aby byl čas zasáhnout dřív, než sběr
+stojí.
+
+#### 2. Budget, který spustí automatizaci
+
+Budget na úrovni subscription nebo resource group umí místo e-mailu spustit **action group**,
+a ta dál Logic App, Azure Function nebo Automation Runbook, který drahé zdroje vypne. Je to
+jediná obecná cesta k automatické reakci — a má vestavěné zpoždění:
+*„Cost and usage data is typically available within 8-24 hours and budgets are evaluated
+against these costs every 24 hours."* K překročení tedy reálně dojde; automatizace jen
+zkrátí, jak dlouho bude trvat. Action groups jsou navíc podporované jen pro scope
+subscription a resource group.
+
+#### 3. Azure Policy jako prevence
+
+Policy spotřebu neměří, ale nedovolí drahou věc **založit** — povolené velikosti strojů
+(SKU), povolené regiony, zakázané typy zdrojů. Pro kurzovní a zákaznická prostředí je to
+nejlepší návratnost úsilí: co nevznikne, nic nestojí.
+
+> [!WARNING] Ověřit k datu běhu — stav k 2026-09.
+> **Denní kvóta u Azure Functions není v aktuální dokumentaci Flex Consumption
+> doložená.** Nastavení denní kvóty v GB-s (`dailyMemoryTimeQuota`) je vlastnost
+> **legacy Consumption** plánu; stránky *Flex Consumption plan* ani *Estimating
+> consumption-based costs* ji nezmiňují. Kurzovní prostředí jede na Flex Consumption —
+> nepočítat tedy s tím, že se Function App dá zastropovat, dokud to někdo neověří
+> v portálu. Strop pro Functions stavět přes budget + automatizaci, nebo přes Policy.
+
+Souhrn pro zákazníka jednou větou: **Policy brání, budget varuje, kvóta konkrétní služby
+zastaví jednu věc, smazání resource group ukončí všechno.** Rozpočet sám nechrání nic.
+
 ### Capstone — konsolidace týdne
 Capstone spojuje: wave plán a throttle-aware exekuci ([`../../day-3/migration-patterns/`](../../day-3/migration-patterns/)),
 provisioning artefakt ([`../../day-3/provisioning-patterns/`](../../day-3/provisioning-patterns/)),
@@ -131,6 +196,10 @@ Viz [`lab-capstone-blueprint.md`](lab-capstone-blueprint.md).
 - [Azure Retail Prices API](https://learn.microsoft.com/en-us/rest/api/cost-management/retail-prices/azure-retail-prices) — anonymní endpoint, ze kterého kalkulátor tahá sazby
 - [Billing in Azure Container Apps](https://learn.microsoft.com/en-us/azure/container-apps/billing) — free granty vCPU-s a GiB-s (nejsou v API, jen v dokumentaci)
 - [Study guide for Exam AZ-204](https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/az-204) (k ověření stavu retirementu)
+- [Tutorial: Create and manage budgets](https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/tutorial-acm-create-budgets) — „Resources aren't affected, and your consumption isn't stopped."; latence dat 8-24 h; action groups jen pro scope subscription a resource group
+- [Azure spending limit](https://learn.microsoft.com/en-us/azure/cost-management-billing/manage/spending-limit) — není u pay-as-you-go ani u commitment plánů; „Custom spending limits aren't available."
+- [Set daily cap on Log Analytics workspace](https://learn.microsoft.com/en-us/azure/azure-monitor/logs/daily-cap) — přestřelený objem se účtuje, plán Auxiliary stropu nepodléhá, po dosažení stropu sběr stojí
+- [Azure Policy — allowed resource types / SKUs](https://learn.microsoft.com/en-us/azure/governance/policy/overview) — prevence na úrovni založení zdroje
 
 ## Stav produktu / delta
 - Ověřit k datu běhu — AZ-204 retirement (31. 7. 2026) a přesná náplň AI-200 jako náhrady;
